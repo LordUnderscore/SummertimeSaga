@@ -1,0 +1,99 @@
+Mom:
+  Entrance: Vacuming + Cut scenes
+  Shower: shower == "mom" and Morning
+        : On request (tmp)
+  Bedroom: Night time + Late game + Cut Scene MC masturbating
+  (living room): Cut scene for MC masturbating to Porn
+  kitchen: Default
+  basement: Doing Laundry, Sex scene on request
+  (Front house): Cut scene for Lawn mowing and Mrs. Johnson
+  (Hallway): Cut scene you can sleep with me at night.
+  (Dining room): Cut scene for dinner with Aunt Diane
+Sis:
+  Bedroom: Not in shower, not at breakfast
+  Shower: Morning and shower=="sister" and not at breakfast
+  dining room: Dinner with Aunt Diane and breakfast
+  (hallway): Multiple cut scenes
+  (living room): Foot job, couch sex, [ should have flag]
+  (Entrance): Cut Scene
+Aunt:
+  Garden: Default not dark not masturbating, prior to waiting for Milk Jug and book
+  Shed: Night after getting Milk Jug and book
+  Kitchen: Masturbation cut scene, after starting wait for book and milk jug
+  Bedroom: Mouse cut scene, drunk cut scene, ???
+  (MC Kitchen): Talks with Mom cut scene
+  (MC Dining Room): Dinner with family cut scene
+  (MC Entrance): Cut scene
+Judith: Only at school during daylight
+  West Hallway: Staring point until she moves to bathroom stall
+  (None): missing after first cut scene, back for a little bit, then gone until girls bathroom unlocks
+  Girl's Bathroom Stall: after bathroom unlocks
+  (Boy's locker): Cut scene at start
+Roxxy:
+  Main hallway: Default
+  Boy's locker room: Once longish cut scene
+Annie:
+  Upper Hallway: Default during daylight
+  (Office): Cut scene to expose breasts
+  (Cafeteria): Cut scenes to deal with milk delivery
+  (hallway): Cut scene at start
+  (None): After first cut scene until milk delivery?
+  (Boy's Shower): cut scenes
+Kevin:
+  Cafeteria: Prior to exchanging with Erik
+  Gym: After exchanging with Erik
+Erik:
+  Basement: Weekends, afternoons, evenings
+  (Bedroom): Telescope cut scenes
+  (Mom's Bedroom): Telescope cut scene?
+  (School Hallway): multiple cut scenes
+  Cafeteria: morning after exchanging with Kevin
+Mrs Johnson:
+  Front Erik: Introduction scene?
+  (Front MC): cut scene talking about taking care of growing boys
+  Entrance: weekday afternoon not Thursday, weekend daylight
+  Bedroom: dark
+  Basement: Poker Game
+  Yoga Room: Thursday not dark
+Mia:
+  (school): Intro cut scene to unlock her house 
+  Front Mia's house: Introduction to parents cut scene
+  Mia's Entrance: afternoons
+  Mia's bedroom: After requesting homework when dark
+  Movie Theater: ???
+Anna:
+  Park: Daytime prior to recovering Awesomo
+  (None): After recovering Awesomo
+Awesomo:
+  Forest: Prior to recovery
+  (None): After recovery
+  (Park): Cut scene on being returned to Anna
+Eve:
+  Park: after dark default
+  (None): daylight
+  (School): Cut scene in French class.
+Angelica:
+  church: First entry into church
+  (None): after first encounter
+Mayer Rump:
+  Mall: weekends
+  (None): When not in mall
+Latino Twins:
+  Boys Locker Room Shower: Default with cutscenes
+  (None): Gone for a while till judith progresses
+Mrs Smith:
+  (main hallway): First school cut scene
+  Office: default not dark
+Ronda:
+  (Gym Class): Cut scene after first pushups
+  Pool: Daylight default
+  (None): After dark
+Cassie:
+  Pool: Not dark and cut scene for first after dark visit to the pool
+  (None): After dark 
+Becca:
+  Boy's Locker Room: Blocker for Roxxy shower
+  (None): not blocking Roxxy shower
+Missy:
+  Boy's Locker Room: Blocker for Roxxy shower
+  (None): not blocking Roxxy shower.
