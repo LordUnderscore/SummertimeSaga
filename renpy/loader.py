@@ -123,7 +123,11 @@ def index_archives():
     for prefix in renpy.config.archives:
 
         try:
-            fn = transfn(prefix + ".rpa")
+            if prefix[-4:] == ".ttf":
+                fn = transfn(prefix)
+            else:
+                fn = transfn(prefix + ".rpa")
+
             f = file(fn, "rb")
             l = f.readline()
 
@@ -477,7 +481,10 @@ def load_core(name):
         if not name in index:
             continue
 
-        afn = transfn(prefix + ".rpa")
+        if prefix[-4:] == ".ttf":
+            afn = transfn(prefix)
+        else:
+            afn = transfn(prefix + ".rpa")
 
         data = [ ]
 
