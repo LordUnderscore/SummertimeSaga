@@ -2,7 +2,7 @@ screen moms_bedroom:
     if not gTimer.is_dark():
         add "backgrounds/location_mombedroom.jpg"
 
-        if mom_count >= 11 and m6_note_seen and mom_basement_sex or mom_count >= 11 and not m6_note_seen:
+        if M_mom.is_set("sex available") and is_here("mom"):
             imagebutton:
                 focus_mask True
                 pos (550,400)
@@ -10,15 +10,15 @@ screen moms_bedroom:
                 hover "objects/character_mom_03b.png"
                 action Hide("moms_bedroom"), Jump("mom_dialogue_button_room")
 
-        elif learn_kissing and m6_note_seen and mom_basement_sex or learn_kissing and not m6_note_seen:
+        elif not M_mom.is_set("bed locked"):
             imagebutton:
                 focus_mask True
                 pos (435,435)
                 idle "objects/object_bed_03.png"
                 hover "objects/object_bed_03b.png"
-                action Show("bed03_options")
+                action Hide("moms_bedroom"), Jump("mom_bed")
 
-        if m6_note_seen and not fetched_laundry:
+        if M_mom.get_state() == S_mom_fetch_laundry:
             imagebutton:
                 focus_mask True
                 pos (247,517)
@@ -41,7 +41,7 @@ screen moms_bedroom:
             pos (435,435)
             idle "objects/object_bed_03_night.png"
             hover "objects/object_bed_03b_night.png"
-            action Show("bed03_options")
+            action Hide("moms_bedroom"), Jump("mom_bed")
 
         imagebutton:
             focus_mask True
@@ -50,43 +50,40 @@ screen moms_bedroom:
             hover "objects/object_desk_07b_night.png"
             action Show("desk07_options")
 
-    imagebutton:
-        focus_mask True
-        pos (350,700)
-        idle "boxes/auto_option_12.png"
-        hover "boxes/auto_option_12b.png"
-        action Hide("moms_bedroom"), Jump("home_livingroom_dialogue")
+    if not M_mom.is_set("panties taken"):
+        imagebutton:
+            focus_mask True
+            align (0.5,0.97)
+            idle "boxes/auto_option_12.png"
+            hover "boxes/auto_option_12b.png"
+            action Hide("moms_bedroom"), Jump("home_livingroom_dialogue")
 
 screen moms_drawer:
-    add "backgrounds/location_momdrawer.jpg"
+    add gTimer.image("backgrounds/location_momdrawer{}.jpg")
+
+    if M_mom.is_set("fetch lotion"):
+        if not M_mom.is_set("retrieved lotion"):
+            imagebutton:
+                focus_mask True
+                pos (562,295)
+                idle "objects/object_lotion_01.png"
+                hover "objects/object_lotion_01b.png"
+                action Function(inventory.get_item, item = lotion), Function(M_mom.set, "retrieved lotion", True)
+
+    elif M_mom.is_set("panties available") and not M_mom.is_set("panties taken") and not gTimer.is_dark():
+        imagebutton:
+            focus_mask True
+            pos (-4,283)
+            idle "objects/object_panties_02.png"
+            hover "objects/object_panties_02b.png"
+            action Hide("moms_drawer"), Jump("mom_drawer_panties")
 
     imagebutton:
         focus_mask True
-        pos (-4,283)
-        idle "objects/object_panties_02.png"
-        hover "objects/object_panties_02b.png"
-        action Hide("moms_drawer"), Jump("mom_drawer_continue")
-
-screen bed03_options:
-    imagebutton:
-        idle "backgrounds/menu_ground.png"
-        action Hide("bed03_options")
-
-    if not gTimer.is_dark():
-        imagebutton:
-            focus_mask True
-            pos (350,600)
-            idle "boxes/bed03_option_01.png"
-            hover "boxes/bed03_option_01b.png"
-            action Hide("bed03_options"), Hide("moms_bedroom"), Jump("mom_bed")
-
-    else:
-        imagebutton:
-            focus_mask True
-            pos (350,600)
-            idle "boxes/bed03_option_02.png"
-            hover "boxes/bed03_option_02b.png"
-            action Hide("bed03_options"), Hide("moms_bedroom"), Jump("mom_bed")
+        align (0.5,0.97)
+        idle "boxes/auto_option_generic_01.png"
+        hover "boxes/auto_option_generic_01b.png"
+        action Hide("moms_drawer"), Jump("mom_bedroom_screen")
 
 screen desk07_options:
     imagebutton:
@@ -95,7 +92,7 @@ screen desk07_options:
 
     imagebutton:
         focus_mask True
-        pos (350,600)
+        align (0.5,0.82)
         idle "boxes/desk07_option_01.png"
         hover "boxes/desk07_option_01b.png"
         action Hide("desk07_options"), Hide("moms_bedroom"), Jump("mom_drawer")
@@ -174,6 +171,20 @@ screen mom_sex_options:
             idle "buttons/mom_stage01_08.png"
             hover "buttons/mom_stage01_08b.png"
             action SetVariable("mom_sex_position", "missionary"), Jump("missionary_loop")
+
+        if M_mom.get("change angle"):
+            imagebutton:
+                pos (370,665)
+                idle "buttons/diane_stage01_04.png"
+                hover "buttons/diane_stage01_04b.png"
+                action Hide("shower_mom_sex_options"), Function(M_mom.set, "change angle", False), Jump("cowgirl_loop")
+
+        else:
+            imagebutton:
+                pos (370,665)
+                idle "buttons/diane_stage01_04.png"
+                hover "buttons/diane_stage01_04b.png"
+                action Hide("shower_mom_sex_options"), Function(M_mom.set, "change angle", True), Jump("cowgirl_loop")
 
         if M_mom.get('sex speed') < .4:
             imagebutton:

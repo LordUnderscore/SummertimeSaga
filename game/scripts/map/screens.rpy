@@ -12,11 +12,6 @@ screen town_map:
             $ playSound("<loop 8 to 179>audio/ambience_suburb_night.ogg", 1.0)
 
     add gTimer.image("map/map_base{}.jpg")
-    add gTimer.image("car01{}")
-    add gTimer.image("car03{}")
-    add "sparkle01"
-    add "sparkle02"
-    add "sparkle03"
 
     imagebutton:
         focus_mask True
@@ -24,7 +19,7 @@ screen town_map:
         idle gTimer.image("map/home01{}.png")
         hover gTimer.image("map/home01b{}.png")
         if not gTimer.is_dark():
-            action Hide("town_map"), Hide("ui"), Function(playMusic), SetVariable("in_sis_room", False), SetVariable("map_enter", True), Jump("home_front")
+            action Hide("town_map"), Hide("ui"), Function(playMusic), SetVariable("in_sis_room", False), Jump("home_front")
         else:
             action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("home_front")
         hovered SetVariable("location_count", "Home")
@@ -53,7 +48,7 @@ screen town_map:
             idle gTimer.image("map/school01{}.png")
             hover gTimer.image("map/school01b{}.png")
             if not gTimer.is_dark():
-                action Hide("town_map"), Hide("ui"), Function(playMusic), Function(playSound), Jump("school_dialogue")
+                action Hide("town_map"), Hide("ui"), Function(playMusic), If(erik.started(erik_intro), NullAction(), Function(playSound)), Jump("school_dialogue")
             else:
                 action If(
                     gTimer.is_evening(),
@@ -83,11 +78,11 @@ screen town_map:
             idle gTimer.image("map/dianehouse01{}.png")
             hover gTimer.image("map/dianehouse01b{}.png")
             if not gTimer.is_dark():
-                action Hide("town_map"), Hide("ui"), Function(playMusic), SetVariable("in_garden", False), Jump("garden_dialogue")
+                action Hide("town_map"), Hide("ui"), Function(playMusic), SetVariable("in_garden", False), Jump("diane_front_yard")
             else:
                 action If(
                     gTimer.is_evening(),
-                    [Hide("town_map"), Hide("ui"), Function(playMusic), Jump("garden_dialogue")],
+                    [Hide("town_map"), Hide("ui"), Function(playMusic), Jump("diane_front_yard")],
                     [Hide("town_map"), Hide("ui"), Jump("night_sleep_map")]
                 )
             hovered SetVariable("location_count", "Diane's House")
@@ -126,7 +121,7 @@ screen town_map:
             idle gTimer.image("map/library01{}.png")
             hover gTimer.image("map/library01b{}.png")
             if not gTimer.is_dark():
-                action Hide("town_map"), Hide("ui"), Function(playMusic), Function(playSound), Jump("library_dialogue")
+                action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("library_front")
             else:
                 action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
             hovered SetVariable("location_count", "Library")
@@ -365,8 +360,12 @@ screen town_map:
         imagebutton:
             focus_mask True
             pos (10,675)
-            idle gTimer.image("map/lair01{}.png")
-            hover gTimer.image("map/lair01b{}.png")
+            if not gTimer.is_dark():
+                idle "private/map/lair01.png"
+                hover "private/map/lair01b.png"
+            else:
+                idle "private/map/lair01_night.png"
+                hover "private/map/lair01b_night.png"
             if not gTimer.is_night():
                 action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("lair_dialogue")
             else:
@@ -374,5 +373,23 @@ screen town_map:
             hovered SetVariable("location_count", "Lair")
             unhovered SetVariable("location_count", "Town Map")
 
+    if loc_warehouse_unlocked:
+        imagebutton:
+            focus_mask True
+            pos (110,58)
+            idle gTimer.image("map/warehouse01{}.png")
+            hover gTimer.image("map/warehouse01b{}.png")
+            if not gTimer.is_night():
+                action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("warehouse_dialogue")
+            else:
+                action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
+            hovered SetVariable("location_count", "Lair")
+            unhovered SetVariable("location_count", "Town Map")
+
+    add gTimer.image("car01{}")
     add gTimer.image("car02{}")
+    add gTimer.image("car03{}")
+    add "sparkle01"
+    add "sparkle02"
+    add "sparkle03"
     add "cloud01"

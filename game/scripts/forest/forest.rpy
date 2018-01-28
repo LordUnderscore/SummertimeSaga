@@ -131,6 +131,18 @@ label dirt_pile:
         with dissolve
     $ callScreen(location_count)
 
+label mushroom:
+    scene forest_closeup
+    show player 498 with dissolve
+    player_name "This must be the mushroom {b}Aqua{/b} spoke of."
+    player_name "I could try and feed it to {b}SeaSucc{/b}..."
+    hide player with dissolve
+    show expression "boxes/popup_item_mushroom1.png" at truecenter with dissolve
+    $ inventory.items.append(mushroom)
+    pause
+    hide expression "boxes/popup_item_mushroom1.png" with dissolve
+    $ callScreen(location_count)
+
 label worm_popup:
     show expression "boxes/popup_item_worm1.png" at truecenter with dissolve
     $ renpy.pause()
@@ -192,3 +204,14 @@ label altar:
             hide popup_item_map1 with dissolve
             $ M_aqua.trigger(T_aqua_altar_puzzle_solve)
         $ callScreen(location_count)
+
+label altar_puzzle_leave:
+    scene expression gTimer.image("forest{}_b")
+    show player 12 with dissolve
+    player_name "Huh... Maybe there's something that would hint at how to solve this puzzle."
+    if scroll not in inventory.items:
+        player_name "I could take another {b}look at the church bell{/b} and see if I missed something."
+    else:
+        player_name "Maybe that {b}scroll I found in the tree{/b} has details on this puzzle."
+    hide player with dissolve
+    $ callScreen(location_count)

@@ -37,7 +37,7 @@ label cafeteria_dialogue:
         show player 164
         player_name "All right, then..."
         $ quest09_1 = True
-        $ ui_lock_count = 1
+        $ lock_ui()
 
     elif quest09 in quest_list and quest09 not in completed_quests and quest09_2 == True:
         scene cafeteria_b
@@ -67,7 +67,7 @@ label cafeteria_dialogue:
         $ inventory.items.remove(milk_carton)
         $ quest09_2 = False
         $ quest09_3 = True
-        $ ui_lock_count = 0
+        $ unlock_ui()
 
     elif not erik.known(erik_favor):
         scene cafeteria_b

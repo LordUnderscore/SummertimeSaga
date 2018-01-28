@@ -1,5 +1,6 @@
 init python:
-    config.keymap['screenshot'].remove('s')
+    if "s" in config.keymap['screenshot']:
+        config.keymap['screenshot'].remove('s')
     class Mob:
         def __init__(self, image = ""):
             self.image = image
@@ -21,7 +22,7 @@ label lose:
     hide maze_bg
     hide player_dead
     hide popup_bad
-    jump bedroom_dialogue
+    jump MC_computer
 
 label Maze_done:
     $ renpy.suspend_rollback(False)
@@ -35,7 +36,7 @@ label Maze_done:
     $ player_pos_y = 615
     hide maze_done
     hide popup_good
-    jump bedroom_dialogue
+    jump MC_computer
 
 label Kill_gelly:
     show maze_bg

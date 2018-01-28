@@ -1,8 +1,79 @@
 label school_dialogue:
     $ location_count = "School Hall"
     $ tick_skip_active = False
+    if erik.started(erik_intro):
+        scene outside_school_b
+        show duo 6 at left with dissolve
+        show mia 1 at right with dissolve
+        player_name "Hey, {b}Mia{/b}!"
+        show duo 1 at left
+        show mia 4 at right
+        mia "Hey, {b}[firstname]{/b}! Glad to see you're back!"
+        mia "Hi, {b}Erik{/b}! How was your weekend?"
+        show duo 10 at left
+        show mia 1 at right
+        eri "I mostly stayed in my room..."
+        show duo 1 at left
+        show mia 3 at right
+        mia "That's cool. Sometimes I like alone time too!"
+        show mia 4 at right
+        mia "What about you, {b}[firstname]{/b}? What have you been up to?"
+        show mia 2 at right
+        show duo 9 at left
+        player_name "Well... I'm not sure if you've heard or not, but my {b}Dad{/b} passed away, so we pretty much had to deal with that..."
+        show mia 6 at right
+        mia "Oh yeah. I heard from my mom..."
+        show duo 15 at left
+        mia "I didn't mean to bring it up. I'm sorry you had to go through that. I'm just glad you're finally back!"
+        show mia 2 at right
+        player_name "Thanks. I'll be fine. Don't worry."
+        show mia 4 at right
+        mia "Listen... I was looking for someone to {b}help me get ready for the final exams{/b}, so..."
+        show duo 7 at left
+        mia "...if you're interested, let me know!"
+        show duo 8 at left
+        show mia 1 at right
+        player_name "Uhh... sure? I guess?"
+        player_name "Where do you want to meet? The library?"
+        show duo 1
+        show mia 6
+        mia "Umm...I'd have to ask my parents, first."
+        mia "They probably won't let me, though."
+        mia "I'm not really allowed to stay late after school, or see friends outside of home."
+        show mia 2
+        show duo 9
+        player_name "Really?! That's awful..."
+        show duo 7
+        show mia 3
+        mia "Yeah... heh, heh."
+        show duo 7
+        show mia 6
+        mia "Anyway, It'd be easier if you just came over to my house at some point..."
+        show mia 3 at right
+        mia "You know where I live, so just drop by whenever you want!"
+        show duo 7 at left
+        show mia 4 at right
+        mia "I better get going. {b}Science class{/b} is starting soon!"
+        show duo 1
+        mia "{b}Professor Okita{/b} said today's {b}laboratory experiment{/b} will be challenging."
+        mia "That means it's going to take the entire hour to complete."
+        show mia 1
+        show duo 10
+        eri "Ugh. Don't remind me..."
+        show duo 1
+        show mia 4
+        mia "Talk to you later guys!"
+        hide mia with dissolve
+
+        show unlock1 at truecenter with dissolve
+        $ renpy.pause()
+        $ M_mia.trigger(T_all_school_entrance)
+        $ loc_mia_unlocked = True
+        hide unlock1
+        hide duo with dissolve
+
     if not gTimer.is_weekend():
-        if getPlayingSound("<loop 7 to 115>audio/ambience_school_hallway.ogg"):
+        if getPlayingSound("<loop 7 to 115>audio/ambience_school_hallway.ogg") and not gTimer.is_dark():
             $ playSound("<loop 7 to 115>audio/ambience_school_hallway.ogg", 1.0)
 
         if player.in_progress(intense_gymercise):
@@ -47,7 +118,7 @@ label school_dialogue:
             show erik 28
             eri "Good luck!"
             hide erik with dissolve
-            $ ui_lock_count = 1
+            $ lock_ui()
             $ player.add_event(intense_gymercise)
 
         elif M_mia.get_state() == S_mia_glasses_favor:
@@ -119,7 +190,7 @@ label school_dialogue:
             with dissolve
             $ M_mia.trigger(T_mia_gives_glasses)
 
-        elif erik.started(erik_bullying_2) and ui_lock_count == 0:
+        elif erik.started(erik_bullying_2) and not ui_locked():
             scene school
             show dexter 9 at right with dissolve
             eri "Ugh!!"
@@ -307,77 +378,10 @@ label school_dialogue:
                 with dissolve
 
         elif erik.started(erik_intro):
-            scene school
-            show duo 6 at left with dissolve
-            show mia 1 at right with dissolve
-            player_name "Hey, {b}Mia{/b}!"
+            scene school with fade
             show duo 1 at left
-            show mia 4 at right
-            mia "Hey, {b}[firstname]{/b}! Glad to see you're back!"
-            mia "Hi, {b}Erik{/b}! How was your weekend?"
-            show duo 10 at left
-            show mia 1 at right
-            eri "I mostly stayed in my room..."
-            show duo 1 at left
-            show mia 3 at right
-            mia "That's cool. Sometimes I like alone time too!"
-            show mia 4 at right
-            mia "What about you, {b}[firstname]{/b}? What have you been up to?"
-            show mia 2 at right
-            show duo 9 at left
-            player_name "Well... I'm not sure if you've heard or not, but my {b}Dad{/b} passed away, so we pretty much had to deal with that..."
-            show mia 6 at right
-            mia "Oh yeah. I heard from my mom..."
-            show duo 15 at left
-            mia "I didn't mean to bring it up. I'm sorry you had to go through that. I'm just glad you're finally back!"
-            show mia 2 at right
-            player_name "Thanks. I'll be fine. Don't worry."
-            show mia 4 at right
-            mia "Listen... I was looking for someone to {b}help me get ready for the final exams{/b}, so..."
-            show duo 7 at left
-            mia "...if you're interested, let me know!"
-            show duo 8 at left
-            show mia 1 at right
-            player_name "Uhh... sure? I guess?"
-            player_name "Where do you want to meet? The library?"
-            show duo 1
-            show mia 6
-            mia "Umm...I'd have to ask my parents, first."
-            mia "They probably won't let me, though."
-            mia "I'm not really allowed to stay late after school, or see friends outside of home."
-            show mia 2
-            show duo 9
-            player_name "Really?! That's awful..."
-            show duo 7
-            show mia 3
-            mia "Yeah... heh, heh."
-            show duo 7
-            show mia 6
-            mia "Anyway, It'd be easier if you just came over to my house at some point..."
-            show mia 3 at right
-            mia "You know where I live, so just drop by whenever you want!"
-            show duo 7 at left
-            show mia 4 at right
-            mia "I better get going. {b}Science class{/b} is starting soon!"
-            show duo 1
-            mia "{b}Professor Okita{/b} said today's {b}labratory experiment{/b} will be challenging."
-            mia "That means it's going to take the entire hour to complete."
-            show mia 1
-            show duo 10
-            eri "Ugh. Don't remind me..."
-            show duo 1
-            show mia 4
-            mia "Talk to you later guys!"
-            hide mia with dissolve
-
-            show unlock1 at truecenter with dissolve
-            $ renpy.pause()
-            $ M_mia.trigger(T_all_school_entrance)
-            $ loc_mia_unlocked = True
-            hide unlock1 with dissolve
-
-            show duo 1 at left
-            show dexrox 1 at right with dissolve
+            show dexrox 1 at right
+            with dissolve
             rox "What're you two losers looking at?!"
             show duo 2 at left
             show dexrox 4 at right
@@ -449,7 +453,7 @@ label school_dialogue:
 
             show player 1 at left with dissolve
             show erik 5 at right with dissolve
-            eri "Okay. I better go to my Maths..."
+            eri "Okay. I better get to class..."
             show erik 1 at right
             show player 14 at left
             player_name "Yeah, I have Athletics, outside in the {b}Field{/b}, with {b}Coach Bridget{/b}..."
@@ -506,7 +510,7 @@ label school_dialogue:
 
             $ erik_intro.finish()
             $ school_count = 1
-            $ ui_lock_count = 1
+            $ lock_ui()
 
         elif not roxxy_copied1 and homework1 in inventory.items:
             scene school
@@ -923,7 +927,7 @@ label night_closed_school:
             scene black
             with dissolve
             with Pause(0.5)
-            scene expression "backgrounds/location_school_night.jpg" with dissolve
+            scene school_night with dissolve
             player_name "!!!"
             player_name "I hear someone coming..."
             scene cult_event 1
@@ -968,7 +972,7 @@ label night_closed_school:
             eri "Okay..."
             hide player 91 with dissolve
             hide erik 3 with dissolve
-            $ ui_lock_count = 1
+            $ lock_ui()
             $ callScreen(location_count)
         else:
 
@@ -997,6 +1001,10 @@ label denied_access_mainhall:
     player_name "( We should find {b}another way{/b}. )"
     hide player 113
     hide erik 1f
+    $ callScreen(location_count)
+
+label school_hallway:
+    $ location_count == "School Hall"
     $ callScreen(location_count)
 
 label school_locker:

@@ -73,6 +73,13 @@ screen consumr:
 
     imagebutton:
         focus_mask True
+        pos (380,388)
+        idle "objects/object_shop_12.png"
+        hover "objects/object_shop_12b.png"
+        action Show("popup_cat_food")
+
+    imagebutton:
+        focus_mask True
         pos (700,400)
         idle "objects/character_vero_01.png"
         hover "objects/character_vero_01b.png"
@@ -224,6 +231,20 @@ screen popup_wrench:
         idle "buttons/shop_button_50.png"
         hover "buttons/shop_button_50b.png"
         action [Function(inventory.buy_item, wrench), If(inventory.money < 50, Show("popup_fail01"), If(wrench in inventory.items, Show("popup_fail02"), Show("popup_wrench"))), Hide("popup_wrench")]
+
+screen popup_cat_food:
+    imagebutton:
+        idle "backgrounds/menu_ground.png"
+        action Hide("popup_cat_food")
+
+    add "boxes/shop_item_catfood01.png" pos 276,281
+
+    imagebutton:
+        focus_mask True
+        pos (410,421)
+        idle "buttons/shop_button_100.png"
+        hover "buttons/shop_button_100b.png"
+        action [Function(inventory.buy_item, cat_food), If(inventory.money < 100, Show("popup_fail01"), If(cat_food in inventory.items, Show("popup_fail02"), Show("popup_cat_food"))), Hide("popup_cat_food")]
 
 screen popup_fail01:
     imagebutton:

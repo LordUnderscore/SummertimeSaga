@@ -23,36 +23,33 @@ image webcam_loading_circle:
     repeat
 
 
-image player 155_156 = Animation("characters/player/char_player_155.png", .35, "characters/player/char_player_156.png", .35)
-image location_mombed 2_3 = Animation("backgrounds/location_mombed02.jpg", .4, "backgrounds/location_mombed03.jpg", .4)
-image playersex 86_85:
-    Transform("playersex 86")
-    pause .4
-    Transform("playersex 85")
-    pause .4
+image player 155_156_156b_156:
+    Transform("player 155")
+    pause .2
+    Transform("player 156")
+    pause .2
+    Transform("player 156b")
+    pause .2
+    Transform("player 156")
+    pause .2
     repeat
-image playersex 96_97:
-    Transform("playersex 96")
-    pause .4
-    Transform("playersex 97")
-    pause .4
+
+image player 157_158_159:
+    Transform("player 157")
+    pause .2
+    Transform("player 158")
+    pause .2
+    Transform("player 159")
+    pause .2
     repeat
-image playersex 134_135_136_137:
-    Transform("playersex 134")
-    pause M_sis.get('sex speed')
-    Transform("playersex 135")
-    pause M_sis.get('sex speed')
-    Transform("playersex 136")
-    pause M_sis.get('sex speed')
-    Transform("playersex 137")
-    pause M_sis.get('sex speed')
-    repeat
+
 image player 239_240:
     Transform("player 239")
     pause .4
     Transform("player 240")
     pause .4
     repeat
+
 image player 239_240f:
     Transform("player 239f")
     pause .4
@@ -60,40 +57,265 @@ image player 239_240f:
     pause .4
     repeat
 
+image player 496c_496d_496e_496d_496c:
+    "characters/player/char_player_496c.png"
+    pause M_player.get('sex speed')
+    "characters/player/char_player_496d.png"
+    pause M_player.get('sex speed')
+    "characters/player/char_player_496e.png"
+    pause M_player.get('sex speed')
+    "characters/player/char_player_496d.png"
+    pause M_player.get('sex speed')
+    "characters/player/char_player_496c.png"
+    pause M_player.get('sex speed')
+    repeat
+
+image player_arms 488c_488d:
+    Transform("player_arms 488c")
+    pause .4
+    Transform("player_arms 488d")
+    pause .4
+    repeat
+
+image player_arms 488c_488d_488e:
+    Transform("player_arms 488c")
+    pause .4
+    Transform("player_arms 488d")
+    pause .4
+    Transform("player_arms 488e")
+    pause .4
+    repeat
+
+image player_arms 488e_488f:
+    Transform("player_arms 488e")
+    pause .4
+    Transform("player_arms 488f")
+    pause .4
+    repeat
+
+image playersex 86_85:
+    Transform("playersex 86")
+    pause .4
+    Transform("playersex 85")
+    pause .4
+    repeat
+
+image playersex 96_97:
+    Transform("playersex 96")
+    pause .4
+    Transform("playersex 97")
+    pause .4
+    repeat
+
+image playersex 134_135_136_137:
+    Transform("playersex 134")
+    pause M_sis.get("sex speed")
+    Transform("playersex 135")
+    pause M_sis.get("sex speed")
+    Transform("playersex 136")
+    pause M_sis.get("sex speed")
+    Transform("playersex 137")
+    pause M_sis.get("sex speed")
+    repeat
+
+image location_mombed 2_3 = Animation("backgrounds/location_mombed02.jpg", .4, "backgrounds/location_mombed03.jpg", .4)
+
+image player medmo 155_156_156b:
+    "characters/player/char_player_155.png"
+    pause M_mom.get("sex speed")*5/6
+    "characters/player/char_player_156.png"
+    pause M_mom.get("sex speed")*5/6
+    "characters/player/char_player_156b.png"
+    pause M_mom.get("sex speed")*5/6
+    repeat
+
+
+image mom_shower 6a_6b_6c:
+    Transform("shower06a")
+    pause 1.2
+    Transform("shower06b")
+    pause .8
+    Transform("shower06c")
+    pause .8
+    Transform("shower06b")
+    pause .8
+    Transform("shower06a")
+    pause 1.2
+    Transform("shower06c")
+    pause .8
+    repeat
 
 image mom_peek_sequence 2_3 = Animation("backgrounds/location_mompeak02.jpg", .4, "backgrounds/location_mompeak03.jpg", .4)
+
 image dreammom 1_2 = Animation("backgrounds/dream_mom_01.jpg", .4, "backgrounds/dream_mom_02.jpg", .4)
+
 image mom 80_79 = Animation("characters/mom/char_mom_80.png", .5, "characters/mom/char_mom_79.png", .5)
+
+image mom 49_50_50b:
+    Transform("mom 49")
+    pause .4
+    Transform("mom 50", xoffset = 5)
+    pause .4
+    Transform("mom 50b")
+    pause .4
+    repeat
+
+image mom 194_195_196:
+    Transform("mom 194")
+    pause M_mom.get("sex speed")
+    Transform("mom 195")
+    pause M_mom.get("sex speed")
+    Transform("mom 196")
+    pause M_mom.get("sex speed")
+    repeat
+
+image mom 194f_195f_196f:
+    Transform("mom 194f")
+    pause M_mom.get("sex speed")
+    Transform("mom 195f")
+    pause M_mom.get("sex speed")
+    Transform("mom 196f")
+    pause M_mom.get("sex speed")
+    repeat
+
+image mom 209_210:
+    Transform("mom 209")
+    pause .4
+    Transform("mom 210")
+    pause .4
+    repeat
+
+image mom 212b_215b:
+    Transform("mom 212b")
+    pause .4
+    Transform("mom 215b")
+    pause .4
+    repeat
+
+image mom_arms car 5_5b_5c_5b:
+    Transform("mom_arms car 5")
+    pause M_mom.get("sex speed")
+    Transform("mom_arms car 5b")
+    pause M_mom.get("sex speed")
+    Transform("mom_arms car 5c")
+    pause M_mom.get("sex speed")
+    Transform("mom_arms car 5b")
+    pause M_mom.get("sex speed")
+    repeat
+
+image momf 8flip_8bf_8cf_8df_8ef_8ff_8gf:
+    im.Flip("characters/mom/char_mom_front_08.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08b.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08c.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08d.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08e.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08f.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    im.Flip("characters/mom/char_mom_front_08g.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    repeat
+
+image momfa 3f_3bf:
+    im.Flip("characters/mom/char_mom_front_arms_03.png", horizontal=True)
+    pause M_mom.get("sex speed")
+    Transform("momfa 3bf", xoffset=-8, yoffset=-3)
+    pause M_mom.get("sex speed")
+    repeat
+
+image momfa 5bf_5cf:
+    Transform("momfa 5bf", xoffset=-12, yoffset=5)
+    pause M_mom.get("sex speed")
+    Transform("momfa 5cf", xoffset=-12, yoffset=5)
+    pause M_mom.get("sex speed")
+    repeat
+
+image mom car bj 8_8b_8c_8d_8e_8f_8g:
+    Transform("mom car bj 8")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8b")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8c")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8d")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8e")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8f")
+    pause M_mom.get('sex speed')
+    Transform("mom car bj 8g")
+    pause M_mom.get('sex speed')
+    repeat
+
+image momd 4_5:
+    "characters/mom/char_mom_dream_04.png"
+    pause M_mom.get('sex speed')
+    "characters/mom/char_mom_dream_05.png"
+    pause M_mom.get('sex speed')
+    repeat
+
 image moms 7_8 = Animation("characters/mom/char_mom_sex_07.png", .4, "characters/mom/char_mom_sex_08.png", .4)
 image moms 13_14 = Animation("characters/mom/char_mom_sex_13.png", .4, "characters/mom/char_mom_sex_14.png", .4)
 image moms 16_17 = Animation("characters/mom/char_mom_sex_16.png", .45, "characters/mom/char_mom_sex_17.png", .45)
 image moms 37_36 = Animation("characters/mom/char_mom_sex_37.png", .45, "characters/mom/char_mom_sex_36.png", .45)
 image moms 41_76 = Animation("characters/mom/char_mom_sex_41.png", .5, "characters/mom/char_mom_sex_76.png", .5)
+
 image moms 49_50:
     Image("characters/mom/char_mom_49.png")
     pause .4
     Image("characters/mom/char_mom_50.png", xoffset = 5)
     pause .4
     repeat
+
+image moms 20h_20i_20j_20k_20l_20m_20n_20o:
+    "characters/mom/char_mom_sex_20h.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20i.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20j.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20k.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20l.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20m.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20n.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20o.png"
+    pause M_mom.get("sex speed")
+    repeat
+
+image moms 20p_20q:
+    "characters/mom/char_mom_sex_20p.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_20q.png"
+    pause M_mom.get("sex speed")
+    repeat
+
 image moms 52_53_52_51 = Animation("characters/mom/char_mom_sex_52.png", .4, "characters/mom/char_mom_sex_53.png", .4, "characters/mom/char_mom_sex_52.png", .4, "characters/mom/char_mom_sex_51.png", .4)
 image moms 56_55 = Animation("characters/mom/char_mom_sex_56.png", .35, "characters/mom/char_mom_sex_55.png", .35)
 
 image moms 59_60_61:
     Transform("moms 59")
-    pause M_mom.get('sex speed')
+    pause M_mom.get("sex speed")
     Transform("moms 60")
-    pause M_mom.get('sex speed')
+    pause M_mom.get("sex speed")
     Transform("moms 61")
-    pause M_mom.get('sex speed')
+    pause M_mom.get("sex speed")
     repeat
 
 image moms 65_66_64:
     Transform("moms 65")
-    pause M_mom.get('sex speed')*2/4
+    pause M_mom.get("sex speed")*2/4
     Transform("moms 66")
-    pause M_mom.get('sex speed')
+    pause M_mom.get("sex speed")
     Transform("moms 64")
-    pause M_mom.get('sex speed')
+    pause M_mom.get("sex speed")
     repeat
 
 image moms 68_67 = Animation("characters/mom/char_mom_sex_68.png", .4, "characters/mom/char_mom_sex_67.png", .4)
@@ -101,18 +323,21 @@ image moms 72_71 = Animation("characters/mom/char_mom_sex_72.png", .4, "characte
 image moms 73_74 = Animation("characters/mom/char_mom_sex_73.png", .4, "characters/mom/char_mom_sex_74.png", .4)
 image moms 81_82 = Animation("characters/mom/char_mom_sex_81.png", .5, "characters/mom/char_mom_sex_82.png", .5)
 image moms 85_86 = Animation("characters/mom/char_mom_sex_85.png", .5, "characters/mom/char_mom_sex_86.png", .5)
+
 image moms 88_89:
     Image("characters/mom/char_mom_sex_88.png", xoffset = 0)
     pause .5
     Image("characters/mom/char_mom_sex_89.png", xoffset = -2)
     pause .5
     repeat
+
 image moms 93_94:
     Image("characters/mom/char_mom_sex_93.png", xoffset = 0)
     pause .4
     Image("characters/mom/char_mom_sex_94.png", xoffset = -2)
     pause .4
     repeat
+
 image moms 97_98:
     Transform("moms 97")
     pause .4
@@ -122,13 +347,13 @@ image moms 97_98:
 
 image moms 103_104_105_104:
     Transform("moms 103")
-    pause M_mom.get('sex speed')*3/4
+    pause M_mom.get("sex speed")*3/4
     Transform("moms 104")
-    pause M_mom.get('sex speed')*1/4
+    pause M_mom.get("sex speed")*1/4
     Transform("moms 105")
-    pause M_mom.get('sex speed')*1/4
+    pause M_mom.get("sex speed")*1/4
     Transform("moms 104")
-    pause M_mom.get('sex speed')*2/4
+    pause M_mom.get("sex speed")*2/4
     repeat
 
 image moms 113_114:
@@ -138,74 +363,160 @@ image moms 113_114:
     pause .4
     repeat
 
-image moms 126_127_128:
+image moms 126_126b_126c_126d_126e_126f_126g_126h_126i_126j:
     Transform("moms 126")
     pause M_mom.get('sex speed')
-    Transform("moms 127")
+    Transform("moms 126b")
     pause M_mom.get('sex speed')
-    Transform("moms 128")
+    Transform("moms 126c")
+    pause M_mom.get('sex speed')
+    Transform("moms 126d")
+    pause M_mom.get('sex speed')
+    Transform("moms 126e")
+    pause M_mom.get('sex speed')
+    Transform("moms 126f")
+    pause M_mom.get('sex speed')
+    Transform("moms 126g")
+    pause M_mom.get('sex speed')
+    Transform("moms 126h")
+    pause M_mom.get('sex speed')
+    Transform("moms 126i")
+    pause M_mom.get('sex speed')
+    Transform("moms 126j")
     pause M_mom.get('sex speed')
     repeat
 
-image moms_xray 56_55_54:
-    contains:
-        subpixel True
-        "characters/mom/char_mom_sex_61.png"
-        pause M_mom.get('sex speed')
-        "characters/mom/char_mom_sex_60.png"
-        pause M_mom.get('sex speed')
-        "characters/mom/char_mom_sex_59.png"
-        pause M_mom.get('sex speed')
-        repeat
-    contains:
-        Image("characters/player/char_player_sex_56.png", xoffset = 276, yoffset = 464)
-        pause M_mom.get('sex speed')
-        Image("characters/player/char_player_sex_55.png", xoffset = 262, yoffset = 475)
-        pause M_mom.get('sex speed')
-        Image("characters/player/char_player_sex_54.png", xoffset = 267, yoffset = 487)
-        pause M_mom.get('sex speed')
-        repeat
+
+
+
+
+
+
+
+
+
+image moms 133_134:
+    "characters/mom/char_mom_sex_133.png"
+    pause M_mom.get("sex speed")
+    Image("characters/mom/char_mom_sex_134.png", xoffset = 9)
+    pause M_mom.get("sex speed")
+    repeat
+
+image moms 146_147:
+    "characters/mom/char_mom_sex_146.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_147.png"
+    pause M_mom.get("sex speed")
+    repeat
+
+image moms 151_152_153_154_155_156_157:
+    "characters/mom/char_mom_sex_151.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_152.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_153.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_154.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_155.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_156.png"
+    pause M_mom.get("sex speed")
+    "characters/mom/char_mom_sex_157.png"
+    pause M_mom.get("sex speed")
+    repeat
+
+image moms 164_165_166_167_168:
+    Transform("moms 164")
+    pause M_mom.get("sex speed")
+    Transform("moms 165")
+    pause M_mom.get("sex speed")
+    Transform("moms 166")
+    pause M_mom.get("sex speed")
+    Transform("moms 167")
+    pause M_mom.get("sex speed")
+    Transform("moms 168")
+    pause M_mom.get("sex speed")
+    repeat
+
+image moms 170_171_172_173_174_175_176_177:
+    Transform("moms 170")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 171")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 172")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 173")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 174")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 175")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 176")
+    pause M_mom.get('sex speed')/3
+    Transform("moms 177")
+    pause M_mom.get('sex speed')/3
+    repeat
 
 image moms_xray 58_59_57:
     contains:
         subpixel True
         "characters/mom/char_mom_sex_65.png"
-        pause M_mom.get('sex speed')*2/4
+        pause M_mom.get("sex speed")*2/4
         Image("characters/mom/char_mom_sex_66.png", yoffset = -11)
-        pause M_mom.get('sex speed')
+        pause M_mom.get("sex speed")
         Image("characters/mom/char_mom_sex_64.png", yoffset = 48)
-        pause M_mom.get('sex speed')
+        pause M_mom.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_58.png", xoffset = 347, yoffset = 255)
-        pause M_mom.get('sex speed')*2/4
+        pause M_mom.get("sex speed")*2/4
         Image("characters/player/char_player_sex_59.png", xoffset = 378, yoffset = 234)
-        pause M_mom.get('sex speed')
+        pause M_mom.get("sex speed")
         Image("characters/player/char_player_sex_57.png", xoffset = 263, yoffset = 278)
-        pause M_mom.get('sex speed')
+        pause M_mom.get("sex speed")
         repeat
+
 image moms_xray 65_66_67_66:
     contains:
         subpixel True
         "characters/mom/char_mom_sex_103.png"
-        pause M_mom.get('sex speed')*3/4
+        pause M_mom.get("sex speed")*3/4
         Image("characters/mom/char_mom_sex_104.png", yoffset = -7)
-        pause M_mom.get('sex speed')*1/4
+        pause M_mom.get("sex speed")*1/4
         Image("characters/mom/char_mom_sex_105.png", yoffset = -7)
-        pause M_mom.get('sex speed')*1/4
+        pause M_mom.get("sex speed")*1/4
         Image("characters/mom/char_mom_sex_104.png", yoffset = -7)
-        pause M_mom.get('sex speed')*2/4
+        pause M_mom.get("sex speed")*2/4
         repeat
     contains:
         Image("characters/player/char_player_sex_65.png", xoffset = 367, yoffset = 240)
-        pause M_mom.get('sex speed')*3/4
+        pause M_mom.get("sex speed")*3/4
         Image("characters/player/char_player_sex_66.png", xoffset = 414, yoffset = 224)
-        pause M_mom.get('sex speed')*1/4
+        pause M_mom.get("sex speed")*1/4
         Image("characters/player/char_player_sex_67.png", xoffset = 434, yoffset = 230)
-        pause M_mom.get('sex speed')*1/4
+        pause M_mom.get("sex speed")*1/4
         Image("characters/player/char_player_sex_66.png", xoffset = 414, yoffset = 224)
-        pause M_mom.get('sex speed')*2/4
+        pause M_mom.get("sex speed")*2/4
         repeat
+
+image mom_robe 194b_195b_196b:
+    Transform("mom_robe 194b")
+    pause M_mom.get("sex speed")
+    Transform("mom_robe 195b")
+    pause M_mom.get("sex speed")
+    Transform("mom_robe 196b")
+    pause M_mom.get("sex speed")
+    repeat
+
+image mom_robe 194bf_195bf_196bf:
+    Transform("mom_robe 194bf")
+    pause M_mom.get("sex speed")
+    Transform("mom_robe 195bf")
+    pause M_mom.get("sex speed")
+    Transform("mom_robe 196bf")
+    pause M_mom.get("sex speed")
+    repeat
 
 
 image shower 05d_05e = Animation("backgrounds/location_shower_05d.jpg", .3, "backgrounds/location_shower_05e.jpg", .3)
@@ -370,13 +681,13 @@ image sissex 92_93_94_95:
 
 image sissex 98_99_100_101:
     Transform("sissex 98")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 99", xoffset = 7)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 100", xoffset = -14)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 101", xoffset = -35)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     repeat
 
 image sissex 102_103:
@@ -396,28 +707,28 @@ image sissex 114b_115b:
 
 image sissex 117_118_119_120_121:
     Transform("sissex 117")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 118", xoffset = 2)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 119", xoffset = 23)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 120", xoffset = 29)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 121", xoffset = 14)
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     repeat
 
 image sissex 123_124_125_126_127:
     Transform("sissex 123")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 124")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 125")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 126")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     Transform("sissex 127")
-    pause M_sis.get('sex speed')
+    pause M_sis.get("sex speed")
     repeat
 
 image sissex 129b_128:
@@ -443,174 +754,174 @@ image auntsex 11_12 = Animation("characters/aunt/char_aunt_sex_11.png", .4, "cha
 image auntsex 19_20 = Animation("characters/aunt/char_aunt_sex_19.png", .4, "characters/aunt/char_aunt_sex_20.png", .4)
 image auntsex 26_27:
     Image("characters/aunt/char_aunt_sex_26.png", xoffset = 0)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     Image("characters/aunt/char_aunt_sex_27.png", xoffset = 16)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     repeat
 image auntsex 30_31:
     Image("characters/aunt/char_aunt_sex_30.png", xoffset = 0)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     Image("characters/aunt/char_aunt_sex_31.png", xoffset = 16)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     repeat
 image auntsex 32_33 = Animation("characters/aunt/char_aunt_sex_32.png", .4, "characters/aunt/char_aunt_sex_33.png", .4)
 image auntsex 38_40:
     "characters/aunt/char_aunt_sex_38.png"
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     Image("characters/aunt/char_aunt_sex_40.png", xoffset = 3)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     repeat
 image auntsex 50_52:
     "characters/aunt/char_aunt_sex_50.png"
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     Image("characters/aunt/char_aunt_sex_52.png", xoffset = 5)
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     repeat
 image auntsex 54_55:
     "characters/aunt/char_aunt_sex_54.png"
-    pause M_aunt.get('sex speed')*5/4
+    pause M_aunt.get("sex speed")*5/4
     "characters/aunt/char_aunt_sex_55.png"
-    pause M_aunt.get('sex speed')*5/4
+    pause M_aunt.get("sex speed")*5/4
     repeat
 image auntsex 58_59_58_57:
     Transform("aunts 58", xoffset = -2)
-    pause M_aunt.get('sex speed')*3/4
+    pause M_aunt.get("sex speed")*3/4
     Transform("aunts 59", xoffset = 1)
-    pause M_aunt.get('sex speed')*2.5/4
+    pause M_aunt.get("sex speed")*2.5/4
     Transform("aunts 58", xoffset = -2)
-    pause M_aunt.get('sex speed')*3.5/4
+    pause M_aunt.get("sex speed")*3.5/4
     Transform("aunts 57")
-    pause M_aunt.get('sex speed')
+    pause M_aunt.get("sex speed")
     repeat
 image auntsex 61_60:
     Image("characters/aunt/char_aunt_sex_61.png", xoffset = -45)
-    pause M_aunt.get('sex speed')*5/4
+    pause M_aunt.get("sex speed")*5/4
     Image("characters/aunt/char_aunt_sex_60.png", xoffset = -45)
-    pause M_aunt.get('sex speed')*5/4
+    pause M_aunt.get("sex speed")*5/4
     repeat
 image auntsex_xray 6_9:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_30.png")
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_31.png", xoffset = 43)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_06.png", xoffset = 376, yoffset = 417)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_09.png", xoffset = 392, yoffset = 400)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_xray 6_7:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_26.png")
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_27.png", xoffset = 43)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_06.png", xoffset = 376, yoffset = 417)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_07.png", xoffset = 392, yoffset = 400)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_cowoutfit 39_41:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_38.png", xoffset = 86, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_40.png", xoffset = 92, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/aunt/char_aunt_sex_39.png", xoffset = 267, yoffset = 145)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_41.png", xoffset = 268, yoffset = 144)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_cowoutfit 51_53:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_50.png", xoffset = 77)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_52.png", xoffset = 89)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/aunt/char_aunt_sex_51.png", xoffset = 115)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_53.png", xoffset = 133)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_xray 42_43:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_38.png", xoffset = 86, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_40.png", xoffset = 92, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_42.png", xoffset = 498, yoffset = 359)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_43.png", xoffset = 486, yoffset = 334)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_xray 46_47:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_50.png", xoffset = 77)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_52.png", xoffset = 89)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_46.png", xoffset = 272, yoffset = 270)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_47.png", xoffset = 302, yoffset = 290)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_cowoutfit_xray 39_41_42_43:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_38.png", xoffset = 86, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_40.png", xoffset = 92, yoffset = 40)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/aunt/char_aunt_sex_39.png", xoffset = 267, yoffset = 145)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_41.png", xoffset = 268, yoffset = 144)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_42.png", xoffset = 498, yoffset = 359)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_43.png", xoffset = 486, yoffset = 334)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 image auntsex_cowoutfit_xray 51_53_46_47:
     contains:
         subpixel True
         Image("characters/aunt/char_aunt_sex_50.png", xoffset = 77)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_52.png", xoffset = 89)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/aunt/char_aunt_sex_51.png", xoffset = 115)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/aunt/char_aunt_sex_53.png", xoffset = 133)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
     contains:
         Image("characters/player/char_player_sex_46.png", xoffset = 272, yoffset = 270)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         Image("characters/player/char_player_sex_47.png", xoffset = 302, yoffset = 290)
-        pause M_aunt.get('sex speed')
+        pause M_aunt.get("sex speed")
         repeat
 
 
@@ -822,101 +1133,101 @@ image erikmomsex 15_16_17:
     repeat
 image erikmomsex 21_22_23_24_25:
     "characters/erikmom/char_erikmom_sex_21.png"
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     "characters/erikmom/char_erikmom_sex_22.png"
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     "characters/erikmom/char_erikmom_sex_23.png"
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     "characters/erikmom/char_erikmom_sex_24.png"
-    pause M_erimom.get('sex speed')*2.5/3
+    pause M_erimom.get("sex speed")*2.5/3
     "characters/erikmom/char_erikmom_sex_25.png"
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     repeat
 image erikmomsex 28_29_30:
     Transform("characters/erikmom/char_erikmom_sex_28.png", yoffset=42)
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     Transform("characters/erikmom/char_erikmom_sex_29.png", yoffset=36)
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     Transform("characters/erikmom/char_erikmom_sex_30.png", xoffset=-4, yoffset=41)
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     repeat
 image erikmomsex 36_37:
     Transform("characters/erikmom/char_erikmom_sex_36.png", yoffset=70)
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     Transform("characters/erikmom/char_erikmom_sex_37.png", yoffset=60)
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     repeat
 image erikmomsex 42_43_44_45_46:
     Transform("characters/erikmom/char_erikmom_sex_42.png", xoffset=-14)
-    pause M_erimom.get('sex speed')
+    pause M_erimom.get("sex speed")
     Transform("characters/erikmom/char_erikmom_sex_43.png", xoffset=-20)
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     Transform("characters/erikmom/char_erikmom_sex_44.png", xoffset=-30)
-    pause M_erimom.get('sex speed')*2.5/3
+    pause M_erimom.get("sex speed")*2.5/3
     Transform("characters/erikmom/char_erikmom_sex_45.png", xoffset=-23)
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     Transform("characters/erikmom/char_erikmom_sex_46.png", xoffset=-19)
-    pause M_erimom.get('sex speed')*2/3
+    pause M_erimom.get("sex speed")*2/3
     repeat
 
 
 image junesex 4b_5b_6b_7b_8b:
     "characters/june/char_june_sex_04b.png"
-    pause M_june.get('sex speed')*2/3
+    pause M_june.get("sex speed")*2/3
     "characters/june/char_june_sex_05b.png"
-    pause M_june.get('sex speed')*2.5/3
+    pause M_june.get("sex speed")*2.5/3
     "characters/june/char_june_sex_06b.png"
-    pause M_june.get('sex speed')*2.5/3
+    pause M_june.get("sex speed")*2.5/3
     "characters/june/char_june_sex_07b.png"
-    pause M_june.get('sex speed')*2/3
+    pause M_june.get("sex speed")*2/3
     "characters/june/char_june_sex_08b.png"
-    pause M_june.get('sex speed')
+    pause M_june.get("sex speed")
     repeat
 image junesex 4_5_6_7_8:
     "characters/june/char_june_sex_04.png"
-    pause M_june.get('sex speed')*2/3
+    pause M_june.get("sex speed")*2/3
     "characters/june/char_june_sex_05.png"
-    pause M_june.get('sex speed')*2.5/3
+    pause M_june.get("sex speed")*2.5/3
     "characters/june/char_june_sex_06.png"
-    pause M_june.get('sex speed')*2.5/3
+    pause M_june.get("sex speed")*2.5/3
     "characters/june/char_june_sex_07.png"
-    pause M_june.get('sex speed')*2/3
+    pause M_june.get("sex speed")*2/3
     "characters/june/char_june_sex_08.png"
-    pause M_june.get('sex speed')
+    pause M_june.get("sex speed")
     repeat
 
 
 image mias 7_8:
     Transform("mias 7")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 8")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     repeat
 
 image mias 7_8_9_10_11:
     Transform("mias 7")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 8")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 9")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 10")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 11")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     repeat
 
 image mias 7b_8b_9b_10b_11b:
     Transform("mias 7b")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 8b")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 9b")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 10b")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     Transform("mias 11b")
-    pause M_mia.get('sex speed')
+    pause M_mia.get("sex speed")
     repeat
 
 image mias 12_13:
@@ -938,85 +1249,107 @@ image helens 1_2 = Animation("characters/helen/char_helen_sex_02.png", .25, "cha
 image helens 4_4b = Animation("characters/helen/char_helen_sex_04.png", .4, "characters/helen/char_helen_sex_04b.png", .2)
 image helens 6_7_8_9_10:
     Transform("characters/helen/char_helen_sex_06.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_07.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_08.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_09.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_10.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     repeat
 image helens 11_11b = Animation("characters/helen/char_helen_sex_11.png", .2, "characters/helen/char_helen_sex_11b.png", 1)
 image helens 15_16_17_18_19:
     Transform("characters/helen/char_helen_sex_15.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_16.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_17.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_18.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("characters/helen/char_helen_sex_19.png")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     repeat
 image helens 23_24_25_26_27:
     Transform("helens 23")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("helens 24")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("helens 25")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("helens 26")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("helens 27")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     repeat
 image h_corset 23_24_25_26_27:
     Transform("h_corset 23b")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("h_corset 24b")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("h_corset 25b")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("h_corset 26b")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     Transform("h_corset 27b")
-    pause M_helen.get('sex speed')
+    pause M_helen.get("sex speed")
     repeat
 
 
 image rozs 1_2_3_4_5_6_7:
     Transform("characters/roz/char_roz_sex_01.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_02.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_03.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_04.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_05.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_06.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     Transform("characters/roz/char_roz_sex_07.png")
-    pause M_roz.get('sex speed')
+    pause M_roz.get("sex speed")
     repeat
 
 image rozs 8_9 = Animation("characters/roz/char_roz_sex_08.png", .2, "characters/roz/char_roz_sex_09.png", 1)
 
 
 image aquas 3_4_5_6_7:
-    Transform("characters/aqua/char_aqua_sex_03.png")
+    Transform("private/characters/aqua/char_aqua_sex_03.png")
+    pause M_aqua.get("sex speed")
+    Transform("private/characters/aqua/char_aqua_sex_04.png")
+    pause M_aqua.get("sex speed")
+    Transform("private/characters/aqua/char_aqua_sex_05.png")
+    pause M_aqua.get("sex speed")
+    Transform("private/characters/aqua/char_aqua_sex_06.png")
+    pause M_aqua.get("sex speed")
+    Transform("private/characters/aqua/char_aqua_sex_07.png")
+    pause M_aqua.get("sex speed")
+    repeat
+
+
+image seasucc 8_8b_8c_8d_8e_8f_8g_8h_8i:
+    Transform("seasucc 8")
     pause M_aqua.get('sex speed')
-    Transform("characters/aqua/char_aqua_sex_04.png")
+    Transform("seasucc 8b")
     pause M_aqua.get('sex speed')
-    Transform("characters/aqua/char_aqua_sex_05.png")
+    Transform("seasucc 8c")
     pause M_aqua.get('sex speed')
-    Transform("characters/aqua/char_aqua_sex_06.png")
+    Transform("seasucc 8d")
     pause M_aqua.get('sex speed')
-    Transform("characters/aqua/char_aqua_sex_07.png")
+    Transform("seasucc 8e")
+    pause M_aqua.get('sex speed')
+    Transform("seasucc 8f")
+    pause M_aqua.get('sex speed')
+    Transform("seasucc 8g")
+    pause M_aqua.get('sex speed')
+    Transform("seasucc 8h")
+    pause M_aqua.get('sex speed')
+    Transform("seasucc 8i")
     pause M_aqua.get('sex speed')
     repeat
 
@@ -1036,18 +1369,21 @@ image rump_n_cunt 01_02_03_04:
     repeat
 init python:
     class PulseImage(renpy.Displayable):
-        def __init__(self,img1,img2,delay=0.1,**kwargs):
+        def __init__(self,img1,img2,delay1=0.1,delay2=0.1,**kwargs):
             super(PulseImage,self).__init__(**kwargs)
             self._image1 = renpy.displayable(img1)
             self._image2 = renpy.displayable(img2)
             self._toggle = True
-            self._delay = delay
+            self._delay1 = delay1
+            self._delay2 = delay2
         def render(self,width,height,st,at):
             if self._toggle:
                 self._toggle = False
                 r = renpy.render(self._image1,width,height,st,at)
+                delay = self._delay1
             else:
                 self._toggle = True
                 r = renpy.render(self._image2,width,height,st,at)
-            renpy.redraw(self,self._delay)
+                delay = self._delay2
+            renpy.redraw(self,delay)
             return r

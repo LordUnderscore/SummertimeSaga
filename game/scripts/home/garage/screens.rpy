@@ -47,3 +47,61 @@ screen car_engine:
         idle gTimer.image("objects/object_engine_01{}.png")
         hover gTimer.image("objects/object_engine_01b{}.png")
         action Hide("car_engine"), Jump("engine_broken_dialogue")
+
+screen car_mom_jerk_options:
+    imagebutton:
+        pos (250,700)
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Hide("car_mom_jerk_options"), Jump("mom_car_jerk_loop")
+
+    imagebutton:
+        pos (450,700)
+        idle "buttons/cam_stage01_02.png"
+        hover "buttons/cam_stage01_02b.png"
+        action Hide("car_mom_jerk_options"), Jump("car_mom_jerk_end")
+
+screen car_mom_sex_options:
+    imagebutton:
+        focus_mask True
+        pos (250,700)
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        if M_mom.is_set("car jerk"):
+            action Hide("car_mom_sex_options"), Jump("car_mom_jerk_loop")
+        else:
+            action Hide("car_mom_sex_options"), Jump("car_mom_bj_loop")
+
+    imagebutton:
+        focus_mask True
+        pos (450,700)
+        if M_mom.is_set("car jerk"):
+            idle "buttons/cam_stage01_02.png"
+            hover "buttons/cam_stage01_02b.png"
+            action Hide("car_mom_sex_options"), Jump("car_mom_jerk_cum")
+        else:
+            idle "buttons/diane_stage01_02.png"
+            hover "buttons/diane_stage01_02b.png"
+            action Hide("car_mom_sex_options"), Jump("car_mom_bj_cum")
+
+    if (M_mom.get("sex speed") < .225 and M_mom.is_set("car jerk")) or (M_mom.get("sex speed") < .175 and not M_mom.is_set("car jerk")):
+        imagebutton:
+            focus_mask True
+            pos (250,735)
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            if M_mom.is_set("car jerk"):
+                action Hide("car_mom_sex_options"), Jump("car_mom_slower_jerk")
+            else:
+                action Hide("car_mom_sex_options"), Jump("car_mom_slower_bj")
+
+    if (M_mom.get("sex speed") > .126 and M_mom.is_set("car jerk")) or (M_mom.get("sex speed") > .076 and not M_mom.is_set("car jerk")):
+        imagebutton:
+            focus_mask True
+            pos (450,735)
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            if M_mom.is_set("car jerk"):
+                action Hide("car_mom_sex_options"), Jump("car_mom_faster_jerk")
+            else:
+                action Hide("car_mom_sex_options"), Jump("car_mom_faster_bj")

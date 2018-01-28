@@ -36,7 +36,7 @@ label june_dialogue:
             show june 4
             june "Oh, okay then..."
             show june 1
-            show player 29
+            show player 29 at Position(xoffset=8)
             player_name "Err... I'll see you later!"
 
         "Hang out." if June.completed(june_mc_help) and not june_hang_out:
@@ -173,7 +173,6 @@ label june_dialogue:
             $ june_cosplay.finish()
 
         "Ask about class." if June.completed(june_intro) and (not June.known(june_erik_help) and not June.known(june_mc_help)):
-            $ callScreen("Route Warning", False, False)
             if not June.known(june_intro_2):
                 $ June.add_event(june_intro_2)
             $ june_intro_2.finish()
@@ -231,8 +230,14 @@ label june_dialogue:
             show june 3
             june "Unless, maybe you know someone?"
             show june 1
-            menu:
+            $ config.skipping = None
+            show popup_warning at truecenter with dissolve
+            $ renpy.pause(3, hard=True)
+            pause
+            hide popup_warning with dissolve
+            menu june_route_split:
                 "My friend {b}Erik{/b}!":
+                    hide screen save
                     show player 14 at left
                     show june 2 at right
                     player_name "Actually, I do!"
@@ -271,6 +276,7 @@ label june_dialogue:
                     $ June.add_event(june_erik_help)
                 "I'll play!":
 
+                    hide screen save
                     show player 14
                     show june 2
                     player_name "I'm not really good at those games... But I'll try!"
@@ -336,6 +342,12 @@ label june_dialogue:
                     show june 5
                     player_name "Sure!"
                     $ June.add_event(june_mc_help)
+                "Save Menu.":
+
+                    show screen save
+                    pause
+                    hide screen save
+                    jump june_route_split
     hide june
     hide player
     with dissolve

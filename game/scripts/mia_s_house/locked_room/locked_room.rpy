@@ -34,7 +34,7 @@ label mia_tied_up:
     mia "{b}[firstname]{/b}!!!"
     show mia 44f
     show player 10
-    player_name "{b}Mia{/b}! What is going on?!"
+    player_name "{b}Mia{/b}! What's going on?!"
     player_name "I got your text message on my phone and-"
     show player 11
     show mia 43f
@@ -75,7 +75,7 @@ label mia_tied_up:
     with dissolve
     player_name "!!!"
     show helen 7 with dissolve
-    helen "How {b}DARE{/b} you come back here...{b}IN MY HOUSE{/b}!"
+    helen "How {b}DARE{/b} you come back here... {b}INTO MY HOUSE{/b}!"
     show helen 8
     show player 24
     show mia 47 at Position (xpos=465) with dissolve

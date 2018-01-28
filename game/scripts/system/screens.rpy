@@ -363,22 +363,25 @@ screen preferences() tag menu:
         ground "backgrounds/menu_settings.jpg"
         idle "backgrounds/menu_settings.jpg"
         hover "backgrounds/menu_settings2.jpg"
-        hotspot ( 430, 139, 167, 40) action Return()
-        hotspot ( 404, 270, 167, 33) action Preference("display", "window")
-        hotspot ( 404, 320, 167, 33) action Preference("display", "fullscreen")
+        hotspot ( 430, 80, 167, 40) action Return()
+        hotspot ( 404, 210, 167, 33) action Preference("display", "window")
+        hotspot ( 404, 260, 167, 33) action Preference("display", "fullscreen")
+        hotspot ( 404, 360, 167, 33) action Preference("skip", "all")
+        hotspot ( 404, 410, 167, 33) action Preference("skip", "seen")
 
-
-        bar value Preference("text speed") at Position (xpos= 404, ypos = 415, xmaximum = 220, ymaximum = 70)
-        bar value Preference("music volume") at Position (xpos= 404, ypos = 502, xmaximum = 220, ymaximum = 70)
-        bar value Preference("sound volume") at Position (xpos= 404, ypos = 575, xmaximum = 220, ymaximum = 70)
+        bar value Preference("text speed") at Position (xpos= 404, ypos = 505, xmaximum = 220, ymaximum = 70)
+        bar value Preference("music volume") at Position (xpos= 404, ypos = 580, xmaximum = 220, ymaximum = 70)
+        bar value Preference("sound volume") at Position (xpos= 404, ypos = 650, xmaximum = 220, ymaximum = 70)
 
     if _preferences.fullscreen == True:
-        add "buttons/checkbox.png" pos 603,328
+        add "buttons/checkbox.png" pos 603,269
     else:
-        add "buttons/checkbox.png" pos 603,278
+        add "buttons/checkbox.png" pos 603,219
 
-
-
+    if _preferences.skip_unseen == True:
+        add "buttons/checkbox.png" pos 603,369
+    else:
+        add "buttons/checkbox.png" pos 603,419
 
 screen quick_preferences tag menu:
     imagemap:
@@ -523,11 +526,11 @@ screen quick_menu():
         yalign 1.0
 
         textbutton _("Back") action Return()
+        textbutton _("Hide") action HideInterface()
         textbutton _("Save") action ShowMenu('save')
         textbutton _("Q.Save") action QuickSave()
         textbutton _("Q.Load") action QuickLoad()
         textbutton _("Skip") action Skip()
-        textbutton _("F.Skip") action Skip(fast=True, confirm=True)
         textbutton _("Auto") action Preference("auto-forward", "toggle")
         textbutton _("Prefs") action ShowMenu('preferences')
 

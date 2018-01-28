@@ -10,6 +10,7 @@ label hospital_storage_room_dialogue:
             $ Roz.add_event(roz_storage)
         $ callScreen(location_count)
     $ location_count = "Hospital Storage Room"
+    $ roz_trick.finish()
     $ roz_storage.finish()
     $ callScreen(location_count)
 
@@ -216,6 +217,7 @@ label roz_storage_sex:
     pause
     roz "C'mon Kid, harder!"
     $ M_roz.set('sex speed', .075)
+    $ anim_toggle = True
     show rozs 1_2_3_4_5_6_7
     pause
 

@@ -8,14 +8,13 @@ screen basement:
         hover gTimer.image("objects/object_stairs_03b{}.png")
         action Hide("basement"), Jump("home_livingroom_dialogue")
 
-    if quest17 not in completed_quests and closed_valve == 1:
+    if M_mom.get_state() == S_mom_close_valve:
         imagebutton:
             focus_mask True
-            pos (262,515)
+            pos (394,512)
             idle gTimer.image("objects/object_pipe_01{}.png")
             hover gTimer.image("objects/object_pipe_01b{}.png")
             action Hide("basement"), Jump("broken_pipe")
-
 
     if is_here("mom"):
         imagebutton:
@@ -23,7 +22,11 @@ screen basement:
             pos (486,320)
             idle "images/objects/character_mom_06.png"
             hover "images/objects/character_mom_06b.png"
-            action Hide("basement"), Jump("laundry_dialogue")
+            action Hide("basement"), If(
+                                        M_mom.get_state() == S_mom_laundry_help and M_mom.is_set('chores'),
+                                        Jump("laundry_dialogue"),
+                                        Jump("mom_button_dialogue"),
+                                     )
 
 screen basement_mom_sex_options:
     imagebutton:
@@ -42,7 +45,7 @@ screen basement_mom_sex_options:
         xpos 450
         ypos 700
 
-    if M_mom.get('sex speed') < .4:
+    if M_mom.get('sex speed') < .176:
         imagebutton:
             focus_mask True
             idle "buttons/speed_02.png"
@@ -51,7 +54,7 @@ screen basement_mom_sex_options:
             xpos 250
             ypos 735
 
-    if M_mom.get('sex speed') > .21:
+    if M_mom.get('sex speed') > .075:
         imagebutton:
             focus_mask True
             idle "buttons/speed_01.png"

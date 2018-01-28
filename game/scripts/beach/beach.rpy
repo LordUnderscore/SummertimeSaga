@@ -21,9 +21,9 @@ label beach_statue:
     if shovel not in inventory.items:
         scene location_beach_island_blur
         show player 2 at left
-        player_name "I can't dig for {b}buried treasure{/b} without a {b}shovel.{/b}"
+        player_name "( I can't dig for {b}buried treasure{/b} without a {b}shovel.{/b} )"
         show player 4
-        player_name "...I think we have one at {b}home{/b} somewhere."
+        player_name "( ...I think we have one at {b}home{/b} somewhere. )"
         hide player with dissolve
         $ callScreen(location_count)
 
@@ -58,20 +58,28 @@ label beach_statue:
 
     scene location_beach_lock with fade
     player_name "oh man.."
-    player_name "It looks like I need a {b}key{/b}...And a {b}combination{/b} to open this."
+    player_name "( It looks like I need a {b}key{/b}...And a {b}combination{/b} to open this. )"
     $ callScreen("Treasure Lock", False, False)
+
+label treasure_open:
+    if treasure_key not in inventory.items:
+        player_name "( Even if I had the combination I still need to find the {b}key{/b}! )"
+    else:
+
+        jump treasure_unlocked
+    $ callScreen(location_count)
 
 label treasure_unlocked:
     scene location_beach_treasure
     if M_aqua.get_state() == S_aqua_treasure_unlock:
-        show expression "objects/object_compass_01.png" at Position(xpos = 537, ypos = 473)
+        show expression "private/objects/object_compass_01.png" at Position(xpos = 537, ypos = 473)
         with fade
-        hide expression "objects/object_compass_01.png"
+        hide expression "private/objects/object_compass_01.png"
         call screen treasure_chest
         show closeup_compass_01 at Position(xalign = 0.5, yalign = 1.0) with dissolve
         player_name "Whoa!!"
-        player_name "I can't believe it! I found the treasure!."
-        player_name "This has to be the compass Terry was talking about."
+        player_name "( I can't believe it! I found the treasure!. )"
+        player_name "( This has to be the compass Terry was talking about. )"
         show popup_item_compass1 at truecenter with dissolve
         $ inventory.items.append(golden_compass)
         pause

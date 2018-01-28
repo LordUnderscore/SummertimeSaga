@@ -53,7 +53,7 @@ label erik_indoors:
         $ erik_gf_2.finish()
 
     elif erik.over(erik_path_split) and erik.started(erik_sex_ed):
-        $ ui_lock_count = 1
+        $ lock_ui()
         label erik_sex_ed_block:
             scene expression gTimer.image("erik_inside{}_b")
             show player 14
@@ -247,7 +247,7 @@ label erik_indoors:
         player_name "( I hope he's not sleeping... or doing something else. )"
         hide player with dissolve
         $ erik.add_event(erik_breastfeeding)
-        $ ui_lock_count = 1
+        $ lock_ui()
 
     elif mrsj.started(mrsj_yoga_help_2):
         scene expression gTimer.image("erik_entrance{}_c")
@@ -699,7 +699,7 @@ label mrsj_sex_ed:
     with dissolve
     $ erik.complete_events(erik_sex_ed)
     $ mrsj.add_event(mrsj_sex_ed)
-    $ ui_lock_count = 0
+    $ unlock_ui()
     $ callScreen(location_count)
 
 label mrsj_sex_ed_2:
@@ -832,7 +832,7 @@ label erik_breastfeeding:
     $ erik.complete_events(erik_breastfeeding)
     $ erik.add_event(erik_breastfeeding_2)
     $ erik_breastfeeding_2.finish()
-    $ ui_lock_count = 0
+    $ unlock_ui()
     $ callScreen(location_count)
 
 label erik_funky_block:

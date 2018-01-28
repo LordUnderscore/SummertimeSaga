@@ -51,11 +51,11 @@ init -200 python:
 
 screen item_desc(Item):
     $ description = Item.description
-    text description pos 205, 525
+    text description pos 205, 555
 
 screen item_name(Item):
     $ name = Item.name
-    text name pos 205, 500
+    text name pos 205, 530
 
 screen inventory_item_preview(Item):
     imagebutton:
@@ -67,32 +67,60 @@ screen inventory_item_preview(Item):
 screen backpack:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide("backpack"), Play("audio", "audio/sfx_backpack_close.ogg")]
+        action [Hide("backpack"), Hide("item_name"), Hide("item_desc"), Play("audio", "audio/sfx_backpack_close.ogg")]
 
-    imagebutton idle "buttons/backpack.png" action [Hide("backpack"), Play("audio", "audio/sfx_backpack_close.ogg")] focus_mask True
+    imagebutton idle "buttons/backpack.png" xalign 0.5 yalign 1.0 action [Hide("backpack"), Play("audio", "audio/sfx_backpack_close.ogg")] focus_mask True
 
-    $ inv_items = inventory.items
-    $ a = 0
-    $ b = 0
-    $ c = 0
-    $ c2 = 0
-    $ c3 = 0
-    side "c b r":
-        area (193, 97, 654, 389)
-        viewport id "backpack_vp":
-            draggable True
-            mousewheel True
-            has vbox
-            imagemap:
-                ground im.Composite((654, 1166), (0, -1), "buttons/backpack_preloop.png", (0, 389), im.Crop("buttons/backpack_loop.png", (0, 1, 654, 389)), (0, 778), im.Crop("buttons/backpack_loop.png", (0, 1, 654, 389)))
-                vbox:
-                    for Item in inv_items:
-                        $ c2 = math.trunc(c / 5)
-                        if c3 == 5:
-                            $ c3 = 0
-                        $ a = 7
-                        $ b = 3 - (c3 * 125) - (c2 * 495)
-                        $ a += c3 * 130
-                        imagebutton idle Item.image hover Item.h_image xpos a ypos b action [If(Item.closeup == "", NullAction(), Show("inventory_item_preview", Item = Item)), If(Item.dialogue == "", NullAction(), [Function(renpy.call_in_new_context, Item.dialogue, item = Item)]), Hide("item_desc"), Hide("item_name"), Play("audio", "audio/sfx_backpack_select2.ogg")] hovered [Show(("item_name"), Item = Item), Show(("item_desc"), Item = Item)] unhovered [Hide("item_desc"), Hide("item_name")]
-                        $ c += 1
-                        $ c3 += 1
+    imagebutton idle "buttons/backpack_preloop.png" xpos 190 ypos 134 action NullAction() focus_mask True
+
+    default backback_page = 1
+    default items_per_page = 15
+    default current_item = 0
+    default start_item = 0
+    default total_items = len(inventory.items)
+    default Inv = inventory.items
+
+    for current_item in xrange(start_item, (backback_page * items_per_page)):
+        if current_item < total_items:
+            $ start_xpos = 191
+            $ start_ypos = 134
+            $ row_ypos = math.trunc(current_item / 5)
+            $ row_xpos = current_item - (row_ypos * 5)
+            $ row_ypos -= math.trunc(start_item / 5)
+            $ start_xpos += 130 * row_xpos
+            $ start_ypos += 130 * row_ypos
+
+            vbox:
+                area (start_xpos,start_ypos,130,130)
+                imagebutton:
+                    idle Inv[current_item].image
+                    hover Inv[current_item].h_image
+                    xalign 0.5
+                    yalign 0.5
+                    action [If(Inv[current_item].closeup == "",
+                                NullAction(),
+                                Show("inventory_item_preview", Item = Inv[current_item])
+                            ),
+                            If(Inv[current_item].dialogue == "",
+                                NullAction(),
+                                Function(renpy.call_in_new_context, Inv[current_item].dialogue, item = Inv[current_item])
+                            ),
+                            
+                            Play("audio", "audio/sfx_backpack_select2.ogg")
+                           ] hovered [Show(("item_name"), Item = Inv[current_item]),
+                                      Show(("item_desc"), Item = Inv[current_item])
+                                     ] unhovered [Hide("item_desc"), Hide("item_name")]
+
+    if backback_page > 1:
+        imagebutton:
+            focus_mask True
+            pos (43,261)
+            idle "buttons/backpack_left.png"
+            action SetScreenVariable("backback_page", backback_page - 1), SetScreenVariable("start_item", start_item - 15)
+
+    if current_item + 1 < total_items:
+        imagebutton:
+            focus_mask True
+            pos (874,264)
+            idle "buttons/backpack_right.png"
+            action SetScreenVariable("backback_page", backback_page + 1), SetScreenVariable("start_item", start_item + 15)

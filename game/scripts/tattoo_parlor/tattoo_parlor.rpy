@@ -61,7 +61,7 @@ label tattoo_parlor_interior_dialogue:
         mia "I said I would, so let's do it!"
         hide mia with dissolve
         show player 17
-        player_name "That's the spirit..."
+        player_name "That's the spirit!"
         hide player with dissolve
         $ M_mia.trigger(T_mia_visit_tattoo_parlor)
     $ callScreen(location_count)
@@ -116,7 +116,7 @@ label grace_dialogue:
             player_name "How much is it?"
             show player 13
             show grace 5
-            grace "For that size...with colors... Around {b}$400{/b}."
+            grace "For that size... with colors... Around {b}$400{/b}."
             show grace 7
             show player 22
             show mia 12f
@@ -258,7 +258,7 @@ label grace_dialogue:
                     player_name "Sorry you couldn't get your tattoo today..."
                     show player 5
                     show mia 12
-                    mia "It's fine, I should get home now."
+                    mia "It's fine. I should get home now."
                     show mia 8
                     show player 10
                     player_name "Alright, see you later."
@@ -278,7 +278,7 @@ label grace_dialogue:
             grace "Is everything okay?"
             show grace 1
             show player 30
-            player_name "Sorry, but you look...familiar."
+            player_name "Sorry, but you look... familiar."
             show player 5
             show grace 3
             grace "Huh?"

@@ -2,7 +2,7 @@ label helens_bedroom:
     $ location_count = "Helen's Bedroom"
     if M_mia.get_state() == S_mia_midnight_help:
         scene mia_house_helen_n_b
-        player_name "The key must be somewhere in here..."
+        player_name "( The key must be somewhere in here... )"
 
     elif M_mia.get_state() == S_mia_helen_talk:
         scene expression gTimer.image("mia_house_helen_c{}")
@@ -14,7 +14,7 @@ label helens_bedroom:
         show helen 4
         helen "!!!"
         show helen 5
-        helen "You...again?!"
+        helen "You again?!"
         show helen 6
         show player 10
         player_name "{b}Mia{/b} asked me to come and speak with you."
@@ -30,7 +30,7 @@ label helens_bedroom:
         show helen 5
         helen "You're right. It is none of your business!"
         show helen 4
-        helen "Besides...there's nothing we can do at the moment..."
+        helen "Besides... there's nothing we can do at the moment..."
         show helen 3
         helen "...everything is in the hands of {b}God{/b}!"
         show helen 1
@@ -48,15 +48,15 @@ label helens_bedroom:
         scene mia_house_helen_sneak
         show helens 1_2 at Position (xpos=465,ypos=565) with dissolve
         player_name "!!!"
-        player_name "...{b}Helen{/b}?!"
-        player_name "Is that... A police baton?!"
+        player_name "( ...{b}Helen{/b}?! )"
+        player_name "( Is that... A police baton?! )"
         helen "Uuuhh! Ooohh yesss..."
         helen "{b}Harold{/b}..."
         helen "Uuhhhh..."
-        helen "It's been...so long..."
+        helen "It's been... so long..."
         show helens 3 with dissolve
         player_name "!!!" with hpunch
-        player_name "She saw me!!"
+        player_name "( She saw me!! )"
         scene black
         scene mia_house_helen_c
         show helen 33 at right
@@ -80,7 +80,7 @@ label helens_bedroom:
         show player 3 with dissolve
         player_name "..."
         show helen 34
-        helen "Do you think I still look...attractive?"
+        helen "Do you think I still look... attractive?"
         show helen 33
         show player 22 with dissolve
         player_name "!!!" with hpunch
@@ -108,7 +108,7 @@ label helens_bedroom:
         show player 5
         show helen 34
         helen "I'm just not sure he finds me attractive anymore..."
-        helen "...And I realise that I should have been more...sexual, towards my husband."
+        helen "...And I realise that I should have been more... sexual, towards my husband."
         helen "Which is why I want to change a few things."
         show helen 29
         show player 12
@@ -121,12 +121,12 @@ label helens_bedroom:
         player_name "Oh..."
         show player 5
         show helen 30
-        helen "I want him to desire me again. I have to find something...sexy!"
+        helen "I want him to desire me again. I have to find... something sexy!"
         show helen 29
         show player 11
         player_name "..."
         show helen 34
-        helen "Do you think you could...do me a favor?"
+        helen "Do you think you could... do me a favor?"
         show helen 33
         show player 12
         player_name "A favor?"
@@ -154,7 +154,7 @@ label helens_bedroom:
         player_name "Uhh... What do you want me to buy?"
         show player 5
         show helen 34
-        helen "I always wanted to wear a corset...and {b}Harold{/b} loves to see me in red."
+        helen "I always wanted to wear a corset... and {b}Harold{/b} loves to see me in red."
         show helen 29
         show player 12
         player_name "A {b}red corset{/b}, then?"
@@ -171,7 +171,7 @@ label helens_bedroom:
         hide helen
         with dissolve
         $ pinkstore.items.append(red_corset_lingerie)
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ M_mia.trigger(T_helen_caught_masturbating)
 
     elif M_mia.get_state() == S_mia_helen_outfit_request and red_corset in inventory.items:
@@ -200,7 +200,7 @@ label helens_bedroom:
         show player 13
         show helen 18
         with dissolve
-        helen "This is...quite extravagant..."
+        helen "This is... quite extravagant..."
         show helen 17
         show player 10
         player_name "You don't like it?"
@@ -243,7 +243,7 @@ label helens_bedroom:
         show player 433
         pause
         show player 435
-        player_name "Oh, that, I ehh...didn't see that when I was buying it!"
+        player_name "Oh, that, I ehh... didn't see that when I was buying it!"
         show player 79 with dissolve
         player_name "Ha ha..."
         show player 82
@@ -309,7 +309,7 @@ label helen_button_dialogue:
         hide xtra 21
         with dissolve
         show helen 51
-        helen "Thank you for your help again. Our family appreciates what you did...and didn't do."
+        helen "Thank you for your help again. Our family appreciates what you did... and didn't do."
         helen "I should let you go. You probably want to hang out with {b}Mia{/b}."
         show helen 50
         show player 14
@@ -388,7 +388,7 @@ label helen_button_dialogue:
         player_name "You seem in a better mood than usual!"
         show player 5
         show helen 2
-        helen "I'm trying to be...open minded...even with individuals such as yourself."
+        helen "I'm trying to be... open minded... even with individuals such as yourself."
         show helen 1
         show player 14
         player_name "That's nice."
@@ -437,7 +437,7 @@ label helen_button_dialogue:
                 player_name "What kind of lingerie were you looking for again?"
                 show player 5
                 show helen 28
-                helen "I always wanted to wear a corset...and {b}Harold{/b} loves to see me in red."
+                helen "I always wanted to wear a corset... and {b}Harold{/b} loves to see me in red."
                 show helen 23
                 show player 12
                 player_name "A {b}red corset{/b}, then?"
@@ -464,7 +464,7 @@ label helen_button_dialogue:
                 show helen 24
                 helen "I... I think we're doing fine..."
                 show helen 28
-                helen "...{b}Sister Angelica{/b} is very...thorough and more knowledgeable than I."
+                helen "...{b}Sister Angelica{/b} is very... thorough and more knowledgeable than I."
                 show helen 23
                 show player 10
                 player_name "I see..."
@@ -482,7 +482,7 @@ label helen_button_dialogue:
                 show helen 28
                 helen "I'm a little sore, but..."
                 show helen 24
-                helen "...I'm a sinner {b}[firstname]{/b}. I...I need this."
+                helen "...I'm a sinner {b}[firstname]{/b}. I... I need this."
                 show helen 28
                 helen "If it helps rid me of my sinfulness, I must do it."
                 show helen 27
@@ -521,24 +521,24 @@ label helen_button_dialogue:
                 show player 14
                 player_name "Yeah!"
                 show player 10
-                player_name "I'm trying to learn more...you know...about {b}God{/b} and stuff!"
+                player_name "I'm trying to learn more... you know... about {b}God{/b} and stuff!"
                 show player 5
                 show helen 2
                 helen "Hmm... Really?"
                 show helen 1
                 show player 12
-                player_name "Did you know that, err...there's a late night sacrament?"
+                player_name "Did you know that, err... there's a late night sacrament?"
                 show player 5
                 show helen 4
                 helen "Night services?"
                 show helen 1
                 show player 10
-                player_name "Yeah! They're like...rituals?"
+                player_name "Yeah! They're like... rituals?"
                 show player 5
                 show helen 4
                 helen "I was never aware of such a thing and I've been attending our church for over 20 years."
                 show helen 2
-                helen "How come I never heard of such a...sacrament?"
+                helen "How come I never heard of such a... sacrament?"
                 show helen 1
 
                 menu:
@@ -568,7 +568,7 @@ label helen_button_dialogue:
                     "Ancient sacrament." if pStats.chr() >= 5:
                         show player 12
                         player_name "{b}Sister Angelica{/b} is in charge!"
-                        player_name "She said I should spread the word and find...ehh...faithful followers to join us!"
+                        player_name "She said I should spread the word and find... ehh... faithful followers to join us!"
                         show player 14
                         player_name "I know you're extremely devout..."
                         show player 33
@@ -598,7 +598,7 @@ label helen_button_dialogue:
                         helen "It's at night you say?"
                         show helen 1
                         show player 14
-                        player_name "Yes, Ma'am! It's ehh...in the nun chamber!"
+                        player_name "Yes, Ma'am! It's ehh... in the nun chamber!"
                         show player 13
                         show helen 3
                         helen "Okay, you convinced me."
@@ -1044,7 +1044,7 @@ label helen_bedroom_sex:
                 else:
 
                     $ location_count = "Mia's House Upstairs"
-                    $ ui_lock_count = 1
+                    $ lock_ui()
                     show player 13
                 if M_helen.is_set('corset lingerie'):
                     show helen 63
@@ -1071,10 +1071,13 @@ label helen_bedroom_sex:
                 helen "Goodbye, {b}Master{/b}."
                 helen "Thank you for the gift of your holy seed."
                 $ M_helen.trigger(T_helen_master_servant_sex)
+                scene black
                 hide player
                 hide helen
-                with dissolve
-$ callScreen(location_count)
+                with fade
+                pause
+                jump mias_upstairs
+    $ callScreen(location_count)
 
 label helen_bedroom_faster_sex:
     $ M_helen.set('sex speed', M_helen.get('sex speed') - 0.05)

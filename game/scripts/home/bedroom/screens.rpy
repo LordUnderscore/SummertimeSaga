@@ -9,22 +9,32 @@ screen bedroom:
         pos (44,352)
         idle gTimer.image("objects/object_telescope_01{}.png")
         hover gTimer.image("objects/object_telescope_01b{}.png")
-        action If((M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message) and gTimer.is_dark(), [Hide("bedroom"), Jump("player_message_lock")], Show("telescope_options"))
+        action Hide("bedroom"), If((M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message) and gTimer.is_dark(), Jump("player_message_lock"), Jump("telescope"))
 
     imagebutton:
         focus_mask True
         pos (225,187)
         idle gTimer.image("objects/object_door_01{}.png")
         hover gTimer.image("objects/object_door_01b{}.png")
-        action If(player_room_lock,
-                  [Hide("bedroom"), Jump("player_room_lock")],
-                  If(M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message,
-                     [Hide("bedroom"), Jump("player_message_lock")],
-                     [Hide("bedroom"), Play("audio", sfxDoor()), Jump("hallway_dialogue")]
-            )
+        action Hide("bedroom"), If(
+                                   M_mom.get_state() == S_mom_note,
+                                   Jump("player_room_lock"),
+                                   If(
+                                      M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message,
+                                      Jump("player_message_lock"),
+                                      [Play("audio", sfxDoor()), Jump("hallway_dialogue")]
+                                      )
         )
 
-    if not m6_note:
+    if M_mom.get_state() == S_mom_note:
+        imagebutton:
+            focus_mask True
+            pos (445,336)
+            idle "objects/object_desk_01_note.png"
+            hover "objects/object_desk_01b_note.png"
+            action Hide("bedroom"), Jump("M6_note")
+
+    else:
         if not MC_computer_broken:
             imagebutton:
                 focus_mask True
@@ -46,14 +56,6 @@ screen bedroom:
                           Show ("desk01_options"),
                           [Hide("bedroom"), Jump("MC_computer")]
                 )
-
-    else:
-        imagebutton:
-            focus_mask True
-            pos (445,336)
-            idle "objects/object_desk_01_note.png"
-            hover "objects/object_desk_01b_note.png"
-            action Hide("bedroom"), Jump("M6_note")
 
     if is_here("june"):
         imagebutton:
@@ -79,45 +81,13 @@ screen bedroom:
             hover gTimer.image("objects/object_cookies_01b{}.png")
             action Function(inventory.get_item, item = cookies), SetVariable("cookies_taken", True), Hide("bedroom"), Jump("cookies")
 
-screen telescope_options:
-    imagebutton:
-        idle "backgrounds/menu_ground.png"
-        action Hide("telescope_options")
-
-    imagebutton:
-        idle "boxes/telescope_option_01.png"
-        hover "boxes/telescope_option_01b.png"
-        action Hide("telescope_options"), Hide("bedroom"), Jump ("erik_bedroom")
-        xpos 350
-        ypos 500
-
-    imagebutton:
-        idle "boxes/telescope_option_02.png"
-        hover "boxes/telescope_option_02b.png"
-        action Hide("telescope_options"), Hide("bedroom"), Jump ("erikmom_bedroom")
-        xpos 350
-        ypos 550
-
-    imagebutton:
-        idle "boxes/telescope_option_03.png"
-        hover "boxes/telescope_option_03b.png"
-        action Hide ("telescope_options"), Hide("bedroom"), Jump ("mia_bedroom")
-        xpos 350
-        ypos 600
-
-    imagebutton:
-        idle "boxes/telescope_option_04.png"
-        hover "boxes/telescope_option_04b.png"
-        action Hide ("telescope_options"), Hide("bedroom"), Jump ("backyard")
-        xpos 350
-        ypos 650
-
-    imagebutton:
-        idle "boxes/telescope_option_05.png"
-        hover "boxes/telescope_option_05b.png"
-        action Hide("telescope_options"), Hide("bedroom"), Jump ("helen_room")
-        xpos 350
-        ypos 700
+    if M_player.is_set("pet cat"):
+        imagebutton:
+            focus_mask True
+            pos (350,670)
+            idle gTimer.image("objects/character_cat_01{}.png")
+            hover gTimer.image("objects/character_cat_01b{}.png")
+            action Hide("bedroom"), Jump("pet_cat")
 
 screen desk01_options:
     imagebutton:
@@ -168,9 +138,12 @@ screen bed01_options:
         imagebutton:
             idle "boxes/bed01_option_01.png"
             hover "boxes/bed01_option_01b.png"
-            action If(player_room_count == 1,
+            action If(M_mom.get_state() == S_mom_debt_call,
                       [Hide("bed01_options"), Hide("bedroom"), Jump("bedroom_check_on_mom")],
-                      [Hide("bed01_options"), Hide("bedroom"), Jump("sleeping")]
+                      If(ui_locked(),
+                         [Hide("bed01_options"), Hide("bedroom"), Jump("bed_locked")],
+                         [Hide("bed01_options"), Hide("bedroom"), Jump("sleeping")]
+                      )
             )
             xpos 350
             ypos 600

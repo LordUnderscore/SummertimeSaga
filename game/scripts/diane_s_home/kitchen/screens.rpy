@@ -85,13 +85,13 @@ screen aunt_sex_options:
         pos (350,700)
         idle "buttons/diane_stage01_02.png"
         hover "buttons/diane_stage01_02b.png"
-        action Jump("aunt_sex_cum_in")
+        action Hide("aunt_sex_xray"), Jump("aunt_sex_cum_in")
 
     imagebutton:
         pos (550,700)
         idle "buttons/diane_stage01_03.png"
         hover "buttons/diane_stage01_03b.png"
-        action Jump("aunt_sex_cum_out")
+        action Hide("aunt_sex_xray"), Jump("aunt_sex_cum_out")
 
     if M_aunt.get('sex speed') < .4:
         imagebutton:

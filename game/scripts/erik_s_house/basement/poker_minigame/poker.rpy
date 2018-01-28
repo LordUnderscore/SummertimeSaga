@@ -1443,7 +1443,7 @@ label cloth_remove:
                 hide player
                 with dissolve
                 $ mrsj_afterpoker_fun = True
-                $ ui_lock_count = 1
+                $ lock_ui()
                 $ location_count = "Erik's Basement"
 
             "Go home." if mrsj.over(mrsj_poker_night):

@@ -1,7 +1,10 @@
 screen living_room:
-    add gTimer.image("backgrounds/location_home_livingroom{}.jpg")
+    if M_mom.get_state() in [S_mom_romance_movie, S_mom_romance_movie_two] or (M_mom.is_set("movie night") and gTimer.is_dark()):
+        add "backgrounds/location_home_livingroom_night_mom.jpg"
+    else:
+        add gTimer.image("backgrounds/location_home_livingroom{}.jpg")
 
-    if sister.started(sis_couch01) and gTimer.is_evening():
+    if sister.started(sis_couch01) and gTimer.is_evening() and (M_mom.get_state() != S_mom_sleepover or not is_here("mom")):
         imagebutton:
             focus_mask True
             pos (412,331)
@@ -15,17 +18,37 @@ screen living_room:
             pos (1002,251)
             idle gTimer.image("objects/object_door_42{}.png")
             hover gTimer.image("objects/object_door_42b{}.png")
-            action Hide("living_room"), SetVariable("mom_masturbating", False), Jump("home_entrance")
+            action Hide("living_room"), If(
+                                                                                   M_mom.is_set("fetch lotion") and where_is("mom") == "Basement",
+                                                                                   Jump("mom_lotion_block"),
+                                                                                   If(
+                                                                                      M_mom.get_state() in [S_mom_romance_movie, S_mom_romance_movie_two],
+                                                                                      Jump("mom_movie_block"),
+                                                                                      Jump("home_entrance")
+                                                                                   )
+            )
 
         imagebutton:
             focus_mask True
             pos (809,311)
             idle gTimer.image("objects/object_door_43{}.png")
             hover gTimer.image("objects/object_door_43b{}.png")
-            action If(
-                mother.known(mom_dinner_outfit) and not mother.over(mom_dinner_outfit),
-                [Hide("living_room"), Jump("mom_dinner_outfit")],
-                [Hide("living_room"), SetVariable("mom_masturbating", False), Jump("home_basement_dialogue")]
+            action Hide("living_room"), If(
+                                           M_mom.get_state() == S_mom_dinner_outfit,
+                                           Jump("mom_dinner_outfit"),
+                                           If(
+                                              M_mom.is_set("fetch lotion") and where_is("mom") == "Kitchen",
+                                              Jump("mom_lotion_block"),
+                                              If(
+                                                 M_mom.get_state() in [S_mom_romance_movie, S_mom_romance_movie_two],
+                                                 Jump("mom_movie_block"),
+                                                 If(
+                                                    M_mom.get_state() == S_mom_fetch_laundry,
+                                                    Jump("mom_laundry_block"),
+                                                    Jump("home_basement_dialogue")
+                                                 )
+                                              )
+                                           )
             )
 
         imagebutton:
@@ -33,10 +56,18 @@ screen living_room:
             pos (108,312)
             idle gTimer.image("objects/object_door_44{}.png")
             hover gTimer.image("objects/object_door_44b{}.png")
-            action If(
-                player.known(lawn_mowed) and not player.over(lawn_mowed),
-                [Hide("living_room"), Jump("lawn_mower_dirty")],
-                [Hide("living_room"), Jump("door44_options")]
+            action Hide("living_room"), If(
+                                           M_mom.get_state() == S_mom_wash_clothes,
+                                           Jump("lawn_mower_dirty"),
+                                           If(
+                                              M_mom.is_set("bedroom locked"),
+                                              Jump("mom_bedroom_locked"),
+                                              If(
+                                                 M_mom.get_state() in [S_mom_romance_movie, S_mom_romance_movie_two],
+                                                 Jump("mom_movie_block"),
+                                                 Jump("mom_bedroom")
+                                              )
+                                           )
             )
 
         imagebutton:
@@ -44,13 +75,22 @@ screen living_room:
             pos (412,331)
             idle gTimer.image("objects/object_tv_01{}.png")
             hover gTimer.image("objects/object_tv_01b{}.png")
-            action If(
-                player.known(lawn_mowed) and not player.over(lawn_mowed),
-                [Hide("living_room"), Jump("lawn_mower_dirty")],
-                If(sister.over(sis_couch01),
-                    [Hide("living_room"), Jump("home_livingroom_tv")],
-                    [Hide("living_room"), Jump("home_livingroom_tv_locked")]
-                )
+            action Hide("living_room"), If(
+                                           M_mom.get_state() == S_mom_wash_clothes,
+                                           Jump("lawn_mower_dirty"),
+                                           If(
+                                              M_mom.is_set("fetch lotion"),
+                                              Jump("mom_lotion_block"),
+                                              If(
+                                                 M_mom.get_state() in [S_mom_romance_movie, S_mom_romance_movie_two] or (M_mom.is_set("movie night") and gTimer.is_dark()),
+                                                 Jump("mom_movie_night"),
+                                                 If(
+                                                    sister.over(sis_couch01),
+                                                    Jump("home_livingroom_tv"),
+                                                    Jump("home_livingroom_tv_locked")
+                                                 )
+                                              )
+                                           )
             )
 
 screen home_livingroom_tv:

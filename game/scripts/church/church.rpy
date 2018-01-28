@@ -16,17 +16,17 @@ label church_dialogue:
     if M_mia.get_state() == S_mia_church_plan and gTimer.is_weekend() and gTimer.is_morning():
         scene church_full02_b
         show player 32 at Position (xoffset=68) with dissolve
-        player_name "{b}Helen{/b} is sitting in the front."
+        player_name "( {b}Helen{/b} is sitting in the front. )"
         show player 12 with dissolve
-        player_name "There must be a way to speak with her..."
-        player_name "...But I need to change my attire first."
-        player_name "Let's see if I can find one of those {b}priest outfits{/b} somewhere in the church..."
+        player_name "( There must be a way to speak with her... )"
+        player_name "(...But I need to change my attire first. )"
+        player_name "( Let's see if I can find one of those {b}priest outfits{/b} somewhere in the church... )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_convince_helen:
         scene church_cs01
         with fade
-        show text "The mass was still ongoing.\n{b}Helen{/b} got up and headed towards the confessional...\n...making her way inside." at Position (xpos= 512, ypos = 700) with dissolve
+        show text "The Mass was still ongoing.\n{b}Helen{/b} got up and headed towards the confessional...\n...making her way inside." at Position (xpos= 512, ypos = 700) with dissolve
         with dissolve
         pause
         hide text
@@ -61,8 +61,8 @@ label church_dialogue:
         show player 106 at Position (xoffset=-1)
         player_name "..."
         show player 14 at Position (xoffset=-1)
-        player_name "I should leave and return this outfit where I found it..."
-        player_name "...before someone notices..."
+        player_name "( I should leave and return this outfit where I found it... )"
+        player_name "( ...before someone notices... )"
         hide player
         hide players robe
         with dissolve
@@ -70,20 +70,20 @@ label church_dialogue:
     elif M_mia.get_state() == S_mia_nun_thoughts:
         scene church_b
         show player 10 with dissolve
-        player_name "Damn... That was scary!"
-        player_name "Now I have to do stuff for this nun..."
-        player_name "...I just hope she doesn't tell anyone about what I did."
+        player_name "( Damn... That was scary! )"
+        player_name "( Now I have to do stuff for this nun... )"
+        player_name "( ...I just hope she doesn't tell anyone about what I did. )"
         hide player with dissolve
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ M_mia.trigger(T_mc_nun_thoughts)
 
     elif M_mia.get_state() == S_mia_church_night_visit and gTimer.is_dark():
         scene church_n_b
         show player 10 with dissolve
-        player_name "It's so quiet at night..."
-        player_name "...I'm not sure people are allowed in here this late."
+        player_name "( It's so quiet at night. )"
+        player_name "( I'm not sure people are allowed in here this late. )"
         show player 12
-        player_name "Let's go see {b}Sister Angelica{/b} and see what she wants from me..."
+        player_name "( Now, to go see {b}Sister Angelica{/b} and see what she wants... )"
         hide player with dissolve
     $ callScreen(location_count)
 
@@ -97,12 +97,12 @@ label angelica_dialogue:
         show player 5
         show ang 2
         ang "You, again."
-        ang "What is it you want?"
+        ang "What do you want?"
         show ang 1
         menu:
             "Talk.":
                 show player 10
-                player_name "I just wanted to talk."
+                player_name "I just want to talk."
                 show player 5
                 show ang 2
                 ang "Quiet."
@@ -113,7 +113,7 @@ label angelica_dialogue:
                 ang "If you want to talk, come visit me at night in my chambers..."
                 show ang 1
                 show player 25
-                player_name "Alright, then. Sorry."
+                player_name "Okay, then. Sorry."
                 hide player
                 hide ang
                 with dissolve
@@ -149,7 +149,7 @@ label angelica_dialogue:
             "Nevermind.":
 
                 show player 10
-                player_name "Nevermind, I have to go."
+                player_name "Nevermind. I have to go."
                 show player 5
                 ang "..."
                 show ang 2
@@ -197,7 +197,7 @@ label confessional_left:
         show player 10 at Position (xoffset=-1)
         show players robe
         with dissolve
-        player_name "I need to return this robe before someone sees me."
+        player_name "( I need to return this robe before someone sees me. )"
         hide player
         hide players robe
         with dissolve
@@ -207,8 +207,8 @@ label confessional_left:
         show player 10 at Position (xoffset=-1)
         show players robe
         with dissolve
-        player_name "I can't go in that side."
-        player_name "I have to use the door on the {b}right side{/b} of the confessional..."
+        player_name "( I can't go in that side. )"
+        player_name "( I have to use the door on the {b}right side{/b} of the confessional... )"
         hide player
         hide players robe
         with dissolve
@@ -224,7 +224,7 @@ label confessional_left:
         player_name "......"
         show player 280
         player_name "Father?"
-        player_name "There's no one here?"
+        player_name "( There's no one here? )"
         show player 10
         player_name "( I guess there's no priest around at this time... )"
         hide player
@@ -237,7 +237,7 @@ label confessional_right:
         show player 10 at Position (xoffset=-1)
         show players robe
         with dissolve
-        player_name "I need to return this robe before someone sees me."
+        player_name "( I need to return this robe before someone sees me. )"
         hide player
         hide players robe
         with dissolve
@@ -248,7 +248,7 @@ label confessional_right:
         show players robe f at Position (xpos=794)
         show helen 16 at Position (xpos=300)
         with dissolve
-        helen "Forgive my family {b}Father{/b} for they have sinned. It has been 7 days since my last confession."
+        helen "Forgive my family {b}Father{/b}, for they have sinned. It has been 7 days since my last confession."
         show helen 15
         helen "..."
         show helen 13
@@ -257,7 +257,7 @@ label confessional_right:
         show player 23f
         player_name "*Cough*"
         show player 10f
-        player_name "Yes... I err... I am listening..."
+        player_name "Yes... I uhh... I am listening..."
         show player 5f
         show helen 16
         helen "O {b}Lord{/b}, I am heartily sorry for the way my family has offended you..."
@@ -303,7 +303,7 @@ label confessional_right:
                 helen "[chr_warn]And what, dear {b}Father{/b}, would you have your faithful servant do as Penance in my family's stead?"
                 show helen 12
                 show player 10f
-                player_name "[chr_warn]Err... Ummm...two prayers will suffice?"
+                player_name "[chr_warn]Err... Ummm... two prayers will suffice?"
                 show player 5f
                 helen "[chr_warn]..."
                 show helen 13
@@ -311,13 +311,13 @@ label confessional_right:
                 hide helen with dissolve
                 show player 24f
                 player_name "[chr_warn]Damn, I got too nervous..."
-                player_name "[chr_warn]...I need to try again later, with more confidence."
+                player_name "[chr_warn]... I need to try again later, with more confidence."
                 hide players robe
                 show player 444f
                 with dissolve
                 pause
                 hide player with dissolve
-                $ ui_lock_count = 0
+                $ unlock_ui()
                 $ M_mia.trigger(T_helen_convince_fail)
 
             "Change." if pStats.chr() >= 3:
@@ -325,7 +325,7 @@ label confessional_right:
                 player_name "Perhaps it is {b}you{/b} who needs to change, in order for them to return to the path..."
                 show player 5f
                 show helen 14
-                helen "Me?! ...But I've done eveything right... I..."
+                helen "Me?! ...But I've done eveything right. I..."
                 show helen 12
                 show player 12f
                 player_name "Yes, you've done a good job pointing out their flaws, but what about your own?"
@@ -337,7 +337,7 @@ label confessional_right:
                 helen "*sigh*"
                 show helen 16
                 helen "Maybe you're right, {b}Father{/b}."
-                helen "I...may have...gone too far..."
+                helen "I... may have... gone too far..."
                 show helen 14
                 helen "It's just they don't seem to understand their peril... like I do..."
                 helen "I do it, because I love them..."
@@ -369,7 +369,7 @@ label confessional_right:
                 show helen 12
                 helen "..."
                 show player 21f
-                player_name "Err... Umm...have a blessed day."
+                player_name "Err... Umm... have a blessed day."
                 show player 13f
                 show helen 16
                 helen "What would you have me do as Penance, {b}Father{/b}?"
@@ -378,7 +378,7 @@ label confessional_right:
                 player_name "Two prayers will suffice as your Penis... err.. Penance."
                 show player 22f
                 show helen 12
-                pause        
+                pause
                 show helen 16
                 show player 13f
                 helen "Thank you..."

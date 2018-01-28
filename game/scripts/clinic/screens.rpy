@@ -5,8 +5,12 @@ screen hospital:
         focus_mask True
         pos (0,0)
         if is_here("roz"):
-            idle "objects/object_desk_09.png"
-            hover "objects/object_desk_09b.png"
+            if datetime.date.today().month == 12 and (datetime.date.today().day >= 15 and datetime.date.today().day <= 30):
+                idle "objects/object_desk_09_hat.png"
+                hover "objects/object_desk_09b_hat.png"
+            else:
+                idle "objects/object_desk_09.png"
+                hover "objects/object_desk_09b.png"
             action Hide("hospital"), Jump("roz_dialogue")
 
         else:

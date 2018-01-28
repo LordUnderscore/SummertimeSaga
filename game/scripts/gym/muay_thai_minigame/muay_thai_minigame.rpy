@@ -188,7 +188,7 @@ label training01_payment_dialogue:
                     show master 3
                     mas "Very good!" with fastdissolve
                     show player 12
-                    player_name "Those cost me a lot... The training better be worth it."
+                    player_name "Those cost me a lot. The training better be worth it."
                     show player 1
                     show master 4
                     mas "The art of Muay Thai is invaluable, young apprentice!"
@@ -219,7 +219,7 @@ label training01_payment_dialogue:
                     show master 3
                     mas "Very good!" with fastdissolve
                     show player 12
-                    player_name "Those cost me a lot... The training better be worth it."
+                    player_name "Those cost me a lot. The training better be worth it."
                     show player 1
                     show master 4
                     mas "The art of Muay Thai is invaluable, young apprentice!"

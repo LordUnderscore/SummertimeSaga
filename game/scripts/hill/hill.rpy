@@ -26,15 +26,18 @@ label hill_dialogue:
         show player 31 with dissolve
         player_name "..."
         show player 32
-        player_name "I see a police car."
-        player_name "Could it be {b}Harold{/b}?"
+        player_name "( I see a police car. )"
+        player_name "( Could it be {b}Harold{/b}? )"
         hide player with dissolve
     $ callScreen(location_count)
 
 label hill_tree:
     scene expression gTimer.image("location_lair_hill_tree{}")
     if scroll not in inventory.items:
-        show expression gTimer.image("objects/object_scroll_01{}.png") at Position(xalign = 0.45, yalign = 0.65)
+        if not gTimer.is_dark():
+            show expression "private/objects/object_scroll_01.png" at Position(xalign = 0.45, yalign = 0.65)
+        else:
+            show expression "private/objects/object_scroll_01_night.png" at Position(xalign = 0.45, yalign = 0.65)
         player_name "What's this? Some kind of old scroll?"
         player_name "I wonder how long it's been hidden in there."
         call screen hill_tree
@@ -61,12 +64,12 @@ label harolds_car_dialogue:
     player_name "Ehh... It's noon, sir."
     show player 11
     show harold 20
-    harold "Oh, right...that is correct."
+    harold "Oh, right. That is correct."
     show harold 19
     harold "Nevermind, then..."
     show harold 18
     show player 10
-    player_name "Are you alright, sir?"
+    player_name "Are you okay, sir?"
     show player 5
     show harold 19
     harold "I think I'll {b}*Hic*{/b} survive..."
@@ -92,15 +95,15 @@ label harolds_car_dialogue:
     show player 12
     player_name "I asked around at your office..."
     player_name "...And I saw an old picture of you and {b}Helen{/b} on your desk."
-    player_name "Back when you two used to spend time here, at Raven Hill."
+    player_name "Back when you two used to spend time here."
     show player 5
     show harold 27
     harold "..."
     show harold 28
     harold "*Sigh*"
     show harold 20
-    harold "I feel like things were so much {b}*Hic*{/b}...simpler, back in the day..."
-    harold "I was happier...and felt like myself, not pretending to be someone I'm not, you know?"
+    harold "I feel like things were so much {b}*Hic*{/b}... simpler, back in the day..."
+    harold "I was happier... and felt like myself, not pretending to be someone I'm not, you know?"
     harold "I don't even recognize myself anymore..."
     show harold 18
     show player 10
@@ -145,8 +148,8 @@ label harolds_car_dialogue:
     with dissolve
     pause
     show player 12
-    player_name "Well, that was...interesting."
-    player_name "I should tell {b}Mia{/b} I found him and he's okay..."
+    player_name "( Well, that was... interesting... )"
+    player_name "( I should tell {b}Mia{/b} I found him and he's okay... )"
     hide player with dissolve
     $ M_mia.trigger(T_harold_found)
     $ callScreen(location_count)

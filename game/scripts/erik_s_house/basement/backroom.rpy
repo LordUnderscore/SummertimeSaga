@@ -118,7 +118,7 @@ label mrsj_afterpoker_fun:
                 show erikmom 35
                 player_name "Sure thing, {b}Mrs. Johnson{/b}..."
                 $ location_count = "Erik's House"
-                $ ui_lock_count = 0
+                $ unlock_ui()
                 $ mrsj_afterpoker_fun = False
                 $ mrsj_poker_night.finish()
                 scene erikhouse_night with fade

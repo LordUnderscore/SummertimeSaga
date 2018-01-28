@@ -16,9 +16,9 @@ label police_lobby_dialogue:
     if M_mia.get_state() == S_mia_clues:
         scene police_lobby_b
         show player 35 with dissolve
-        player_name "Hmm... Where to start."
-        player_name "I should {b}question his partners{/b} first."
-        player_name "They may know where he could be..."
+        player_name "( Hmm... Where to start... )"
+        player_name "( I should {b}question his partner{/b} first. )"
+        player_name "( They may know where he could be... )"
         hide player with dissolve
     $ callScreen(location_count)
 
@@ -36,19 +36,20 @@ label police_harolds_desk:
     with dissolve
     pause
     show player 108
-    player_name "Nothing much here."
+    player_name "( Nothing much here. )"
     show player 108f with dissolve
-    player_name "I was hoping to find some notes and some-"
-    player_name "Huh... Is that an old picture of him?"
+    player_name "( I was hoping to find some notes and some- )"
+    player_name "Huh..."
+    player_name "( Is that an old picture of him? )"
     call screen harolds_desk
     scene police_office_picture
-    player_name "Is that... {b}Helen{/b} and {b}Harold{/b}?!"
-    player_name "Wow... They look SO different...and much happier!"
+    player_name "( Is that... {b}Helen{/b} and {b}Harold{/b}?! )"
+    player_name "( Wow... They look SO different... and so much happier! )"
     player_name "..."
-    player_name "Where is that location?"
-    player_name "It looks like...{b}Raven Hill{/b}?"
+    player_name "( Where is that location? )"
+    player_name "( It looks like... maybe {b}Raven Hill{/b}? )"
     player_name "Huh."
-    player_name "They probably used to hangout there a lot..."
+    player_name "( They probably used to hang out there a lot... )"
     $ M_mia.trigger(T_harold_photo_clue)
     $ callScreen(location_count)
 
@@ -103,11 +104,12 @@ label police_office_dialogue:
     elif M_mia.is_set('questioned yumi') and M_mia.is_set('questioned earl'):
         scene police_office_b
         show player 35 with dissolve
-        player_name "Okay, so he's taking time off and took off for a drive this morning..."
-        player_name "...And he's drunk."
+        player_name "( Okay, so he's taking time off and took off for a drive this morning... )"
+        player_name "( ...And he's drunk. )"
         show player 12
-        player_name "Hmm... I need more {b}clues{/b}."
-        player_name "Maybe I should check his {b}desk{/b}..."
+        player_name "Hmm..."
+        player_name "( I need more {b}clues{/b}. )"
+        player_name "( Maybe I should check his {b}desk{/b}... )"
         hide player with dissolve
         $ M_mia.trigger(T_mia_clues_summary)
 
@@ -120,7 +122,7 @@ label police_office_dialogue:
         show harold 1
         show player 14
         player_name "Hi, sir!"
-        player_name "Emm... I have something for you."
+        player_name "Umm... I have something for you."
         show player 13
         show harold 3
         harold "Something for me?"
@@ -172,7 +174,7 @@ label police_office_dialogue:
         hide harold
         with dissolve
         $ inventory.items.remove(aviators)
-        $ ui_lock_count = 1
+        $ lock_ui()
         $ M_mia.trigger(T_harold_glasses)
 
     elif M_mia.get_state() == S_mia_convince_harold:
@@ -206,21 +208,21 @@ label police_office_dialogue:
         player_name "Really?"
         show player 5
         show earl 6 with dissolve
-        ear "I think when I got promoted instead of him...it took the wind out of his sails."
+        ear "I think when I got promoted instead of him, it took the wind out of his sails."
         show earl 5
         pause
         show earl 6
         ear "Hey... I'm all out of donuts!"
         show player 13
-        ear "Listen, kid. I gotta make a quick trip and resupply. If my blood sugar dips I get feisty."
-        ear "And you don't want to meet feisty {b}Earl{/b}."
+        ear "Listen, kid. I gotta make a quick trip and resupply. I get feisty if my blood sugar dips."
+        ear "And you don't want to meet a feisty {b}Earl{/b}."
         ear "{b}Harold{/b} should be back soon. Stick around!"
         hide earl with dissolve
         show player 12
         player_name "Huh..."
-        player_name "{b}Harold{/b} hasn't been doing well at work...and lost a promotion..."
+        player_name "( {b}Harold{/b} hasn't been doing well at work, and lost a promotion... )"
         show player 10
-        player_name "He's getting grief at home and at work."
+        player_name "( He's getting grief at home and at work. )"
         show player 5
         pause
         show player 13
@@ -235,12 +237,12 @@ label police_office_dialogue:
         harold "..."
         show harold 30 at right with dissolve
         harold "Well... I would love to see them..."
-        harold "I wish I had the time too...but..."
+        harold "I wish I had the time too, but..."
         show player 5
         hide harold
         show harold 26 at Position (xpos=762)
         with dissolve
-        harold "I have a lot of...work. I've got a lot of cases to solve lately."
+        harold "I have a lot of work. I've got a lot of cases to solve lately."
         harold "My oldest case is starting to stand out to my chief."
         harold "I was assigned the notorious night bandit case."
         harold "I've been catching heat lately for my lack of results on the whereabouts of the missing goods..."
@@ -277,7 +279,7 @@ label police_office_dialogue:
         show harold 2
         harold "Thanks, {b}[firstname]{/b}."
         show harold 6
-        harold "I better get back to work, if I ever want to solve some cases and free up some time away from work."
+        harold "I better get back to work. If I ever want to solve some cases and free up some time away from work."
         show harold 1
         show player 14
         player_name "Talk to you later, {b}Harold{/b}."
@@ -285,27 +287,27 @@ label police_office_dialogue:
 
         if erik.over(erik_thief):
             show player 12
-            player_name "Sounds like I need to help him find where {b}Larry{/b} hid the stolen goods."
+            player_name "( Sounds like I need to help him find where {b}Larry{/b} hid the stolen goods. )"
             show player 10
-            player_name "Otherwise, he's never gonna have time to go to dinner with {b}Mia{/b} and {b}Helen{/b}."
+            player_name "( Otherwise, he's never gonna have time to go to dinner with {b}Mia{/b} and {b}Helen{/b}. )"
             show player 12
-            player_name "I should stop down to the jail cells and see him."
-            player_name "Maybe he'll tell me where the stolen goods are."
+            player_name "( I should stop down to the jail cells and see him. )"
+            player_name "( Maybe he'll tell me where the stolen goods are. )"
         else:
 
             show player 12
-            player_name "Sounds like I need to help him find the thief's stolen goods."
+            player_name "( Sounds like I need to help him find the thief's stolen goods. )"
             show player 10
-            player_name "Otherwise, he's never gonna have time to go to dinner with {b}Mia{/b} and {b}Helen{/b}."
+            player_name "( Otherwise, he's never gonna have time to go to dinner with {b}Mia{/b} and {b}Helen{/b}. )"
             show player 12
-            player_name "I better keep an eye on {b}Mrs. Johnson's{/b} backyard at night."
-            player_name "{b}Harold{/b} also mentioned the theif was spotted in the park too."
+            player_name "( I better keep an eye on {b}Mrs. Johnson's{/b} backyard at night. )"
+            player_name "( {b}Harold{/b} also mentioned the theif was spotted in the park too. )"
         show player 5
         pause
         show player 30
-        player_name "{b}Earl{/b} is still not back."
+        player_name "( {b}Earl{/b} is still not back. )"
         show player 33
-        player_name "I wonder how many donuts he goes through each day."
+        player_name "( I wonder how many donuts he goes through each day... )"
         hide harold
         hide player
         with dissolve
@@ -338,7 +340,8 @@ label police_office_dialogue:
         with dissolve
         harold "!!!"
         show harold 49 with dissolve
-        harold "...Those are...all the stolen items!!"
+        harold "...Those are..."
+        harold "...all the stolen items!!"
         show harold 48
 
         if erik.over(erik_thief):
@@ -361,7 +364,7 @@ label police_office_dialogue:
         harold "I'm impressed {b}[firstname]{/b}. You did a great job!"
         show harold 48
         show player 17f
-        player_name "Oh don't thank me. I wouldn't have found it if you didn't collect the clues..."
+        player_name "Oh don't thank me. I wouldn't have found it if you didn't collect the clues."
         show player 14f
         player_name "If anyone asks me about it, it was officer {b}Harold{/b} that made the find!"
         show player 13f
@@ -406,12 +409,12 @@ label police_office_dialogue:
         ear "Wow! I didn't think you had it in you lately, {b}Harold{/b}!"
         ear "But you solved one of the most high profile cases in a recent years!"
         show earl 8
-        ear "You'll surely get a promotion out of finding all the stolen items. Heck, you deserve a promotion!"
+        ear "You'll surely get a promotion out of finding all the stolen items! Heck, you deserve a promotion!"
         show earl 7
         "*Grumble* *Gurgle*"
         show earl 8
-        ear "Woah... My belly is growling... All this excitement made me extra hungry."
-        ear "I need to find me a donut."
+        ear "Woah... My belly is growling... All this excitement made me extra hungry!"
+        ear "I need to find me a donut!"
         hide earl
         show harold 48 at left
         with dissolve
@@ -430,11 +433,11 @@ label police_office_dialogue:
         with dissolve
         yum "..."
         show yumi 13 at Position (xoffset=12) with dissolve
-        yum "Well... I...uh...better get back to my cell duties."
+        yum "Well... I... uh... better get back to my cell duties."
         hide yumi with dissolve
         show harold 2f at Position (xpos=9) with dissolve
         show player 13f
-        harold "That...felt great."
+        harold "That... felt great."
         harold "I haven't felt this appreciated in a long time..."
         harold "Thank you, {b}[firstname]{/b}, for helping me out with this."
         show harold 1f
@@ -444,7 +447,7 @@ label police_office_dialogue:
         show harold 2f
         harold "Ahhh..."
         harold "I think I'm going to start spending more time on my patrols now."
-        harold "You know...actually try and solve my other cases instead of trying to just make it through the day."
+        harold "You know... actually try and solve my other cases instead of trying to just make it through the day."
         show harold 1f
         show player 14f
         player_name "Good for you {b}Harold{/b}. I'm glad you feel better."
@@ -489,11 +492,12 @@ label police_basement_dialogue:
     elif M_mia.is_set('questioned yumi') and M_mia.is_set('questioned earl'):
         scene police_basement_b
         show player 35 with dissolve
-        player_name "Okay, so he's taking time off and took off for a drive this morning..."
-        player_name "...And he's drunk."
+        player_name "( Okay, so he's taking time off and took off for a drive this morning... )"
+        player_name "( ...And he's drunk. )"
         show player 12
-        player_name "Hmm... I need more {b}clues{/b}."
-        player_name "Maybe I should check his {b}desk{/b}..."
+        player_name "Hmm..."
+        player_name "( I need more {b}clues{/b}. )"
+        player_name "( Maybe I should check his {b}desk{/b}... )"
         hide player with dissolve
         $ M_mia.trigger(T_mia_clues_summary)
 
@@ -502,26 +506,26 @@ label police_basement_dialogue:
         show player 4 at Position (xoffset=6) with dissolve
         player_name "Hmm..."
         show player 12 with dissolve
-        player_name "I don't see {b}Yumi{/b} anywhere, maybe I should-"
+        player_name "( I don't see {b}Yumi{/b} anywhere, maybe I should- )"
         "*Shouting*" with hpunch
         show player 11
         player_name "..."
         show player 10
-        player_name "Is that coming from one of the cells?!"
+        player_name "( Is that coming from one of the cells?! )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_harold_backup:
         scene police_basement_empty_b
         show player 10 with dissolve
-        player_name "Quick, I have to find {b}Harold{/b}..."
+        player_name "( I have to find {b}Harold{/b} Quickly! )"
         hide player with dissolve
     $ callScreen(location_count)
 
 label inmate_transfer_block:
     scene police_basement_empty_b
     show player 10 with dissolve
-    player_name "There's people shouting."
-    player_name "I should check what's happening in those cells..."
+    player_name "( People are shouting! )"
+    player_name "( I should check what's happening in those cells! )"
     hide player with dissolve
     $ callScreen(location_count)
 
@@ -537,13 +541,13 @@ label police_cell_dialogue:
         scene police_cell_inside_fight2
         player_name "I'll get {b}Harold{/b}!"
         scene police_cell_inside_fight1
-        yum "Go! ...Quick!"
+        yum "Go! Quickly!"
         $ M_mia.trigger(T_yumi_backup_request)
 
     elif M_mia.get_state() == S_mia_harold_backup:
         scene police_basement_empty_b
         show player 10 with dissolve
-        player_name "Quick, I have to find {b}Harold{/b}..."
+        player_name "( I have to find {b}Harold{/b} quickly! )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_harold_to_the_rescue:
@@ -635,7 +639,7 @@ label police_cell_dialogue:
         harold "Hey, kid."
         show harold 40
         show player 10f
-        player_name "Are you okay? Your shirt...it's ripped?"
+        player_name "Are you okay? Your shirt is ripped."
         show player 11f
         show harold 41
         harold "It's fine, just a scratch."
@@ -644,7 +648,7 @@ label police_cell_dialogue:
         player_name "Looks like your partner had a rough time as well..."
         show player 11f
         show yumi 6f
-        yum "Oh, yeah... MY hair is a mess."
+        yum "Oh, yeah... MY hair's a mess."
         show yumi 5 with dissolve
         show harold 41
         harold "Actually, I kind of like your hair this way. Keep it."
@@ -659,10 +663,10 @@ label police_cell_dialogue:
         yum "You mean, now?!"
         show yumi 9
         show harold 41
-        harold "Yeah, it's nice out...and I'm thirsty."
+        harold "Yeah, it's nice out... and I'm thirsty."
         show harold 40
         show yumi 8
-        yum "Ha ha, alright... If you insist."
+        yum "Ha ha. Fine. If you insist."
         show yumi 9
         show harold 41
         harold "Hop in the car, I'll meet you outside."
@@ -687,7 +691,7 @@ label police_cell_dialogue:
         hide harold
         hide player
         with dissolve
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ M_mia.trigger(T_harold_backup)
     else:
 
@@ -695,7 +699,7 @@ label police_cell_dialogue:
         show xtra 13 zorder 1 at left
         show player 10f zorder 2
         with dissolve
-        player_name "I wouldn't want to end up in there. Sheesh!"
+        player_name "( I wouldn't want to end up in there. Sheesh! )"
         hide player with dissolve
     $ callScreen(location_count)
 
@@ -716,7 +720,7 @@ label police_cell_larry_dialogue:
         show player 16f
         show larry 15
         larry "Listen, I'm not mad at you for what you did."
-        larry "It's actually nice knowing there is someone keeping watch out for my family."
+        larry "It's actually nice knowing there's someone keeping watch out for my family."
         show larry 14
         show player 5f
         player_name "..."
@@ -725,7 +729,7 @@ label police_cell_larry_dialogue:
         larry "I just... I need you to give {b}Erik{/b} a message from me."
         show larry 14
         show player 10f
-        player_name "I'm not sure he would want that..."
+        player_name "I'm not sure he'd want that..."
         show player 5f
         show larry 15
         larry "I need you to tell him that I'm sorry!"
@@ -736,7 +740,7 @@ label police_cell_larry_dialogue:
         show player 5f
         show larry 15
         larry "Please!"
-        larry "I...I can help you!"
+        larry "I... I can help you!"
         show larry 14
         show player 10f
         player_name "Huh?"
@@ -752,8 +756,8 @@ label police_cell_larry_dialogue:
         show larry 15
         show player 5f
         larry "You can return the stolen goods to the police, or keep them! I don't care."
-        larry "Can you just tell {b}Erik{/b} I'm sorry...and that I love him."
-        larry "Hopefully, he can forgive me one day and...perhaps we can see each other again?"
+        larry "Can you just tell {b}Erik{/b} I'm sorry... and that I love him."
+        larry "Hopefully, he can forgive me one day and... perhaps we can see each other again?"
         show larry 14
         show player 35f
         player_name "Hmm..."
@@ -790,7 +794,7 @@ label police_cell_larry_dialogue:
         player_name "Yeah. I did."
         show player 5f
         show larry 15
-        larry "And what...what did he say?!"
+        larry "And what... what did he say?!"
         show larry 14
         show player 12f
         player_name "He'll think about it."
@@ -812,7 +816,7 @@ label police_cell_larry_dialogue:
         show larry 15
         larry "Listen! I'm going to try and turn my life around!"
         larry "You'll see!"
-        larry "And...and maybe, someday you can even convince {b}Erik{/b} to come visit me?"
+        larry "And... and maybe, someday you can even convince {b}Erik{/b} to come visit me?"
         show larry 14
         show player 12f
         player_name "We'll see."
@@ -855,8 +859,8 @@ label police_harold_dialogue:
         player_name "How are things going lately?"
         show player 13
         show harold 2
-        harold "Never been better! Our family is the happiest it's ever been."
-        harold "{b}Helen{/b} has really changed. Really...changed."
+        harold "Never been better! Our family is the happiest it's ever been!"
+        harold "{b}Helen{/b} has really changed. Really... changed."
         harold "Things are red hot in the bedr-"
         show harold 4
         harold "Anyway, you know what I mean."
@@ -885,16 +889,16 @@ label police_harold_dialogue:
         with dissolve
         yum "!!!"
         show player 5f
-        yum "Oh, I didn't see you there..."
+        yum "Oh! I didn't see you there..."
         show yum 14f at Position (xpos=382) with dissolve
         show harold 53
-        harold "Oh don't worry, {b}Yumi{/b}, it's just my daughter's little buddy."
+        harold "Don't worry, {b}Yumi{/b}, it's just my daughter's little buddy."
         show harold 52
         show player 10f
         player_name "Hello..."
         show player 5f
         show yum 13f
-        yum "Hi... Oh! I forgot I have something I...need to take care of in my office."
+        yum "Hi... Oh! I forgot I have something I... need to take care of in my office."
         hide yum
         show harold 54
         with dissolve
@@ -936,7 +940,7 @@ label police_harold_dialogue:
         show harold 55
         harold "You're a good kid, {b}[firstname]{/b}. Thanks again for caring about my daughter."
         harold "I appreciate you and her trying to get me back with {b}Helen{/b}..."
-        harold "It's just some things don't work out..."
+        harold "It's just some things just don't work out..."
         show harold 54
         show player 21f
         player_name "Heh heh..."
@@ -974,7 +978,7 @@ label police_harold_dialogue:
         show harold 29
         harold "!!!"
         show harold 30 at right with dissolve
-        harold "I... I should call for more backup... Maybe I should tell {b}Earl{/b} first-"
+        harold "I... I should call for more backup. Maybe I should tell {b}Earl{/b} first-"
         show player 12
         player_name "{b}Harold{/b}! There's no time!"
         hide harold
@@ -988,12 +992,12 @@ label police_harold_dialogue:
         show harold 25
         show player 15
         player_name "{b}Yumi{/b}'s your partner and needs your help!"
-        player_name "You have to go, NOW!!!"
+        player_name "You have to go! NOW!!!"
         show player 16
         show harold 24
         harold "..."
         show harold 6
-        harold "You're right... I should take action."
+        harold "You're right. I should take action."
         harold "Let's go."
         hide player
         hide harold
@@ -1023,14 +1027,14 @@ label police_harold_dialogue:
         harold "..."
         show harold 6
         harold "I know {b}Mia{/b} is trying to get {b}Helen{/b} and I back together."
-        harold "You've been helping her too... You're a good kid."
+        harold "You've been helping her too. You're a good kid."
         show harold 1
         harold "..."
         show harold 6
         harold "I suppose things between {b}Helen{/b} and I are better than when you saw us erupt at each other."
         show harold 4
         pause
-        harold "I...just don't know though..."
+        harold "I... just don't know though..."
         show harold 1
         pause
         show player 10
@@ -1041,11 +1045,11 @@ label police_harold_dialogue:
         harold "We may be on good terms now, but we could be at each other's throats again."
         harold "For once, I'm thinking I might be happier on my own."
         harold "My marriage might be better left behind me."
-        harold "Maybe...if {b}Helen{/b} really changed for good."
+        harold "Maybe... if {b}Helen{/b} really changed for good."
         harold "It might be possible for us to get back together."
         show harold 1
         show player 14
-        player_name "I...understand."
+        player_name "I... I understand."
         show player 13
         show harold 6
         harold "I better get back to work. I just had another breakthrough on a case."
@@ -1058,19 +1062,19 @@ label police_harold_dialogue:
         hide harold with dissolve
         pause
         show player 14
-        player_name "Sounds like {b}Harold's{/b} telling me there's a chance he'd get back with {b}Helen{/b}."
+        player_name "( Sounds like {b}Harold's{/b} telling me there's a chance he'd get back with {b}Helen{/b}. )"
         show player 35
-        player_name "Maybe {b}Sister Angelica{/b}s training is actually helping her and {b}Harold{/b}."
+        player_name "( Maybe {b}Sister Angelica{/b}'s training is actually helping her and {b}Harold{/b}. )"
         show player 10
-        player_name "But...he sure seems happy right now without {b}Helen{/b}..."
-        player_name "{b}Mia{/b} would be devastated if he didn't get back with {b}Helen{/b}."
+        player_name "( But... he sure seems happy right now without {b}Helen{/b}... )"
+        player_name "( {b}Mia{/b} would be devastated if he didn't get back with {b}Helen{/b}. )"
         show player 5
         player_name "..."
         show player 12
-        player_name "I guess it's not really up to me at this point..."
-        player_name "Might as well finish helping {b}Sister Angelica{/b}."
+        player_name "( I guess it's not really up to me at this point... )"
+        player_name "( Might as well finish helping {b}Sister Angelica{/b}. )"
         show player 35
-        player_name "What did she want again?"
+        player_name "( What did she want again? )"
         hide player with dissolve
         $ M_mia.trigger(T_harold_indecisiveness)
         $ callScreen(location_count)
@@ -1194,9 +1198,9 @@ label police_harold_dialogue:
             hide harold with dissolve
             pause
             show player 10
-            player_name "Damn!"
-            player_name "I must of bought the wrong kind."
-            player_name "I have to make sure I get the right ingredients..."
+            player_name "( Damn! )"
+            player_name "( I must've bought the wrong kind. )"
+            player_name "( I have to make sure I get the right ingredients... )"
             $ inventory.items.remove(donuts_fail)
 
         "Donuts." if M_mia.get_state() == S_mia_impress_harold and donuts_correct in inventory.items:
@@ -1431,11 +1435,11 @@ label police_yumi_dialogue:
         "{b}Harold{/b}." if M_mia.get_state() == S_mia_clues:
             show player 12
             player_name "Do you know where {b}Harold{/b} could be?"
-            player_name "I need to err...return something to him!"
+            player_name "I need to err... return something to him!"
             show player 5
             show yumi 4
             yum "You know, I saw him just this morning!"
-            yum "He looked...off...and smelled like alcohol..."
+            yum "He looked... off... and smelled like alcohol..."
             show yumi 3
             show player 10
             player_name "Alcohol?!"

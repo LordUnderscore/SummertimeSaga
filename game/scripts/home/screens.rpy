@@ -26,7 +26,7 @@ screen home_front:
         hover gTimer.image("objects/object_door_36b{}.png")
 
         action If(
-            player.known(lawn_mowed) and not player.over(lawn_mowed),
+            M_mom.get_state() == S_mom_wash_clothes,
             [Hide("home_front"), Jump("lawn_mower_dirty")],
             [Hide("home_front"), Jump("home_garage")]
             )

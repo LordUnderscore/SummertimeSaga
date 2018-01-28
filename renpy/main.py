@@ -294,8 +294,6 @@ def main():
         i = i[:-4]
         renpy.config.archives.append(i)
 
-    renpy.config.archives.append("../renpy/common/_theme_awt/Quicksand-Bold.ttf")
-
     renpy.config.archives.reverse()
 
     # Initialize archives.

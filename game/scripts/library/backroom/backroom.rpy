@@ -99,7 +99,7 @@ label backroom_dialogue:
             $ quest_list.append(quest06)
         $ library_desk_count = 1
         $ backroom_count = 3
-        $ ui_lock_count = 0
+        $ unlock_ui()
     $ callScreen(location_count)
 
 label backroom_couple_finish01:

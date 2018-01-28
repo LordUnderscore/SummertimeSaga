@@ -8,8 +8,8 @@ image ui = "buttons/ui_fake.png"
 
 image popup_unfinished = "boxes/popup_unfinished.png"
 image popup_warning = "boxes/popup_warning.png"
-image popup_tv_locked_org = "boxes/popup_tv_locked.png"
-image popup_tv_locked = PulseImage("boxes/popup_tv_locked.png","boxes/wrong_password.png")
+image popup_tv_locked = "boxes/popup_tv_locked.png"
+image popup_tv_locked_pulse = PulseImage("boxes/popup_tv_locked.png","boxes/wrong_password.png")
 image popup_pipe_fixed = "boxes/popup_valve.png"
 image sis_wrong_pass = "boxes/wrong_password.png"
 image tattoo_butterfly = "boxes/popup_item_tattoo01.png"
@@ -249,6 +249,8 @@ image henchman_cs2 2 = "backgrounds/location_home_entrance_cutscene02.jpg"
 image henchman_cs2 3 = "backgrounds/location_home_entrance_cutscene03.jpg"
 image home_front_car = "backgrounds/location_home_front_car_blur.jpg"
 image home_entrance_fight = "backgrounds/location_home_entrance_fight.jpg"
+image location_home_driveby_cutscene1 = "backgrounds/location_home_driveby_cutscene01.jpg"
+image location_home_driveby_cutscene2 = "backgrounds/location_home_driveby_cutscene02.jpg"
 
 
 image hill = "backgrounds/location_hill.jpg"
@@ -299,6 +301,12 @@ image movie_lobby = "backgrounds/location_movie_lobby.jpg"
 image movie_options = "backgrounds/location_movie_options.jpg"
 image movie = "backgrounds/location_movie.jpg"
 image pink = "backgrounds/location_pink_blur.jpg"
+image location_mall_cupid = "backgrounds/location_mall_cupid.jpg"
+image location_mall_cupid_blur = "backgrounds/location_mall_cupid_blur.jpg"
+image location_mall_cupid_closeup = "backgrounds/location_mall_cupid_closeup.jpg"
+image location_mall_cupid_closeup_stall = "backgrounds/location_mall_cupid_closeup_stall.jpg"
+image location_mall_upstairs = "backgrounds/location_mall_upstairs.jpg"
+image location_mall_upstairs_blur = "backgrounds/location_mall_upstairs_blur.jpg"
 
 
 image townmap = "map/map_base_blur.jpg"
@@ -320,6 +328,8 @@ image studybedroom02 = "backgrounds/bedroomstudy02.jpg"
 image dreammom 1 = "backgrounds/dream_mom_01.jpg"
 image dreammom 2 = "backgrounds/dream_mom_02.jpg"
 image dreammom 3 = "backgrounds/dream_mom_03.jpg"
+image dream_mom_04 = "backgrounds/dream_mom_04.jpg"
+image dream_mom_05 = "backgrounds/dream_mom_05.jpg"
 
 
 image home_hallway_cutscene = "backgrounds/location_home_hallway_cutscene.jpg"
@@ -332,13 +342,24 @@ image home_backyard = "backgrounds/location_home_backyard.jpg"
 image home_backyard_b = "backgrounds/location_home_backyard_blur.jpg"
 image home_backyard_n = "backgrounds/location_home_backyard_night.jpg"
 image home_backyard_n_b = "backgrounds/location_home_backyard_night_blur.jpg"
+image backyard_n_c = "backgrounds/location_home_backyard_night_closeup.jpg"
+image home_backyard_pool_c = "backgrounds/location_home_backyard_pool_closeup.jpg"
+image home_diningroom_n_c = "backgrounds/location_home_dining_closeup_night.jpg"
+image home_diningroom_cs01 = "backgrounds/location_home_dining_cutscene1.jpg"
 image home_front = "backgrounds/location_home_front_blur.jpg"
+image home_front_mechanic_n_b = "backgrounds/location_home_front_mechanic_night_blur.jpg"
+image home_front_mechanic_n = "backgrounds/location_home_front_mechanic_night.jpg"
+image home_front_mechanic_b = "backgrounds/location_home_front_mechanic_blur.jpg"
+image home_front_mechanic = "backgrounds/location_home_front_mechanic.jpg"
 image home_entrance = "backgrounds/location_home_entrance_blur.jpg"
 image home_entrance_evening = "backgrounds/location_home_entrance_evening_blur.jpg"
 image home_entrance_night = "backgrounds/location_home_entrance_night_blur.jpg"
 image home_garage = "backgrounds/location_home_garage_blur.jpg"
 image home_garage_closeup = "backgrounds/location_home_garage_closeup.jpg"
 image home_garage_night = "backgrounds/location_home_garage_night_blur.jpg"
+image car_interior = "backgrounds/location_car.jpg"
+image car_interior bj = "backgrounds/location_car_bj.jpg"
+image car_interior kiss = "backgrounds/location_car_kiss.jpg"
 image mailbox_item04_c = "objects/object_mailbox_item04_closeup.png"
 image home_basement = "backgrounds/location_home_basement.jpg"
 image home_basement_c = "backgrounds/location_home_basement_closeup.jpg"
@@ -352,6 +373,7 @@ image home_tv_channel_03 = "buttons/tv_channel_03.png"
 image home_tv_channel_04 = "buttons/tv_channel_04.png"
 image home_tv_channel_05 = "buttons/tv_channel_05.png"
 image home_tv_channel_06 = "buttons/tv_channel_06.png"
+image home_tv_channel_06b = "buttons/tv_channel_06b.png"
 image home_tv_channel_07 = "buttons/tv_channel_07.png"
 image home_tv_channel_08 = "buttons/tv_channel_08.png"
 image home_tv_channel_09 = "buttons/tv_channel_09.png"
@@ -365,6 +387,13 @@ image home_livingroom_n_b = "backgrounds/location_home_livingroom_night_blur.jpg
 image home_livingroom_n_c = "backgrounds/location_home_livingroom_closeup_night.jpg"
 image home_livingroom_couch01 = "backgrounds/location_home_livingroom_couch01.jpg"
 image home_livingroom_couch02 = "backgrounds/location_home_livingroom_couch02.jpg"
+image location_home_livingroom_couch03 = "backgrounds/location_home_livingroom_couch03.jpg"
+image location_home_livingroom_couch04 = "backgrounds/location_home_livingroom_couch04.jpg"
+image location_home_livingroom_couch05 = "backgrounds/location_home_livingroom_couch05.jpg"
+image location_home_livingroom_couch06 = "backgrounds/location_home_livingroom_couch06.jpg"
+image location_home_livingroom_couch07 = "backgrounds/location_home_livingroom_couch07.jpg"
+image location_home_livingroom_night_mom = "backgrounds/location_home_livingroom_night_mom.jpg"
+image location_home_livingroom_night_mom_blur = "backgrounds/location_home_livingroom_night_mom_blur.jpg"
 image home_diningroom = "backgrounds/location_home_diningroom.jpg"
 image home_diningroom_n = "backgrounds/location_home_diningroom_night.jpg"
 image homekitchen = "backgrounds/location_home_kitchen_blur.jpg"
@@ -375,8 +404,22 @@ image bedroom = "backgrounds/location_bedroom_blur.jpg"
 image bedroom_night = "backgrounds/location_bedroom_blur_night.jpg"
 image bedroom_broken = "backgrounds/location_bedroom_broken_blur.jpg"
 image bedroom_broken_night = "backgrounds/location_bedroom_broken_night_blur.jpg"
+image location_bedroom_jerk = "backgrounds/location_bedroom_jerk.jpg"
+image location_bedroom_jerk_night = "backgrounds/location_bedroom_jerk_night.jpg"
+image location_bedroom_sex01 = "backgrounds/location_bedroom_sex01.jpg"
+image location_bedroom_sex02 = "backgrounds/location_bedroom_sex02.jpg"
+image location_bedroom_sex03 = "backgrounds/location_bedroom_sex03.jpg"
+image location_bedroom_sex04 = "backgrounds/location_bedroom_sex04.jpg"
+image location_bedroom_cutscene_sleep = "backgrounds/location_bedroom_cutscene_sleep.jpg"
+image location_sleeping2 = "backgrounds/location_sleeping2.jpg"
+image bedroom_cs01 = "backgrounds/location_bedroom_cutscene01.jpg"
 image bedroom_cs03 = "backgrounds/location_bedroom_cutscene03.jpg"
 image bedroom_cs04 = "backgrounds/location_bedroom_cutscene04.jpg"
+image location_bedroom_cutscene05 = "backgrounds/location_bedroom_cutscene05.jpg"
+image location_bedroom_cutscene06 = "backgrounds/location_bedroom_cutscene06.jpg"
+image location_bedroom_cutscene07 = "backgrounds/location_bedroom_cutscene07.jpg"
+image location_bedroom_cutscene08 = "backgrounds/location_bedroom_cutscene08.jpg"
+image location_bedroom_cutscene09 = "backgrounds/location_bedroom_cutscene09.jpg"
 image sleeping = "backgrounds/location_sleeping.jpg"
 image hallway = "backgrounds/location_hallway_blur.jpg"
 image hallway_night = "backgrounds/location_hallway_blur_night.jpg"
@@ -403,6 +446,7 @@ image cutting_grass_03 = "backgrounds/location_grass_03.jpg"
 image dining_room = "backgrounds/location_home_dining_day.jpg"
 image dining_room_night = "backgrounds/location_home_dining_night.jpg"
 image dining_room_lights = "backgrounds/location_home_dining.jpg"
+image bedroom_sex_05 = "backgrounds/location_bedroom_sex05.jpg"
 
 
 image mia_house_helen_n_b = "backgrounds/location_mia_house_helen_night_blur.jpg"
@@ -458,7 +502,7 @@ image location_mombed04 = "backgrounds/location_mombed04.jpg"
 image location_mombed05 = "backgrounds/location_mombed05.jpg"
 image mom_drawer = "backgrounds/location_momdrawer.jpg"
 image mom_drawer_night = "backgrounds/location_momdrawer_night.jpg"
-image mom_bedroom = "backgrounds/location_mombedroom_blur.jpg"
+image mom_bedroom = "backgrounds/location_mombedroom_nobasket_blur.jpg"
 image mom_bedroom_night = "backgrounds/location_mombedroom_blur_night.jpg"
 image mom_bedroom_closeup = "backgrounds/location_momsidebed.jpg"
 image mom_bedroom_closeup2 = "backgrounds/location_momsidebed_02.jpg"
@@ -600,8 +644,6 @@ image locker_empty = "backgrounds/location_locker_room_empty.jpg"
 image locker_empty_b = "backgrounds/location_locker_room_blur_empty.jpg"
 image office = "backgrounds/location_office_blur.jpg"
 image office_clear = "backgrounds/location_office.jpg"
-image school = "backgrounds/location_school_blur.jpg"
-image school_night = "backgrounds/location_school_night_blur.jpg"
 image classroom = "backgrounds/location_classroom_blur.jpg"
 image classroom_night = "backgrounds/location_classroom_blur_night.jpg"
 image gym = "backgrounds/location_gym_blur.jpg"
@@ -1278,6 +1320,16 @@ image aunt 166 = "characters/aunt/char_aunt_166.png"
 image aunt 167 = "characters/aunt/char_aunt_167.png"
 image aunt 168 = "characters/aunt/char_aunt_168.png"
 image aunt 169 = "characters/aunt/char_aunt_169.png"
+image aunt 170 = Image("characters/aunt/char_aunt_170.png",xoffset=-323,yoffset=-145)
+image aunt 171 = Image("characters/aunt/char_aunt_171.png",xoffset=-323,yoffset=-145)
+image aunt 172 = Image("characters/aunt/char_aunt_172.png",xoffset=-323,yoffset=-145)
+image aunt 173 = Image("characters/aunt/char_aunt_173.png",xoffset=-323,yoffset=-145)
+image aunt 174 = Image("characters/aunt/char_aunt_174.png",xoffset=-323,yoffset=-145)
+image aunt 175 = Image("characters/aunt/char_aunt_175.png",xoffset=-323,yoffset=-145)
+image aunt 176 = Image("characters/aunt/char_aunt_176.png",xoffset=-323,yoffset=-145)
+image aunt 177 = Image("characters/aunt/char_aunt_177.png",xoffset=-315,yoffset=-191)
+image aunt 178 = Image("characters/aunt/char_aunt_178.png",xoffset=-349,yoffset=-250)
+image aunt 179 = Image("characters/aunt/char_aunt_179.png",xoffset=-340,yoffset=-330)
 
 image diane 5 = "objects/character_diane_05.png"
 image diane_passedout_b = "objects/object_bed_07_blurred.png"
@@ -1434,6 +1486,26 @@ image cassie 72 = "characters/cassie/char_cassie_72.png"
 image cassie 73 = "characters/cassie/char_cassie_73.png"
 
 
+image cplayer 1 = "characters/cat/char_cat_01.png"
+image cplayer 2 = "characters/cat/char_cat_02.png"
+image cat 3 = "characters/cat/char_cat_03.png"
+image cat 4 = "characters/cat/char_cat_04.png"
+image cat 5 = "characters/cat/char_cat_05.png"
+image cat 6 = "characters/cat/char_cat_06.png"
+image cat 7 = "characters/cat/char_cat_07.png"
+image cat 8 = "characters/cat/char_cat_08.png"
+image cat 9 = "characters/cat/char_cat_09.png"
+image cat 10 = "characters/cat/char_cat_10.png"
+image cat 11 = "characters/cat/char_cat_11.png"
+image cat 12 = "characters/cat/char_cat_12.png"
+image cat 13 = "characters/cat/char_cat_13.png"
+image cat 14 = "characters/cat/char_cat_14.png"
+image cat 15 = "characters/cat/char_cat_15.png"
+image cat 16 = "characters/cat/char_cat_16.png"
+image cat 17 = "characters/cat/char_cat_17.png"
+image cat 18 = "characters/cat/char_cat_18.png"
+
+
 image ced 1 = "characters/cedric/char_cedric_01.png"
 image ced 2 = "characters/cedric/char_cedric_02.png"
 
@@ -1485,12 +1557,20 @@ image xtra 24 = "characters/xtra/char_xtra_24.png"
 image xtra 25 = "characters/xtra/char_xtra_25.png"
 image xtra 26 = "characters/xtra/char_xtra_26.png"
 image xtra 27 = "characters/xtra/char_xtra_27.png"
+image xtra 28 = "characters/xtra/char_xtra_28.png"
+image xtra 29 = "characters/xtra/char_xtra_29.png"
+image xtra 30 = "characters/xtra/char_xtra_30.png"
+image xtra 31 = "characters/xtra/char_xtra_31.png"
+image xtra 32 = "characters/xtra/char_xtra_32.png"
+image xtra 33 = "characters/xtra/char_xtra_33.png"
+image xtra 34 = "characters/xtra/char_xtra_34.png"
+image xtra 35 = "characters/xtra/char_xtra_35.png"
 image movie_desk = "characters/xtra/char_xtra_11.png"
 image cell_bars = "characters/xtra/char_xtra_13.png"
 image roz_desk = "characters/xtra/char_xtra_25.png"
 image tattoo_desk = "characters/xtra/char_xtra_26.png"
 image harold_desk = "characters/xtra/char_xtra_28.png"
-image xtra 29 = "characters/xtra/char_xtra_29.png"
+image jerkbubble = "characters/xtra/char_xtra_34.png"
 
 
 image chico 1 = "characters/chico/char_chico_01.png"
@@ -1900,6 +1980,10 @@ image iwanka 1 = "characters/iwanka/char_iwanka_01.png"
 image iwanka 2 = "characters/iwanka/char_iwanka_02.png"
 
 
+image jai 1 = "characters/jaing/char_jaing_01.png"
+image jai 2 = "characters/jaing/char_jaing_02.png"
+
+
 image jane 1 = "characters/librarian/char_librarian_01.png"
 image jane 2 = "characters/librarian/char_librarian_02.png"
 image jane 3 = "characters/librarian/char_librarian_03.png"
@@ -2043,6 +2127,10 @@ image junesex 13 = "characters/june/char_june_sex_13.png"
 image junesex 13b = "characters/june/char_june_sex_13b.png"
 image junesex 14 = "characters/june/char_june_sex_14.png"
 image junesex 14b = "characters/june/char_june_sex_14b.png"
+
+
+image kass 1 = "characters/kass/char_kass_01.png"
+image kass 2 = "characters/kass/char_kass_02.png"
 
 
 image kevin 1 = "characters/kevin/char_kevin_01.png"
@@ -2260,6 +2348,7 @@ image player 98 = "characters/player/char_player_98.png"
 image player 99 = "characters/player/char_player_99.png"
 image player 100 = "characters/player/char_player_100.png"
 image player 101 = "characters/player/char_player_101.png"
+image player 101b = "characters/player/char_player_101b.png"
 image player 102 = "characters/player/char_player_102.png"
 image player 103 = "characters/player/char_player_103.png"
 image player 104 = "characters/player/char_player_104.png"
@@ -2315,6 +2404,7 @@ image player 153 = "characters/player/char_player_153.png"
 image player 154 = "characters/player/char_player_154.png"
 image player 155 = "characters/player/char_player_155.png"
 image player 156 = "characters/player/char_player_156.png"
+image player 156b = "characters/player/char_player_156b.png"
 image player 157 = "characters/player/char_player_157.png"
 image player 158 = "characters/player/char_player_158.png"
 image player 159 = "characters/player/char_player_159.png"
@@ -2387,7 +2477,13 @@ image player 224 = "characters/player/char_player_224.png"
 image player 225 = "characters/player/char_player_225.png"
 image player 226 = "characters/player/char_player_226.png"
 image player 227 = "characters/player/char_player_227.png"
+image player 227b = "characters/player/char_player_227b.png"
+image player 227c = "characters/player/char_player_227c.png"
+image player 227d = "characters/player/char_player_227d.png"
 image player 228 = "characters/player/char_player_228.png"
+image player 228b = "characters/player/char_player_228b.png"
+image player 228c = "characters/player/char_player_228c.png"
+image player 228d = "characters/player/char_player_228d.png"
 image player 229 = "characters/player/char_player_229.png"
 image player 230 = "characters/player/char_player_230.png"
 image player 231 = "characters/player/char_player_231.png"
@@ -2648,6 +2744,70 @@ image player 480 = "characters/player/char_player_480.png"
 image player 481 = "characters/player/char_player_481.png"
 image player 482 = "characters/player/char_player_482.png"
 image player 483 = "characters/player/char_player_483.png"
+image player 484 = "characters/player/char_player_484.png"
+image player 485 = "characters/player/char_player_485.png"
+image player 486 = "characters/player/char_player_486.png"
+image player 487 = Image("characters/player/char_player_487.png",xoffset=-96)
+image player 487b = Image("characters/player/char_player_487b.png",xoffset=-96)
+image player 487c = Image("characters/player/char_player_487c.png",xoffset=-96)
+image player 487d = Image("characters/player/char_player_487d.png",xoffset=-96)
+image player 487e = Image("characters/player/char_player_487e.png",xoffset=-96)
+image player 487f = Image("characters/player/char_player_487f.png",xoffset=-96)
+image player 487g = Image("characters/player/char_player_487g.png",xoffset=-96)
+image player 489 = "characters/player/char_player_489.png"
+image player 490 = "characters/player/char_player_490.png"
+image player 491 = "characters/player/char_player_491.png"
+image player 492 = "characters/player/char_player_492.png"
+image player 493 = "characters/player/char_player_493.png"
+image player 496 = "characters/player/char_player_496.png"
+image player 496b = "characters/player/char_player_496b.png"
+image player 496c = "characters/player/char_player_496c.png"
+image player 496d = "characters/player/char_player_496d.png"
+image player 496e = "characters/player/char_player_496e.png"
+image player 496f = "characters/player/char_player_496f.png"
+image player 496g = "characters/player/char_player_496g.png"
+image player 496h = "characters/player/char_player_496h.png"
+image player 497 = "characters/player/char_player_497.png"
+image player 498 = "characters/player/char_player_498.png"
+image player 499 = "characters/player/char_player_499.png"
+image player 500 = "characters/player/char_player_500.png"
+
+
+image player_arms 488 = Image("characters/player/char_player_488.png",xoffset=-44,yoffset=-145)
+image player_arms 488b = Image("characters/player/char_player_488b.png",xoffset=-34,yoffset=-184)
+image player_arms 488c = Image("characters/player/char_player_488c.png",xoffset=-34,yoffset=-165)
+image player_arms 488d = Image("characters/player/char_player_488d.png",xoffset=-33,yoffset=-192)
+image player_arms 488e = Image("characters/player/char_player_488e.png",xoffset=-35,yoffset=-240)
+image player_arms 488f = Image("characters/player/char_player_488f.png",xoffset=-24,yoffset=-190)
+
+
+image player car 1 = Image("characters/player/char_player_front_01.png",xoffset=-174)
+image player car 1b = Image("characters/player/char_player_front_01b.png",xoffset=-174)
+image player car 2 = Image("characters/player/char_player_front_02.png",xoffset=-174)
+image player car 2b = Image("characters/player/char_player_front_02b.png",xoffset=-174)
+image player car 2c = Image("characters/player/char_player_front_02c.png",xoffset=-174)
+image player car 2d = Image("characters/player/char_player_front_02d.png",xoffset=-174)
+image player car 3 = Image("characters/player/char_player_front_03.png",xoffset=-174)
+image player car 3b = Image("characters/player/char_player_front_03b.png",xoffset=-174)
+image player car 4 = Image("characters/player/char_player_front_04.png",xoffset=-174)
+image player car 4b = Image("characters/player/char_player_front_04b.png",xoffset=-174)
+image player car 4c = Image("characters/player/char_player_front_04c.png",xoffset=-174)
+image player car 4d = Image("characters/player/char_player_front_04d.png",xoffset=-174)
+image player car 4g = Image("characters/player/char_player_front_04g.png",xoffset=-174)
+image player car 4h = Image("characters/player/char_player_front_04h.png",xoffset=-174)
+image player car 5 = Image("characters/player/char_player_front_05.png",xoffset=-174)
+image player car 5b = Image("characters/player/char_player_front_05b.png",xoffset=-174)
+image player car 6 = Image("characters/player/char_player_front_06.png",xoffset=-174)
+
+
+image player_arms car 1 = Image("characters/player/char_player_front_arms_01.png",xoffset=-192,yoffset=-211)
+image player_arms car 2 = Image("characters/player/char_player_front_arms_02.png",xoffset=-202,yoffset=-256)
+
+
+image player_boner car 1 = Image("characters/player/char_player_front_boner_01.png",xoffset=-166,yoffset=-192)
+image player_boner car 1b = Image("characters/player/char_player_front_boner_01b.png",xoffset=-166,yoffset=-192)
+image player_boner car 2 = Image("characters/player/char_player_front_boner_02.png",xoffset=-170,yoffset=-203)
+image player_boner car 3 = Image("characters/player/char_player_front_boner_03.png",xoffset=-170,yoffset=-203)
 
 
 image desk 1 = "characters/desk/char_desk_01.png"
@@ -2672,6 +2832,39 @@ image desk 19 = "characters/desk/char_desk_19.png"
 image desk 20 = "characters/desk/char_desk_20.png"
 image desk 21 = "characters/desk/char_desk_21.png"
 image desk 22 = "characters/desk/char_desk_22.png"
+
+
+image playerf 1 = "characters/player/char_player_front_01.png"
+image playerf 1b = "characters/player/char_player_front_01b.png"
+image playerf 2 = "characters/player/char_player_front_02.png"
+image playerf 2b = "characters/player/char_player_front_02b.png"
+image playerf 2c = "characters/player/char_player_front_02c.png"
+image playerf 2d = "characters/player/char_player_front_02d.png"
+image playerf 2e = "characters/player/char_player_front_02e.png"
+image playerf 2f = "characters/player/char_player_front_02f.png"
+image playerf 3 = "characters/player/char_player_front_03.png"
+image playerf 3b = "characters/player/char_player_front_03b.png"
+image playerf 3c = "characters/player/char_player_front_03c.png"
+image playerf 4 = "characters/player/char_player_front_04.png"
+image playerf 4b = "characters/player/char_player_front_04b.png"
+image playerf 4c = "characters/player/char_player_front_04c.png"
+image playerf 4d = "characters/player/char_player_front_04d.png"
+image playerf 4e = "characters/player/char_player_front_04e.png"
+image playerf 4f = "characters/player/char_player_front_04f.png"
+image playerf 4g = "characters/player/char_player_front_04g.png"
+image playerf 4h = "characters/player/char_player_front_04h.png"
+image playerf 5 = "characters/player/char_player_front_05.png"
+image playerf 5b = "characters/player/char_player_front_05b.png"
+image playerf 6 = "characters/player/char_player_front_06.png"
+
+
+image playerfa 1 = "characters/player/char_player_front_arms_01.png"
+image playerfa 2 = "characters/player/char_player_front_arms_02.png"
+
+
+image playerfb 1 = "characters/player/char_player_front_boner_01.png"
+image playerfb 2 = "characters/player/char_player_front_boner_02.png"
+image playerfb 3 = "characters/player/char_player_front_boner_03.png"
 
 
 image jersey 10 = "characters/jersey/char_jersey_10.png"
@@ -2961,6 +3154,12 @@ image mia 51 = "characters/mia/char_mia_51.png"
 image mia 52 = Image("characters/mia/char_mia_52.png", xpos=680, ypos=574)
 image player mia_bed_kiss 53 = Image("characters/mia/char_mia_53.png", xpos=259, ypos=578)
 image mia 54 = Image("characters/mia/char_mia_54.png", xpos=460, ypos=578)
+
+
+image miad 1 = "characters/mia/char_mia_dream_01.png"
+image miad 2 = "characters/mia/char_mia_dream_02.png"
+
+
 image mia_strip 1 = "characters/mia/char_mia_strip_01.png"
 image mia_strip 2 = "characters/mia/char_mia_strip_02.png"
 image mia_strip 3 = "characters/mia/char_mia_strip_03.png"
@@ -2988,6 +3187,8 @@ image mia_strip 24 = Image("characters/mia/char_mia_strip_24.png", xpos=396, ypo
 image mia_strip 25 = Image("characters/mia/char_mia_strip_25.png", xpos=396, ypos=670)
 image mia_strip 26 = Image("characters/mia/char_mia_strip_26.png", xpos=396, ypos=670)
 image mia_strip 27 = Image("characters/mia/char_mia_strip_27.png", xpos=526, ypos=701)
+
+
 image mias 1 = "characters/mia/char_mia_sex_01.png"
 image mias 2 = "characters/mia/char_mia_sex_02.png"
 image mias 3 = "characters/mia/char_mia_sex_03.png"
@@ -3035,13 +3236,18 @@ image mom 1 = "characters/mom/char_mom_01.png"
 image mom 2 = "characters/mom/char_mom_02.png"
 image mom 3 = "characters/mom/char_mom_03.png"
 image mom 4 = "characters/mom/char_mom_04.png"
+image mom 4b = "characters/mom/char_mom_04b.png"
 image mom 5 = "characters/mom/char_mom_05.png"
+image mom 5b = "characters/mom/char_mom_05b.png"
 image mom 6 = "characters/mom/char_mom_06.png"
 image mom 7 = "characters/mom/char_mom_07.png"
 image mom 8 = "characters/mom/char_mom_08.png"
+image mom 8b = "characters/mom/char_mom_08b.png"
 image mom 9 = "characters/mom/char_mom_09.png"
 image mom 10 = "characters/mom/char_mom_10.png"
+image mom 10b = "characters/mom/char_mom_10b.png"
 image mom 11 = "characters/mom/char_mom_11.png"
+image mom 11b = "characters/mom/char_mom_11b.png"
 image mom 12 = "characters/mom/char_mom_12.png"
 image mom 13 = "characters/mom/char_mom_13.png"
 image mom 14 = "characters/mom/char_mom_14.png"
@@ -3054,9 +3260,20 @@ image mom 19 = "characters/mom/char_mom_19.png"
 image mom 20 = "characters/mom/char_mom_20.png"
 image mom 21 = "characters/mom/char_mom_21.png"
 image mom 22 = "characters/mom/char_mom_22.png"
+image mom 22b = "characters/mom/char_mom_22b.png"
 image mom 23 = "characters/mom/char_mom_23.png"
+image mom 23b = "characters/mom/char_mom_23b.png"
+image mom 23c = "characters/mom/char_mom_23c.png"
+image mom 23d = Image("characters/mom/char_mom_23d.png",xoffset=-20)
+image mom 23e = Image("characters/mom/char_mom_23e.png",xoffset=-20)
 image mom 24 = "characters/mom/char_mom_24.png"
+image mom 24b = "characters/mom/char_mom_24b.png"
+image mom 24c = "characters/mom/char_mom_24c.png"
+image mom 24d = "characters/mom/char_mom_24d.png"
+image mom 24e = "characters/mom/char_mom_24e.png"
+image mom 24f = "characters/mom/char_mom_24f.png"
 image mom 25 = "characters/mom/char_mom_25.png"
+image mom 25b = "characters/mom/char_mom_25b.png"
 image mom 26 = "characters/mom/char_mom_26.png"
 image mom 27 = "characters/mom/char_mom_27.png"
 image mom 28 = "characters/mom/char_mom_28.png"
@@ -3067,6 +3284,8 @@ image mom 32 = "characters/mom/char_mom_32.png"
 image mom 33 = "characters/mom/char_mom_33.png"
 image mom 34 = "characters/mom/char_mom_34.png"
 image mom 35 = "characters/mom/char_mom_35.png"
+image mom 35b = "characters/mom/char_mom_35b.png"
+image mom 35c = "characters/mom/char_mom_35c.png"
 image mom 36 = "characters/mom/char_mom_36.png"
 image mom 37 = "characters/mom/char_mom_37.png"
 image mom 38 = "characters/mom/char_mom_38.png"
@@ -3080,8 +3299,20 @@ image mom 45 = "characters/mom/char_mom_45.png"
 image mom 46 = "characters/mom/char_mom_46.png"
 image mom 47 = "characters/mom/char_mom_47.png"
 image mom 48 = "characters/mom/char_mom_48.png"
+image mom 48b = "characters/mom/char_mom_48b.png"
+image mom 48c = "characters/mom/char_mom_48c.png"
 image mom 49 = "characters/mom/char_mom_49.png"
 image mom 50 = "characters/mom/char_mom_50.png"
+image mom 50b = Image("characters/mom/char_mom_50b.png",xoffset=8)
+image mom 50c = Image("characters/mom/char_mom_50c.png",xoffset=1)
+image mom 50d = "characters/mom/char_mom_50d.png"
+image mom 50e = Image("characters/mom/char_mom_50e.png",yoffset=3)
+image mom 50f = "characters/mom/char_mom_50f.png"
+image mom 50g = "characters/mom/char_mom_50g.png"
+image mom 50h = "characters/mom/char_mom_50h.png"
+image mom 50i = "characters/mom/char_mom_50i.png"
+image mom 50j = "characters/mom/char_mom_50j.png"
+image mom 50k = "characters/mom/char_mom_50k.png"
 image mom 51 = "characters/mom/char_mom_51.png"
 image mom 52 = "characters/mom/char_mom_52.png"
 image mom 53 = "characters/mom/char_mom_53.png"
@@ -3095,6 +3326,7 @@ image mom 60 = "characters/mom/char_mom_60.png"
 image mom 61 = "characters/mom/char_mom_61.png"
 image mom 62 = "characters/mom/char_mom_62.png"
 image mom 63 = "characters/mom/char_mom_63.png"
+image mom 63b = "characters/mom/char_mom_63b.png"
 image mom 64 = "characters/mom/char_mom_64.png"
 image mom 65 = "characters/mom/char_mom_65.png"
 image mom 66 = "characters/mom/char_mom_66.png"
@@ -3112,8 +3344,10 @@ image mom 77 = "characters/mom/char_mom_77.png"
 image mom 78 = "characters/mom/char_mom_78.png"
 image mom 79 = "characters/mom/char_mom_79.png"
 image mom 80 = "characters/mom/char_mom_80.png"
+image mom 80b = "characters/mom/char_mom_80b.png"
+image mom 80c = "characters/mom/char_mom_80c.png"
 image mom 81 = "characters/mom/char_mom_81.png"
-image mom 82 = "characters/mom/char_mom_82.png"
+image mom 82 = Image("characters/mom/char_mom_82.png", xoffset = -2, yoffset = 2)
 image mom 83 = "characters/mom/char_mom_83.png"
 image mom 84 = "characters/mom/char_mom_84.png"
 image mom 85 = "characters/mom/char_mom_85.png"
@@ -3196,6 +3430,179 @@ image mom 161 = "characters/mom/char_mom_161.png"
 image mom 161b = "characters/mom/char_mom_161b.png"
 image mom 162 = "characters/mom/char_mom_162.png"
 image mom 163 = "characters/mom/char_mom_163.png"
+image mom 164 = "characters/mom/char_mom_164.png"
+image mom 164b = "characters/mom/char_mom_164b.png"
+image mom 165 = "characters/mom/char_mom_165.png"
+image mom 166 = "characters/mom/char_mom_166.png"
+image mom 167 = "characters/mom/char_mom_167.png"
+image mom 168 = "characters/mom/char_mom_168.png"
+image mom 169 = "characters/mom/char_mom_169.png"
+image mom 169b = "characters/mom/char_mom_169b.png"
+image mom 170 = "characters/mom/char_mom_170.png"
+image mom 171 = "characters/mom/char_mom_171.png"
+image mom 172 = "characters/mom/char_mom_172.png"
+image mom 173 = "characters/mom/char_mom_173.png"
+image mom 174 = "characters/mom/char_mom_174.png"
+image mom 175 = "characters/mom/char_mom_175.png"
+image mneck 1 = "characters/mom/char_mom_176.png"
+image mom 177 = "characters/mom/char_mom_177.png"
+image mom 177b = "characters/mom/char_mom_177b.png"
+image mom 178 = "characters/mom/char_mom_178.png"
+image mom 178b = "characters/mom/char_mom_178b.png"
+image mom 179 = "characters/mom/char_mom_179.png"
+image mom 180 = "characters/mom/char_mom_180.png"
+image mom 180b = "characters/mom/char_mom_180b.png"
+image mom 181 = "characters/mom/char_mom_181.png"
+image mom 182 = "characters/mom/char_mom_182.png"
+image mom 183 = "characters/mom/char_mom_183.png"
+image mom 184 = "characters/mom/char_mom_184.png"
+image mom 184b = "characters/mom/char_mom_184b.png"
+image mom 184c = "characters/mom/char_mom_184c.png"
+image mom 184d = "characters/mom/char_mom_184d.png"
+image mom_robe 184e = Image("characters/mom/char_mom_184e.png",xoffset=228,yoffset=-10)
+image mom_robe 184f = Image("characters/mom/char_mom_184f.png",xoffset=228,yoffset=-10)
+image mom_robe 185j = Image("characters/mom/char_mom_185j.png",xoffset=229,yoffset=-4)
+image mom_robe 185k = Image("characters/mom/char_mom_185k.png",xoffset=230,yoffset=-4)
+image mom 185 = "characters/mom/char_mom_185.png"
+image mom 185b = "characters/mom/char_mom_185b.png"
+image mom 185c = "characters/mom/char_mom_185c.png"
+image mom 185d = "characters/mom/char_mom_185d.png"
+image mom 185e = "characters/mom/char_mom_185e.png"
+image mom 185f = "characters/mom/char_mom_185f.png"
+image mom 185g = "characters/mom/char_mom_185g.png"
+image mom_robe 185h = Image("characters/mom/char_mom_185h.png",xoffset=229,yoffset=-4)
+image mom_robe 185i = Image("characters/mom/char_mom_185i.png",xoffset=230,yoffset=-4)
+image mom 186 = Image("characters/mom/char_mom_186.png",xoffset=-130)
+image mom 187 = Image("characters/mom/char_mom_187.png",xoffset=-130)
+image mom 188 = Image("characters/mom/char_mom_188.png",xoffset=-130)
+image mom 189 = Image("characters/mom/char_mom_189.png",xoffset=-130)
+image mom 190 = "characters/mom/char_mom_190.png"
+image mom 191 = "characters/mom/char_mom_191.png"
+image mom_robe 191b = Image("characters/mom/char_mom_191b.png",xoffset=241,yoffset=-42)
+image mom 192 = "characters/mom/char_mom_192.png"
+image mom 193 = "characters/mom/char_mom_193.png"
+image player finger 193b = Image("characters/mom/char_mom_193b.png",xoffset=-41,yoffset=-1)
+image mom 194 = "characters/mom/char_mom_194.png"
+image mom_robe 194b = Image("characters/mom/char_mom_194b.png",xoffset=268,yoffset=-42)
+image mom 195 = "characters/mom/char_mom_195.png"
+image mom_robe 195b = Image("characters/mom/char_mom_195b.png",xoffset=268,yoffset=-40)
+image mom 196 = "characters/mom/char_mom_196.png"
+image mom_robe 196b = Image("characters/mom/char_mom_196b.png",xoffset=269,yoffset=-39)
+image mom 197 = Image("characters/mom/char_mom_197.png",yoffset=-29)
+image mom_robe 197b = Image("characters/mom/char_mom_197b.png",xoffset=279,yoffset=-49)
+image mom 198 = Image("characters/mom/char_mom_198.png",yoffset=-115)
+image mom 199 = Image("characters/mom/char_mom_199.png",yoffset=-115)
+image mom 200 = Image("characters/mom/char_mom_200.png",yoffset=-115)
+image mom 201 = Image("characters/mom/char_mom_201.png",yoffset=-115)
+image mom 202 = Image("characters/mom/char_mom_202.png",xoffset=95,yoffset=-195)
+image mom 203 = Image("characters/mom/char_mom_203.png",xoffset=2)
+image mom 204 = Image("characters/mom/char_mom_204.png",xoffset=2)
+image mom 205 = Image("characters/mom/char_mom_205.png",xoffset=2)
+image mom 206 = Image("characters/mom/char_mom_206.png",xoffset=2)
+image mom 207 = "characters/mom/char_mom_207.png"
+image mom 208 = "characters/mom/char_mom_208.png"
+image mom 209 = Image("characters/mom/char_mom_209.png",xoffset=-1)
+image mom 210 = Image("characters/mom/char_mom_210.png",xoffset=2)
+image mom 211 = Image("characters/mom/char_mom_211.png",xoffset=-226,yoffset=-115)
+image mom 212 = Image("characters/mom/char_mom_212.png",xoffset=-226,yoffset=-115)
+image mom 212b = Image("characters/mom/char_mom_212b.png",xoffset=-226,yoffset=-115)
+image mom 213 = Image("characters/mom/char_mom_213.png",xoffset=-226,yoffset=-115)
+image mom 214 = Image("characters/mom/char_mom_214.png",xoffset=-226,yoffset=-115)
+image mom 215 = Image("characters/mom/char_mom_215.png",xoffset=-226,yoffset=-115)
+image mom 215b = Image("characters/mom/char_mom_215b.png",xoffset=-226,yoffset=-115)
+
+
+
+image mom car 1 = "characters/mom/char_mom_front_01.png"
+image mom car 2 = Image("characters/mom/char_mom_front_02.png",xoffset=-6)
+image mom car 2b = Image("characters/mom/char_mom_front_02b.png",xoffset=-6)
+image mom car 3 = Image("characters/mom/char_mom_front_03.png",xoffset=-6)
+image mom car 3b = Image("characters/mom/char_mom_front_03b.png",xoffset=-6)
+image mom car 4 = Image("characters/mom/char_mom_front_04.png",xoffset=-6)
+image mom car 4b = Image("characters/mom/char_mom_front_04b.png",xoffset=-6)
+image mom car 4c = Image("characters/mom/char_mom_front_04c.png",xoffset=-6)
+image mom car 5 = Image("characters/mom/char_mom_front_05.png",xoffset=-6)
+image mom car 5b = Image("characters/mom/char_mom_front_05b.png",xoffset=-6)
+image mom car 5c = Image("characters/mom/char_mom_front_05c.png",xoffset=-6)
+image mom car 5d = Image("characters/mom/char_mom_front_05d.png",xoffset=-6)
+image mom car 5e = Image("characters/mom/char_mom_front_05e.png",xoffset=-6)
+image mom car 5f = Image("characters/mom/char_mom_front_05f.png",xoffset=-6)
+image mom car 5g = Image("characters/mom/char_mom_front_05g.png",xoffset=-6)
+image mom car 6 = Image("characters/mom/char_mom_front_06.png",xoffset=-6)
+
+
+image mom_arms car 1 = Image("characters/mom/char_mom_front_arms_01.png",xoffset=89,yoffset=-234)
+image mom_arms car 2 = Image("characters/mom/char_mom_front_arms_02.png",xoffset=17,yoffset=-230)
+image mom_arms car 3 = Image("characters/mom/char_mom_front_arms_03.png",xoffset=-68,yoffset=-190)
+image mom_arms car 3b = Image("characters/mom/char_mom_front_arms_03b.png",xoffset=-63,yoffset=-190)
+image mom_arms car 4 = Image("characters/mom/char_mom_front_arms_04.png",xoffset=-55,yoffset=-190)
+image mom_arms car 5 = Image("characters/mom/char_mom_front_arms_05.png",xoffset=-92,yoffset=-192)
+image mom_arms car 5b = Image("characters/mom/char_mom_front_arms_05b.png",xoffset=-77,yoffset=-192)
+image mom_arms car 5c = Image("characters/mom/char_mom_front_arms_05c.png",xoffset=-77,yoffset=-190)
+image mom_arms car 5d = Image("characters/mom/char_mom_front_arms_05d.png",xoffset=-77,yoffset=-192)
+
+
+image mom car bj 7 = Image("characters/mom/char_mom_front_07.png",xoffset=-6)
+image mom car bj 7b = Image("characters/mom/char_mom_front_07b.png",xoffset=-6)
+image mom car bj 8 = Image("characters/mom/char_mom_front_08.png",xoffset=-20)
+image mom car bj 8b = Image("characters/mom/char_mom_front_08b.png",xoffset=-20)
+image mom car bj 8c = Image("characters/mom/char_mom_front_08c.png",xoffset=-20)
+image mom car bj 8d = Image("characters/mom/char_mom_front_08d.png",xoffset=-20)
+image mom car bj 8e = Image("characters/mom/char_mom_front_08e.png",xoffset=-20)
+image mom car bj 8f = Image("characters/mom/char_mom_front_08f.png",xoffset=-20)
+image mom car bj 8g = Image("characters/mom/char_mom_front_08g.png",xoffset=-20)
+image mom car bj 9 = Image("characters/mom/char_mom_front_09.png",xoffset=-20)
+image mom car bj 10 = Image("characters/mom/char_mom_front_10.png",xoffset=-6)
+image mom car bj 11 = Image("characters/mom/char_mom_front_11.png",xoffset=-6)
+image mom car bj 12 = Image("characters/mom/char_mom_front_12.png",xoffset=-6)
+
+
+image momd 1 = "characters/mom/char_mom_dream_01.png"
+image momd 2 = "characters/mom/char_mom_dream_02.png"
+image momd 3 = "characters/mom/char_mom_dream_03.png"
+image momd 4 = "characters/mom/char_mom_dream_04.png"
+image momd 5 = "characters/mom/char_mom_dream_05.png"
+
+
+image momf 1 = "characters/mom/char_mom_front_01.png"
+image momf 2 = "characters/mom/char_mom_front_02.png"
+image momf 2b = "characters/mom/char_mom_front_02b.png"
+image momf 3 = "characters/mom/char_mom_front_03.png"
+image momf 3b = "characters/mom/char_mom_front_03b.png"
+image momf 4 = "characters/mom/char_mom_front_04.png"
+image momf 4b = "characters/mom/char_mom_front_04b.png"
+image momf 4c = "characters/mom/char_mom_front_04c.png"
+image momf 5 = "characters/mom/char_mom_front_05.png"
+image momf 5b = "characters/mom/char_mom_front_05b.png"
+image momf 5c = "characters/mom/char_mom_front_05c.png"
+image momf 5d = "characters/mom/char_mom_front_05d.png"
+image momf 5e = "characters/mom/char_mom_front_05e.png"
+image momf 5f = "characters/mom/char_mom_front_05f.png"
+image momf 5g = "characters/mom/char_mom_front_05g.png"
+image momf 6 = "characters/mom/char_mom_front_06.png"
+image momf 7 = "characters/mom/char_mom_front_07.png"
+image momf 7b = "characters/mom/char_mom_front_07b.png"
+image momf 8 = "characters/mom/char_mom_front_08.png"
+image momf 8b = "characters/mom/char_mom_front_08b.png"
+image momf 8c = "characters/mom/char_mom_front_08c.png"
+image momf 8d = "characters/mom/char_mom_front_08d.png"
+image momf 8e = "characters/mom/char_mom_front_08e.png"
+image momf 8f = "characters/mom/char_mom_front_08f.png"
+image momf 8g = "characters/mom/char_mom_front_08g.png"
+image momf 9 = "characters/mom/char_mom_front_09.png"
+image momf 10 = "characters/mom/char_mom_front_10.png"
+image momf 11 = "characters/mom/char_mom_front_11.png"
+image momf 12 = "characters/mom/char_mom_front_12.png"
+
+
+image momfa 1 = "characters/mom/char_mom_front_arms_01.png"
+image momfa 2 = "characters/mom/char_mom_front_arms_02.png"
+image momfa 3 = "characters/mom/char_mom_front_arms_03.png"
+image momfa 3b = "characters/mom/char_mom_front_arms_03b.png"
+image momfa 4 = "characters/mom/char_mom_front_arms_04.png"
+image momfa 5 = "characters/mom/char_mom_front_arms_05.png"
+image momfa 5b = "characters/mom/char_mom_front_arms_05b.png"
+image momfa 5c = "characters/mom/char_mom_front_arms_05c.png"
 
 
 image momobj 2 = "images/objects/character_mom_02.png"
@@ -3221,6 +3628,29 @@ image moms 17 = "characters/mom/char_mom_sex_17.png"
 image moms 18 = "characters/mom/char_mom_sex_18.png"
 image moms 19 = "characters/mom/char_mom_sex_19.png"
 image moms 20 = "characters/mom/char_mom_sex_20.png"
+image moms 20b = "characters/mom/char_mom_sex_20b.png"
+image moms 20c = "characters/mom/char_mom_sex_20c.png"
+image moms 20d = "characters/mom/char_mom_sex_20d.png"
+image moms 20e = "characters/mom/char_mom_sex_20e.png"
+image moms 20f = "characters/mom/char_mom_sex_20f.png"
+image moms 20g = "characters/mom/char_mom_sex_20g.png"
+image moms 20h = "characters/mom/char_mom_sex_20h.png"
+image moms 20i = "characters/mom/char_mom_sex_20i.png"
+image moms 20j = "characters/mom/char_mom_sex_20j.png"
+image moms 20k = "characters/mom/char_mom_sex_20k.png"
+image moms 20l = "characters/mom/char_mom_sex_20l.png"
+image moms 20m = "characters/mom/char_mom_sex_20m.png"
+image moms 20n = "characters/mom/char_mom_sex_20n.png"
+image moms 20o = "characters/mom/char_mom_sex_20o.png"
+image moms 20p = "characters/mom/char_mom_sex_20p.png"
+image moms 20q = "characters/mom/char_mom_sex_20q.png"
+image moms 20r = "characters/mom/char_mom_sex_20r.png"
+image moms 20s = "characters/mom/char_mom_sex_20s.png"
+image moms 20t = "characters/mom/char_mom_sex_20t.png"
+image moms 20u = "characters/mom/char_mom_sex_20u.png"
+image moms 20v = "characters/mom/char_mom_sex_20v.png"
+image moms 20w = "characters/mom/char_mom_sex_20w.png"
+image moms 20x = "characters/mom/char_mom_sex_20x.png"
 image moms 21 = "characters/mom/char_mom_sex_21.png"
 image moms 22 = "characters/mom/char_mom_sex_22.png"
 image moms 23 = "characters/mom/char_mom_sex_23.png"
@@ -3310,9 +3740,73 @@ image moms 122 = "characters/mom/char_mom_sex_122.png"
 image moms 123 = "characters/mom/char_mom_sex_123.png"
 image moms 124 = "characters/mom/char_mom_sex_124.png"
 image moms 125 = "characters/mom/char_mom_sex_125.png"
+image moms 126 = Image("characters/mom/char_mom_sex_126.png",xoffset=5)
+image moms 126b = Image("characters/mom/char_mom_sex_126b.png",xoffset=6)
+image moms 126c = Image("characters/mom/char_mom_sex_126c.png",xoffset=6)
+image moms 126d = Image("characters/mom/char_mom_sex_126d.png",xoffset=6)
+image moms 126e = Image("characters/mom/char_mom_sex_126e.png",xoffset=6)
+image moms 126f = Image("characters/mom/char_mom_sex_126f.png",xoffset=6)
+image moms 126g = Image("characters/mom/char_mom_sex_126g.png",xoffset=5)
+image moms 126h = Image("characters/mom/char_mom_sex_126h.png",xoffset=3)
+image moms 126i = Image("characters/mom/char_mom_sex_126i.png",xoffset=4)
+image moms 126j = Image("characters/mom/char_mom_sex_126j.png",xoffset=4)
 image moms 130 = "characters/mom/char_mom_sex_130.png"
 image moms 131 = "characters/mom/char_mom_sex_131.png"
 image moms 132 = "characters/mom/char_mom_sex_132.png"
+image moms 133 = "characters/mom/char_mom_sex_133.png"
+image moms 134 = Image("characters/mom/char_mom_sex_134.png",xoffset=8.5)
+image moms 135 = "characters/mom/char_mom_sex_135.png"
+image moms 136 = "characters/mom/char_mom_sex_136.png"
+image moms 136b = "characters/mom/char_mom_sex_136b.png"
+image moms 136c = "characters/mom/char_mom_sex_136c.png"
+image moms 136d = "characters/mom/char_mom_sex_136d.png"
+image moms 136e = "characters/mom/char_mom_sex_136e.png"
+image moms 136f = "characters/mom/char_mom_sex_136f.png"
+image moms 137 = "characters/mom/char_mom_sex_137.png"
+image moms 138 = "characters/mom/char_mom_sex_138.png"
+image moms 139 = "characters/mom/char_mom_sex_139.png"
+image moms 140 = "characters/mom/char_mom_sex_140.png"
+image moms 141 = "characters/mom/char_mom_sex_141.png"
+image moms 142 = "characters/mom/char_mom_sex_142.png"
+image moms 143 = "characters/mom/char_mom_sex_143.png"
+image moms 144 = "characters/mom/char_mom_sex_144.png"
+image moms 145 = "characters/mom/char_mom_sex_145.png"
+image moms 146 = "characters/mom/char_mom_sex_146.png"
+image moms 147 = "characters/mom/char_mom_sex_147.png"
+image moms 148 = "characters/mom/char_mom_sex_148.png"
+image moms 149 = "characters/mom/char_mom_sex_149.png"
+image moms 150 = "characters/mom/char_mom_sex_150.png"
+image moms 151 = "characters/mom/char_mom_sex_151.png"
+image moms 152 = "characters/mom/char_mom_sex_152.png"
+image moms 153 = "characters/mom/char_mom_sex_153.png"
+image moms 154 = "characters/mom/char_mom_sex_154.png"
+image moms 155 = "characters/mom/char_mom_sex_155.png"
+image moms 156 = "characters/mom/char_mom_sex_156.png"
+image moms 157 = "characters/mom/char_mom_sex_157.png"
+image moms 158 = "characters/mom/char_mom_sex_158.png"
+image moms 159 = "characters/mom/char_mom_sex_159.png"
+image moms 160 = "characters/mom/char_mom_sex_160.png"
+image moms 161 = "characters/mom/char_mom_sex_161.png"
+image moms 162 = "characters/mom/char_mom_sex_162.png"
+image moms 162b = "characters/mom/char_mom_sex_162b.png"
+image moms 163 = "characters/mom/char_mom_sex_163.png"
+image momp 1 = Image("characters/mom/char_mom_sex_163.png",xoffset=15)
+image moms 163b = "characters/mom/char_mom_sex_163b.png"
+image momp 2 = "characters/mom/char_mom_sex_163b.png"
+image moms 164 = "characters/mom/char_mom_sex_164.png"
+image moms 165 = "characters/mom/char_mom_sex_165.png"
+image moms 166 = "characters/mom/char_mom_sex_166.png"
+image moms 167 = "characters/mom/char_mom_sex_167.png"
+image moms 168 = "characters/mom/char_mom_sex_168.png"
+image moms 169 = "characters/mom/char_mom_sex_169.png"
+image moms 170 = "characters/mom/char_mom_sex_170.png"
+image moms 171 = "characters/mom/char_mom_sex_171.png"
+image moms 172 = "characters/mom/char_mom_sex_172.png"
+image moms 173 = "characters/mom/char_mom_sex_173.png"
+image moms 174 = "characters/mom/char_mom_sex_174.png"
+image moms 175 = "characters/mom/char_mom_sex_175.png"
+image moms 176 = "characters/mom/char_mom_sex_176.png"
+image moms 177 = "characters/mom/char_mom_sex_177.png"
 
 
 image bub 1 = "characters/bubbles/char_bubbles_01.png"

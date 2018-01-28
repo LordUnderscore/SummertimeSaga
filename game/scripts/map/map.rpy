@@ -97,6 +97,11 @@ label map_dialogue:
             $ renpy.pause()
             hide unlock49 with dissolve
 
+            show popup_warehouse at truecenter with dissolve
+            $ loc_warehouse_unlocked = True
+            $ renpy.pause()
+            hide popup_warehouse with dissolve
+
             if quest05 not in completed_quests:
                 $ quest_list.append(quest05)
             $ erik.complete_events(erik_intro)

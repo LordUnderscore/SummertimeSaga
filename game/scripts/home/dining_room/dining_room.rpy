@@ -5,14 +5,17 @@ label dining_room_dialogue:
         show diningroom_sis_breakfast at Position(xpos=473,ypos=718)
         show player 1f at right
         with dissolve
-        player_name "( Huh. {b}[sis]{/b} is awake already? )"
+        player_name "( Huh. {b}[sis_name]{/b} is awake already? )"
         player_name "( She usually sleeps in. )"
         hide player
+
+    elif M_mom.get_state() == S_mom_fetch_towel and towel in inventory.items:
+        jump mom_pool_dialogue
     $ callScreen(location_count)
 
 label dining_room_table_dialogue:
     scene expression gTimer.image("dining_room{}")
-    if mom_count == 11 and not mom_dialogue_advance:
+    if M_mom.get_state() == S_mom_diane_dinner and gTimer.is_evening():
         scene location_home_dining
         show sis 44 at Position(xpos=0.1161,ypos=1.0000)
         show player 213 at Position(xpos=0.5972,ypos=1.0118)
@@ -137,9 +140,9 @@ label dining_room_table_dialogue:
         dia "The food was delicious!"
         scene location_home_entrance_night_blur
         show aunt 137 at right
-        show sis 49f at left
-        show player 203 at Position(xpos=0.2820,ypos=1.0000)
         show mom 91f
+        show player 203 at Position(xpos=0.2820,ypos=1.0000)
+        show sis 49f at left
         with fade
         dia "Thanks for inviting me over, guys!"
         dia "It was such a pleasant dinner!"
@@ -159,15 +162,15 @@ label dining_room_table_dialogue:
         dia "Goodnight, everyone!"
         show player 2
         player_name "Bye {b}Aunt Diane{/b}!"
-        $ mom_dialogue_advance = True
-
-        $ gTimer.tick(3)
         hide mom
         hide aunt
         hide sis
         hide player
         with dissolve
+        $ M_mom.trigger(T_mom_diane_dinner_chat)
+        $ unlock_ui()
         $ location_count = "Entrance"
+        $ gTimer.tick()
     else:
 
         show player 2 with dissolve
@@ -264,7 +267,7 @@ label dining_room_table_sis:
         show player 323
         show sis 88
         player_name "I don't know..."
-        player_name "I worked hard for that money, {b}[sis]{/b}."
+        player_name "I worked hard for that money, {b}[sis_name]{/b}."
         show player 322
         show sis 86
         sis "Look, I'll pay you back one way or another! I'm your sister, dummy!"
@@ -279,7 +282,7 @@ label dining_room_table_sis:
         show player 323
         show sis 88
         player_name "Alright..."
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ sis_breakfast.finish()
     else:
 

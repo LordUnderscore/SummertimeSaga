@@ -5,6 +5,8 @@ label hospital_dialogue:
 label roz_dialogue:
     scene hospital_desk
     show roz 1 at left
+    if datetime.date.today().month == 12 and (datetime.date.today().day >= 15 and datetime.date.today().day <= 30):
+        show xtra 35 zorder 2 at Position(xalign = 0.1, yalign = 0.251)
     show roz_desk at left
     show player 14f at right
     with dissolve
@@ -12,7 +14,7 @@ label roz_dialogue:
     show player 13f
     show roz 2
     roz "Yes?"
-    roz "What is it I can do for you?"
+    roz "What can I do for you?"
     show roz 1
     if not Roz.known(roz_intro):
         $ Roz.add_event(roz_intro)
@@ -49,7 +51,7 @@ label roz_dialogue:
             roz "We have sick rooms, and a storage room on the 2nd floor."
             show roz 1
             show player 12f
-            player_name "Oh... I see."
+            player_name "Oh. I see."
             show player 5f
             show roz 2
             roz "Anything else I can do?"
@@ -80,7 +82,7 @@ label roz_dialogue:
             roz "If I don't get a {b}phone call{/b}, I don't leave."
             show roz 1 with dissolve
             show player 14f
-            player_name "Oh... I see."
+            player_name "Oh. I see."
             show player 13f
             show roz 2
             roz "Anything else I can do?"
@@ -164,7 +166,7 @@ label roz_dialogue:
             show player 1f
             roz "..."
             show roz 2
-            roz "Alright.I tell ya what. Take this pass key up to the {b}2nd floor storage{/b}."
+            roz "Alright. I tell ya what. Take this pass key up to the {b}2nd floor storage{/b}."
             roz "You'll find an ugly box sitting there on the shelf, stands out like a sore thumb, you can't miss it."
             show player 2f
             show roz 1

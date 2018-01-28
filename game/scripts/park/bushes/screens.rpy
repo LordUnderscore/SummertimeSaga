@@ -25,7 +25,7 @@ screen park_bushes_bag:
             pos (540,280)
             idle "objects/object_key_02.png"
             hover "objects/object_key_02b.png"
-            action Function(inventory.get_item, item = treasure_key), Show("popup", Image = "boxes/popup_item_key1.png")
+            action Function(inventory.get_item, item = treasure_key), Show("popup", Image = "private/boxes/popup_item_key1.png")
 
     imagebutton:
         focus_mask True

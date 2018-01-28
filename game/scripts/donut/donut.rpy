@@ -41,7 +41,7 @@ label beth_dialogue:
             beth "I can't help ya if you don't know what ya'd like!"
             show player 14
             show beth 1
-            player_name "I'll come back later when I know the ingredients."
+            player_name "I'll come back later when I know the toppings."
 
         "<>I want donuts! (50$)" if inventory.money < 50 and M_mia.is_set("buy donuts"):
             $ pass
@@ -89,6 +89,7 @@ label donut_buy_dialogue:
     $ callScreen(location_count)
 
 label donut_locked:
+    scene expression gTimer.image("backgrounds/location_donut{}_blur.jpg")
     show player 10 with dissolve
-    player_name "( I should come back during the day while they are open. )"
+    player_name "( I should come back during the day while they're open. )"
     $ callScreen(location_count)

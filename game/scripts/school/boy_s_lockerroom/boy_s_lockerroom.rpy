@@ -357,7 +357,7 @@ label airvent_webcam_quest:
             hide erik 1 with dissolve
     $ gTimer.tick()
     $ webcam_planted = True
-    $ ui_lock_count = 0
+    $ unlock_ui()
     jump map_dialogue
 
 label roxxy_shower_dialogue:
@@ -408,7 +408,7 @@ label roxxy_shower_dialogue:
     show becca 1f
     missy "What do you want?"
     show missy 1f
-    $ ui_lock_count = 0
+    $ unlock_ui()
     menu:
         "Nevermind.":
             show becca 1f
@@ -536,7 +536,7 @@ label roxxy_shower_dialogue:
             rox "!!!"
             show roxxy 26
             show jersey 22
-            rox "What the fuck are doing in here?!" with hpunch
+            rox "What the fuck are you doing in here?!" with hpunch
             show roxxy 25
             show jersey 23
             player_name "Uhh..."

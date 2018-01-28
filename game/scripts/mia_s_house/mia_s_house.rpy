@@ -60,7 +60,7 @@ label mias_house_dialogue:
         player_name "Woah!"
         player_name "I better check on {b}Mia{/b} and see if she's okay..."
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
         $ M_mia.trigger(T_harold_leaves)
 
     elif gTimer.is_evening() and M_mia.is_set('front door locked'):
@@ -93,7 +93,7 @@ label mia_button_dialogue_house:
                 mia "Of course! I've been looking for {b}someone to study with{/b}..."
                 show mia 6 at right
                 show player 11 at left
-                mia "...But have you caugh up with class yet?"
+                mia "...But have you caught up with class yet?"
                 show mia 2 at right
                 show player 10 at left
                 player_name "Oh! Right! {b}Mrs. Bissette{/b} assigned me some homework to catch up..."

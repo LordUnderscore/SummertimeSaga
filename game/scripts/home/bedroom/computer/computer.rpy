@@ -60,7 +60,7 @@ label webcam_dialogue:
         hide player_computer_bg
         call screen MC_computer
 
-    elif (shower != "sister" and gTimer.is_morning()):
+    elif (not shower.occupied("sis", False) and gTimer.is_morning()):
         if sister.started(sis_webcam01):
             hide screen MC_webcam
             hide screen MC_computer
@@ -247,7 +247,7 @@ label webcam_dialogue:
                 player_name "( So that's what squirting looks like. )"
                 show player 310
                 player_name "There was so much! She even hit the camera!"
-                player_name "( I had no idea {b}[sis]{/b} could do that... )"
+                player_name "( I had no idea {b}[sis_name]{/b} could do that... )"
                 hide player
                 $ sis_webcam02.finish()
                 if not sister.known(sis_telescope02):

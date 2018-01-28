@@ -76,13 +76,10 @@ label classroom_dialogue:
         $ stairs_count = 3
         $ left_hall_count = 0
         $ map_talk_count = 1
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ bed_locked = 1
-        $ mom_count = 1
-        $ mom_dialogue_advance = 0
         $ event_outside_school_count = 1
         $ erik_door_count = 1
-        $ player_room_count = 1
         $ gTimer.tick()
         jump map_dialogue
     $ callScreen(location_count)

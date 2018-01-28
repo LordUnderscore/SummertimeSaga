@@ -1,4 +1,6 @@
 init python:
+    import datetime
+
     config.keymap["game_menu"].remove("K_ESCAPE")
     config.debug_sound = True
     renpy.music.register_channel("music2", "music", True)
@@ -7,6 +9,7 @@ init python:
     renpy.music.register_channel("sound3", "sfx", True)
 
 label splashscreen:
+    $ gTimer = DayTimer()
     scene black
 
     show splash_logo with dissolve
@@ -59,8 +62,10 @@ init python:
 init python:
     timer_range = 0
     timer_jump = 0
-
-
+    if "K_LCTRL" in config.keymap["fast_skip"]:
+        config.keymap['fast_skip'].remove("K_LCTRL")
+    if "K_LCTRL" not in config.keymap["skip"]:
+        config.keymap['skip'].append("K_LCTRL")
     class Good:
         def __init__(self, price, status, passive, image="", passive_pic = ""):
             self.price = price
@@ -80,9 +85,6 @@ init python:
         for Good in rotten_list:
             Good.passive = False
 
-    def in_shower(who):
-        return gTimer.is_morning() and shower == who
-
     def upgrade_garden():
         for Good in item_list:
             if Good in bad_list:
@@ -98,6 +100,143 @@ init python:
         weed.passive_pic = "objects/minigame01_number07.png"
         spider.passive_pic = "objects/minigame01_number07.png"
         grapes.passive_pic = "objects/minigame01_number03.png"
+
+    def Sleep():
+        global aunt_dialogue_advance
+        global aunt_count
+        if aunt_dialogue_advance == True:
+            aunt_dialogue_advance = False
+            aunt_count += 1
+        
+        global sis_dialogue_advance
+        global sis_bedroom_count
+        if sis_dialogue_advance and sis_bedroom_count < 2:
+            sis_dialogue_advance = False
+            sis_bedroom_count += 1
+        
+        global diary_scene
+        diary_scene = False
+        
+        global left_hall_dialogue_advancement
+        global left_hall_dialogue_count
+        if left_hall_dialogue_advancement:
+            left_hall_dialogue_advancement = False
+            left_hall_dialogue_count += 1
+        
+        global pizza_dialogue_advance
+        global pizza_count
+        if pizza_dialogue_advance:
+            pizza_dialogue_advance = False
+            pizza_count += 1
+        
+        global player_mail
+        if renpy.random.randint(0,4) != 0:
+            player_mail = [renpy.random.choice(player_mailbox_items)]
+        
+        global erik_mail
+        if renpy.random.randint(0,4) != 0:
+            erik_mail = [renpy.random.choice(erik_mailbox_items)]
+        
+        global mia_mail
+        if renpy.random.randint(0,4) != 0:
+            mia_mail = [renpy.random.choice(mia_mailbox_items)]
+        
+        global gTimer
+        global erik_drunk
+        global judith_daylock
+        global training_done
+        global masturbated_tv
+        global moms_panties_taken
+        global roxxy_shower_lock
+        global mrsj_filled
+        global erik_funky
+        gTimer.sleep()
+        erik_drunk = False
+        judith_daylock = False
+        training_done = False
+        masturbated_tv = False
+        moms_panties_taken = False
+        roxxy_shower_lock = False
+        mrsj_filled = False
+        erik_funky = False
+        
+        global orcette_mail_lock
+        if gTimer.dayOfWeek() == "Tue" and erik.completed(erik_orcette):
+            orcette_mail_lock = True
+        
+        global random_message
+        random_message = renpy.random.randint(0,9)
+        
+        global judith_sex_sequence_unlocked
+        global m_judith01
+        global message_list
+        global new_message
+        if judith_sex_sequence_unlocked and m_judith01 not in message_list:
+            if random_message == 9:
+                message_list.append(m_judith01)
+                new_message = True
+        
+        global erik_telescope_random
+        global erikmom_telescope_random
+        global mia_telescope_random
+        erik_telescope_random = renpy.random.randint(0,1)
+        erikmom_telescope_random = renpy.random.randint(0,2)
+        mia_telescope_random = renpy.random.randint(0,1)
+        
+        global tick_skip_active
+        tick_skip_active = True
+        
+        global rump_n_cunt
+        if not gTimer.is_weekend():
+            rump_n_cunt = randomizer()
+        else:
+            rump_n_cunt = 0
+        
+        global Machine
+        for event in store.my_events:
+            event.complete_events()
+        Machine.trigger(T_all_sleep)
+        
+        global location_count
+        global M_player
+        if location_count == "Bedroom":
+            M_player.set("just wokeup", True)
+        
+        global M_mom
+        M_mom.set("room sneak", False)
+        M_mom.set("movie night", False)
+        M_mom.set("location random", choice_randomizer([("bedroom", 1), ("kitchen", 3), ("basement", 3)]))
+        M_mom.set("time random", choice_randomizer([(gTimer.is_morning, 1), (gTimer.is_afternoon, 2)]))
+        
+        global shower
+        shower.randomize()
+
+
+    class ShowerClass:
+        _name = ""
+        
+        def occupied(self, name = "", morning_check = True):
+            if name == "":
+                if name == self._name:
+                    return True
+                else:
+                    return where_is(self._name) != "Shower"
+            elif morning_check:
+                return where_is(name) == "Shower" and gTimer.is_morning()
+            else:
+                return where_is(name) == "Shower"
+        
+        def check(self, name, morning_check = True):
+            if morning_check:
+                return self._name == name and gTimer.is_morning()
+            else:
+                return self._name == name
+        
+        def unoccupy(self):
+            self._name = ""
+        
+        def randomize(self):
+            self._name = choice_randomizer([("mom", 2), ("sis", 3), ("", 1)])
 
     class DayTimer:
         _tod = 1
@@ -143,6 +282,12 @@ init python:
                 name = name + '{}'
             if self.is_dark():
                 name = name.replace("_day", "")
+                if self.is_evening(): 
+                    tmp = name.format("_evening") 
+                    if renpy.can_show(tmp, layer): 
+                        return tmp 
+                    if renpy.loadable(tmp): 
+                        return tmp 
                 tmp = name.format("_night")
                 if renpy.can_show(tmp, layer):
                     return tmp
@@ -167,7 +312,7 @@ init python:
         def tick(self,tod=None):
             if tod:
                 self._tod = tod
-            else:
+            elif self._tod < 4:
                 self._tod += 1
             tele_rand()
         
@@ -190,23 +335,43 @@ init python:
     def where_is(name):
         loc_logic = {
             "mom": [
-                "Entrance", "mom_count == 4 and mom_vacuuming and mom_helped == 0 and not gTimer.is_dark()",
-                "Shower", "gTimer.is_morning() and shower == 'mom'",
-                "Basement", "mom_count == 4 and mom_vacuuming and mom_helped == 2 and not gTimer.is_dark()",
+                "Entrance", ["M_mom.get_state() == S_mom_debt_collectors",
+                             "M_mom.get_state() == S_mom_vacuum_help and M_mom.is_set('chores') and not gTimer.is_dark()",
+                             "M_mom.get_state() == S_mom_movie_night and gTimer.is_evening()",
+                            ],
+                "Home Front", "M_mom.get_state() == S_mom_mrsj_visit",
+                "Living Room", "M_mom.get_state() == S_mom_romance_movie",
+                "Cupid", "M_mom.get_state() in [S_mom_choose_gift, S_mom_show_necklace]",
+                "Cupid Dressroom", "M_mom.get_state() == S_mom_dressing_room",
+                "Backyard", "M_mom.get_state() == S_mom_fetch_towel",
                 "Mom's Bedroom", ["gTimer.is_dark()",
                                   
-                                  "mom_count >= 11 and (m6_note_seen and mom_basement_sex or not m6_note_seen)",
-                                  "mom_count == 6",
+                                  "M_mom.get_state() == S_mom_spy",
+                                  "M_mom.get('sex available') and M_mom.get('location random') == 'bedroom' and M_mom.get('time random')()",
                                   ],
-                "Kitchen", "True",
+                "Basement", ["gTimer.is_afternoon()",
+                             "M_mom.get_state() == S_mom_wash_clothes",
+                             "M_mom.get_state() in [S_mom_laundry_help, S_mom_lotion_adventure] and not gTimer.is_dark()",
+                             "M_mom.get_state() == S_mom_fetch_laundry",
+                            ],
+                "Shower", ["shower.check('mom') and M_mom.is_set('shower random')",
+                           "shower.check('mom') and M_mom.get_state() in [S_mom_shower_peek, S_mom_shower_peek_after, S_mom_shower_walk_in]"
+                          ],
+                "Kitchen", ["gTimer.is_morning()",
+                            "M_mom.get_state() == S_mom_debt_call",
+                           ],
+                None, "True",
                 ],
             "sis": [
                 None, ["sis_bedroom_count == 0",
                        "diary_scene and sis_dialogue_advance and sis_diary_unlocked and not gTimer.is_dark()"],
                 "Dining Room", ["gTimer.is_morning() and sister.started(sis_breakfast)",
-                                "gTimer.is_morning() and not shower == 'sister' and sister.over(sis_telescope01) and not sister.over(sis_breakfast)",
+                                "gTimer.is_morning() and not shower.check('sis', False) and sister.over(sis_telescope01) and not sister.over(sis_breakfast)",
                                 ],
-                "Shower", "gTimer.is_morning() and shower == 'sister'",
+                None, ["M_mom.get_state() in [S_mom_sis_check, S_mom_close_valve, S_mom_pipe_check]",
+                       "M_mom.get_state() == S_mom_fix_pipe and not gTimer.is_dark()",
+                      ],
+                "Shower", "shower.check('sis')",
                 "Sis' Bedroom", "True",
                 ],
             "erik": [
@@ -227,42 +392,49 @@ init python:
                                 ],
                 "Computer Lab", "erik.completed(erik_gf_2) and gTimer.is_morning()",
                 "Cafeteria", "gTimer.is_morning()",
+                None, "True",
                 ],
             "mrsj": [
-                None, "mrsj.started(mrsj_yoga_help)",
                 "Erik's Basement Backroom", "mrsj_afterpoker_fun",
                 "Erik's Basement", "gTimer.is_dark() and poker_bot02 == 'erik_mom'",
-                "Mrs Johnson's Room", ["gTimer.is_dark() and erik.over(erik_breastfeeding)", 
+                "Mrs Johnson's Room", ["gTimer.is_dark() and erik.over(erik_breastfeeding)",
                                        "mrsj.over(mrsj_yoga_help_2) and not erik.over(erik_breastfeeding_2)",
                                        "mrsj.over(erik_breastfeeding_2) and not erik.over(erik_thief_2)",
                                        "erik.over(erik_path_split) and erik.known(erik_sex_ed) and not mrsj.completed(mrsj_sex_ed)",
                                        ],
                 "Erik's House Entrance", ["gTimer.is_morning()",
-                                          "erik.over(erik_vr) and not mrsj.known(mrsj_yoga_help)",
+                                          "erik.over(erik_vr) and not mrsj.completed(mrsj_yoga_help)",
                                           ],
                 "Yoga Room", "gTimer.is_afternoon()",
+                None, "True",
                 ],
             "june": [
                 "Erik's Room", "gTimer.is_afternoon() and erik.completed(erik_gf_2)",
                 "Bedroom", "gTimer.is_evening() and June.known(june_mc_help_2) and june_hang_out",
                 "Computer Lab", "gTimer.is_morning() or gTimer.is_afternoon()",
+                None, "True",
                 ],
             "anna": [
                 "Yoga Room", "gTimer.is_evening() and mrsj.known(mrsj_yoga_help)",
                 "Park", "Anna.over(anna_intro) and not gTimer.is_dark() and not Anna.completed(anna_missing_pup)",
+                None, "True",
                 ],
             "roz": [
                 "Hospital", "not Roz.started(roz_trick)",
+                None, "True",
                 ],
             "crystal": [
                 "Trailer Interior", "not gTimer.is_dark()",
+                None, "True",
                 ],
             "grace": [
                 "Tattoo Parlor Interior", "not gTimer.is_dark()",
+                None, "True",
                 ],
             "angelica": [
                 "Angelica's Room", "gTimer.is_dark()",
                 "Church", "not (gTimer.is_weekend() and gTimer.is_morning())",
+                None, "True",
                 ],
             "mia": [
                 None, "M_mia.get_state() in [S_mia_unexpected_visit, S_mia_helen_outfit_request] and not gTimer.is_morning()",
@@ -273,6 +445,7 @@ init python:
                 "Mia's Bedroom", "gTimer.is_dark()",
                 "Mia's House", "M_mia.get_state() == S_mia_do_homework",
                 "Mia's House Entrance", "gTimer.is_afternoon()",
+                None, "True",
                 ],
             "helen": [
                 "Angelica's Room", ["gTimer.is_dark() and M_mia.get_state() in [S_mia_angelicas_order, S_mia_angelicas_whip]",
@@ -285,6 +458,7 @@ init python:
                                     "gTimer.is_dark() and M_mia.is_set('harold left')",
                                     "M_mia.get_state() in [S_mia_unexpected_visit, S_mia_helen_outfit_request]"],
                 "Mia's Living Room", "gTimer.is_dark()",
+                None, "True",
                 ],
             "harold": [
                 None, "M_mia.get_state() == S_mia_harold_yumi_out",
@@ -292,15 +466,21 @@ init python:
                 "Church", "gTimer.is_morning() and gTimer.is_weekend() and not M_mia.is_set('harold left')",
                 "Police Office", "not gTimer.is_dark()",
                 "Mia's Living Room", "gTimer.is_dark() and not M_mia.is_set('harold left')",
+                None, "True",
                 ],
             "yumi": [
                 None, "M_mia.get_state() == S_mia_harold_yumi_out",
-                "Police Basement Cell", "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]", 
+                "Police Basement Cell", "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]",
                 "Police Basement", "gTimer.is_morning() or gTimer.is_afternoon()",
+                None, "True",
                 ],
             "earl": [
-                None, "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]", 
+                None, "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]",
                 "Police Office", "True",
+                ],
+            "dexter": [
+                "Basket Ball Court", "not gTimer.is_dark()",
+                None, "True",
                 ],
             "terry": [
                 None, "M_terry.get_state() == S_terry_drunk",
@@ -333,12 +513,27 @@ init python:
     def is_here(name):
         return where_is(name) == location_count
 
+    def lock_ui():
+        global ui_lock
+        ui_lock = True
+
+
+    def unlock_ui():
+        global ui_lock
+        ui_lock = False
+
+
+    def ui_locked():
+        global ui_lock
+        return ui_lock
+
     def callScreen(name, ui = True, clear = True, newContext = False):
+        renpy.hide_screen("ui")
         if clear:
             clearImages()
-        
-        
-        
+        if gTimer.is_night() and name in ["Lair"]:
+            name = "Town Map"
+            ui = True
         name = name.lower()
         name = name.replace("'", "")
         name = name.replace(" ", "_")
@@ -428,6 +623,16 @@ init python:
         tmp = name.format(rand)
         return tmp
 
+    def choice_randomizer(list):
+        import random
+        r = random.uniform(0, sum([v[1] for v in list]))
+        s = 0.0
+        for k, w in list:
+            s += w
+            if r < s:
+                return k
+        return k
+
     def sfxDoor(locked = False):
         if not locked:
             tmp = randomizer("audio/sfx_door1_{}.ogg", 1, 2)
@@ -435,21 +640,21 @@ init python:
             tmp = randomizer("audio/sfx_door1_lock{}.ogg", 1, 2)
         return tmp
 
-    def stat_warn(stat, condition = True):
-        tmp = ""
-        if isinstance(condition,basestring):
-            condition = [condition,]
-        for logic in condition:
-            if eval(logic):
-                if stat == "chr":
-                    tmp = "{color=#b61c1c}{b}[CHR]: {/b}{/color}"
-                elif stat == "str":
-                    tmp = "{color=#b61c1c}{b}[STR]: {/b}{/color}"
-                elif stat == "dex":
-                    tmp = "{color=#b61c1c}{b}[DEX]: {/b}{/color}"
-                elif stat == "int":
-                    tmp = "{color=#b61c1c}{b}[INT]: {/b}{/color}"
-        return tmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 define chr_warn = "{color=#b61c1c}{b}[CHR]: {/b}{/color}"
 define str_warn = "{color=#b61c1c}{b}[STR]: {/b}{/color}"
@@ -461,40 +666,40 @@ define dex_pass = "{color=#00ff00}{b}[DEX]: {/b}{/color}"
 define int_pass = "{color=#00ff00}{b}[INT]: {/b}{/color}"
 define fastdissolve = Dissolve(.2)
 
-define mom = Character('Mom', color="#b96dff")
-define sis = Character('Sister', color="#ff6df0")
-define eri = Character('Erik', color="#56aaff")
-define rox = Character('Roxxy', color="#c8ffc8")
-define mia = Character('Mia', color="#c499ff")
-define erimom = Character('Mrs. Johnson', color="#c8ffc8")
-define mon = Character('Monster Girl', color="#c8ffc8")
-define dex = Character('Dexter', color="#c8ffc8")
-define ron = Character('Ronda', color="#c8ffc8")
-define bri = Character('Coach Bridget', color="#c8ffc8")
-define smi = Character('Principal Smith', color="#c8ffc8")
-define bis = Character('Mrs. Bissette', color="#c8ffc8")
-define eve = Character('Eve', color="#c8ffc8")
-define dia = Character('Aunt Diane', color="#c8ffc8")
-define mas = Character('Master Somrak', color="#c8ffc8")
-define ton = Character('Tony', color="#c8ffc8")
-define cam = Character('Camilla', color="#c8ffc8")
-define igo = Character('Igor', color="#c8ffc8")
-define hen = Character('Henchman', color="#c8ffc8")
-define lar = Character('Larry', color="#c8ffc8")
-define sus = Character('Susan', color="#c8ffc8")
-define gin = Character('Nurse Ginger', color="#c8ffc8")
-define jud = Character('Judith', color="#c8ffc8")
-define ann = Character('Annie', color="#c8ffc8")
-define cas = Character('Cassie', color="#c8ffc8")
-define jan = Character('Jane', color="#c8ffc8")
-define kev = Character('Kevin', color="#c8ffc8")
-define liu = Character('Banker', color="#c8ffc8")
-define martinez = Character('Martinez', color="#c8ffc8")
-define lopez = Character('Lopez', color="#c8ffc8")
-define ross = Character('Ms. Ross', color="#c8ffc8")
-define dewitt = Character('Ms. Dewitt', color="#c8ffc8")
-define okita = Character('Ms. Okita', color="#c8ffc8")
-define june = Character('June', color="#a771b6")
+define mom = Character("[mom_char_name]", color="#b96dff")
+define sis = Character("[sis_char_name]", color="#ff6df0")
+define eri = Character("Erik", color="#56aaff")
+define rox = Character("Roxxy", color="#c8ffc8")
+define mia = Character("Mia", color="#c499ff")
+define erimom = Character("Mrs. Johnson", color="#c8ffc8")
+define mon = Character("Monster Girl", color="#c8ffc8")
+define dex = Character("Dexter", color="#c8ffc8")
+define ron = Character("Ronda", color="#c8ffc8")
+define bri = Character("Coach Bridget", color="#c8ffc8")
+define smi = Character("Principal Smith", color="#c8ffc8")
+define bis = Character("Mrs. Bissette", color="#c8ffc8")
+define eve = Character("Eve", color="#c8ffc8")
+define dia = Character("Aunt Diane", color="#c8ffc8")
+define mas = Character("Master Somrak", color="#c8ffc8")
+define ton = Character("Tony", color="#c8ffc8")
+define cam = Character("Camilla", color="#c8ffc8")
+define igo = Character("Igor", color="#c8ffc8")
+define hen = Character("Henchman", color="#c8ffc8")
+define lar = Character("Larry", color="#c8ffc8")
+define sus = Character("Susan", color="#c8ffc8")
+define gin = Character("Nurse Ginger", color="#c8ffc8")
+define jud = Character("Judith", color="#c8ffc8")
+define ann = Character("Annie", color="#c8ffc8")
+define cas = Character("Cassie", color="#c8ffc8")
+define jan = Character("Jane", color="#c8ffc8")
+define kev = Character("Kevin", color="#c8ffc8")
+define liu = Character("Banker", color="#c8ffc8")
+define martinez = Character("Martinez", color="#c8ffc8")
+define lopez = Character("Lopez", color="#c8ffc8")
+define ross = Character("Ms. Ross", color="#c8ffc8")
+define dewitt = Character("Ms. Dewitt", color="#c8ffc8")
+define okita = Character("Ms. Okita", color="#c8ffc8")
+define june = Character("June", color="#a771b6")
 define beth = Character("Beth", color="#ce6b6a")
 define sara = Character("Sara")
 define aqua = Character("Aqua")
@@ -532,6 +737,9 @@ define crys = Character("Crystal")
 define grace = Character("Grace")
 define roz = Character("Roz")
 define guard = Character("Guard")
+define jaing = Character("Jiang")
+define Kass = Character("Kass")
+define cat = Character("Cat")
 
 define player_name = Character('[firstname]', color="#6f96f1")
 
@@ -540,9 +748,12 @@ define flash = Fade(.25, 0.0, .75, color="#fff")
 init python:
     firstname = ""
     sis_pass = ""
-    sis_name = ""
+    sis_name = "Sis"
+    sis_char_name = "Jenny"
     MC_pass = ""
-    mom_name = ""
+    mom_name = "Mom"
+    mom_char_name = "Debbie"
+    cat_name = ""
     pink_user = ""
     pink_pass = ""
     egay_search = ""
@@ -554,13 +765,16 @@ init python:
         store.sis_pass = newstring
 
     def sister_name(newstring):
-        store.sis_name = newstring
+        store.sis_char_name = newstring
 
     def MC_comp(newstring):
         store.MC_pass = newstring
 
     def mother_name(newstring):
-        store.mom_name = newstring
+        store.mom_char_name = newstring
+
+    def stray_cat_name(newstring):
+        store.cat_name = newstring
 
     def pink_channel_user(newstring):
         store.pink_user = newstring
@@ -579,30 +793,24 @@ init python:
     rump_n_cunt = 0
     anim_toggle = False
     tick_skip_active = False
-    ui_lock_count = 1
+    ui_lock = True
     hallway_count= 0
     mia_count = 0
     sis_shower_count = 0
     mom_count = 0
     map_status_count = 0
-    player_room_count = 0
     school_count = 0
     gym_count = 0
     classroom_count = 0
     closed_valve = 0
     training_done = False
-    fetched_laundry = False
-    mom_basement_sex = False
     masturbated_tv = False
-    mom_cuddling_unlocked = False
-    moms_panties_taken = False
     sis_lastwebcam_show_seen = False
     sis_watch_tv_tonight = False
     june_hang_out = False
     mrsj_filled = False
     erik_funky = False
 
-    master_count = 0
     kitchen_count = 0
     training_count = 0
     classroom_door_count = 0
@@ -622,13 +830,11 @@ init python:
     sis_bedroom_count = 0
     sis_door_locked_count = 0
     bedtable01_count = 0
-    mom_door_count = 0
     event_outside_school_count = 0
     mall_count = 0
     mia_house_count = 0
     park_count = 0
     erik_door_count = 0
-    door20_locked_count = 0
     library_count = 0
     pool_count = 0
     poolrules_count = 0
@@ -666,25 +872,18 @@ init python:
     asked_for_lollipop = False
     in_sis_room = False
 
-    mom_dialogue_advance = 0
-    mom_on_phone = False
-    mom_masturbating = False
     erik_basement_seen = False
 
-    mom_dialogue_daily = False
     sexspeed = .15   
 
     sis_panties_trade = False
     in_erik_house = False
-    mom_time_passing = 0
     pink_count = 0
-    just_woke_up = False
     movie_theatre_count = 0
     girl_lockerroom_unlocked = False
     judith_sex_sequence_unlocked = False
     judith_daylock = False
     judith_sobbing = False
-    show_quest = "main"
     new_message = False
     first_time_changing = True
     banned_from_pool = False
@@ -703,7 +902,6 @@ init python:
     ronda_after_swimming = False
     gloryhole_done = 0
 
-    played_with_mom_panties = False
     erik_helped_with_camera = False
 
     diary_scene = False
@@ -729,22 +927,14 @@ init python:
 
     henchmen_count = 0
     magic_numbers = [6, 16, 26, 36, 46, 56, 66, 76, 86, 96]
-    map_enter = False
 
     rap_opponent = ""
 
     sis_cheerleader_sex2_menu = False
 
-    mom_revealing = False
-    shower = ""
-    xray = False 
-    cum = False 
-    animcounter = 0 
-
-    mom_door_lock = False
-    mom_vacuuming = False
-    learn_kissing = False
-    mom_revealing_tommorow = False
+    xray = False
+    cum = False
+    animcounter = 0
 
     roxxy_shower_lock = False
     orcette_mail_lock = False
@@ -752,6 +942,7 @@ init python:
     drawn_tattoo = ""
 
 label start:
+    $ shower = ShowerClass()
     $ gTimer = DayTimer()
     call INIT_FSM
     python:
@@ -763,7 +954,7 @@ label start:
             events.append(e)
         store.my_events = events
 
-    if firstname == "":
+    if firstname.strip() == "":
         $ firstname = "Anon"
     show screen escape_key
 
@@ -808,6 +999,7 @@ label start:
         loc_donuts_unlocked = False
         loc_court_unlocked = False
         loc_lair_unlocked = False
+        loc_warehouse_unlocked = False
         savegame_version = config.version
 
     python:
@@ -863,7 +1055,7 @@ label start:
         pStats = PlayerStats()
 
     python:
-        inventory = Inventory() 
+        inventory = Inventory()
         homework = Item("{b}Homework:{/b}", 0, image = "objects/item_homework1.png", description = "Use your desk at home to complete your homework and improve your grades!", h_image = "objects/item_homework1b.png")
         panties = Item("{b}Panties:{/b}", 100, image = "objects/item_panties1.png", description = "Your Sister's used panties.", h_image = "objects/item_panties1b.png")
         parts = Item("{b}Computer Parts:{/b}", 200, image = "objects/item_parts1.png", description = "New computer parts for sweet graphics.", h_image = "objects/item_parts1b.png")
@@ -895,8 +1087,8 @@ label start:
         shovel = Item("{b}Shovel:{/b}", 0, image = "objects/item_shovel1.png", description = "A used metal shovel.", h_image = "objects/item_shovel1b.png")
         stool = Item("{b}Stool:{/b}", 0, image = "objects/item_stool1.png", description = "A small stool.", h_image = "objects/item_stool1b.png")
         fishing_rod = Item("{b}Fishing Rod:{/b}", 0, image = "objects/item_rod1.png", description = "An old fishing rod.", h_image = "objects/item_rod1b.png")
-        ring = Item("{b}Diamong ring:{/b}", 0, image = "objects/item_ring1.png", description = "A tiny ring with a large stone fixed to it.", h_image = "objects/item_ring1b.png") 
-        cheerleader_outfit = Item("{b}Cheerleader Outfit:{/b}", 0, image = "objects/item_outfit1.png", description = "It's the cheerleader outfit that [sis] used to wear during college.", h_image = "objects/item_outfit1b.png") 
+        ring = Item("{b}Diamong ring:{/b}", 0, image = "objects/item_ring1.png", description = "A tiny ring with a large stone fixed to it.", h_image = "objects/item_ring1b.png")
+        cheerleader_outfit = Item("{b}Cheerleader Outfit:{/b}", 0, image = "objects/item_outfit1.png", description = "It's the cheerleader outfit that [sis_name] used to wear during college.", h_image = "objects/item_outfit1b.png")
         dog = Item("{b}Awesomo:{/b}", 0, image = "objects/item_dog1.png", description = "A small pug.", h_image = "objects/item_dog1.png")
         worm = Item("{b}Worm:{/b}", 0, image = "objects/item_bait1.png", description = "A fresh worm.", h_image = "objects/item_bait1b.png")
         buttplug = Item("{b}Buttplug:{/b}", 100, image = "objects/item_sex1.png", description = "A cone shaped dildo for anal insertion that glows in the dark.", h_image = "objects/item_sex1b.png")
@@ -918,7 +1110,8 @@ label start:
         whip = Item("{b}Whip:{/b}", 500, image = "objects/item_sex16.png", description = "A whip to punish sinners.", h_image = "objects/item_sex16b.png")
         aviators = Item("{b}Aviators:{/b}", 0, image = "objects/item_glasses1.png", description = "A sweet pair of badass aviators.", h_image = "objects/item_glasses1b.png", closeup = "objects/closeup_note01.png")
         lure01 = Item("{b}Lure:{/b}", 0, image = "objects/item_bait2.png", description = "This lure looks very familiar.", h_image = "objects/item_bait2b.png")
-        card03 = Item("{b}Trading Card - Orcette - The Whoremonger:{/b}", 50, image = "objects/item_card3.png", description = "The Fappening card for Orcette - The Whoremonger.", h_image = "objects/item_card3b.png", closeup = "objects/closeup_card03.png")
+        card03 = Item("{b}Trading Card - Orcette - The Whoremonger:{/b}", 0, image = "objects/item_card3.png", description = "The Fappening card for Orcette - The Whoremonger.", h_image = "objects/item_card3b.png", closeup = "objects/closeup_card03.png")
+        card04 = Item("{b}Trading Card - Dillon:{/b}", 0, image = "objects/item_card5.png", description = "The Fappening card for Dillon.", h_image = "objects/item_card5b.png", closeup = "objects/closeup_card04.png")
         eriks_cards = Item("{b}Erik's Fappening Trading Cards:{/b}", 0, image = "objects/item_box1.png", description = "This box contains the Fappening cards that Erik lost.", h_image = "objects/item_box1b.png")
         orcette = Item("{b}Orcette:{/b}", 0, image = "objects/item_orcette1.png", description = "ZUG! ZUG! It's an Orcette.", h_image = "objects/item_orcette1b.png")
         instructions1 = Item("{b}Yoga Instructions:{/b}", 0, image = "objects/item_instructions1.png", description = "Is this really how Yoga works ?", h_image = "objects/item_instructions1b.png", closeup = "objects/closeup_instructions_01.png")
@@ -928,6 +1121,10 @@ label start:
         stolen_goods = Item("{b}Stolen Goods:{/b}", 0, image = "objects/item_goods1.png", description = "The goods that were stolen by a recent serial thief.", h_image = "objects/item_goods1b.png")
         donuts_fail = Item("{b}DOH-nuts:{/b}", 50, image = "objects/item_donut1.png", description = "Some delicious tasting holes of the finest caliber.", h_image = "objects/item_donut1b.png")
         donuts_correct = Item("{b}DOH-nuts:{/b}", 50, image = "objects/item_donut1.png", description = "Some delicious tasting holes of the finest caliber.", h_image = "objects/item_donut1b.png")
+        pearl_necklace = Item("{b}Pearl Necklace:{/b}", 50, image = "objects/item_necklace3.png", description = "A pearl necklace fit for a beauty.", h_image = "objects/item_necklace3b.png")
+        towel = Item("{b}Towel:{/b}", 0, image = "objects/item_towel1.png", description = "It's a towel.", h_image = "objects/item_towel1b.png")
+        lotion = Item("{b}Lotion:{/b}", 0, image = "objects/item_lotion1.png", description = "It's lotion used for \"massages\"!", h_image = "objects/item_lotion1b.png")
+        cat_food = Item("{b}Cat Food:{/b}", 100, image = "objects/item_catfood1.png", description = "It's a special brand of food for cats, the best type of animal in the world!", h_image = "objects/item_catfood1b.png")
         tattoo_butterfly = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing1.png", description = "Your drawing of a butterlfy tattoo.", h_image = "objects/item_tattoo_drawing1b.png")
         tattoo_dolphin = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing2.png", description = "Your drawing of a dolphin tattoo.", h_image = "objects/item_tattoo_drawing2b.png")
         tattoo_stars = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing3.png", description = "Your drawing of a tattoo of stars.", h_image = "objects/item_tattoo_drawing3b.png")
@@ -939,14 +1136,15 @@ label start:
         key03 = Item("{b}Helen's Secret Key{/b}", 0, image = "objects/item_key3.png", description = "The key secretely hidden by the statue of Mary", h_image = "objects/item_key3b.png")
 
         obituary_records = Item("{b}Obituary Records{/b}", 0, image = "objects/item_records1.png", description = "The obituary records that contains the name of the boatsmith.", h_image = "objects/item_records1b.png", closeup = "objects/closeup_records_01.png", dialogue = "obituary_records")
-        scroll = Item("{b}Scroll{/b}", 0, image = "objects/item_scroll1.png", description = "A mysterious scroll you found hidden in a tree on Raven Hill.", h_image = "objects/item_scroll1b.png", closeup = "objects/closeup_scroll_01.png", dialogue = "scroll")
+        scroll = Item("{b}Scroll{/b}", 0, image = "private/objects/item_scroll1.png", description = "A mysterious scroll you found hidden in a tree on Raven Hill.", h_image = "private/objects/item_scroll1b.png", closeup = "private/objects/closeup_scroll_01.png", dialogue = "scroll")
         treasure_key = Item("{b}Mystery key:{/b}", 0, image = "objects/item_key2.png", description = "A mysterious key.", h_image = "objects/item_key2b.png")
-        weird_coin = Item("{b}Weird Coin{/b}", 0, image = "objects/item_coin1.png", description = "A coin with weird engravings that you found in the park fountain.", h_image = "objects/item_coin1b.png", closeup = "objects/closeup_coin_01.png", dialogue = "weird_coin")
-        old_book = Item("{b}Old Book{/b}", 0, image = "objects/item_book3.png", description = "An old book that looks like it can decipher something from the library.", h_image = "objects/item_book3b.png", closeup = "objects/closeup_book_03.png", dialogue = "old_book")
-        treasure_map = Item("{b}Treasure Map{/b}", 0, image = "objects/item_map1.png", description = "A treasure map that you acquired after solving difficult puzzle.", h_image = "objects/item_map1b.png", closeup = "objects/closeup_map_01.png", dialogue = "treasure_map")
-        golden_compass = Item("{b}Golden Compass{/b}", 0, image = "objects/item_compass1.png", description = "The golden compass that is said to lead you to your greatest desire.", h_image = "objects/item_compass1b.png", closeup = "objects/closeup_compass_01.png", dialogue = "golden_compass")
+        weird_coin = Item("{b}Weird Coin{/b}", 0, image = "private/objects/item_coin1.png", description = "A coin with weird engravings that you found in the park fountain.", h_image = "private/objects/item_coin1b.png", closeup = "private/objects/closeup_coin_01.png", dialogue = "weird_coin")
+        old_book = Item("{b}Old Book{/b}", 0, image = "private/objects/item_book3.png", description = "An old book that looks like it can decipher something from the library.", h_image = "private/objects/item_book3b.png", closeup = "private/objects/closeup_book_03.png", dialogue = "old_book")
+        treasure_map = Item("{b}Treasure Map{/b}", 0, image = "private/objects/item_map1.png", description = "A treasure map that you acquired after solving difficult puzzle.", h_image = "private/objects/item_map1b.png", closeup = "private/objects/closeup_map_01.png", dialogue = "treasure_map")
+        golden_compass = Item("{b}Golden Compass{/b}", 0, image = "private/objects/item_compass1.png", description = "The golden compass that is said to lead you to your greatest desire.", h_image = "private/objects/item_compass1b.png", closeup = "private/objects/closeup_compass_01.png", dialogue = "golden_compass")
         special_lure = Item("{b}Special Lure{/b}", 0, image = "objects/item_bait4.png", description = "A lure said to be able to catch anything and everything.", h_image = "objects/item_bait4b.png")
         tigger = Item("{b}Demon Spawn Tigger{/b}", 0, image = "objects/item_tigger1.png", description = "Once a man's swarn enemy, but no longer will anymore piggy's go to the market.", h_image = "objects/item_tigger1b.png", closeup = "objects/closeup_tigger_01.png", dialogue = "tigger")
+        mushroom = Item("{b}Mushroom{/b}", 0, image = "objects/item_mushroom1.png", description = "Shrooms for days bois.", h_image = "objects/item_mushroom1b.png")
 
         game = Item("{b}Sea Dogs SAGA{/b}", 100, image = Transform("game_1"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_1b"))
         game02 = Item("{b}World of Orcette{/b}", 100, image = Transform("game_2"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_2b"))
@@ -982,8 +1180,11 @@ label start:
         mia_mailbox_items = [m_pizza_pamphlet, m_newspaper]
 
     python:
+        bait = ""
+
+    python:
         encounters = []
-        player_pos_x = 427 
+        player_pos_x = 427
         player_pos_y = 615
         unpassable = [(427,431),(335,615),(335,523),(335,431),(519,431),(519,615),(427,707),(611,615),(703,615),(795,615),(887,615),(887,523),
         (887,431), (887,339), (887,247), (795,247), (795,155), (703,63), (611,63), (519,63), (427,155), (427,63), (335,63), (243,63), (151,63),
@@ -1104,7 +1305,7 @@ label start:
         $ playSound("<loop 5 to 181>audio/ambience_rain3.ogg")
 
         show intro_03 with dissolve
-        show text "The night of the funeral, I overheard a conversation between Mom and Aunt Diane. \nShe said it's been a tough year for us, and that Dad had owed a {i}lot of money{/i} to some bad people. \nNow that he was gone, she didn't know what to do.\nShe started sobbing..." at Position (xpos= 512, ypos = 700) with dissolve
+        show text "The night of the funeral, I overheard a conversation between [mom_name] and Aunt Diane. \nShe said it's been a tough year for us, and that Dad had owed a {i}lot of money{/i} to some bad people. \nNow that he was gone, she didn't know what to do.\nShe started sobbing..." at Position (xpos= 512, ypos = 700) with dissolve
         $ renpy.pause ()
         hide text with dissolve
 
@@ -1114,7 +1315,7 @@ label start:
         $ playSound("<loop 7 to 114>audio/ambience_suburb.ogg")
 
         show intro_04 with dissolve
-        show text "Our family was a wreck. \n{b}Dad's{/b} passing was unexpected and really hit us all pretty hard as a family. \n{b}Mom{/b} even got me excused from school for a month, as we tried to sort everything out. \n...but I can't grieve forever. Tomorrow is a new day, and I have to look after Mom and my Sister." at Position (xpos= 512, ypos = 700) with dissolve
+        show text "Our family was a wreck. \n{b}Dad's{/b} passing was unexpected and really hit us all pretty hard as a family. \n{b}[mom_name]{/b} even got me excused from school for a month, as we tried to sort everything out. \n...but I can't grieve forever. Tomorrow is a new day, and I have to look after Mom and my Sister." at Position (xpos= 512, ypos = 700) with dissolve
         $ renpy.pause ()
         show text "There are {i}3 things{/i} I have to take care of before the end of the summer.\n1) - {b}I have to save enough money for college.{/b}\n2) - {b}I have to find out what really happened to Dad.{/b}\n3) - {b}I have to find a date for prom.{/b} " at Position (xpos= 512, ypos = 700) with dissolve
         $ renpy.pause ()

@@ -56,14 +56,21 @@ screen bench03_options:
         )
 
 screen park_fountain:
-    imagebutton:
-        idle "backgrounds/menu_ground.png"
-        action Hide("park_fountain"), Jump("park_dialogue")
-
     if weird_coin not in inventory.items:
         imagebutton:
             focus_mask True
             align (0.44,0.81)
-            idle gTimer.image("objects/object_coin_01{}.png")
-            hover gTimer.image("objects/object_coin_01b{}.png")
+            if not gTimer.is_dark():
+                idle "private/objects/object_coin_01.png"
+                hover "private/objects/object_coin_01b.png"
+            else:
+                idle LiveComposite((35,37), (0,0), "private/objects/object_coin_01_night.png", (10,-10), PulseImage(LiveCrop((0,0,30,30), "map/map_sparkle01_alpha.png"), "map/map_sparkle03.png", delay1 = 5, delay2 = 0.2))
+                hover "private/objects/object_coin_01b_night.png"
             action Hide("park_fountain"), Jump("coin_dialogue")
+
+    imagebutton:
+        focus_mask True
+        align (0.5,0.97)
+        idle "boxes/auto_option_generic_01.png"
+        hover "boxes/auto_option_generic_01b.png"
+        action Hide("park_fountain"), Jump("park_dialogue")

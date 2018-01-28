@@ -1,12 +1,258 @@
 label mias_bedroom_screen:
     $ location_count = "Mia's Bedroom"
-    if M_mia.get_state() == S_mia_midnight_help:
+    if M_mia.get_state() == S_mia_tattoo_help:
+        scene location_mia_bedroom_closeup
+        show player 13 at left
+        show mia 10 at right
+        with dissolve
+        mia "Hey!"
+        mia "I'm so happy you could make it."
+        show mia 7
+        show player 17
+        player_name "It's fine. It just seemed like you had something important to talk about."
+        show player 14
+        player_name "You wanted to ask me something?"
+        show player 13
+        show mia 10
+        mia "Well, it's not THAT important..."
+        mia "...I was hoping I could get your opinion on something, and maybe you could help me."
+        show mia 7
+        show player 10
+        player_name "Uhh... I guess so. What is it about?"
+        show player 11
+        show mia 10
+        mia "Do you know anything about tattoos?"
+        show mia 7
+        show player 10
+        player_name "Tattoos?!"
+        show player 12
+        player_name "Why? Are you thinking about getting one?"
+        show player 11
+        show mia 12
+        mia "I know it's bad..."
+        mia "...But, I'm tired of being told what to do!"
+        mia "I just feel like doing something... spontaneous and to have fun!"
+        mia "To feel free..."
+        show mia 8
+        show player 10
+        player_name "Is your mom going to be okay with this?"
+        show player 5
+        show mia 12
+        mia "I don't care anymore."
+        show mia 8
+        show player 11
+        player_name "..."
+        show player 14
+        player_name "Tattoos are pretty cool. I just don't want you to get into trouble."
+        show player 13
+        show mia 12
+        mia "Are you going to help me?"
+        show mia 8
+        show player 14
+        player_name "Sure, but how?"
+        show player 13
+        show mia 10
+        mia "I know you like to draw stuff in class all the time, and I've seen your art..."
+        mia "...I was hoping you would draw something for my tattoo!"
+        show mia 7
+        show player 22
+        player_name "!!!" with hpunch
+        show player 29 at Position(xoffset=8)
+        player_name "Are you sure?"
+        show player 13 with dissolve
+        show mia 10
+        mia "Yeah! You're so good at it."
+        show mia 7
+        show player 21
+        player_name "Thanks, but I don't even know what you want!"
+        show player 13
+        show mia 10
+        mia "Hmm... I want something... cute!"
+        show mia 9
+        mia "With pretty colors!"
+        show mia 7
+        show player 24
+        player_name "What if it's bad... and you end up hating it?"
+        show player 13
+        show mia 10
+        mia "I'm sure it will be fine!"
+        show mia 7
+        show player 14
+        player_name "If you say so..."
+        show player 13
+        show mia 10
+        mia "Come see me when you have something."
+        show mia 7
+        show player 14
+        player_name "Alright."
+        show player 13
+        show mia 10
+        mia "I have to go sleep. I'll see you at school!"
+        show mia 7
+        show player 36 with dissolve
+        player_name "Good night!"
+        hide player
+        hide mia
+        with dissolve
+        $ gTimer.tick()
+        $ M_mia.trigger(T_mia_delay)
+        $ location_count = "Mia's House"
+        $ callScreen(location_count)
+
+    elif M_mia.get_state() == S_mia_midnight_help:
         scene expression gTimer.image("mia_bedroom{}")
         player_name "{b}Mia's{/b} not here... And I don't see any keys."
+        $ callScreen(location_count)
 
     elif M_mia.get_state() == S_mia_study_sex:
         jump mia_bedroom_sex
-    $ callScreen(location_count)
+    else:
+
+        $ callScreen(location_count)
+
+
+        scene location_mia_bedroom_closeup
+        show mia 10 at right
+        show player 13 at left with dissolve
+        mia "I'm so happy you came!"
+        show mia 7
+        show player 21
+        player_name "Hi, {b}Mia{/b}!"
+        show player 29
+        player_name "Feels kind of strange, sneaking into someone's house at night..."
+        show mia 9
+        show player 13
+        mia "It's fine! We're not gonna get in trouble..."
+        show mia 10
+        show player 11
+        mia "...We just have to {b}stay quiet{/b}!"
+        show mia 7
+        show player 17
+        player_name "If you say so. Haha."
+        show mia 12
+        show player 1
+    label mia_talk:
+        mia "So... You want to hang out?"
+        menu:
+            "Chat":
+                show mia 7
+                show player 2
+                player_name "Sure!"
+                show player 10
+                player_name "Umm... You don't have to answer this, but..."
+                show mia 8
+                player_name "Don't you find it odd that your parents won't let you have friends over?"
+                show player 5
+                mia "..."
+                show mia 12
+                mia "It's just... the way it is, with my mom."
+                show mia 8
+                show player 12
+                player_name "And you don't mind??"
+                show player 11
+                show mia 12
+                mia "She's just being protective!"
+                mia "I know she just loves me a lot, and wants the best for me..."
+                show mia 8
+                show player 12
+                player_name "But you have to meet with friends secretly..."
+                show mia 12
+                show player 5
+                mia "I know... But she wouldn't understand."
+                show mia 8
+                show player 24
+                player_name "I see..."
+                show player 21
+                player_name "As long as you're happy?"
+                show mia 9
+                show player 13
+                mia "Yup!"
+                jump mia_talk
+            "Study":
+
+                if M_mia.is_set('study'):
+                    show player 14
+                    player_name "Of course!"
+                    scene mia_bedroom_closeup
+                    show mia 16 zorder 1 at Position (xpos = 680, ypos = 574)
+                    show player 141 zorder 0 at Position (xpos = 250, ypos = 578)
+                    with dissolve
+                    mia "Thanks for sneaking up here again."
+                    show mia 13
+                    show player 142
+                    player_name "It's not too hard with your parents glued to the tv."
+                    show player 143
+                    show mia 16
+                    mia "Yeah, it's the only thing that keeps them from yelling at each other."
+                    mia "They really like watching reruns."
+                    mia "I sometimes watch with them when I'm done with homework."
+                    show mia 22
+                    mia "Most of the time I stay up here though... It's quieter."
+                    show mia 14
+                    show player 146
+                    player_name "It kind of sucks your parents don't get along."
+                    show player 141
+                    show mia 18
+                    mia "...Yeah."
+                    mia "Maybe it will get back to the way it used to be."
+                    show mia 14
+                    pause
+                    show mia 16
+                    mia "You better go before my parents notice you."
+                    show mia 13
+                    show player 142
+                    player_name "I'll stop over again, ok?"
+                    show player 141
+                    show mia 15
+                    mia "Great! Goodnight {b}[firstname]{/b}!"
+                    show mia 13
+                    show player 142
+                    player_name "Goodnight, {b}Mia{/b}."
+                    hide player
+                    hide mia
+                    with dissolve
+                    $ gTimer.tick()
+                    $ location_count = "Mia's House"
+                    $ callScreen(location_count)
+                else:
+
+                    show mia 7
+                    show player 21
+                    player_name "I guess we should be studying?"
+                    show mia 9
+                    show player 13
+                    mia "Of course!"
+                    show mia 10
+                    mia "Let's do that, then."
+                    show player 11
+                    mia "Let me get all the textbooks and set up {b}on my bed{/b}?"
+                    show mia 7
+                    show player 21
+                    player_name "Uh... Okay!"
+                    jump mia_study
+            "I have to go.":
+
+                show mia 8
+                show player 10
+                player_name "I'd love to... But it's getting late..."
+                show mia 12
+                show player 5
+                mia "Oh, okay..."
+                mia "...Will you come back soon?"
+                show player 14
+                show mia 8
+                player_name "Yeah. I'll see what I can do!"
+                show mia 12
+                show player 1
+                mia "Good night..."
+                $ callScreen(location_count)
+
+
+
+
+
+
+
 
 label mia_study:
     scene mia_bedroom_closeup
@@ -66,7 +312,7 @@ label mia_study:
             mia "That's sweet!"
             show mia 19
             show player 142
-            player_name "I also think that... you're really pretty!"
+            player_name "I also think that you're really pretty!"
             show player 141
             mia "..."
             show mia 18
@@ -98,7 +344,7 @@ label mia_study:
                     player_name "...Sorry, I thought-"
                     show mia 22
                     show player 144
-                    mia "No, It's fine! I'm sorry... I just can't, right now..."
+                    mia "No! It's fine! I'm sorry. I just can't, right now..."
                     mia "...If my mom saw us, we'd be dead."
                     show mia 14
                     show player 146
@@ -109,7 +355,7 @@ label mia_study:
                     mia "My dad probably wouldn't flip out as bad as my mom would..."
                     mia "He's actually really cool when {b}Mom{/b} is not around."
                     show mia 22
-                    mia "{b}Mom's{/b} just...very religious. I'd probably be locked away and forced to study the bible."
+                    mia "{b}Mom's{/b} just... very religious. I'd probably be locked away and forced to study the bible."
                     show mia 14
                     show player 145
                     player_name "Wow. Really?"
@@ -146,6 +392,7 @@ label mia_study:
                     show mia 7
                     show player 21
                     player_name "Good night!"
+                    $ M_player.set("jerk mia", True)
                     $ M_mia.trigger(T_mia_kiss)
         "No.":
 
@@ -470,7 +717,7 @@ label mia_bedroom_sex:
                     show player 13 at left
                     show mia 10 at Position (xpos=300)
                     with dissolve
-                    mia "I'll be...thinking of you tonight..."
+                    mia "I'll be... thinking of you tonight..."
                     hide player
                     hide mia
                     with dissolve
@@ -485,7 +732,8 @@ label mia_bedroom_sex:
                     show mia 16
                     mia "How about you sit on the bed while I undress again."
                     mia "My parents said they won't interrupt us again."
-                    mia "So just relax and...enjoy the show."
+                    mia "So just relax..."
+                    mia "...and enjoy the show."
                     hide player
                     hide mia
                     with dissolve
@@ -502,11 +750,11 @@ label mia_bedroom_sex:
                         show mia_strip 5 with dissolve
                         pause
                         show mia_strip 6
-                        mia "Do you think...I look pretty?"
+                        mia "Do you think... I look pretty?"
                         show mia_strip 5
                         player_name "I- Sure! I mean, of course!"
                         show mia_strip 7
-                        mia "Ha ha, You're sweet..."
+                        mia "Ha ha, You're sweet."
                         show mia_strip 8 with dissolve
                         pause
                         show mia_strip 9 with dissolve
@@ -542,12 +790,12 @@ label mia_bedroom_sex:
                         mia "...What about my butt?"
                         show mia_strip 14
                         player_name "{b}*Gulp*{/b}"
-                        player_name "Uhhh... Yeah... I mean...of course!"
+                        player_name "Uhhh... Yeah... I mean... of course!"
                         player_name "You're an all around sexy girl!"
                         show mia_strip 16
                         mia "Ha ha ha."
                         show mia_strip 15
-                        mia "Don't tell me you're...nervous, {b}[firstname]{/b}."
+                        mia "Don't tell me you're... nervous, {b}[firstname]{/b}."
                         player_name "Maybe a little..."
                         show mia_strip 22 with dissolve
                         mia "Me too..."
@@ -570,7 +818,7 @@ label mia_bedroom_sex:
                         show mia_strip 24
                         player_name "Oh... Yeah..."
                         show mia_strip 25
-                        mia "Ummm... Okay, let me lay down on my bed..."
+                        mia "Ummm... Okay, let me lay down on the bed..."
                         mia "...And you join me..."
                         show mia_strip 27 with dissolve
                         pause
@@ -665,12 +913,12 @@ label mia_bedroom_sex:
                                     player_name "There I'm all the way in."
                                     player_name "Just relax."
                                     mia "It's so big!"
-                                    player_name "Yeah...it's pretty tight."
+                                    player_name "Yeah... it's pretty tight."
                                     mia "Alright. Just go slow."
                                     show mias 10b
                                     pause
                                     show mias 11b
-                                    mia "It's not...too bad..."
+                                    mia "It's not... too bad..."
                                     player_name "Ready?"
                                     mia "Uh huh."
 
@@ -746,7 +994,7 @@ label mia_bedroom_sex:
                                 show mias 4
                                 mia "[chr_warn]I would know, though."
                                 show mias 3
-                                player_name "[chr_warn]Well...it would feel a lot bette-"
+                                player_name "[chr_warn]Well... it would feel a lot bette-"
                                 show mias 5
                                 mia "[chr_warn]No, if you want to do it with me, use my butt."
                                 player_name "[chr_warn]...Alright."
@@ -959,7 +1207,7 @@ label mia_bedroom_sex:
                                 show player 13 at left
                                 show mia 10 at right
                                 with dissolve
-                                mia "Thanks for helping me study...and spending time with me."
+                                mia "Thanks for helping me study, and spending time with me."
                                 show mia 9
                                 mia "It was a little hard to concentrate on studying, though."
                                 show player 17
@@ -1019,3 +1267,34 @@ label mia_bedroom_faster_sex:
 label mia_bedroom_slower_sex:
     $ M_mia.set('sex speed', M_mia.get('sex speed') + 0.05)
     jump mia_bedroom_sex_loop
+
+label mia_bedroom_teddy:
+    scene location_mia_bedroom_blur
+    if M_mia.is_set("telescope teddy seen"):
+        show player 439 with dissolve
+        player_name "This is the teddy bear {b}Mia{/b} was playing with earlier."
+        player_name "Seems to have a bit of an odd funk to it..."
+        show player 441
+        player_name "Something smells kind of..."
+        show player 440 with dissolve
+        player_name "*Sniff*"
+        pause
+        show player 441 with dissolve
+        player_name "Fishy..."
+        player_name "Mr. Teddy, you've seen some terrible things haven't you."
+        player_name "I wonder why she likes him so much?"
+        show player 438
+        pause
+        show player 439
+        player_name "Looks like there's a hole in the back..."
+        player_name "Huh. He has a little pouch."
+        player_name "Looks like you could hide something in there."
+    else:
+
+        show player 438 with dissolve
+        pause
+        show player 439
+        player_name "This teddy bear has been in her room since we were kids."
+        player_name "I wonder why she still keeps it around..."
+    hide player with dissolve
+    $ callScreen(location_count)

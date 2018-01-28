@@ -22,7 +22,7 @@ label mias_upstairs:
         show helen 2
         helen "You have no business here, young man."
         show helen 3
-        helen "Stay away from my daughter, understood?"
+        helen "Stay away from my daughter. Understood?"
         show player 10
         show helen 1
         player_name "Yes, ma'am..."
@@ -34,7 +34,7 @@ label mias_upstairs:
         "*Muffled voices*"
         show player 30
         player_name "Huh?"
-        player_name "I hear voices coming from that {b}room on the left{/b}..."
+        player_name "( I hear voices coming from that {b}room on the left{/b}... )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_unexpected_visit:
@@ -42,17 +42,17 @@ label mias_upstairs:
         show player 30 with dissolve
         player_name "Huh?"
         show player 10
-        player_name "I hear voices coming from {b}Helen's{/b} bedroom..."
-        player_name "...{b}Mia{/b} must be in there with her mom."
+        player_name "( I hear voices coming from {b}Helen's{/b} bedroom... )"
+        player_name "( ...{b}Mia{/b} must be in there with her mom. )"
         hide player with dissolve
         hide player with dissolve
 
     elif M_helen.get_state() == S_helen_aftersex_mia_suspicious:
-        scene mia_house_upstairs_b
+        scene mia_house_upstairs_n_b
         show mia 44f at right
         show player 22 at left
         with dissolve
-        player_name "!!!"
+        player_name "!!!" with hpunch
         show mia 43f
         mia "{b}[firstname]{/b}?"
         show mia 44f
@@ -95,13 +95,13 @@ label mias_upstairs:
         player_name "...Bye..."
         hide player with dissolve
         $ gTimer.tick()
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ M_helen.trigger(T_mia_stay_alone)
     $ callScreen(location_count)
 
 label helens_locked_room_block:
     scene expression gTimer.image("mia_house_upstairs{}_b")
-    player_name "The door is locked."
+    player_name "( The door is locked. )"
     if M_mia.get_state() == S_mia_midnight_help:
-        player_name "I would have to find a {b}key{/b}..."
+        player_name "( I have to find a {b}key{/b}... )"
     $ callScreen(location_count)

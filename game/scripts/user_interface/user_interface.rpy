@@ -25,37 +25,34 @@ init python:
             helen_telescope_random = renpy.random.randint(0,1)
 
 screen ui:
-    if ui_lock_count == 0:
+    default ui_location = location_count
+
+    if not ui_locked():
+        $ suffix = ""
+        if ui_location not in ["Town Map", "Bedroom", "Erik's House", "Mia's House"] and M_player.get_state() != S_player_start:
+            $ suffix = "_noskip"
         imagemap:
             ground "buttons/ui_ground.png"
             if renpy.get_screen("town_map"):
-                idle "buttons/ui_idle_02.png"
+                idle "buttons/ui_idle_02{}.png".format(suffix)
                 hover "buttons/ui_hover_02.png"
             else:
-                idle "buttons/ui_idle.png"
+                idle "buttons/ui_idle{}.png".format(suffix)
                 hover "buttons/ui_hover.png"
             alpha False
             if renpy.get_screen("town_map"):
                 hotspot (16, 5, 71, 71) action [Hide("town_map"), Function(playMusic), Function(playSound), Jump("bedroom_dialogue")]
+            elif M_mom.get_state() == S_mom_bad_guys_driveby and not gTimer.is_dark() and location_count in ["Bedroom", "Hallway", "Sister's Bedroom", "Shower", "Attic", "Entrance", "Kitchen", "Dining Room", "Backyard", "Living Room", "Basement", "Mom's Bedroom", "Garage", "Home Front"]:
+                hotspot (16, 5, 71, 71) action [Function(hideScreen, location_count), Function(playMusic), Function(playSound), Jump("bad_guys_driveby")]
             else:
                 hotspot (16, 5, 71, 71) action [Function(hideScreen, location_count), Jump("map_dialogue")]
             hotspot (801, 5, 51, 68) action [Show("cellphone"), Play("audio", "audio/sfx_phone_notification.ogg")]
+            if new_message == True:
+                add "buttons/cellphone_app_alert.png" pos 835,5
             hotspot (867, 5, 60, 71) action If(renpy.get_screen("backpack"), [Hide("backpack"), Play("audio", "audio/sfx_phone_notification.ogg")], [Show("backpack"), Play("audio", "audio/sfx_backpack_open.ogg")])
             hotspot (946, 5, 68, 70) action ShowMenu("navigation")
-            hotspot (503, 44, 31, 25) action If(
-                location_count in ["Town Map", "Bedroom", "Erik's House", "Mia's House"],
-                Function(gTimer.tick),
-                NullAction()
-            )
-
-
-
-
-
-
-
-
-
+            if ui_location in ["Town Map", "Bedroom", "Erik's House", "Mia's House"] and M_player.get_state() != S_player_start:
+                hotspot (503, 44, 31, 25) action Function(gTimer.tick)
 
     else:
         imagemap:
@@ -67,7 +64,6 @@ screen ui:
             hotspot (801, 5, 51, 68) action [Show("cellphone"), Play("audio", "audio/sfx_phone_notification.ogg")]
             hotspot (867, 5, 60, 71) action If(renpy.get_screen("backpack"), [Hide("backpack"), Play("audio", "audio/sfx_phone_notification.ogg")], [Show("backpack"), Play("audio", "audio/sfx_backpack_open.ogg")])
             hotspot (946, 5, 68, 70) action ShowMenu("navigation")
-            hotspot (503, 44, 31, 25) action NullAction()
 
     text "{b}[inventory.money]{/b}" xpos 765 ypos 16 xalign 1.0
     text "{b}[location_count]{/b}" xpos 105 ypos 15 xalign 0.0

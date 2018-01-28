@@ -1,6 +1,13 @@
 default erik_mom_seen = False
 default mia_bear_seen = False
 
+label telescope:
+    scene black
+    $ M_player.set("telescope active", True)
+    $ M_player.set("telescope selection", None)
+    show screen telescope
+    call screen telescope_fake
+
 label erik_bedroom:
     if sister.started(sis_telescope01):
         scene
@@ -19,6 +26,7 @@ label erik_bedroom:
         show windowerikday 2 with fastdissolve
         pause
         hide windowerikday
+        hide screen telescope
         show telescope_caught 1
         with dissolve
 
@@ -63,6 +71,7 @@ label erik_bedroom:
         player_name "You could at least close the door!"
         $ sis_telescope01.finish()
         jump bedroom_dialogue
+
     elif gTimer.is_morning():
         if erik_telescope_random == 0:
             scene windowerikmorning01
@@ -101,7 +110,9 @@ label erik_bedroom:
         else:
             scene windoweriknight02
             player_name "( The blinds are closed. He must be using his lotion again. )"
-    $ callScreen(location_count)
+    $ M_player.set("telescope active", True)
+    show screen telescope
+    call screen telescope_fake
 
 label erikmom_bedroom:
     if sister.started(sis_telescope03):
@@ -116,6 +127,7 @@ label erikmom_bedroom:
         player_name "( I think she knows... )"
         player_name "( She's staring right at me. )"
         hide windowmomday
+        hide screen telescope
         show telescope_caught 1
         with dissolve
 
@@ -256,7 +268,9 @@ label erikmom_bedroom:
         else:
             scene windowmomnight02
             player_name "( She must be sleeping. )"
-    $ callScreen(location_count)
+    $ M_player.set("telescope active", True)
+    show screen telescope
+    call screen telescope_fake
 
 label mia_bedroom:
     if sister.started(sis_telescope02):
@@ -266,6 +280,7 @@ label mia_bedroom:
         player_name "( What's {b}Mia{/b} doing? )"
         player_name "( I hope she doesn't get caught doing that... )"
         hide windowmiaday
+        hide screen telescope
         show telescope_caught 1
         with dissolve
 
@@ -383,13 +398,37 @@ label mia_bedroom:
             player_name "( Oh, crap! )"
             player_name "( I think she just got caught... )"
             player_name "( Her {b}Mom{/b} must be furious... She's always so strict with her... )"
+            $ M_mia.set("telescope teddy seen", True)
             $ mia_bear_seen = True
         else:
 
             scene windowmianight02
             player_name "( She must be sleeping. )"
-    $ callScreen(location_count)
+    $ M_player.set("telescope active", True)
+    show screen telescope
+    call screen telescope_fake
 
+label helen_room:
+    if gTimer.is_morning():
+        scene windowhelenmorning01
+        player_name "( {b}Mia's mom{/b} is always praying in the morning... )"
+    elif gTimer.is_afternoon():
+        scene windowhelenday01
+        player_name "( They're not home... )"
+    else:
+        if helen_telescope_random == 0:
+            scene windowhelennight01
+            player_name "( It's odd how they both have their own bed... )"
+            player_name "( ...I've never seen them sleep together. )"
+        else:
+            scene window_helen_night02
+            player_name "( Oh boy. )"
+            player_name "( Looks like {b}Helen{/b} is mad at him... )"
+            player_name "..."
+            player_name "( {b}Harold{/b} always looks so sad... )"
+    $ M_player.set("telescope active", True)
+    show screen telescope
+    call screen telescope_fake
 
 label backyard:
     if gTimer.is_morning():
@@ -417,24 +456,6 @@ label backyard:
     else:
         scene windowbackyardnight01
         player_name "( {b}Mrs. Johnson{/b} left her yoga mat outside. )"
-    $ callScreen(location_count)
-
-label helen_room:
-    if gTimer.is_morning():
-        scene windowhelenmorning01
-        player_name "( {b}Mia's mom{/b} is always praying in the morning... )"
-    elif gTimer.is_afternoon():
-        scene windowhelenday01
-        player_name "( They're not home... )"
-    else:
-        if helen_telescope_random == 0:
-            scene windowhelennight01
-            player_name "( It's odd how they both have their own bed... )"
-            player_name "( ...I've never seen them sleep together. )"
-        else:
-            scene window_helen_night02
-            player_name "( Oh boy. )"
-            player_name "( Looks like {b}Helen{/b} is mad at him... )"
-            player_name "..."
-            player_name "( {b}Harold{/b} always looks so sad... )"
-    $ callScreen(location_count)
+    $ M_player.set("telescope active", True)
+    show screen telescope
+    call screen telescope_fake

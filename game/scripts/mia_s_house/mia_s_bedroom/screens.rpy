@@ -11,6 +11,13 @@ screen mias_bedroom:
 
     imagebutton:
         focus_mask True
+        pos (3,492)
+        idle "objects/object_teddy_01.png"
+        hover "objects/object_teddy_01b.png"
+        action Hide("mias_bedroom"), Jump("mia_bedroom_teddy")
+
+    imagebutton:
+        focus_mask True
         align (0.5,0.97)
         idle "boxes/auto_option_generic_01.png"
         hover "boxes/auto_option_generic_01b.png"

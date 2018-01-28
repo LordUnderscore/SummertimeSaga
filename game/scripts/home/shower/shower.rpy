@@ -1,7 +1,6 @@
 default fingered_mom = False
 default shower_sex_count = 0
 default sis_shower_intro_first = True
-default mom_shower_sex_first = True
 
 label shower_dialogue:
     $ location_count = "Shower"
@@ -9,80 +8,9 @@ label shower_dialogue:
         $ callScreen(location_count)
 
 
-    scene shower2
-    if quest17 in quest_list and quest17 not in completed_quests and wrench in inventory.items and quest17_1:
-        scene shower_cutscene2 with None
-        show text "Once I got back home I rushed into the bathroom and took out the wrench.\nI replaced the joint with a new length of pipe and tightened it until it stopped completely.\nIt kind of felt weird having {b}Mom{/b} and {b}Sis{/b} watch me the whole time.\nHowever, they seemed quite pleased…" at Position(xpos=500, ypos=700)
-        with dissolve
-        $ renpy.pause()
-        hide shower_cutscene2
-        hide text
-        scene shower2
-        show player 203f at right
-        show sis 11f at Position(xpos=0.3649,ypos=1.0000)
-        show mom 62f at left
-        with dissolve
-        mom "Wow!!"
-        mom "You did it!"
-        show sis 9f
-        show mom 61f
-        sis "Finally..."
-        show sis 11f
-        show mom 62f
-        mom "It was very nice of you to do this for us..."
-        show player 2f
-        show sis 11f
-        show mom 61f
-        player_name "It’s fine, {b}Mom{/b}."
-        player_name "It wasn’t that hard..."
-        player_name "And it’s something I needed to learn how to do, anyway..."
-        show player 29f
-        show sis 10f
-        show mom 62f
-        mom "My little boy is going to make a great husband one day!"
-        show player 203f
-        show sis 9f
-        show mom 61f
-        sis "Gosh, {b}Mom{/b}..."
-        sis "Do you really have to talk like that?"
-        show player 16f
-        show sis 12f
-        sis "And don’t get too excited; he still can’t tie his own shoes..."
-        show player 15f
-        show sis 11f
-        show mom 61f
-        player_name "Heyy!"
-        show player 16f
-        show sis 12f
-        sis "Haha!"
-        show player 1f
-        show sis 11f
-        show mom 62f
-        mom "Be nice to your {b}brother{/b}!"
-        show sis 9f
-        show mom 59f
-        sis "Anyway, can you two leave, now?"
-        show player 11f
-        sis "I'm going out tonight and need to get ready."
-        show sis 10f
-        show mom 60f
-        show player 1f
-        mom "Don’t stay out too late..."
-        show sis 9f
-        show mom 59f
-        sis "I’m not a kid anymore {b}Mom{/b}..."
-        $ completed_quests.append(quest17)
-        $ mom_dialogue_advance = True
-        $ inventory.items.remove(wrench)
-        hide mom
-        hide sis
-        hide player
-        with dissolve
-        jump hallway_dialogue
-
-    elif quest17 in quest_list and quest17 not in completed_quests and not quest17_1 and closed_valve == 0:
-        scene shower_cutscene1 with None
-        show text "I rush upstairs as I hear my {b}Sister{/b} yelling my name.\nI open the door and see her standing by, soaked with water and staring at the sink.\nAn exposed pipe had burst and was leaking water all over the floor…" at Position(xpos=500, ypos=700)
+    if M_mom.get_state() == S_mom_sis_check:
+        scene shower_cutscene1
+        show text "I rushed upstairs as I hear my {b}[sis_name]{/b} yelling my name.\nI opened the door and see her standing by, soaked with water and staring at the sink.\nAn exposed pipe had burst and was leaking water all over the floor..." at Position(xpos=500, ypos=700)
         with dissolve
         $ renpy.pause()
         hide shower_cutscene1
@@ -110,13 +38,11 @@ label shower_dialogue:
         hide player
         hide sis
         with dissolve
-        hide shower2
-        hide ui
-        $ closed_valve = 1
+        $ M_mom.trigger(T_mom_sis_order)
         jump hallway_dialogue
 
-    elif closed_valve == 1:
-        scene shower2 with None
+    elif M_mom.get_state() == S_mom_close_valve:
+        scene shower2
         show sis 27 at right
         show player 11 at left
         with dissolve
@@ -125,11 +51,10 @@ label shower_dialogue:
         hide player
         hide sis
         with dissolve
-        hide shower2
         jump hallway_dialogue
 
-    elif quest17 in quest_list and quest17 not in completed_quests and not quest17_1 and closed_valve == 2:
-        scene shower2 with None
+    elif M_mom.get_state() == S_mom_pipe_check:
+        scene shower2
         show sis 29 at Position (xpos=800)
         show player 11 at left
         with dissolve
@@ -145,7 +70,7 @@ label shower_dialogue:
         player_name "I’ve never fixed this kind of stuff before..."
         show player 5
         show sis 27
-        sis "Well I don’t know how, and neither does {b}Mom{/b}. So man up and find a solution, quick!"
+        sis "Well I don’t know how, and neither does {b}[mom_name]{/b}. So man up and find a solution, quick!"
         show player 10
         show sis 26
         player_name "Okay! Okay! I’m going to the store now to get a {b}wrench{/b}..."
@@ -205,314 +130,522 @@ label shower_dialogue:
         sis "Little brother has a thing for me!"
         hide sis with dissolve
         hide shower2
-        $ ui_lock_count = 0
-        $ quest17_1 = True
+        $ M_mom.trigger(T_mom_get_wrench)
+        $ unlock_ui()
         jump hallway_dialogue
 
-    elif quest17 in quest_list and quest17 not in completed_quests:
+    elif M_mom.get_state() == S_mom_fix_pipe and wrench not in inventory.items:
         scene shower2
         show player 11 at left
+        if not gTimer.is_dark():
+            show sis 27 at right
+            with dissolve
+            sis "Are you finally going to fix the sink?"
+            sis "Hurry it up already!"
+            hide sis with dissolve
+            show player 4
         with dissolve
-        player_name "I need to fix the {b}broken pipe{/b} first."
+        player_name "( I need a wrench to fix the broken pipe. )"
         hide player
         with dissolve
-        hide shower2
         jump hallway_dialogue
 
-    elif gTimer.is_morning() and shower == "sister":
+    elif M_mom.get_state() == S_mom_fix_pipe and wrench in inventory.items:
+        scene shower_cutscene2
+        show text "Once I got back home I rushed into the bathroom and took out the wrench.\nI replaced the joint with a new length of pipe and tightened it until it stopped completely.\nIt kind of felt weird having {b}[mom_name]{/b} and {b}[sis_name]{/b} watch me the whole time.\nHowever, they seemed quite pleased…" at Position(xpos=500, ypos=700)
+        with dissolve
+        $ renpy.pause()
+        hide shower_cutscene2
+        hide text
+        scene shower2
+        show player 203f at right
+        show sis 11f at Position(xpos=0.3649,ypos=1.0000)
+        show mom 62f at left
+        with dissolve
+        mom "Wow!!"
+        mom "You did it!"
+        show sis 9f
+        show mom 61f
+        sis "Finally..."
+        show sis 11f
+        show mom 62f
+        mom "It was very nice of you to do this for us..."
+        show player 2f
+        show sis 11f
+        show mom 61f
+        player_name "It’s fine, {b}[mom_name]{/b}."
+        player_name "It wasn’t that hard..."
+        player_name "And it’s something I needed to learn how to do, anyway..."
+        show player 29f
+        show sis 10f
+        show mom 62f
+        mom "My little boy is going to make a great husband one day!"
+        show player 203f
+        show sis 9f
+        show mom 61f
+        sis "Gosh, {b}[mom_name]{/b}..."
+        sis "Do you really have to talk like that?"
+        show player 16f
+        show sis 12f
+        sis "And don’t get too excited; he still can’t tie his own shoes..."
+        show player 15f
+        show sis 11f
+        show mom 61f
+        player_name "Hey!"
+        show player 16f
+        show sis 12f
+        sis "Haha!"
+        show player 1f
+        show sis 11f
+        show mom 62f
+        mom "Be nice to your {b}brother{/b}!"
+        show sis 9f
+        show mom 59f
+        sis "Anyway, can you two leave, now?"
+        show player 11f
+        sis "I'm going out tonight and need to get ready."
+        show sis 10f
+        show mom 60f
+        show player 1f
+        mom "Don’t stay out too late..."
+        show sis 9f
+        show mom 59f
+        sis "I’m not a kid anymore {b}[mom_name]{/b}..."
+        $ inventory.items.remove(wrench)
+        $ M_mom.trigger(T_mom_fixed_broken_pipe)
+        hide mom
+        hide sis
+        hide player
+        with dissolve
+        jump hallway_dialogue
+
+    elif is_here("sis"):
         $ playSound("<loop 1>audio/ambience_shower_room.ogg")
         jump sis_shower
 
     elif is_here("mom"):
         $ playSound("<loop 1>audio/ambience_shower_room.ogg")
-        scene shower06a
+        jump mom_shower
+    else:
+
+        scene shower1
+        player_name "( There's no one in here. )"
+    $ callScreen(location_count)
+
+label mom_shower:
+    if M_mom.get_state() == S_mom_shower_peek_after:
+        scene location_hallway
+        show player 3
+        player_name "( Mom's body looks real good but I don't want to peek at her too long... )"
+        player_name "( It would be really awkward if she caught me. )"
+        hide player with dissolve
+        $ location_count = "Hallway"
+        $ callScreen(location_count)
+
+    scene shower06a
+    if M_mom.get_state() == S_mom_shower_peek:
         player_name "!!!"
-        player_name "...{b}Mom's{/b} using her body soap..."
-        scene shower06b
+        show mom_shower 6a_6b_6c
+        player_name "( {b}[mom_name]'s{/b} in the shower! )"
+        player_name "( Wow... )"
+        player_name "( Her body looks great... )"
+        player_name "( I'm surprised she left the door open... )"
+        player_name "( I can see everything! )"
+        hide mom_shower 6a_6b_6c
+        scene shower06a
         player_name "..."
-        scene shower06c
-        player_name "...She's so pretty..."
         scene shower06d
-        player_name "I should go, before she sees me..."
+        player_name "( I better go before she sees me. )"
+        scene hallway
+        show player 79 with dissolve
+        player_name "Wow..."
+        player_name "I can't believe I just saw {b}[mom_name]{/b} naked like that."
+        player_name "...Maybe it's wrong to think that way but... She's very pretty."
+        show player 78 with dissolve
+        player_name "!!!"
+        show player 81
+        player_name "I better get out of here before {b}[mom_name]{/b} or {b}[sis_name]{/b} sees me like this!"
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_shower_admire)
+
+    elif M_mom.get_state() == S_mom_shower_walk_in:
+        player_name "Awesome!"
+        show mom_shower 6a_6b_6c
+        pause
+        player_name "I wonder if her breasts feel as soft as her legs."
+        player_name "They look...perfect."
+        hide mom_shower 6a_6b_6c
+        scene shower06a
+        pause
+        scene shower06d
+        player_name "I wonder what would happen if I just...walked in."
+        player_name "She would probably get mad but...what if she's ok with it."
+        show mom_shower 6a_6b_6c
+        player_name "I could always pretend like I didn't realize she was in the shower..."
+        menu:
+            "Go inside.":
+                player_name "I can't hold it... I'm going in."
+                hide mom_shower 6a_6b_6c
+                scene shower_closeup
+                show player 5 at left
+                show mom 35b at right
+                with dissolve
+                mom "!!!"
+                show player 29 with dissolve
+                player_name "Oops!"
+                show player 3
+                show mom 35c
+                mom "Sweetie, what are you doing in here?!!"
+                show mom 35
+                mom "I'm naked!"
+                show mom 34
+                show player 42 at Position (xoffset=38) with dissolve
+                player_name "Sorry, {b}[mom_name]{/b}! I didn't think anyone was in here!"
+                mom "..."
+                show mom 35
+                mom "It's...alright.."
+                mom "If you need something in the bathroom, just knock."
+                mom "I'll be done in a few minutes, okay?"
+                show mom 34
+                show player 37 with dissolve
+                player_name "Okay..."
+                show player 3 with dissolve
+                show mom 35
+                mom "Now let me finish my shower, Sweetie."
+                show mom 33
+                mom "And close the door behind you!"
+                show mom 32
+                show player 29
+                player_name "Sorry!"
+                hide player with dissolve
+                show mom 35
+                mom "Is this because of the-"
+                mom "..."
+                mom "Ever since the kissing he's been so... attached!"
+                mom "I should be more careful with him."
+                hide mom with dissolve
+                scene hallway
+                show player 24 with dissolve
+                player_name "( Ugh... That was awkward... )"
+                player_name "( Why did I think that was a good idea? )"
+                pause
+                show player 37 at Position (xoffset=41) with dissolve
+                player_name "( I hope she won't be mad at me. )"
+                hide player with dissolve
+                $ M_mom.trigger(T_mom_shower_admire)
+                $ gTimer.tick()
+                $ playSound()
+            "Leave.":
+
+                player_name "I probably shouldn't."
+                player_name "I don't want her to be upset."
+                hide mom_shower 6a_6b_6c
+    else:
+
+        show mom_shower 6a_6b_6c
         menu:
             "Walk inside":
                 $ playSound("<loop 0.5>audio/ambience_shower_interior.ogg")
-                if henchmen_count >= 2:
-                    scene shower_closeup
-                    with dissolve
-                    show mom 35 at right
-                    show player 1 at left
-                    mom "Oh! didn't expect you to just barge in like that."
-                    show mom 33
-                    mom "Though, now that you're here..."
-                    show mom 36
-                    mom "Care to join me, Sweetie?"
-                    hide mom
-                    hide player
-                    show moms 37 with dissolve
-                    label mom_shower_question:
-                        $ fingered_mom = False
-                        scene shower_closeup
-                        show moms 37_36
+                scene shower_closeup
+                with dissolve
+                show mom 35 at right
+                show player 1 at left
+                mom "Oh! didn't expect you to just barge in like that."
+                show mom 33
+                mom "Though, now that you're here..."
+                show mom 36
+                mom "Care to join me, Sweetie?"
+                hide mom
+                hide player
+                show moms 37 with dissolve
+                label mom_shower_question:
+                    $ M_mom.set("shower fingered", False)
+                scene shower_closeup
+                show moms 37_36
+                pause 4.8
+                show moms 35
+                player_name "I love showering with you, {b}[mom_name]{/b}"
+                show moms 76 with dissolve
+                pause .1
+                show moms 41_76
+                pause 4
+                show moms 42
+                mom "Can I help you down here too?"
+                show moms 43
+                mom "So..."
+                show moms 44
+                mom "What do you have planned today?"
+                show moms 43
+                mom "Something fun?"
+                show moms 72_71
+                pause 4
+                show moms 45 with dissolve
+                mom "You're all hard. It's up to you now, Sweetie..."
+                show moms 73 with dissolve
+                menu:
+                    "Wash mom.":
+                        player_name "I want to wash you this time."
+                        show moms 50 with dissolve
+                        mom "Go ahead, Sweetie."
+                        show moms 51
+                        pause 1
+                        show moms 52_53_52_51
                         pause 4.8
-                        show moms 35
-                        player_name "I love showering with you, {b}Mom{/b}"
-                        show moms 76 with dissolve
-                        pause .1
-                        show moms 41_76
-                        pause 4
-                        show moms 42
-                        mom "Can I help you down here too?"
-                        show moms 43
-                        mom "So..."
-                        show moms 44
-                        mom "What do you have planned today?"
-                        show moms 43
-                        mom "Something fun?"
-                        show moms 72_71
-                        pause 4
-                        show moms 45 with dissolve
-                        mom "You're all hard. It's up to you now, Sweetie..."
-                        if mom_count == 8 and mom_dialogue_advance:
-                            jump mom_shower_blowjob
-                    label mom_shower:
-                        show moms 73 with dissolve
-                        menu:
-                            "Wash mom.":
-                                player_name "I want to wash you this time."
-                                show moms 50 with dissolve
-                                mom "Go ahead, Sweetie."
-                                show moms 51
-                                pause 1
-                                show moms 52_53_52_51
-                                pause 4.8
-                                show moms 54
-                                player_name "So soft..."
-                                label mom_shower_boobs:
-                                    menu:
-                                        "Handjob.":
-                                            label mom_shower_hj:
-                                                show moms 45 with dissolve
-                                                pause .4
-                                                show moms 73_74
-                                                pause 4
-                                                show moms 73
-                                                player_name "{b}Mom{/b}, I'm gonna..."
-                                                show moms 47 at Position(xpos=526,ypos=768)
-                                                player_name "!!!"
-                                                show white zorder 4 with dissolve
-                                                show moms 47 at Position(xpos=526,ypos=768)
-                                                show playersex 33 zorder 3 at Position(xpos=549,ypos=508)
-                                                hide white with dissolve
-                                                pause
-                                                show moms 48
-                                                hide playersex
-                                                with dissolve
-                                                mom "You sure had a lot in there."
-                                            jump mom_shower_end
-
-                                        "Finger Mom." if pStats.chr() >= 3 and mom_count >= 8 and not fingered_mom:
-                                            player_name "I haven't washed {b}everywhere{/b} yet..."
-                                            show moms 55 at Position(xpos=688,ypos=768) with dissolve
-                                            pause .35
-                                            show moms 56_55
-                                            pause 4
-                                            mom "Almost there, Sweetie..."
-                                            show moms 56
-                                            mom "I-Aaaaah!!!"
-                                            show moms 50 at Position(xpos=498,ypos=768) with dissolve
-                                            mom "Where did you learn to do {b}that{/b} with your fingers?"
-                                            show moms 49
-                                            player_name "Nowhere, really..."
-                                            show moms 50
-
-                                            $ fingered_mom = True
-                                            jump mom_shower_boobs
-
-                                        "Blowjob." if mom_count >= 9:
-                                            label mom_shower_blowjob:
-                                                show moms 111 with dissolve
-                                                mom "Just stay still and let {b}Mommy{/b} take care of this."
-                                                show moms 110
-                                                player_name "Okay..."
-                                                show moms 112 at Position(xpos=512) with dissolve
-                                                pause .3
-                                                label bj_loop:
-                                                    show moms 113_114 at Position(xpos=513)
-                                                    pause 5
-                                                    show moms 112 at Position(xpos=512)
-                                                menu:
-                                                    "Cum in mouth":
-                                                        show moms 113 at Position(xpos=513)
-                                                        pause .3
-                                                        show moms 116 at Position(xpos=517)
-                                                        player_name "Ahhh!!!"
-                                                        mom "!!!"
-                                                        show white with dissolve
-                                                        hide white with dissolve
-                                                        pause
-                                                        show moms 117 at Position(xpos=523) with dissolve
-                                                        mom "Hmm!!!"
-                                                        show moms 118 at Position(xpos=516)
-                                                        mom "{b}*Gulp*{/b}"
-                                                        show moms 115 at Position(xpos=531)
-                                                        mom "I did not expect that.."
-                                                        show moms 110 at Position(xpos=512)
-                                                        player_name "Sorry, {b}Mom{/b}."
-                                                        show moms 111
-                                                        mom "It’s okay, Sweetie."
-                                                        mom "I kind of missed the taste of it."
-                                                        jump mom_shower_end
-                                                    "Cum on face":
-
-                                                        show moms 113 at Position(xpos=513)
-                                                        pause .3
-                                                        show moms 116 at Position(xpos=517)
-                                                        player_name "Ahhh!!!"
-                                                        mom "!!!"
-                                                        show white with dissolve
-                                                        show moms 115 at Position(xpos=531)
-                                                        show playersex 74 at Position(xpos=530,ypos=519)
-                                                        hide white with dissolve
-                                                        pause  
-                                                        show playersex 75 at Position(xpos=574,ypos=655)
-                                                        mom "Wow... It came out so fast!"
-                                                        mom "And I’m covered..."
-                                                        player_name "Sorry, {b}Mom{/b}."
-                                                        mom "It’s okay!"
-                                                        mom "Good thing we did it in the shower."
-                                                        mom "We can just clean it off!"
-                                                        jump mom_shower_end
-                                                    "Keep going":
-
-                                                        jump bj_loop
-
-                                        "Sex." if fingered_mom and pStats.chr() >= 7 and mom_count >= 12 and not mom_shower_sex_first:
-                                            show moms 49
-                                            player_name "Can I put it in?"
-                                            show moms 50
-                                            mom "Sweetie, I just came... It's a little too sensitive right now..."
-                                            mom "I'll finish you off with my hand."
-                                            jump mom_shower_hj
-
-                                        "Sex." if not fingered_mom and pStats.chr() >= 7 and mom_count >= 12 and not mom_shower_sex_first:
-                                            jump mom_shower_sex
-                                        "Leave":
-
-                                            jump mom_shower_end
-
-                            "Sex." if pStats.chr() >= 7 and mom_count >= 12 and mom_basement_sex == True and mom_shower_sex_first == True:
-                                label mom_shower_sex:
-                                    $ M_mom.set('sex speed', .4)
-                                    $ anim_toggle = False
-                                    $ xray = False
-                                    $ cum = False
-                                    $ mom_shower_sex_first = False
-                                    show moms 49 with dissolve
-                                    player_name "{b}Mom{/b}..."
-                                    player_name "Can I put it in?"
-                                    show moms 50
-                                    mom "Of course, Sweetie..."
-                                    show moms 57 at Position(xpos=688,ypos=768) with dissolve
-                                    mom "I've been waiting all day for this..."
-                                    show moms 58 with dissolve
-                                    mom "Haah!"
-                                    show moms 59 with dissolve
-                                    pause
-
-                                    label mom_shower_sex_loop:
-                                        hide screen shower_mom_sex_options
-                                        show screen xray_scr
-                                        pause
-                                        hide screen xray_scr
-
-                                        if anim_toggle:
-                                            $ animcounter = 0
-                                            while animcounter < 4:
-                                                hide moms
-                                                hide moms_xray
-                                                if xray == True:
-                                                    show moms_xray 56_55_54 at Position(xpos=844,ypos=784)
-                                                else:
-                                                    show moms 59_60_61 at Position(xpos=688,ypos=768)
-                                                pause 5
-
-                                                if animcounter == 1:
-                                                    mom "Ahhhh!!!{p=1}{nw}"
-                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
-                                                if animcounter == 3:
-                                                    mom "Cum for {b}Mommy{/b}!"
-                                                pause 3
-                                                $ animcounter += 1
-                                        else:
-
-                                            $ animcounter = 0
-                                            while animcounter < 4:
-                                                show moms 60 at Position(xpos=688, ypos=768)
-                                                pause
-                                                show moms 61
-                                                pause
-                                                show moms 59
-                                                pause
-                                                if animcounter == 1:
-                                                    mom "Ahhhh!!!{p=1}{nw}"
-                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
-                                                if animcounter == 3:
-                                                    mom "Cum for {b}Mommy{/b}!"
-
-                                        show screen shower_mom_sex_options
-                                        pause
-                                        jump mom_shower_sex_loop
-
-                                    label mom_shower_sex_cum:
-                                        hide screen xray_scr
-                                        hide screen mom_sex_options
-                                        mom "HAAAAAHH!"
-                                        $ cum = True
-                                        hide moms_xray
-                                        if xray:
-                                            show moms 60 at right
-                                        show moms 60
-                                        hide ui
+                        show moms 54
+                        player_name "So soft..."
+                        label mom_shower_boobs:
+                            menu:
+                                "Handjob.":
+                                    label mom_shower_hj:
+                                        show moms 45 with dissolve
+                                        pause .4
+                                        show moms 73_74
+                                        pause 4
+                                        show moms 73
+                                        player_name "{b}[mom_name]{/b}, I'm gonna..."
+                                        show moms 47 at Position(xpos=526,ypos=768)
+                                        player_name "!!!"
                                         show white zorder 4 with dissolve
+                                        show moms 47 at Position(xpos=526,ypos=768)
+                                        show playersex 33 zorder 3 at Position(xpos=549,ypos=508)
                                         hide white with dissolve
                                         pause
-
-                                        show playersex 53 zorder 3 at Position(xpos=663,ypos=632)
-                                        show moms 57
+                                        show moms 48
+                                        hide playersex
                                         with dissolve
-                                        hide ui
-                                        mom "You let out so much..."
-                                        mom "Such a mess."
-                                        mom "Good thing we're in the shower..."
-                                        jump mom_shower_end
-                else:
+                                        mom "You sure had a lot in there."
+                                    jump mom_shower_end
 
-                    scene shower_closeup
-                    show player 3 at left with dissolve
-                    show mom 35 at right with dissolve
-                    mom "Sweetie, what are you doing in here?"
-                    mom "If you need something in the bathroom, I'll be done in a few minutes."
-                    mom "Now, let me finish my shower, Sweetie."
-                    hide mom
-                    hide player
-                    jump hallway_dialogue
+                                "Finger Mom." if M_mom.is_set("sex available") and not M_mom.is_set("shower fingered"):
+                                    player_name "I haven't washed {b}everywhere{/b} yet..."
+                                    show moms 55 at Position(xpos=688,ypos=768) with dissolve
+                                    pause .35
+                                    show moms 56_55
+                                    pause 4
+                                    mom "Almost there, Sweetie..."
+                                    show moms 56
+                                    mom "I-Aaaaah!!!"
+                                    show moms 50 at Position(xpos=498,ypos=768) with dissolve
+                                    mom "Where did you learn to do {b}that{/b} with your fingers?"
+                                    show moms 49
+                                    player_name "Nowhere, really..."
+                                    show moms 50
+                                    $ M_mom.set("shower fingered", True)
+                                    jump mom_shower_boobs
+
+                                "Blowjob." if M_mom.is_set("sex available"):
+                                    show moms 111 with dissolve
+                                    mom "Just stay still and let {b}Mommy{/b} take care of this."
+                                    show moms 110
+                                    player_name "Okay..."
+                                    show moms 112 at Position(xpos=512) with dissolve
+                                    pause .3
+                                    label bj_loop:
+                                        show moms 113_114 at Position(xpos=513)
+                                        pause 5
+                                        show moms 112 at Position(xpos=512)
+                                    menu:
+                                        "Keep going":
+                                            jump bj_loop
+                                        "Cum in mouth":
+
+                                            show moms 113 at Position(xpos=513)
+                                            pause .3
+                                            show moms 116 at Position(xpos=517)
+                                            player_name "Ahhh!!!"
+                                            mom "!!!"
+                                            show white with dissolve
+                                            hide white with dissolve
+                                            pause
+                                            show moms 117 at Position(xpos=523) with dissolve
+                                            mom "Hmm!!!"
+                                            show moms 118 at Position(xpos=516)
+                                            mom "{b}*Gulp*{/b}"
+                                            show moms 115 at Position(xpos=531)
+                                            mom "I did not expect that.."
+                                            show moms 110 at Position(xpos=512)
+                                            player_name "Sorry, {b}[mom_name]{/b}."
+                                            show moms 111
+                                            mom "It’s okay, Sweetie."
+                                            mom "I kind of missed the taste of it."
+                                            jump mom_shower_end
+                                        "Cum on face":
+
+                                            show moms 113 at Position(xpos=513)
+                                            pause .3
+                                            show moms 116 at Position(xpos=517)
+                                            player_name "Ahhh!!!"
+                                            mom "!!!"
+                                            show white with dissolve
+                                            show moms 115 at Position(xpos=531)
+                                            show playersex 74 at Position(xpos=530,ypos=519)
+                                            hide white with dissolve
+                                            pause
+                                            show playersex 75 at Position(xpos=574,ypos=655)
+                                            mom "Wow... It came out so fast!"
+                                            mom "And I’m covered..."
+                                            player_name "Sorry, {b}[mom_name]{/b}."
+                                            mom "It’s okay!"
+                                            mom "Good thing we did it in the shower."
+                                            mom "We can just clean it off!"
+                                            jump mom_shower_end
+
+                                "Sex." if M_mom.is_set("sex available"):
+                                    if M_mom.is_set("shower fingered"):
+                                        show moms 49
+                                        player_name "Can I put it in?"
+                                        show moms 50
+                                        mom "Sweetie, I just came... It's a little too sensitive right now..."
+                                        mom "I'll finish you off with my hand."
+                                        jump mom_shower_hj
+                                    else:
+
+                                        jump mom_shower_sex
+                                "Leave":
+
+                                    jump mom_shower_end
+
+                    "Sex." if M_mom.is_set("sex available"):
+                        label mom_shower_sex:
+                            $ M_mom.set('sex speed', .4)
+                            $ anim_toggle = False
+                            $ xray = False
+                            $ cum = False
+                            show moms 49 with dissolve
+                            if randomizer() <= 33:
+                                player_name "{b}[mom_name]{/b}..."
+                                player_name "Can I put it in?"
+                                show moms 50
+                                mom "Of course, Sweetie..."
+                                show moms 57 at Position(xpos=688,ypos=768) with dissolve
+                                mom "I've been waiting all day for this..."
+                            elif randomizer() <= 66:
+                                player_name "{b}[mom_name]{/b}, I want to do it with you."
+                                show moms 50
+                                mom "Oh, Sweetie..."
+                                mom "You are insatiable."
+                                mom "Hold mommy's leg and give me that bad boy!"
+                                show moms 57 at Position(xpos=688,ypos=768) with dissolve
+                                pause
+                            else:
+                                player_name "{b}[mom_name]{/b}, I want you."
+                                show moms 50
+                                mom "I was hoping you did."
+                                mom "Give me that beautiful cock of yours."
+                                show moms 57 at Position(xpos=688,ypos=768) with dissolve
+                                pause
+                            show moms 58 with dissolve
+                            mom "Haah!"
+                            show moms 59 with dissolve
+                            pause
+                            label mom_shower_sex_loop:
+                                show screen xray_scr
+                                pause
+                                hide screen xray_scr
+                                label mom_shower_sex_loop_screen_skip:
+                                    if anim_toggle:
+                                        show moms 59_60_61 at Position(xpos=688,ypos=768)
+                                        pause 5
+                                        $ animcounter = 0
+                                        while animcounter < 4:
+                                            if randomizer() <= 33:
+                                                if animcounter == 1:
+                                                    mom "Ahhhh!!!{p=1}{nw}"
+                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Cum for {b}Mommy{/b}!{p=2}{nw}"
+                                            elif randomizer() <= 66:
+                                                if animcounter == 1:
+                                                    mom "Ohh!!{p=1}{nw}"
+                                                if animcounter == 2:
+                                                    mom "Sweetie! Deeper!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    player_name "{b}[mom_name]{/b}, I love you!{p=2}{nw}"
+                                                    mom "I love you too!{p=2}{nw}"
+                                            else:
+                                                if animcounter == 2:
+                                                    player_name "I love the way your tits bounce.{p=2}{nw}"
+                                                    mom "And I love your huge cock!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Ahh!!{p=1}{nw}"
+                                                    mom "Yes, that's the spot!{p=2}{nw}"
+                                            pause 3
+                                            $ animcounter += 1
+                                    else:
+
+                                        $ animcounter = 0
+                                        while animcounter < 4:
+                                            show moms 60 at Position(xpos=688, ypos=768)
+                                            pause
+                                            show moms 61
+                                            pause
+                                            show moms 59
+                                            pause
+                                            if randomizer() <= 33:
+                                                if animcounter == 1:
+                                                    mom "Ahhhh!!!{p=1}{nw}"
+                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Cum for {b}Mommy{/b}!{p=2}{nw}"
+                                            elif randomizer() <= 66:
+                                                if animcounter == 1:
+                                                    mom "Ohh!!{p=1}{nw}"
+                                                if animcounter == 2:
+                                                    mom "Sweetie! Deeper!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    player_name "{b}[mom_name]{/b}, I love you!{p=2}{nw}"
+                                                    mom "I love you too!{p=2}{nw}"
+                                            else:
+                                                if animcounter == 2:
+                                                    player_name "I love the way your tits bounce.{p=2}{nw}"
+                                                    mom "And I love your huge cock!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Ahh!!{p=1}{nw}"
+                                                    mom "Yes, that's the spot!{p=2}{nw}"
+                                            $ animcounter += 1
+
+                                call screen shower_mom_sex_options
+
+                            label mom_shower_sex_cum:
+                                if randomizer() <= 33:
+                                    player_name "UHHH!"
+                                elif randomizer() <= 66:
+                                    mom "Give it to me, Sweetie!"
+                                    mom "Cum in {b}Mommy's{/b} belly!"
+                                else:
+                                    mom "HAAAAAHH!"
+                                $ cum = True
+                                show moms 60
+                                show white zorder 4 with dissolve
+                                hide white with dissolve
+                                pause
+                                if randomizer() <= 50:
+                                    player_name "That felt good..."
+
+                                show playersex 53 zorder 3 at Position(xpos=663,ypos=632)
+                                show moms 57
+                                with dissolve
+                                if randomizer() <= 50:
+                                    mom "You let out so much..."
+                                    mom "Such a mess."
+                                    mom "Good thing we're in the shower..."
+                                else:
+                                    mom "Ohh!"
+                                    mom "You really had a lot in you!"
+                                    player_name "It's cause your pussy felt so good."
+                                    mom "Ha Ha Ha... Oh stop..."
+                                    mom "Good thing we're in the shower!"
+                                jump mom_shower_end
             "Leave":
 
-                if not mom_revealing_tommorow and learn_kissing:
-                    scene hallway
-                    show player 26 at left
-                    with dissolve
-                    player_name "( Now's my chance to sneak into {b}Mom's room{/b}! )"
-                    hide player
-                    with dissolve
-                $ location_count = "Hallway"
-                $ callScreen(location_count)
-    else:
-
-
-        scene shower1
-        player_name "There's no one in here."
+                player_name "I probably shouldn't."
+                player_name "I don't want her to be upset."
+    hide mom_shower
+    hide mom
+    hide moms
+    hide player
+    with dissolve
+    $ location_count = "Hallway"
     $ callScreen(location_count)
 
 label mom_shower_end:
@@ -520,17 +653,32 @@ label mom_shower_end:
     hide moms
     show moms 34 at Position(xpos=498,ypos=768)
     with dissolve
-    mom "That was fun, but we have to finish."
-    mom "I'm looking forward to our... next session."
-    mom "Make sure {b}[sis]{/b} doesn't see you leave the bathroom, okay?"
+    if randomizer() <= 50:
+        mom "That was fun, but we have to finish."
+        mom "I'm looking forward to our... next session."
+        mom "Make sure {b}[sis]{/b} doesn't see you leave the bathroom, okay?"
+    else:
+        mom "I hope your sister didn't hear us..."
+        show moms 35
+        player_name "Why? Would that stop you?"
+        show moms 34
+        mom "...Probably not."
+        mom "I like your cock too much."
+        mom "Go and grab me a towel."
+        show moms 35
+        player_name "Will do."
     $ gTimer.tick()
-    hide screen xray_scr
     $ playSound()
+    hide mom_shower
+    hide mom
+    hide moms
+    hide player
+    with dissolve
     jump hallway_dialogue
 
 label sis_shower:
     scene shower3 with None
-    player_name "( {b}[sis]{/b} is in the shower... )"
+    player_name "( {b}[sis_name]{/b} is in the shower... )"
     player_name "( ... and she hasn't noticed me yet? )"
     player_name "( Maybe I could... )"
     menu:
@@ -556,7 +704,7 @@ label sis_shower:
             else:
 
                 scene shower3
-                player_name "Oh shit! {b}[sis]{/b} is in the shower..."
+                player_name "Oh shit! {b}[sis_name]{/b} is in the shower..."
                 scene shower4 with hpunch
                 player_name "( CRAP!! She saw me! )"
                 scene shower2
@@ -597,7 +745,7 @@ label sis_shower:
             jump sis_shower_sex_intro
         "Leave.":
 
-            player_name "No, too risky..."
+            player_name "( No, too risky... )"
             jump hallway_dialogue
 
 label sis_shower_sex_intro:
@@ -609,7 +757,7 @@ label sis_shower_sex_intro:
         with fade
         pause
         show sis 163b with fastdissolve
-        pause  
+        pause
         show sis 106 with fastdissolve
         sis "Well well..."
         sis "I was wondering when you'd follow me in here."
@@ -717,7 +865,7 @@ label sis_shower_sex:
     sis "Got it?!"
     show sis 105
     show player 343
-    player_name "Yes, {b}[sis]{/b}..."
+    player_name "Yes, {b}[sis_name]{/b}..."
     show player 342
     show sis 109 at right
     sis "Good."
@@ -754,7 +902,7 @@ label sis_shower_sex:
     show player 347 with vpunch
     pause
     show sis 120
-    sis "Well... that was easy!"
+    sis "Well, that was easy!"
     show player 348 at Position(xpos=60)
     show sis 109 at Position(xpos=1024)
     sis "Since you seem to be enjoying this, maybe we can wash {b}another{/b} part of my body..."
@@ -815,7 +963,7 @@ label sis_shower_sex:
             sis "I didn't hear a {b}please{/b}."
             show player 349
             show sis 167
-            player_name "Can you please show me your pussy, {b}[sis]{/b}?"
+            player_name "Can you please show me your pussy, {b}[sis_name]{/b}?"
             show player 348
             show sis 166
             sis "You know what..."
@@ -848,7 +996,7 @@ label sis_shower_sex:
             sis "I didn't hear a {b}please{/b}."
             show sis 108
             show player 349
-            player_name "Can you please show me your pussy, {b}[sis]{/b}?"
+            player_name "Can you please show me your pussy, {b}[sis_name]{/b}?"
             show player 348
             show sis 109
             sis "Alright..."
@@ -923,7 +1071,7 @@ label sis_shower_sex:
                 "Beg." if not sister.known(sis_shower_cuddle04):
                     show player 349
                     show sis 167
-                    player_name "Can I... please help you, {b}[sis]{/b}?"
+                    player_name "Can I... please help you, {b}[sis_name]{/b}?"
                     show sis 164
                     show player 354
                     sis "WRONG!!" with hpunch
@@ -935,7 +1083,7 @@ label sis_shower_sex:
                     player_name "Can I please help you, {b}princess{/b}?"
                     show player 348
                     show sis 166
-                    sis "You know what..."
+                    sis "You know what?"
                     sis "I don't think you deserve this, even if you begged for it."
                     sis "You're too pathetic anyway."
                     show player 349
@@ -959,7 +1107,7 @@ label sis_shower_sex:
                     $ sis_shower_cuddle04.finish()
                     show sis 167
                     show player 349
-                    player_name "Can I... please help you, {b}[sis]{/b}?"
+                    player_name "Can I... please help you, {b}[sis_name]{/b}?"
                     show player 354
                     show sis 164
                     sis "WRONG!!" with hpunch
@@ -989,7 +1137,7 @@ label sis_shower_sex:
                     with fastdissolve
                     sis "Understood?!"
                     show sissex 95 at Position(xpos=511)
-                    player_name "Yes, {b}[sis]{/b}..."
+                    player_name "Yes, {b}[sis_name]{/b}..."
                     show sissex 92_93_94_95 at Position(xpos=511)
                     pause 8
                     show sissex 96 at Position(xpos=512)
@@ -1098,9 +1246,9 @@ label sis_shower_sex:
                                         show sissex 99 at Position(xpos=518)
                                         pause
                                         show sissex 100 at Position(xpos=497)
-                                        pause                                
+                                        pause
                                         show sissex 101 at Position(xpos=476)
-                                        pause                                       
+                                        pause
                                     hide sissex
                                     $ xray = False
                                     show sis 130 zorder 1 at Position(xpos=443)
@@ -1140,9 +1288,9 @@ label sis_shower_sex:
                                         show sissex 99 at Position(xpos=518)
                                         pause
                                         show sissex 100 at Position(xpos=497)
-                                        pause                                
+                                        pause
                                         show sissex 101 at Position(xpos=476)
-                                        pause                                             
+                                        pause
                                     show white
                                     show sissex 102 at Position(xpos=516)
                                     sis "{b}Aahhh!!!!{/b}" with hpunch

@@ -62,7 +62,7 @@ label mia_button_dialogue:
         mia "What happened?"
         show mia 7
         show player 14
-        player_name "I talked to your mom and I think I got through to her!"
+        player_name "I talked to your mom. I think I got through to her!"
         show player 13
         show mia 10
         mia "You did?! But how..."
@@ -70,7 +70,7 @@ label mia_button_dialogue:
         show player 17
         player_name "I know, it's a long story..."
         show player 14
-        player_name "...But everything will be fine, I promise!"
+        player_name "...But everything will be fine. I promise!"
         player_name "We spoke and she agreed to try changing things so they can get back together!"
         show player 13
         show mia 9
@@ -81,13 +81,13 @@ label mia_button_dialogue:
         player_name "...I feel like she will change her attitude."
         show player 13
         show mia 10
-        mia "Wow... You must of really worked hard on convincing her!"
+        mia "Wow... You must have really worked hard on convincing her!"
         show mia 7
         show player 17
-        player_name "I have a few tricks up my sleeve, ha ha!"
+        player_name "I have a few tricks up my sleeve. Ha ha!"
         show player 13
         show mia 10
-        mia "I'm so happy... Thank you, {b}[firstname]{/b}."
+        mia "I'm so happy! Thank you, {b}[firstname]{/b}!"
         show mia 7
         pause
         hide player
@@ -134,6 +134,21 @@ label mia_button_dialogue:
                     with dissolve
                     $ M_mia.set('sex speed', .175)
                     jump mia_strip_repeat
+                "I have to go.":
+                    show mia 8
+                    show player 10
+                    player_name "I'd love to... But it's getting late..."
+                    show mia 12
+                    show player 5
+                    mia "Oh, okay..."
+                    mia "...Will you come back soon?"
+                    show player 14
+                    show mia 8
+                    player_name "Yeah. I'll see what I can do!"
+                    show mia 12
+                    show player 1
+                    mia "Good night..."
+                    $ callScreen(location_count)
 
         elif M_mia.get_state() == S_mia_night_visit:
             jump mia_strip_show
@@ -144,7 +159,7 @@ label mia_button_dialogue:
             show mia 10 at right
             with dissolve
             mia "Hey!"
-            mia "I'm so happy you could make it."
+            mia "I'm so happy you could make it!"
             show mia 7
             show player 17
             player_name "It's fine. It just seemed like you had something important to talk about."
@@ -169,7 +184,7 @@ label mia_button_dialogue:
             show mia 12
             mia "I know it's bad..."
             mia "...But, I'm tired of being told what to do!"
-            mia "I just feel like doing something...spontaneous and to have fun!"
+            mia "I just feel like doing something... spontaneous and to have fun!"
             mia "To feel free..."
             show mia 8
             show player 10
@@ -205,12 +220,12 @@ label mia_button_dialogue:
             player_name "Thanks, but I don't even know what you want!"
             show player 13
             show mia 10
-            mia "Hmm... I want something...cute!"
+            mia "Hmm... I want something cute!"
             show mia 9
             mia "With pretty colors!"
             show mia 7
             show player 24
-            player_name "What if it's bad...and you end up hating it?"
+            player_name "What if it's bad, and you end up hating it?"
             show player 13
             show mia 10
             mia "I'm sure it will be fine!"
@@ -236,6 +251,19 @@ label mia_button_dialogue:
             $ M_mia.trigger(T_mia_delay)
             $ location_count = "Mia's House"
             $ callScreen(location_count)
+
+        elif M_mia.get_state() == S_mia_church_plan:
+            scene location_mia_bedroom_closeup
+            show player 13 at left
+            show mia 12 at right
+            with dissolve
+            player_name "Hey, {b}Mia{/b}."
+            player_name "Thought I'd sneak up and see you."
+            show player 5
+            show mia 10
+            mia "Aww, thanks. I appreciate it."
+            mia "What's up?"
+            show mia 7
         else:
 
             scene location_mia_bedroom_closeup
@@ -446,7 +474,7 @@ label mia_button_dialogue:
             player_name "Good morning, {b}Mia{/b}."
             show player 13
             show mia 10
-            mia "I was hoping you could help me with something...once again?"
+            mia "I was hoping you could help me with something... once again?"
             show mia 7
             show player 14
             player_name "Of course, {b}Mia{/b}. I don't mind!"
@@ -476,6 +504,68 @@ label mia_button_dialogue:
             with dissolve
             $ M_mia.trigger(T_mia_dinner_plan)
             $ callScreen(location_count)
+
+        elif M_mia.get_state() == S_mia_need_space:
+            scene school_science_c02
+            show player 10 at left
+            show mia 8 at right
+            with dissolve
+            player_name "Hey, {b}Mia{/b}..."
+            player_name "How are you?"
+            show player 5
+            show mia 12
+            mia "I'm doing okay."
+            show mia 8
+            mia "..."
+            show player 3 with dissolve
+            player_name "..."
+            show mia 12
+            mia "I think I just want some space right now."
+            show mia 8
+            show player 10 with dissolve
+            player_name "Alright..."
+            player_name "I'll talk to you later. Just let me know if you need something, though."
+            show player 5
+            show mia 12
+            mia "Thanks, {b}[firstname]{/b}..."
+            hide mia
+            hide player
+            with dissolve
+            $ callScreen(location_count)
+
+        elif M_mia.get_state() == S_mia_church_plan:
+            scene school_science_c02
+            show player 12 at left
+            show mia 8 at right
+            with dissolve
+            player_name "Hey, {b}Mia{/b}!"
+            player_name "How are you?"
+            show player 5
+            show mia 12
+            mia "I'm alright."
+            mia "But I wish things could go back to the way they were before at home."
+            show mia 8
+            show player 10
+            player_name "Sorry..."
+            show player 5
+            show mia 12
+            mia "Is there something you wanted to talk about?"
+            show mia 8
+
+        elif M_mia.get_state() == S_mia_urgent_help:
+            scene school_science_c02
+            show player 5 at left
+            show mia 12 at right
+            with dissolve
+            mia "Hey, {b}[firstname]{/b}!"
+            mia "Please {b}stop at my house later today{/b}, alright?"
+            show mia 8
+            show player 10
+            player_name "Alright."
+            show player 5
+            show mia 12
+            mia "Anything else you needed?"
+            show mia 8
         else:
 
             scene school_science_c02
@@ -486,12 +576,12 @@ label mia_button_dialogue:
             player_name "How are you?"
             show player 13
             show mia 10
-            mia "I'm doing alright."
+            mia "I'm doing okay."
             show mia 12
             mia "Not really looking forward to my next class."
             show mia 7
             show player 17
-            player_name "Yeah...I hear ya."
+            player_name "Yeah. I hear ya."
             show player 13
             show mia 10
             mia "Is there something you wanted to talk about?"
@@ -499,7 +589,7 @@ label mia_button_dialogue:
 
     elif location_count == "Mia's House Entrance":
         if M_mia.get_state() == S_mia_favor:
-            scene school_science_c02 with fade
+            scene mia_house_c with fade
             show player 13 at left
             show mia 10 at right
             with dissolve
@@ -539,6 +629,36 @@ label mia_button_dialogue:
             with dissolve
             $ M_mia.trigger(T_mia_dinner_plan)
             $ callScreen(location_count)
+
+        elif M_mia.get_state() == S_mia_helen_talk:
+            scene mia_house_c
+            show player 5 at left
+            show mia 12 at right
+            with dissolve
+            mia "Can you talk to my mom?"
+            show player 10
+            show mia 8
+            player_name "I'll try, {b}Mia{/b}."
+            hide mia
+            hide player
+            with dissolve
+            $ callScreen(location_count)
+
+        elif M_mia.get_state() in [S_mia_church_plan, S_mia_clues]:
+            scene mia_house_c
+            show player 13 at left
+            show mia 12 at right
+            with dissolve
+            mia "Hi, {b}[firstname]{/b}."
+            show player 5
+            pause
+            show player 10
+            show mia 8
+            player_name "Hello, {b}Mia{/b}."
+            show player 5
+            show mia 12
+            mia "What's up?"
+            show mia 8
         else:
 
             scene mia_house_c
@@ -553,6 +673,7 @@ label mia_button_dialogue:
             show mia 10
             mia "What's up?"
             show mia 7
+
     menu mia_dialogue:
         "Chat" if location_count == "Mia's Bedroom":
             show mia 7
@@ -589,7 +710,7 @@ label mia_button_dialogue:
             mia "Yup!"
             jump mia_dialogue
 
-        "Parents." if location_count == "Science Classroom":
+        "Parents." if location_count == "Science Classroom" and M_mia.get_state() in [S_mia_start, S_mia_do_homework, S_mia_wait_homework, S_mia_parent_blocking, S_mia_consult, S_mia_impress_harold, S_mia_parent_unblock, S_mia_tattoo_help, S_mia_find_easel, S_mia_draw_tattoo, S_mia_show_tattoo, S_mia_get_tattoo, S_mia_buy_tattoo, S_mia_return_favor, S_mia_night_visit, S_mia_strip_aftermath, S_mia_midnight_call, S_mia_midnight_help, S_mia_locked_room, S_mia_need_space, S_mia_concerning_visit, S_mia_helen_fight, S_mia_helen_talk, S_mia_helen_refusal]:
             show player 14
             player_name "So, how are your parents doing?"
             show player 13
@@ -625,7 +746,7 @@ label mia_button_dialogue:
             show player 11
             player_name "..."
             show mia 12
-            mia "I know, it's...weird."
+            mia "I know, it's... weird."
             show mia 9
             mia "Anyway! Let's talk about something else."
             show mia 7
@@ -712,7 +833,7 @@ label mia_button_dialogue:
             player_name "But, what was it you wanted again?"
             show player 5
             show mia 10
-            mia "Hmm... Something cute...and colorful!"
+            mia "Hmm... Something cute and colorful!"
             show mia 7
             show player 17
             player_name "Ha ha, alright."
@@ -747,7 +868,7 @@ label mia_button_dialogue:
             player_name "Is something wrong?"
             show player 11
             show mia 33
-            mia "Well, I was hoping for something...different?"
+            mia "Well, I was hoping for something different."
             show mia 34
             show player 25
             player_name "Oh..."
@@ -815,7 +936,7 @@ label mia_button_dialogue:
             show mia 9
             mia "Not right now, silly!"
             show mia 10
-            mia "How about...{b}Saturday{/b}?"
+            mia "How about {b}Saturday{/b}?"
             show mia 7
             show player 10
             player_name "Okay, I can meet you there on {b}Saturday{/b}."
@@ -900,39 +1021,58 @@ label mia_button_dialogue:
             show player 14
             player_name "What did you want to study together on?"
             show player 13
-            show mia 10
-            mia "We'd be studying things related to the last {b}French class homework{/b}. Did you hand that assignment in yet?"
-            show mia 7
-            if M_mia.get_state() == S_mia_do_homework:
-                show player 24
-                player_name "No. I'm still working on it."
-                show player 13
-                show mia 10
-                mia "Well once you have it done, {b}stop over to my house{/b}."
-                hide mia with dissolve
-                show player 5 with dissolve
-                player_name "( I should try and finish my {b}french homework{/b}, so I can study with {b}Mia{/b}. )"
-                show player 4 with dissolve
-                pause
-                player_name "( I wonder why she picked me to help her study. )"
-                player_name "( She usually studies with {b}Judith{/b} and she's really good in french... )"
-                player_name "( ...I'm not sure how I could help her. )"
-                show player 13 with dissolve
-                player_name "( At least we'll get to hang out, and she's really cute... )"
-                hide player with dissolve
-                $ callScreen(location_count)
+            if M_mia.get_state() not in [S_mia_start, S_mia_do_homework, S_mia_wait_homework, S_mia_parent_blocking, S_mia_consult, S_mia_impress_harold, S_mia_parent_unblock, S_mia_tattoo_help, S_mia_find_easel, S_mia_draw_tattoo, S_mia_show_tattoo, S_mia_get_tattoo, S_mia_buy_tattoo, S_mia_return_favor, S_mia_night_visit, S_mia_strip_aftermath, S_mia_midnight_call, S_mia_midnight_help, S_mia_locked_room, S_mia_need_space, S_mia_concerning_visit, S_mia_helen_fight, S_mia_helen_talk, S_mia_helen_refusal, S_mia_study_sex, S_mia_end]:
+                show mia 12
+                mia "I'm not really feeling up to it right now."
+                show mia 8
+                show player 10
+                player_name "Alright..."
+                show player 5
+                show mia 12
+                mia "Sorry."
+                mia "I just want my parents to be back together."
+                show mia 8
+                show player 10
+                player_name "I know."
+                player_name "Just let me know if you need my help."
+                show player 5
+                show mia 12
+                mia "Thanks, {b}[firstname]{/b}."
+                show mia 8
             else:
-
-                show player 14
-                player_name "I turned it in not that long ago."
-                show player 13
                 show mia 10
-                mia "When you have the time, {b}sneak up to my room{/b} in the evening so we can study then."
+                mia "We'd be studying things related to the last {b}French class homework{/b}. Did you hand that assignment in yet?"
                 show mia 7
-                show player 17
-                player_name "Will do!"
-                show player 13
-            jump mia_dialogue
+                if M_mia.get_state() == S_mia_do_homework:
+                    show player 24
+                    player_name "No. I'm still working on it."
+                    show player 13
+                    show mia 10
+                    mia "Well once you have it done, {b}stop over to my house{/b}."
+                    hide mia with dissolve
+                    show player 5 with dissolve
+                    player_name "( I should try and finish my {b}french homework{/b}, so I can study with {b}Mia{/b}. )"
+                    show player 4 with dissolve
+                    pause
+                    player_name "( I wonder why she picked me to help her study. )"
+                    player_name "( She usually studies with {b}Judith{/b} and she's really good in French... )"
+                    player_name "( ...I'm not sure how I could help her. )"
+                    show player 13 with dissolve
+                    player_name "( At least we'll get to hang out, and she's really cute... )"
+                    hide player with dissolve
+                    $ callScreen(location_count)
+                else:
+
+                    show player 14
+                    player_name "I turned it in not that long ago."
+                    show player 13
+                    show mia 10
+                    mia "When you have the time, {b}sneak up to my room{/b} in the evening so we can study then."
+                    show mia 7
+                    show player 17
+                    player_name "Will do!"
+                    show player 13
+                jump mia_dialogue
 
         "Study" if location_count == "Mia's Bedroom":
             if M_mia.is_set('study'):
@@ -945,14 +1085,14 @@ label mia_button_dialogue:
                 mia "Thanks for sneaking up here again."
                 show mia 13
                 show player 142
-                player_name "It's not too hard with your parents glued to the tv."
+                player_name "It's not too hard with your parents glued to the TV."
                 show player 143
                 show mia 16
                 mia "Yeah, it's the only thing that keeps them from yelling at each other."
                 mia "They really like watching reruns."
                 mia "I sometimes watch with them when I'm done with homework."
                 show mia 22
-                mia "Most of the time I stay up here though... It's more quiet."
+                mia "Most of the time I stay up here though... It's quieter."
                 show mia 14
                 show player 146
                 player_name "It kind of sucks your parents don't get along."
@@ -981,21 +1121,43 @@ label mia_button_dialogue:
                 $ callScreen(location_count)
             else:
 
-                show mia 7
-                show player 21
-                player_name "I guess we should be studying?"
-                show mia 9
-                show player 13
-                mia "Of course!"
-                show mia 10
-                mia "Let's do that, then."
-                show player 11
-                mia "Let me get all the textbooks and set up {b}on my bed{/b}?"
-                show mia 7
-                show player 21
-                player_name "Uh... Okay!"
-                jump mia_study
-
+                if M_mia.get_state() in [S_mia_start, S_mia_do_homework, S_mia_wait_homework, S_mia_parent_blocking, S_mia_consult, S_mia_impress_harold, S_mia_parent_unblock, S_mia_tattoo_help, S_mia_find_easel, S_mia_draw_tattoo, S_mia_show_tattoo, S_mia_get_tattoo, S_mia_buy_tattoo, S_mia_return_favor, S_mia_night_visit, S_mia_strip_aftermath, S_mia_midnight_call, S_mia_midnight_help, S_mia_locked_room, S_mia_need_space, S_mia_concerning_visit, S_mia_helen_fight, S_mia_helen_talk, S_mia_helen_refusal]:
+                    show mia 7
+                    show player 21
+                    player_name "I guess we should be studying?"
+                    show mia 9
+                    show player 13
+                    mia "Of course!"
+                    show mia 10
+                    mia "Let's do that, then."
+                    show player 11
+                    mia "Let me get all the textbooks and set up {b}on my bed{/b}?"
+                    show mia 7
+                    show player 21
+                    player_name "Uh... Okay!"
+                    jump mia_study
+                else:
+                    show player 12
+                    player_name "Did you want to study together?"
+                    show player 5
+                    show mia 12
+                    mia "I'm not really feeling up to it right now."
+                    show mia 8
+                    show player 10
+                    player_name "Alright..."
+                    show player 5
+                    show mia 12
+                    mia "Sorry."
+                    mia "I just want my parents to be back together."
+                    show mia 8
+                    show player 10
+                    player_name "I know."
+                    player_name "Just let me know if you need my help."
+                    show player 5
+                    show mia 12
+                    mia "Thanks, {b}[firstname]{/b}."
+                    show mia 8
+                    jump mia_dialogue
 
         "Nothing." if location_count == "Science Classroom":
             show player 10

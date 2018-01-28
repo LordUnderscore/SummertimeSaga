@@ -210,6 +210,13 @@ screen dianes_garden:
             hover gTimer.image("objects/object_crack_01b{}.png")
             action Hide("dianes_garden"), Jump("church_graveyard_dialogue")
 
+    imagebutton:
+        focus_mask True
+        align (0.5,0.97)
+        idle "boxes/auto_option_generic_01.png"
+        hover "boxes/auto_option_generic_01b.png"
+        action Hide("dianes_garden"), Jump("diane_front_yard")
+
 screen garden01_options:
     imagebutton:
         idle "backgrounds/menu_ground.png"

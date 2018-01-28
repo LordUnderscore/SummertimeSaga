@@ -19,7 +19,7 @@ label diane_bedroom_dialogue:
         player_name "( I don't know why she always thinks her body is old and ugly. )"
         player_name "..."
         player_name "( I should leave her alone and start working on the garden... )"
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ aunt_drunken_splur.finish()
 
     elif aunt.known(aunt_mouse_attack) and not aunt.over(aunt_mouse_attack):
@@ -154,7 +154,7 @@ label diane_bedroom_dialogue:
         player_name "(...)"
         player_name "(She looks... Great.)"
         hide player with dissolve
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ aunt_mouse_attack.finish()
         $ aunt.complete_events(aunt_mouse_attack)
         jump dianelobby_dialogue

@@ -171,11 +171,11 @@ label mrsj_poker:
 
             "Skip Mini-Game (Cheat)" if cheat_mode:
                 menu:
-                    "Mrs Johnson Loses":
+                    "Mrs. Johnson Loses":
                         jump mrsj_lost
                     "Erik Loses":
                         jump erik_lost
-                    "[player_name] Loses":
+                    "[firstname] Loses":
                         jump player_lost
     $ callScreen(location_count)
 

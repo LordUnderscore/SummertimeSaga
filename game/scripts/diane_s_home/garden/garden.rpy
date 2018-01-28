@@ -136,7 +136,7 @@ label garden_dialogue:
             dia "I mean, don't you think they look better than your {b}auntie's{/b} old boobs?"
             show aunt 167
             show player 21
-            player_name "No.. Yours look really good."
+            player_name "No. Yours look really good."
             show aunt 168
             show player 13
             dia "Awww!"
@@ -169,7 +169,7 @@ label garden_dialogue:
             player_name "Man, I can't remember the last time I've seen her that drunk before."
             player_name "I should probably make sure she made it to her bed."
             hide player with dissolve
-            $ ui_lock_count = 1
+            $ lock_ui()
             $ aunt.add_event(aunt_drunken_splur)
 
         elif quest09_3 and not aunt.known(aunt_mouse_attack):
@@ -190,7 +190,7 @@ label garden_dialogue:
             show player 10
             player_name "Maybe I should check up on her before I start working."
             hide player with dissolve
-            $ ui_lock_count = 1
+            $ lock_ui()
             $ aunt.add_event(aunt_mouse_attack)
 
         elif aunt_count == 0 and not aunt_dialogue_advance:
@@ -211,7 +211,7 @@ label garden_dialogue:
                 player_name "Hi, {b}Aunt Diane{/b}!"
                 show aunt 7 at right
                 show player 2 at left
-                player_name "Wow! You look so much like {b}Mom{/b}..."
+                player_name "Wow! You look so much like {b}[mom_name]{/b}..."
                 show aunt 6 at right
                 show player 1 at left
                 dia "Oh, she was always the prettier {b}twin{/b}..."
@@ -295,7 +295,7 @@ label garden_dialogue:
                         show aunt 3
                         dia "Ohh! Wonderful!"
                         show aunt 2
-                        dia "I knew I you'd be able to get one!"
+                        dia "I knew you'd be able to get one!"
                         dia "Alright! But before you start, I have to tell you what to do..."
                         show aunt 14 at right
                         show player 11 at left with dissolve
@@ -668,7 +668,7 @@ label garden_dialogue:
                 show aunt 14
                 dia "Oh! And don't take too long! We don't want the milk to go bad!."
                 $ quest_list.append(quest09)
-                $ ui_lock_count = 1
+                $ lock_ui()
             else:
 
                 scene garden
@@ -774,9 +774,9 @@ label garden_dialogue:
             show player 12
             player_name "She's usually outside around this time..."
             show player 56
-            player_name "She must be home somewhere."
+            player_name "She must be somewhere."
             hide player 56 with dissolve
-            $ ui_lock_count = 1
+            $ lock_ui()
 
         elif aunt_count == 6 and not aunt_dialogue_advance:
             if in_garden:
@@ -1027,7 +1027,7 @@ label garden_dialogue:
                 dia "Can we keep it between us?"
                 show aunt 24 at right
                 show player 29 at left
-                player_name "Don't worry... I won't tell {b}Mom{/b}."
+                player_name "Don't worry... I won't tell {b}[mom_name]{/b}."
                 player_name "It wasn't a big deal anyway."
                 hide player
                 show aunt 11 at left
@@ -1238,7 +1238,7 @@ label aunt_button_dialogue:
             with dissolve
             window hide
             pause
-            $ ui_lock_count = 0
+            $ unlock_ui()
             $ in_garden = True
             $ aunt_drink_active = False
             $ aunt_dialogue_advance = True
@@ -1265,7 +1265,7 @@ label aunt_button_dialogue:
                     player_name "I just wanted to say how much we miss your visits at the house!"
                     show aunt 7
                     show player 10
-                    player_name "You used to come by a lot more in the past, and hang out with {b}Mom{/b}..."
+                    player_name "You used to come by a lot more in the past, and hang out with {b}[mom_name]{/b}..."
                     show aunt 22
                     show player 13
                     dia "I..."
@@ -1843,7 +1843,7 @@ label aunt_button_dialogue:
 
                     show aunt 109 at Position (xpos=947)
                     show player 24
-                    player_name "I worry about {b}Mom{/b}..."
+                    player_name "I worry about {b}[mom_name]{/b}..."
                     show aunt 92 at right
                     show player 5
                     dia "What do you mean?"
@@ -1895,7 +1895,7 @@ label aunt_button_dialogue:
                             dia "You must've been quite horny."
                             show aunt 109 at Position (xpos=947)
                             show player 29
-                            player_name "I know. I have these urges, and I keep thinking about doing stuff with {b}Mom{/b}... And {b}You{/b}."
+                            player_name "I know. I have these urges, and I keep thinking about doing stuff with {b}[mom_name]{/b}... And {b}You{/b}."
                             show aunt 90 at right
                             show player 13
                             dia "My goodness! You must have something for twins!"
@@ -3214,7 +3214,7 @@ label aunt_masturbate:
         show player 108f
         player_name "I guess she has been lonely lately..."
         player_name "I should get back to work, and pretend as if I didn't see anything..."
-        $ ui_lock_count = 0
+        $ unlock_ui()
         $ aunt_masturbating_seen = True
         hide player 108f with dissolve
     $ aunt_dialogue_advance = True

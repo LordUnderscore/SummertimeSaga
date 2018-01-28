@@ -5,8 +5,11 @@ screen hallway:
     if not gTimer.is_dark() and sister.started(sis_final):
         $ act = [Hide("hallway"), Jump("hallway_dialogue_sis_spy")]
 
-    elif player_room_count == 1:
+    elif M_mom.get_state() == S_mom_debt_call:
         $ act = [Hide("hallway"), Jump("hallway_check_on_mom")]
+
+    elif M_mom.get_state() == S_mom_fetch_towel:
+        $ act = [Hide("hallway"), Jump("mom_midnight_swim_towel_block")]
 
     else:
         $ act = [Hide("hallway"), Function(playSound), Play("audio", sfxDoor()), Jump("bedroom_dialogue")]
@@ -25,8 +28,11 @@ screen hallway:
     elif gTimer.is_night():
         $ act = [Hide("hallway"), Jump("too_tired")]
 
-    elif player_room_count == 1:
+    elif M_mom.get_state() == S_mom_debt_call:
         $ act = [Hide("hallway"), Jump("hallway_check_on_mom")]
+
+    elif M_mom.get_state() == S_mom_fetch_towel:
+        $ act = [Hide("hallway"), Jump("mom_midnight_swim_towel_block")]
 
     else:
         $ act = [Hide("hallway"), Function(playSound), Play("audio", sfxDoor()), Jump("sis_bedroom_dialogue")]
@@ -42,7 +48,7 @@ screen hallway:
     if not gTimer.is_dark() and sister.started(sis_final):
         $ act = [Hide("hallway"), Jump("hallway_dialogue_sis_spy")]
 
-    elif player_room_count == 1:
+    elif M_mom.get_state() == S_mom_debt_call:
         $ act = [Hide("hallway"), Jump("hallway_check_on_mom")]
 
     else:
@@ -50,7 +56,7 @@ screen hallway:
 
     imagebutton:
         focus_mask True
-        if shower != "" and gTimer.is_morning():
+        if not shower.occupied():
             pos (526,108)
             idle "objects/object_door_04_busy.png"
             hover "objects/object_door_04b_busy.png"
@@ -62,10 +68,7 @@ screen hallway:
 
 
     if gTimer.is_dark():
-        $ act = [Hide("hallway"),
-                 Function(playSound),
-                 SetVariable("mom_masturbating", False),
-                 Jump("home_entrance")]
+        $ act = [Hide("hallway"), Function(playSound), Jump("home_entrance")]
 
     elif not gTimer.is_dark() and sister.started(sis_final):
         $ act = [Hide("hallway"), Jump("hallway_dialogue_sis_spy")]
@@ -83,6 +86,10 @@ screen hallway:
 
     if not gTimer.is_dark() and sister.started(sis_final):
         $ act = [Hide("hallway"), Jump("hallway_dialogue_sis_spy") ]
+
+    elif M_mom.get_state() == S_mom_fetch_towel:
+        $ act = [Hide("hallway"), Jump("mom_midnight_swim_towel_block")]
+
     else:
         $ act = [Hide("hallway"), Function(playSound), Jump("attic_entry_dialogue")]
 

@@ -2,8 +2,7 @@ default dex_first_visit = True
 
 label basket_court_dialogue:
     $ location_count = "Basket Ball Court"
-    if dex_first_visit and not gTimer.is_dark():
-        $ dex_first_visit = False
+    if M_dex.get_state() == S_dex_start and is_here("dexter"):
         scene basketball_b
         show player 5 at left
         show dexter 3 at right
@@ -18,7 +17,7 @@ label basket_court_dialogue:
         dex "That's a good one."
         show dexter 1
         show player 25
-        player_name "Sigh"
+        player_name "*Sigh*"
         show player 12
         player_name "What do you want, {b}Dexter{/b}?"
         show player 5
@@ -28,6 +27,7 @@ label basket_court_dialogue:
         show player 24
         player_name "..."
         hide player with dissolve
+        $ M_dex.trigger(T_dex_territory)
     $ callScreen(location_count)
 
 label dexter_court_dialogue:
@@ -54,10 +54,11 @@ label dexter_court_dialogue:
             dex "You know I'd beat you at anything."
             show dexter 4 with dissolve
             dex "Now fuck off before I decide to beat the shit out of you."
+            $ M_dex.trigger(T_dex_challenge)
         "Nothing.":
 
             show player 10
-            player_name "I...uhh...didn't mean to bother you."
+            player_name "I... uhh... didn't mean to bother you."
             player_name "I need to get to class."
             show player 5
             show dexter 3

@@ -17,7 +17,7 @@ label erik_thief_block2:
     $ callScreen(location_count)
 
 label erik_thief:
-    $ ui_lock_count = 0
+    $ unlock_ui()
     scene eriks_backyard_c
     show larry 1 at Position (xpos=800) with dissolve
     show player 12 at left with dissolve

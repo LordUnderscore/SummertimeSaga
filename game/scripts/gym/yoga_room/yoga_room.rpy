@@ -13,6 +13,9 @@ label yoga_room:
     $ callScreen(location_count)
 
 label mrsj_yoga_help:
+    if not Anna.known(anna_intro):
+        $ Anna.add_event(anna_intro)
+        $ anna_intro.finish()
     scene yoga_room_night
     if yoga_fail_retry:
         show player 385 at left with dissolve
@@ -20,7 +23,7 @@ label mrsj_yoga_help:
         anna "Ready to try again?"
         show anna 1
         show player 386
-        player_name "I think I got the positions memorized this time."
+        player_name "I think I've got the positions memorized this time."
         show player 385
         anna "Just tell me which positions to get into and I'll follow your lead."
     else:
@@ -44,7 +47,7 @@ label mrsj_yoga_help:
         show player 385
         show anna 12
         if Anna.known(anna_intro):
-            anna "Oh, has she told you what to do?"
+            anna "Oh, has she told you what to do, {b}[firstname]{/b}?"
         else:
             "Oh, has she told you what to do?"
         show anna 11

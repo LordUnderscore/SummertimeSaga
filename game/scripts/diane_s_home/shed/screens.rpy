@@ -15,7 +15,7 @@ screen dianes_shed:
             pos (650,500)
             idle "objects/object_milk_01.png"
             hover "objects/object_milk_01b.png"
-            action Function(inventory.get_item, item = milk_carton), Show("milk_popup", transition = dissolve), SetVariable("ui_lock_count", 0)
+            action Function(inventory.get_item, item = milk_carton), Show("milk_popup", transition = dissolve), Function(unlock_ui)
 
     if pump not in inventory.items and quest08 not in completed_quests:
         imagebutton:

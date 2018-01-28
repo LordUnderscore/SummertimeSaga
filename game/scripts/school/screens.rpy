@@ -1,5 +1,10 @@
 screen school_hall:
-    add gTimer.image("backgrounds/location_school{}.jpg")
+    if datetime.date.today().month == 12 and (datetime.date.today().day >= 15 and datetime.date.today().day <= 30):
+        add gTimer.image("backgrounds/location_school_christmas{}.jpg")
+    elif (datetime.date.today().month == 10 and datetime.date.today().day > 25) and (datetime.date.today().month == 11 and datetime.date.today().day < 2):
+        add gTimer.image("backgrounds/location_school_halloween{}.jpg")
+    else:
+        add gTimer.image("backgrounds/location_school{}.jpg")
 
     imagebutton:
         focus_mask True
@@ -131,7 +136,11 @@ screen school_hall:
         pos (36,235)
         idle gTimer.image("objects/object_locker_01{}.png")
         hover gTimer.image("objects/object_locker_01b{}.png")
-        action Hide("school_hall"), Jump("school_locker")
+        action Hide("school_hall"), If(
+                                       webcam_quest and not webcam_planted,
+                                       Jump("school_locker"),
+                                       Jump("school_locker")
+        )
 
 screen school_locker:
     add "backgrounds/location_school_locker_mc.jpg"
@@ -142,6 +151,14 @@ screen school_locker:
         idle "objects/object_paper_01.png"
         hover "objects/object_paper_01b.png"
         action Show("school_locker_list")
+
+    if card04 not in inventory.items:
+        imagebutton:
+            focus_mask True
+            pos (370,167)
+            idle "objects/object_card_02.png"
+            hover "objects/object_card_02b.png"
+            action Function(inventory.get_item, item = card04), Show("popup", Image = "boxes/popup_item_card5.png")
 
     imagebutton:
         focus_mask True
@@ -171,5 +188,5 @@ screen school_locker_list:
         add "buttons/locker_list_02.png" pos (453 + (35 * i)),247
         $ i += 1
 
-    if M_mia.get("progress count") == (M_mia.get("progress mark") * 8) or M_helen.get_state() != S_helen_start:
+    if M_mia.get("progress count") == M_mia.get("progress max") or M_helen.get_state() != S_helen_start:
         add "buttons/locker_list_01.png" pos 750,210

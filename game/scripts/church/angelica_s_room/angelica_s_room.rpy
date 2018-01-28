@@ -3,9 +3,9 @@ label church_angelicas_room_dialogue:
     if M_mia.get_state() == S_mia_church_plan and gTimer.is_weekend() and gTimer.is_morning():
         scene church_nun_b
         show player 12 with dissolve
-        player_name "This looks like the right place."
+        player_name "( This looks like the right place. )"
         show player 30
-        player_name "There must be something I can wear in here..."
+        player_name "( There must be something I can wear in here... )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_return_priest_outfit:
@@ -50,7 +50,7 @@ label church_angelicas_room_dialogue:
         show player 22
         player_name "!!!"
         show ang 2
-        ang "Unless...you do something for me."
+        ang "Unless... you do something for me."
         show ang 1
         show player 11
         player_name "..."
@@ -60,11 +60,11 @@ label church_angelicas_room_dialogue:
         show ang 2
         ang "Come visit me in a week."
         ang "I'll explain what I need from you..."
-        ang "...And don't you try hiding from me, or everyone will know what you did..."
+        ang "...And don't try hiding from me, or everyone will know what you did..."
         ang "...Especially, that lady. The one I saw you with!"
         show ang 1
         show player 10
-        player_name "Please don't say anything to her... I'll be back. I promise..."
+        player_name "Please don't say anything to her... I'll be back. I promise."
         show player 11
         show ang 2
         ang "Good."
@@ -89,14 +89,14 @@ label church_angelicas_room_dialogue:
         show player 5
         show ang 2
         ang "I knew I could count on you."
-        ang "You value our mutual agreement...and you value secrets."
+        ang "You value our mutual agreement... and you value secrets."
         ang "This is why I trust you will help me..."
         show ang 1
         show player 12
         player_name "So, what exactly are we talking about here?"
         show player 5
         show ang 2
-        ang "I perform a private sacrament at night...in my chambers..."
+        ang "I perform a private sacrament at night... in my chambers..."
         show player 11
         ang "Its purpose is to help members of our church struggling with their impurities..."
         ang "...I help them purge away their sins!"
@@ -136,12 +136,12 @@ label church_angelicas_room_dialogue:
         ang "The lady from the confessional."
         ang "Her name is {b}Helen{/b}."
         ang "She has always been a devout servant of our {b}Lord{/b}."
-        ang "She believes herself to be very righteous and would never agree to my...ritual."
+        ang "She believes herself to be very righteous and would never agree to my... ritual."
         ang "But she had such a look of shame after talking with you in the confessional."
         ang "You know her secret sins."
         ang "And you will bring her to me."
         ang "I personally enjoy purging the sins of the truly faithful."
-        ang "It is one of the most...satisfying...experiences of our religion."
+        ang "It is one of the most... satisfying... experiences of our religion."
         show ang 1
         show player 22
         player_name "!!!"
@@ -161,13 +161,13 @@ label church_angelicas_room_dialogue:
         show player 24
         player_name "{b}*Sigh*{/b}"
         show player 12
-        player_name "Okay, I'll give it a try...but what's this sacrament about anyway?"
+        player_name "Okay, I'll give it a try... but what's this sacrament about anyway?"
         show player 5
         show ang 2
         ang "You will find out, in due time."
         show ang 1
         show player 10
-        player_name "I... I should really get going...it's getting late."
+        player_name "I... I should really get going. It's getting late."
         show player 5
         show ang 2
         ang "Of course! Just make sure you remember our agreement."
@@ -196,7 +196,7 @@ label church_angelicas_room_dialogue:
         ang "Are you willing to follow my commands, in order to find the light?"
         show ang 1f
         show helen 24
-        helen "Yes, I am..."
+        helen "Yes. I am..."
         show helen 23
         show ang 2f
         ang "Good! There will be three levels towards your redemption."
@@ -278,7 +278,7 @@ label church_angelicas_room_dialogue:
         ang "Maybe you should take {b}Helen's{/b} place-"
         show ang 7f
         show player 10f
-        player_name "No! I'm...I'm just surprised to see you aren't wearing your robe!"
+        player_name "No! I'm... I'm just surprised to see you aren't wearing your robe!"
         show player 11f
         ang "..."
         show ang 9 with dissolve
@@ -290,7 +290,7 @@ label church_angelicas_room_dialogue:
         ang "Right, {b}Helen{/b}?"
         show ang 10
         show helen 34
-        helen "...Yes, your body...is a temple to our {b}Lord{/b}."
+        helen "...Yes, your body... is a temple to our {b}Lord{/b}."
         show helen 33
         show ang 8f with dissolve
         ang "In addition, from this point forward the purification sacrament requires me to lay my hands on the repentant filthy sinner."
@@ -306,7 +306,7 @@ label church_angelicas_room_dialogue:
         ang "Understood?"
         show ang 10
         show player 138f at Position (xoffset=-16) with dissolve
-        player_name "Y...Ye...Yes... {b}Sister Angelica{/b}."
+        player_name "Y... Ye... Yes... {b}Sister Angelica{/b}."
         hide player
         hide ang
         hide helen
@@ -324,19 +324,19 @@ label priest_outfit:
     scene church_nun_b
     show player 444f with dissolve
     player_name "..."
-    player_name "This thing is heavy!"
+    player_name "( This thing is heavy! )"
     show player 106f at Position (xoffset=1)
     show players robe f
     with dissolve
     player_name "Hmm..."
     show player 33f at Position (xoffset=1)
-    player_name "Looks like this could actually work."
+    player_name "( Looks like this could actually work. )"
     show player 14f at Position (xoffset=1)
-    player_name "Let's see if I can get close to {b}Helen{/b}..."
+    player_name "( Let's see if I can get close to {b}Helen{/b}... )"
     hide player
     hide players robe
     with dissolve
-    $ ui_lock_count = 1
+    $ lock_ui()
     $ M_mia.trigger(T_mia_priest_outfit)
     $ callScreen(location_count)
 
@@ -356,7 +356,7 @@ label angelicas_room_dialogue:
         show player 5f
         show ang 2f
         ang "I can, but I don't have any other sinners at the moment..."
-        ang "{b}Helen{/b} does not visit me anymore."
+        ang "{b}Helen{/b} doesn't visit me anymore."
         ang "She is probably having her sins purged by her husband as we speak."
         show ang 1f
         show player 12f
@@ -364,7 +364,7 @@ label angelicas_room_dialogue:
         player_name "You seem sad."
         show player 5f
         show ang 2f
-        ang "I am fine. I have no need for you services anymore."
+        ang "I'm fine. I've no need for you services anymore."
         ang "Leave me."
         show ang 1f
         show player 10f
@@ -376,7 +376,7 @@ label angelicas_room_dialogue:
     elif M_mia.get_state() == S_mia_harolds_thoughts:
         scene church_nun_n_c
         show player 12 with dissolve
-        player_name "I should talk with {b}Harold{/b} before I see {b}Sister Angelica{/b}."
+        player_name "( I should talk with {b}Harold{/b} before I see {b}Sister Angelica{/b}. )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_find_sinners:
@@ -401,7 +401,7 @@ label angelicas_room_dialogue:
                 show ang 1
                 show player 12
                 player_name "Oh, right... You want me to convince her."
-                player_name "Alright, I'll see what I can do..."
+                player_name "All right. I'll see what I can do..."
                 hide player
                 hide ang
                 with dissolve
@@ -431,12 +431,12 @@ label angelicas_room_dialogue:
                 show player 5f
                 show ang 6f
                 ang "I'm sure someone of your age knows of dirty lustful places that sell such things."
-                ang "Now stop testing my patience and bring me a whip."
+                ang "Now stop testing my patience, and bring me a whip."
                 hide ang
                 hide helen
                 with dissolve
                 show player 10f
-                player_name "Maybe the {b}Pink store at the mall{/b} carries something like that."
+                player_name "( Maybe the {b}Pink store at the mall{/b} carries something like that. )"
                 hide player with dissolve
             "Nothing.":
 
@@ -469,7 +469,7 @@ label angelicas_room_dialogue:
                 player_name "Am I right in assuming you meant to hand me this photograph?"
                 show player 461f at Position (xoffset=-1)
                 show ang 9 with dissolve
-                ang "Yes..."
+                ang "Yes."
                 ang "I don't make mistakes."
                 ang "Now hurry up and go get it!"
                 hide ang
@@ -478,8 +478,8 @@ label angelicas_room_dialogue:
                 show player 5f with dissolve
                 player_name "..."
                 show player 10f
-                player_name "I guess my last task is to get her a {b}strap on{/b}."
-                player_name "Only one place that would sell something like that is the {b}Pink store{/b}..."
+                player_name "( I guess my last task is to get her a {b}strap on{/b}. )"
+                player_name "( Only one place that would sell something like that is {b}Pink{/b}... )"
                 hide player with dissolve
             "Nothing.":
 
@@ -528,7 +528,7 @@ label helen_sacrement_training_part2:
     show helen 33
     show ang 17f
     show player 10f
-    player_name "Well I better get home. It's getting late."
+    player_name "Well I'd better get home. It's getting late."
     show player 11f
     show ang 18f
     ang "Hold. I want you to stay for this next step in {b}Helen's{/b} purification."
@@ -543,7 +543,7 @@ label helen_sacrement_training_part2:
     show ang 17f
     pause
     show ang 18f
-    ang "As you can see {b}Helen{/b} is still questioning my methods."
+    ang "As you can see: {b}Helen{/b} is still questioning my methods."
     ang "I want you to witness her punishment..."
     ang "...And see how I prefer to expunge all her vile deeds from her body."
     show ang 17f
@@ -574,7 +574,7 @@ label helen_sacrement_training_part2:
     ang "Remember, you came to me looking for a way to forgiveness and to make your body holy."
     show ang 17f
     show helen 34
-    helen "A...Alright if it will at least make me right in {b}God's{/b} eyes."
+    helen "A... All right. If it will at least make me right in {b}God's{/b} eyes."
     show helen 35 at Position (xoffset=12) with dissolve
     pause
     show player 106f
@@ -645,7 +645,7 @@ label helen_sacrement_training_part2:
     helen "Owwwwwww!"
     show helen whip 1 at Position (xpos=161)
     show ang 18 at Position (xoffset=312) with dissolve
-    ang "You are such a dirty stubborn woman..."
+    ang "You are such a dirty, stubborn woman..."
     ang "{b}Helen{/b}, I need to hear you say it..."
     helen "I'm-"
     hide helen
@@ -654,12 +654,12 @@ label helen_sacrement_training_part2:
     pause
     show ang 20 with dissolve
     "*CRACK!*" with hpunch
-    helen "Ahhh! I'm sorry! I...repent!"
+    helen "Ahhh! I'm sorry! I... repent!"
     show ang 19 with dissolve
     pause
     show ang 20 with dissolve
     "*CRACK!*" with hpunch
-    helen "Ahhhh! Please {b}Sister{/b}...punish...my body..."
+    helen "Ahhhh! Please {b}Sister{/b}... punish... my body..."
     show helen whip 1 at Position (xpos=161)
     show ang 18 at Position (xoffset=312) with dissolve
     ang "What's this? Are you enjoying this {b}Helen{/b}?"
@@ -669,7 +669,7 @@ label helen_sacrement_training_part2:
     pause
     show ang 20 with dissolve
     "*CRACK!*" with hpunch
-    helen "Ahhhh!!! Yes!!! I mean...no... I'm..."
+    helen "Ahhhh!!! Yes!!! I mean... no... I'm..."
     show ang 19 with dissolve
     pause
     show ang 20 with dissolve
@@ -689,7 +689,7 @@ label helen_sacrement_training_part2:
     "*CRACK!*" with hpunch
     show helen whip 1 at Position (xpos=161)
     show ang 18 at Position (xoffset=312) with dissolve
-    ang "So vulgar, {b}Helen{/b}... Now ask me to whip you more...slut."
+    ang "So vulgar, {b}Helen{/b}. Now ask me to whip you more... slut."
     show ang 17 at Position (xoffset=312)
 
     helen "..."
@@ -715,7 +715,7 @@ label helen_sacrement_training_part2:
     pause
     show ang 20 with dissolve
     "*CRACK!*" with hpunch
-    helen "More {b}Sister{/b}... I want...more..."
+    helen "More {b}Sister{/b}... I want... more..."
     show ang 19 with dissolve
     pause
     show ang 20 with dissolve
@@ -749,7 +749,7 @@ label helen_sacrement_training_part2:
     ang "Thank him for bringing me the whip, {b}Helen{/b}."
     show ang 17f
     show player 11f
-    helen "Thank...you...{b}[firstname]{/b}..."
+    helen "Thank... you... {b}[firstname]{/b}..."
 
     show ang 18f
     ang "You may leave us now, {b}[firstname]{/b}."
@@ -806,10 +806,10 @@ label helen_final_sacrament:
     show ang 9 at Position (xoffset=22) with dissolve
     ang "Right {b}Helen{/b}?"
     show ang 10 at Position (xoffset=22)
-    helen "Yes...{b}Sister Angelica{/b}..."
-    helen "My body...is waiting for your final ritual."
+    helen "Yes... {b}Sister Angelica{/b}..."
+    helen "My body... is waiting for your final ritual."
     helen "I want to be purified..."
-    helen "I understand now, that I need to be cleansed...from the inside..."
+    helen "I understand now, that I need to be cleansed... from the inside..."
     show ang 9 at Position (xoffset=22)
     ang "Do you have the object required to penetrate {b}Helen's{/b} sinful flesh?"
     show ang 10 at Position (xoffset=22)
@@ -819,7 +819,7 @@ label helen_final_sacrament:
     player_name "...This is what you wanted, right?"
     show player 458f
     show ang 8f at Position (xoffset=3) with dissolve
-    ang "It's...perfect."
+    ang "It's... perfect."
     ang "Put it on me."
     show ang 28 at Position (xpos=393) with dissolve
     show player 457f
@@ -963,8 +963,8 @@ label helen_final_sacrament:
     show ang 26f
     ang "Now then, I'm sure you're wondering why I asked for the item in the photo."
     ang "The last step of my purification sacrament requires a long...rod of judgement."
-    ang "You see...in order to cure {b}Helen{/b}, and become one with her body, she needs holy seeds."
-    ang "It needs to be planted deep...inside her!"
+    ang "You see... in order to cure {b}Helen{/b}, and become one with her body, she needs holy seeds."
+    ang "It needs to be planted deep... inside her!"
     ang "Only then can {b}Helen's{/b} inner soul be salvaged from all her sins."
     show ang 22_23_24f
     show player 430bf
@@ -989,8 +989,8 @@ label helen_final_sacrament:
     ang "...I leave this decision in your hands."
     show ang 25f
     show player 67cf
-    player_name "( If I do...{b}Helen{/b}. {b}Mia's{/b} parents won't get back together. )"
-    player_name "( And {b}Mia{/b}...{b}Mia{/b} will be so upset. )"
+    player_name "( If I do... {b}Helen{/b}. {b}Mia's{/b} parents won't get back together. )"
+    player_name "( And {b}Mia{/b}... {b}Mia{/b} will be so upset. )"
     show player 67bf
     show ang 26f
     ang "So? Will you help {b}Helen{/b}, or not?"
@@ -998,7 +998,7 @@ label helen_final_sacrament:
     menu mia_helen_route_spilt:
         "Fuck {b}Helen{/b}.":
             show player 430bf
-            player_name "I'll...I'll do it."
+            player_name "I'll... I'll do it."
             show player 430f
             show ang 26f
             ang "Perfect. Your deeds won't go unnoticed in the eyes of the {b}Lord{/b}, {b}[firstname]{/b}..."
@@ -1107,7 +1107,7 @@ label helen_final_sacrament:
                 ang "...And you have just made her your holy servant!"
                 show ang 33
                 show player 10f
-                player_name "What...does that mean?"
+                player_name "What... does that mean?"
                 show player 5f
                 show ang 34
                 ang "You have just bound {b}Helen's{/b} desires to you."
@@ -1124,12 +1124,12 @@ label helen_final_sacrament:
                 ang "Isn't that right, {b}Helen{/b}?"
                 show ang 33
                 helen "Y...yes... I must now serve, {b}[firstname]{/b}."
-                helen "I...will accept his holy seed...as a submissive and obedient wife should."
+                helen "I... will accept his holy seed... as a submissive and obedient wife should."
                 show ang 34
                 ang "Good, {b}Helen{/b}."
                 ang "This concludes our holy sacrament. You two may now leave in peace."
                 ang "I will continue to offer the various rituals of the sacrament at night."
-                ang "Feel free to visit if you wish to...participate."
+                ang "Feel free to visit if you wish to... participate."
                 show ang 33
                 show player 12f
                 player_name "That's nice and all..."
@@ -1166,7 +1166,7 @@ label helen_final_sacrament:
             show helens 13 with dissolve
             ang "{b}Helen{/b}, I've been looking forward to this moment."
             ang "You've always presented yourself as the most devout and pious member of {b}God's{/b} flock."
-            ang "I've always wanted to penetrate a dirty sinner's soul...and not using {b}God's Word{/b}."
+            ang "I've always wanted to penetrate a dirty sinner's soul... and not using {b}God's Word{/b}."
             helen "Oh?"
             ang "You are not greater than anyone else..."
             ang "You are worse..."
@@ -1174,7 +1174,7 @@ label helen_final_sacrament:
             ang "Receive my rod of judgement!"
             show helens 14 with dissolve
             helen "Ohhh!!!"
-            ang "Deeper slut!"
+            ang "Deeper, slut!"
             ang "Take it all!"
             $ M_helen.set('sex speed', .175)
             show helens 15_16_17_18_19 with dissolve
@@ -1301,11 +1301,11 @@ label angelica_room_new_dialogue:
     show ang 13 with dissolve
     pause
     show ang 14 with dissolve
-    ang "I'm restraining you still just in case you get some sinful impulse to cover yourself."
+    ang "I'm restraining you still, just in case you get some sinful impulse to cover yourself."
     hide helen
     show ang 15
     with dissolve
-    ang "I enjoy seeing you so submissively heading my commands, {b}Helen{/b}."
+    ang "I enjoy seeing you heeding my commands so submissively, {b}Helen{/b}."
     show helen whip 1 at Position (xpos=161)
     hide ang
     show ang 9 at Position (xpos=462)
@@ -1316,7 +1316,7 @@ label angelica_room_new_dialogue:
     menu angelica_new_dialouge_repeat:
         "Spanking.":
             show player 24f
-            player_name "I want to watch you...whip..."
+            player_name "I want to watch you... whip..."
             show player 29f
             player_name "Nevermind."
             show player 5f
@@ -1394,7 +1394,7 @@ label angelica_room_new_dialogue:
             "*CRACK!*" with hpunch
             show helen whip 1 at Position (xpos=161)
             show ang 17 at Position (xoffset=312) with dissolve
-            helen "Ahhhhh!!! {b}[firstname]{/b}! I...love...his fat cock!"
+            helen "Ahhhhh!!! {b}[firstname]{/b}! I... love... his fat cock!"
             hide helen
             show ang 19
             with dissolve
@@ -1419,8 +1419,8 @@ label angelica_room_new_dialogue:
             "*CRACK!*" with hpunch
             show helen whip 1 at Position (xpos=161)
             show ang 17 at Position (xoffset=312) with dissolve
-            helen "More {b}Sister{/b}... I want...more..."
-            helen "Why...are...you waiting?"
+            helen "More {b}Sister{/b}... I want... more..."
+            helen "Why... are... you waiting?"
             hide helen
             show ang 19
             with dissolve
@@ -1457,7 +1457,7 @@ label angelica_room_new_dialogue:
         "Spread {b}Helen{/b}.":
 
             show player 24f
-            player_name "Could you...spread {b}Helen's{/b}..."
+            player_name "Could you... spread {b}Helen's{/b}..."
             show ang 9
             ang "Pussy?"
             ang "I suppose I could."

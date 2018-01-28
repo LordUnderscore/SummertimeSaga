@@ -96,7 +96,7 @@ label ross_button_dialogue:
             player_name "I was wondering what we're doing today."
             show ross 2
             show player 1f
-            ross "That's alright."
+            ross "That's okay."
             ross "Why don't you stick around and grab a canvas?"
             ross "We can paint happy little fruits together!!"
             show ross 1
@@ -117,16 +117,17 @@ label easel_dialogue:
     scene art_classroom_b
     if M_mia.get_state() == S_mia_show_tattoo:
         show player 14 with dissolve
-        player_name "I should show the drawing I made to {b}Mia{/b} first, before I make another one."
+        player_name "( I should show the drawing I made to {b}Mia{/b} first, before I make another one. )"
         hide player with dissolve
     else:
 
         show player 35 with dissolve
-        player_name "What should I draw today?"
+        player_name "( What should I draw today? )"
         menu:
             "Tattoo ideas.":
                 scene school_art_tattoos
-                player_name "Hmm... What should I draw for {b}Mia{/b}..."
+                player_name "Hmm..."
+                player_name "( What should I draw for {b}Mia{/b}... )"
                 call screen tattoos
                 hide player with dissolve
                 scene school_art_cs01
@@ -141,8 +142,8 @@ label easel_dialogue:
                 show player 381 with dissolve
                 player_name "Not bad!"
                 show player 386
-                player_name "I should go and show {b}Mia{/b} what I did."
-                player_name "Hopefully, she likes it..."
+                player_name "( I should go and show {b}Mia{/b} what I made. )"
+                player_name "( Hopefully, she'll like it... )"
                 hide player with dissolve
                 $ M_mia.trigger(T_mia_visit)
                 show expression [drawn_tattoo] at truecenter with dissolve

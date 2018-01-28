@@ -12,7 +12,7 @@ label sis_bedroom_dialogue:
 
 
 
-    scene expression gTimer.image("sisbedroom{}") with None
+    scene expression gTimer.image("sisbedroom{}")
     if not gTimer.is_dark():
         if sis_bedroom_count == 0:
             scene sisbedroom
@@ -24,16 +24,16 @@ label sis_bedroom_dialogue:
             player_name "( Maybe I can look around a bit! )"
             hide player 18 at left with dissolve
 
-        elif sister.started(sis_hallway02) and sister.over(sis_telescope02) and played_with_mom_panties == 0:
+        elif sister.started(sis_hallway02) and sister.over(sis_telescope02):
             scene sisbedroom_closeup
             show sis 22 at right
             show player 11 at left with dissolve
-            sis "Leave me alone, already! Why don't you just pester {b}Mom{/b} for some of her panties, pervert!"
+            sis "Leave me alone, already! Why don't you just pester {b}[mom_name]{/b} for some of her panties, pervert!"
             sis "She has so many in {b}her drawer{/b}, and leaves her clothes scattered throughout {b}her room{/b}!!"
             jump hallway_dialogue
 
         elif sis_bedroom_count == 1 and not sis_panties_trade and look_for_panties:
-            $ ui_lock_count = 0
+            $ unlock_ui()
             scene sisbedroom
             show player 22 at left
             show sis 7b at right
@@ -57,7 +57,7 @@ label sis_bedroom_dialogue:
             show player 22
             show sis 9c at Position(xpos=937)
             sis "Oh, you better have a {b}really{/b} good fucking explanation!"
-            sis "Unless you want {b}Mom{/b} to know about you stealing from me."
+            sis "Unless you want {b}[mom_name]{/b} to know about you stealing from me."
             show player 23
             show sis 6b
             player_name "No!"
@@ -123,8 +123,6 @@ label sis_bedroom_dialogue:
             sis "So? You taking them or not?!"
             show sis 6b
             $ bedtable01_count = 1
-            $ sis_bedroom_count = 2
-            $ sis_panties_trade = True
             if inventory.money >= panties.cost:
                 menu:
                     "Here's $100.":
@@ -149,6 +147,8 @@ label sis_bedroom_dialogue:
                         show unlock17 at truecenter
                         pause
                         hide unlock17 with dissolve
+                        $ sis_bedroom_count = 2
+                        $ sis_panties_trade = True
                         jump hallway_dialogue
                     "I don't need it.":
 
@@ -171,7 +171,7 @@ label sis_bedroom_dialogue:
                         sis "Too bad. Get out of my room, you pervert!"
                         jump hallway_dialogue
 
-        elif sis_bedroom_count == 2 and not sis_dialogue_advance and mom_count > 6 and not sis_diary_unlocked or sis_bedroom_count == 2 and not sis_dialogue_advance and mom_count == 6 and mom_dialogue_advance and not sis_diary_unlocked:
+        elif sis_bedroom_count == 2 and not sis_dialogue_advance and not sis_diary_unlocked:
             scene sisbedroom_closeup
             show sis 20 at right
             show player 24 at left with dissolve
@@ -211,7 +211,7 @@ label sis_bedroom_dialogue:
                 "Mom needs you." if sister.over(sis_shower_cuddle01):
                     show sis 21
                     show player 108f
-                    player_name "Umm... Actually, {b}Mom{/b} needs to..."
+                    player_name "Umm... Actually, {b}[mom_name]{/b} needs to..."
                     show player 111f
                     player_name "...Talk to you about something!"
                     show sis 22
@@ -333,14 +333,14 @@ label sis_bedroom_dialogue:
             player_name "( She must love the attention she's getting... and the money. )"
             hide player with dissolve
             $ sis_final.finish()
-            $ ui_lock_count = 0
+            $ unlock_ui()
             jump hallway_dialogue
         else:
 
             $ callScreen(location_count)
     elif gTimer.is_dark() and not in_sis_room:
         scene sisbedroom_clear
-        player_name "( {b}[sis]{/b}'s sleeping. )"
+        player_name "( {b}[sis_name]{/b}'s sleeping. )"
         player_name "( I have to be real quiet or she might hear me... )"
         player_name "( ...Don't want to wake her up, or I'm dead! )"
     $ in_sis_room = False
@@ -380,7 +380,7 @@ label sneak_in_sis_bed:
             show sissex 53
             sis "What the {b}FUCK{/b} are you doing??!!" with hpunch
             show sissex 91
-            player_name "Don't yell! You're gonna wake up {b}Mom{/b}..."
+            player_name "Don't yell! You're gonna wake up {b}[mom_name]{/b}..."
             show sissex 53
             sis "You think I {b}CARE{/b}??! What's wrong with you?!"
             show sissex 91
@@ -425,7 +425,7 @@ label sneak_in_sis_bed:
                     show sissex 53
                     sis "What the {b}FUCK{/b} are you doing??!!" with hpunch
                     show sissex 91
-                    player_name "Don't yell! You're gonna wake up {b}Mom{/b}..."
+                    player_name "Don't yell! You're gonna wake up {b}[mom_name]{/b}..."
                     show sissex 53
                     sis "You think I {b}CARE{/b}??! What's wrong with you?!"
                     show sissex 91
@@ -502,7 +502,7 @@ label sneak_in_sis_bed:
                             show sissex 67
                             sis "What the {b}FUCK{/b} are you doing??!!" with hpunch
                             show sissex 65b
-                            player_name "Don't yell! You're gonna wake up {b}Mom{/b}..."
+                            player_name "Don't yell! You're gonna wake up {b}[mom_name]{/b}..."
                             show sissex 67
                             sis "You think I {b}CARE{/b}??! What's wrong with you?!"
                             show sissex 65b
@@ -591,7 +591,7 @@ label sneak_in_sis_bed:
                                             show sissex 79b at Position(xpos=720) with fastdissolve
                                             sis "What are you DOING?!!"
                                             show sissex 78 at Position(xpos=713) with fastdissolve
-                                            player_name "I want you, {b}[sis]{/b}!!!"
+                                            player_name "I want you, {b}[sis_name]{/b}!!!"
                                             $ anim_toggle = False
                                             $ xray = False
                                             show screen sex_xray_anim_buttons
@@ -680,7 +680,7 @@ label sneak_in_sis_bed:
                                                         sis "[str_warn]What the {b}FUCK{/b}??" with vpunch
                                                         sis "[str_warn]Were you about to cum INSIDE ME??"
                                                         show sissex 89
-                                                        player_name "Don't yell! You're gonna wake up {b}Mom{/b}..."
+                                                        player_name "Don't yell! You're gonna wake up {b}[mom_name]{/b}..."
                                                         show sissex 87
                                                         sis "[str_warn]What's wrong with you?!"
                                                         show sissex 88
@@ -901,7 +901,7 @@ label sis_button_dialogue:
                 "I love you." if sister.over(sis_final2):
                     if sis_confession_first:
                         show player 2 at left
-                        player_name "Hey, {b}[sis]{/b}..."
+                        player_name "Hey, {b}[sis_name]{/b}..."
                         show player 29
                         player_name "I... I wanted to tell you something..."
                         show player 1
@@ -962,7 +962,7 @@ label sis_button_dialogue:
                     else:
 
                         show player 14 at left
-                        player_name "Hey {b}[sis]{/b}..."
+                        player_name "Hey {b}[sis_name]{/b}..."
                         player_name "Just letting you know that I like you a lot."
                         show player 1
                         show sis 9 at Position(xpos = 937)
@@ -1941,7 +1941,7 @@ label sis_button_dialogue:
                         sis "I'll do it for {b}$500{/b}."
                         show player 12
                         show sis 8
-                        player_name "That's a lot of money, {b}[sis]{/b}..."
+                        player_name "That's a lot of money, {b}[sis_name]{/b}..."
                         show player 11
                         show sis 7
                         sis "Excuse me?!"
@@ -2605,7 +2605,7 @@ label sis_button_dialogue:
                                             show sis 166
                                             show player 11
                                             sis "But, don't start getting ideas! I'm doing this because it's getting me loads of money..."
-                                            sis "Oh, and do me a favor: try not to spend TOO much time with {b}Mom{/b}..."
+                                            sis "Oh, and do me a favor: try not to spend TOO much time with {b}[mom_name]{/b}..."
                                             sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
                                             sis "My subscribers now expect this kind of stream {b}regularly{/b}."
                                             show sis 164
@@ -2726,7 +2726,7 @@ label sis_button_dialogue:
                         sis "...and you better do EXACTLY as I say! Got it?!"
                         show sis 82
                         show player 21
-                        player_name "Yes, {b}[sis]{/b}..."
+                        player_name "Yes, {b}[sis_name]{/b}..."
                         scene black with fade
                         scene sisbedroom
                         show sis 166 zorder 1 at right
@@ -2882,7 +2882,7 @@ label sis_button_dialogue:
                         show sis 166
                         sis "This was {b}strictly business{/b}, nothing else!"
                         sis "Don't start getting ideas. I'm doing this to earn good money..."
-                        sis "Oh, and do me a favor, try not to spend TOO much time with {b}Mom{/b}..."
+                        sis "Oh, and do me a favor, try not to spend TOO much time with {b}[mom_name]{/b}..."
                         sis "I know what you two are up to, but I need you {b}fresh{/b} and {b}rested{/b}."
                         sis "My subscribers are expecting more cam shows this week."
                         show sis 164
@@ -2917,7 +2917,7 @@ label sis_button_dialogue:
                             sis "I told you {b}NOT{/b} to cum inside, didn't I?!" with hpunch
                             show player 10
                             show sis 165
-                            player_name "I'm sorry, {b}[sis]{/b}... I just couldn't stop myself! It felt {b}SO GOOD{/b}!"
+                            player_name "I'm sorry, {b}[sis_name]{/b}... I just couldn't stop myself! It felt {b}SO GOOD{/b}!"
                             show sis 166
                             show player 11
                             sis "Do you have any idea how much {b}trouble{/b} we can get into if I get {b}pregnant{/b}?!"
@@ -2959,7 +2959,7 @@ label sis_button_dialogue:
                             show sis 166
                             sis "This was {b}strictly business{/b}, nothing else!"
                             sis "Don't start getting ideas. I'm doing this to earn good money..."
-                            sis "Oh, and do me a favor, and try not to spend TOO much time with {b}Mom{/b}..."
+                            sis "Oh, and do me a favor, and try not to spend TOO much time with {b}[mom_name]{/b}..."
                             sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
                             sis "My subscribers are expecting more cam shows this week."
                             show sis 164
@@ -3155,10 +3155,10 @@ label sis_button_dialogue:
                     show player 13
                     show sis 12
                     sis "Sure! I'm bored."
-                    sis "Let's go quick, while {b}Mom{/b} is downstairs..."
+                    sis "Let's go quick, while {b}[mom_name]{/b} is downstairs..."
 
                     scene home_hallway_cutscene with fade
-                    show text "We quickly snuck out into the hallway and into my room.\nSis looked really eager about it, pulling me by my shirt.\nI never did things with her before, she always seemed to hate being around me...\nEver since that cam show, we've been much closer." at Position (xpos= 512, ypos = 700) with dissolve
+                    show text "We quickly snuck out into the hallway and into my room.\n[sis_name] looked really eager about it, pulling me by my shirt.\nI had never done fun things with her before; she always seemed to hate being around me.\nEver since that cam show, we've been getting closer." at Position (xpos= 512, ypos = 700) with dissolve
                     pause
                     scene telescope_window
                     show player 357 at Position(xpos=456,ypos=758)
@@ -3395,7 +3395,7 @@ label bedside01_dialogue:
     player_name "( ...she won't notice. )"
     $ look_for_panties = True
     $ sis_bedroom_count = 1
-    $ ui_lock_count = 1
+    $ lock_ui()
     $ callScreen("Bedside01")
 
 label bedside01_dialogue2:
@@ -3411,7 +3411,7 @@ label siscomp_day:
     show player 98 at left with dissolve
     player_name "( Hmm... Let's see if she left her computer on. )"
     player_name "( I wonder what I could find on here... )"
-    if shower == "sis" and gTimer.is_morning():
+    if shower.occupied("sis"):
         show sis 8b at right with dissolve
         sis "..."
         show sis 7b at right with hpunch
@@ -3463,7 +3463,7 @@ label siscomp_day:
         hide player 22 at left with dissolve
         hide sis 7 at right with dissolve
     $ location_count = "Hallway"
-    $ shower = ""
+    $ shower.unoccupy()
     $ callScreen(location_count)
 
 label condom:

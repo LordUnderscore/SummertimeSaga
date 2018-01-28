@@ -146,10 +146,10 @@ label bank__tellerdialogue:
                 show liu 6 at right
                 liu "...It gets to you like-"
                 show liu 8 at right
-                liu "Wait, why am I telling you this?"
+                liu "Wait... Why am I telling you this?"
                 show liu 4 at right
                 show player 29 at left
-                player_name "Oh, I'm sorry! I didn't mean to make you uncomfortable..."
+                player_name "Oh, I'm sorry! I didn't mean to make you uncomfortable."
                 player_name "Sometimes when I have problems at home..."
                 show liu 9 at right
                 show player 33 at left

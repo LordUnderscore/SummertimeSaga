@@ -352,7 +352,7 @@ label erik_button_dialogue:
 
                     show erik 1 at right
                     show player 10 at left
-                    player_name "I didn't know you and your mom were...so close."
+                    player_name "I didn't know you and your mom were... so close."
                     show player 5
                     show erik 3
                     eri "It's weird, I know..."
@@ -365,13 +365,13 @@ label erik_button_dialogue:
                     show erik 3b with dissolve
                     eri "..."
                     show player 29 with dissolve
-                    player_name "I mean...your mom is like...really hot!"
+                    player_name "I mean, your mom is like... really hot!"
                     player_name "I think you're kind of lucky..."
                     show player 13 with dissolve
                     show erik 3
                     eri "I guess so."
                     show player 12
-                    player_name "You guys do...anything else together?"
+                    player_name "You guys do... anything else together?"
                     show player 11
                     show erik 5
                     eri "...NO!!"
@@ -380,7 +380,7 @@ label erik_button_dialogue:
                     show erik 3b
                     show player 23
                     player_name "Really?!"
-                    player_name "Like...her whole body?"
+                    player_name "Like... her whole body?"
                     show player 14
                     show erik 5
                     eri "Well, sort of."
@@ -390,7 +390,7 @@ label erik_button_dialogue:
                     show player 13
                     show erik 5
                     eri "Of course!"
-                    eri "It's just that...it's my mom, you know?"
+                    eri "It's just that... it's my mom, you know?"
                     show erik 50
                     show player 33
                     player_name "I guess, yeah."
@@ -401,10 +401,10 @@ label erik_button_dialogue:
                     show player 14
                     player_name "{b}Erik{/b}, you're my best friend."
                     player_name "I'll keep this between us."
-                    player_name "I was just a little...surprised, you know?"
+                    player_name "I was just a little... surprised, you know?"
                     show player 13
                     show erik 5
-                    eri "Thanks, [firstname]. You're a good friend."
+                    eri "Thanks, {b}[firstname]{/b}. You're a good friend."
                     hide player
                     hide erik
                     with dissolve
@@ -516,7 +516,7 @@ label erik_button_dialogue:
                 eri "Is everything ok at home with you family?"
                 show erik 1 at right
                 show player 10 at left
-                player_name "{b}Mom's{/b} been getting {b}weird phone calls{/b} but she say's everything's fine so..."
+                player_name "{b}[mom_name]'s{/b} been getting {b}weird phone calls{/b} but she say's everything's fine so..."
                 show player 24 at left
                 player_name "I think we'll be alright..."
                 show erik 5 at right

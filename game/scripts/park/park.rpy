@@ -8,8 +8,8 @@ label park_dialogue:
             $ playMusic("<loop 108.292 to 180.658>audio/music_rap_distant.ogg")
 
     if not gTimer.is_dark():
-        if getPlayingSound("<loop 1>audio/ambience_park.ogg"):
-            $ playSound("<loop 1>audio/ambience_park.ogg")
+        if getPlayingSound("<loop 7 to 114>audio/ambience_suburb.ogg"):
+            $ playSound("<loop 7 to 114>audio/ambience_suburb.ogg", 1.0)
     else:
         if getPlayingSound("<loop 8 to 179>audio/ambience_suburb_night.ogg"):
             $ playSound("<loop 8 to 179>audio/ambience_suburb_night.ogg", 1.0)
@@ -547,14 +547,17 @@ label eve_after_lose:
     $ callScreen(location_count)
 
 label fountain_dialogue:
+    $ location_count = "Park Fountain"
     scene expression gTimer.image("park_fountain{}")
     if weird_coin not in inventory.items:
-        show expression gTimer.image("objects/object_coin_01{}.png") at Position(xalign = 0.44, yalign = 0.81)
+        show expression "private/objects/object_coin_01.png" at Position(xalign = 0.44, yalign = 0.81)
     player_name "( I can see a lot of coins in there. )"
-    $ callScreen("Park Fountain", False, False)
+    $ callScreen(location_count, False, False)
 
 label coin_dialogue:
-    show closeup_coin_01 at Position(xalign = 0.5, yalign = 1.0) with dissolve
+    hide expression "private/objects/object_coin_01.png"
+    show expression "private/objects/closeup_coin_01.png" at Position(xalign = 0.5, yalign = 1.0)
+    with dissolve
     player_name "Huh?"
     player_name "That looks like a really old coin."
     player_name "Just look at these odd {b}symbols{/b}!"
@@ -563,8 +566,8 @@ label coin_dialogue:
     $ inventory.items.append(weird_coin)
     pause
     hide popup_item_coin1 with dissolve
-    hide closeup_coin_01 with dissolve
-    $ callScreen("Park Fountain", False, False)
+    hide expression "private/objects/closeup_coin_01.png" with dissolve
+    $ callScreen(location_count, False, False)
 
 label park_night_closed:
     scene park_night

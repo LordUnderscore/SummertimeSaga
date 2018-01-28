@@ -6,8 +6,8 @@ init python:
         def __init__(self, image=""):
             self.image = image
 
-    class PlayerStats(object) :                                      
-        def __init__(self):                                
+    class PlayerStats(object) :
+        def __init__(self):
             self._str = 0
             self._int = 0
             self._dex = 0
@@ -87,9 +87,6 @@ screen cellphone tag cellphone_screen:
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
-    if new_message == True:
-        add "buttons/cellphone_app_alert.png" pos 560,127
-
     add "buttons/cellphone_title_apps.png" pos 460,130
 
     add "buttons/cellphone_app_temp.png" pos 355,280
@@ -148,22 +145,24 @@ screen quest_log tag cellphone_screen:
         idle "backgrounds/menu_ground.png"
         action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
+    default quest_page = "main"
+
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
     add "buttons/cellphone_title_goals.png" pos 345,130
 
     imagebutton idle "buttons/cellphone_back01.png" hover "buttons/cellphone_back01.png" action Show("cellphone") pos 344,125
 
-    imagebutton idle "buttons/cellphone_goals_button01.png" hover "buttons/cellphone_goals_button01b.png" action SetVariable("show_quest", "main") pos 378,530
+    imagebutton idle "buttons/cellphone_goals_button01.png" hover "buttons/cellphone_goals_button01b.png" action SetScreenVariable("quest_page", "main") pos 378,530
 
-    imagebutton idle "buttons/cellphone_goals_button02.png" hover "buttons/cellphone_goals_button02b.png" action SetVariable("show_quest", "side") pos 508,530
+    imagebutton idle "buttons/cellphone_goals_button02.png" hover "buttons/cellphone_goals_button02b.png" action SetScreenVariable("quest_page", "side") pos 508,530
 
-    if show_quest == "main":
+    if quest_page == "main":
         add "buttons/cellphone_goals_main01.png" pos 370,220
         add "buttons/cellphone_goals_main02.png" pos 370,260
         add "buttons/cellphone_goals_main03.png" pos 370,300
 
-    elif show_quest == "side":
+    elif quest_page == "side":
         $ qa = 370
         $ qc = 0
         for Quest in quest_list:

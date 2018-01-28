@@ -3,9 +3,9 @@ init python:
     class Trigger(object):
         """A Trigger is just a place holder used for the FSM
 
-        Triggers are global in nature and when applied to any state machine 
+        Triggers are global in nature and when applied to any state machine
         it triggers to all statemachines.
-        """        
+        """
         def __init__(self,name,description):
             self._name = name
             self._desc = description
@@ -203,6 +203,7 @@ init python:
             return self._loc
         def forced(self):
             return self._force_loc
+
 label INIT_FSM:
     python:
 
@@ -225,16 +226,23 @@ label INIT_FSM:
         T_aqua_altar_puzzle_solve = Trigger("altar puzzle solve", "You solved the painful puzzle at the altar")
         T_aqua_treasure_found = Trigger("treasure found", "You found the treasure after such hard work")
         T_aqua_treasure_unlocked = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_lure_steal = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_dive = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_chase_fail = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_squid_defeated = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_maze_conquered = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_lair_found = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_friended = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_mating_offer = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_test_pass = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
-        T_aqua_mated = Trigger("treasure unlocked", "You have finally unlocked the treasure chest")
+        T_aqua_lure_steal = Trigger("lure steal", "Aqua steals your new shiny golden fishing lure")
+        T_aqua_dive = Trigger("dive", "You dive into the ocean after Aqua")
+        T_aqua_chase_fail = Trigger("chase fail", "You failed to chase after Aqua")
+        T_aqua_squid_defeated = Trigger("squid defeated", "You defeated the squid near the entrance")
+        T_aqua_maze_conquered = Trigger("maze conquered", "You were able to get through the confusing maze")
+        T_aqua_lair_found = Trigger("lair found", "You found Aqua's lair")
+        T_aqua_friended = Trigger("friended", "You have befriended Aqua")
+        T_aqua_mating_offer = Trigger("mating offer", "You have offered to mate with Aqua")
+        T_aqua_test_pass = Trigger("test pass", "You have passed Aqua's mate test")
+        T_aqua_mated = Trigger("mated", "You have mated with Aqua")
+        T_aqua_seasucc = Trigger("seasucc", "You have met SeaSucc")
+        T_aqua_seasucc_fuck = Trigger("seasucc fuck", "You have fucked SeaSucc")
+
+
+        T_dex_territory = Trigger("territory", "Dexter states that this is his territory")
+        T_dex_challenge = Trigger("challenge", "You try challenge Dexter")
+
 
         T_harold_donuts = Trigger("advance", "Give Harold with donuts")
         T_harold_leaves = Trigger("leaves", "Harold decided to leave")
@@ -304,6 +312,68 @@ label INIT_FSM:
         T_mia_stay_alone = Trigger("stay alone", "Mia wishes to be alone after her parents leaft for good")
 
 
+        T_mom_breakfast = Trigger("breakfast", "Description")
+        T_mom_check = Trigger("check", "Description")
+        T_mom_debt_help = Trigger("debt help", "Description")
+        T_mom_help_mow = Trigger("help mow", "Description")
+        T_mom_filled_mower = Trigger("filled mower", "Description")
+        T_mom_mowed_lawn = Trigger("mowed lawn", "Description")
+        T_mom_sis_bitch = Trigger("sis bitch", "Description")
+        T_mom_clean_clothes = Trigger("clean clothes", "Description")
+        T_mom_check_door = Trigger("check door", "Description")
+        T_mom_bad_guys = Trigger("bad guys", "Description")
+        T_mom_mrsj_condolences = Trigger("mrsj condolences", "Description")
+        T_mom_broken_pipe = Trigger("broken pipe", "Description")
+        T_mom_sis_order = Trigger("broken pipe", "Description")
+        T_mom_closed_valve = Trigger("broken pipe", "Description")
+        T_mom_get_wrench = Trigger("get wrench", "Description")
+        T_mom_fixed_broken_pipe = Trigger("fixed broken pipe", "Description")
+        T_mom_sis_nice_boobs = Trigger("sis nice boobs", "Description")
+        T_mom_shower_admire = Trigger("shower admire", "Description")
+        T_mom_bad_guys_watching = Trigger("bad guys watching", "Description")
+        T_mom_vacuumed = Trigger("vacuumed", "Description")
+        T_mom_washed_dishes = Trigger("washed dishes", "Description")
+        T_mom_cleaned_laundry = Trigger("cleaned laundry", "Description")
+        T_mom_lotion_applied = Trigger("lotion applied", "Description")
+        T_mom_steal_panties = Trigger("steal panties", "Description")
+        T_mom_caught_masturbating = Trigger("caught masturbating", "Description")
+        T_mom_movie_invite = Trigger("movie invite", "Description")
+        T_mom_watch_movie = Trigger("watch movie", "Description")
+        T_mom_movie_night_finish = Trigger("watch movie", "Description")
+        T_mom_hang_out_accept = Trigger("hang out accept", "Description")
+        T_mom_hang_out_refuse = Trigger("hang out refuse", "Description")
+        T_mom_mall_arrival = Trigger("mall arrival", "Description")
+        T_mom_cupid_arrival = Trigger("cupid arrival", "Description")
+        T_mom_pick_necklace = Trigger("pick necklace", "Description")
+        T_mom_give_necklace = Trigger("give necklace", "Description")
+        T_mom_dressing_room_check = Trigger("dressing room check", "Description")
+        T_mom_dream = Trigger("dream", "Description")
+        T_mom_caught_spying = Trigger("caugh spying", "Description")
+        T_mom_kiss = Trigger("kiss", "Description")
+        T_mom_shower_ = Trigger("peek", "Description")
+        T_mom_car_help = Trigger("car help", "Description")
+        T_mom_check_engine = Trigger("check engine", "Description")
+        T_mom_deliver_car_news = Trigger("deliver car news", "Description")
+        T_mom_renew_insurance = Trigger("renew insurance", "Description")
+        T_mom_car_fun = Trigger("car fun", "Description")
+        T_mom_midnight_fun = Trigger("midnight fun", "Description")
+        T_mom_bad_guys_beatup = Trigger("bad guys beatup", "Description")
+        T_mom_sleepover_accept = Trigger("sleepover accept", "Description")
+        T_mom_sleepover_morning = Trigger("sleepover morning", "Description")
+        T_mom_diane_chat = Trigger("diane chat", "Description")
+        T_mom_dinner_help = Trigger("dinner help", "Description")
+        T_mom_dinner_outfit_check = Trigger("dinner outfit check", "Description")
+        T_mom_dinner_fish_caught = Trigger("dinner fish caught", "Description")
+        T_mom_diane_dinner_chat = Trigger("diane dinner chat", "Description")
+        T_mom_midnight_wakeup = Trigger("midnight wakeup", "Description")
+        T_mom_midnight_swim = Trigger("midnight swim", "Description")
+        T_mom_gave_towel = Trigger("gave towel", "Description")
+        T_mom_delay = Trigger("delay", "Description")
+        T_mom_read_note = Trigger("read note", "Description")
+        T_mom_got_laundry = Trigger("got laundry", "Description")
+        T_mom_basement_fun = Trigger("basement fun", "Description")
+
+
         T_roz_favour = Trigger("favour", "Roz needs a favour in return for the obituary records")
         T_roz_fuckery = Trigger("fuckery", "Quite literally some fuckery with Roz")
 
@@ -321,10 +391,10 @@ label INIT_FSM:
         T_terry_intro = Trigger("intro", "Meet Terry the fisher")
         T_terry_secret_lure = Trigger("secret lure", "Terry shows you his secret lure")
         T_terry_tigger = Trigger("tigger", "The one that got away with the little piggy")
-        T_terry_lure_trade = Trigger("tigger", "The one that got away with the little piggy")
-        T_terry_retire = Trigger("tigger", "The one that got away with the little piggy")
-        T_terry_overjoyed_swim = Trigger("tigger", "The one that got away with the little piggy")
-        T_terry_hang_tigger = Trigger("tigger", "The one that got away with the little piggy")
+        T_terry_lure_trade = Trigger("lure trade", "You traded for the golden lure")
+        T_terry_retire = Trigger("retire", "You found out how to get Terry to retire")
+        T_terry_overjoyed_swim = Trigger("overjoyed swim", "Terry has an overjoyed swim after seeing Tigger dead")
+        T_terry_hang_tigger = Trigger("hang tigger", "Terry hangs Tigger as his prized joy")
 
 
         T_yumi_backup_request = Trigger("backup request", "Yumi requests urgent backup")
@@ -338,66 +408,93 @@ label INIT_FSM:
         S_aqua_altar_search = State("altar search", "Search the forest altar for clues")
         S_aqua_treasure_search = State("treasure search", "Search the beach for the treasure")
         S_aqua_treasure_unlock = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_trade = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_fishing = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_chase = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_squid_gaurd = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_maze = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_lair = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_found = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_mating_proposal = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_valor_test = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_mate = State("treasure unlock", "Now you need to unlock the treasure chest")
-        S_aqua_end = State("treasure unlock", "Now you need to unlock the treasure chest")
+        S_aqua_trade = State("trade", "You eed to trade Terry for the golden lure")
+        S_aqua_fishing = State("fishing", "You might meet someone while Fishing with the new lure")
+        S_aqua_chase = State("chase", "You need to chase after Aqua to get back your lure")
+        S_aqua_squid_gaurd = State("squid gaurd", "You need to fight off the squid gaurding the lair")
+        S_aqua_maze = State("maze", "You need to traverse the maze to get into the lair")
+        S_aqua_lair = State("lair", "You have discovered the secret lair of Aqua")
+        S_aqua_found = State("found", "You found Aqua after she stole your lure")
+        S_aqua_mating_proposal = State("mating proposal", "You need to try convince Aqua to take you as her mate")
+        S_aqua_valor_test = State("valor test", "Aqua has given you a test of valor to become her mate")
+        S_aqua_mate = State("mate", "You can now mate with Aqua")
+        S_aqua_seasucc_intro = State("seasucc intro", "Aqua's pal and friend, SeaSucc")
+        S_aqua_seasucc_mushroom = State("mate", "SeaSucc wants a mushroom before he becomes your friend")
+        S_aqua_end = State("end", "The end of Aqua's story")
 
 
         S_aqua_start.add(T_aqua_special_lure, S_aqua_boatsmith_search)
         S_aqua_boatsmith_search.add(T_aqua_obituary_records, S_aqua_graveyard_search,
-                                    actions = ['set', 'tomb search']
+                                    actions = ["set", "tomb search"]
                                     )
         S_aqua_graveyard_search.add(T_aqua_tomb_engraving, S_aqua_bell_search,
-                                    actions = ['set', 'bell search']
+                                    actions = ["set", "bell search"]
                                     )
         S_aqua_bell_search.add(T_aqua_bell_engraving, S_aqua_altar_search,
-                               actions = ['set', 'altar search']
+                               actions = ["set", "altar search"]
                                )
         S_aqua_altar_search.add(T_aqua_altar_puzzle_solve, S_aqua_treasure_search,
-                                actions = ['set', 'treasure search',
-                                           'set', 'altar pass']
+                                actions = ["set", "treasure search",
+                                           "set", "altar pass"]
                                 )
         S_aqua_treasure_search.add(T_aqua_treasure_found, S_aqua_treasure_unlock)
         S_aqua_treasure_unlock.add(T_aqua_treasure_unlocked, S_aqua_trade, 
-                                   actions = ['set', 'treasure pass']
+                                   actions = ["set", "treasure pass"]
                                    )
         S_aqua_trade.add(T_terry_lure_trade, S_aqua_fishing)
         S_aqua_fishing.add(T_aqua_lure_steal, S_aqua_chase)
         S_aqua_chase.add(T_aqua_dive, S_aqua_squid_gaurd)
         S_aqua_squid_gaurd.add(T_aqua_squid_defeated, S_aqua_maze, 
-                               actions = ['set', 'squid pass']
+                               actions = ["set", "squid pass"]
                                )
         S_aqua_squid_gaurd.add(T_aqua_chase_fail, S_aqua_chase)
         S_aqua_maze.add(T_aqua_maze_conquered, S_aqua_lair, 
-                        actions = ['set', 'maze pass']
+                        actions = ["set", "maze pass"]
                         )
         S_aqua_maze.add(T_aqua_chase_fail, S_aqua_chase)
         S_aqua_lair.add(T_aqua_lair_found, S_aqua_found)
         S_aqua_found.add(T_aqua_friended, S_aqua_mating_proposal)
         S_aqua_mating_proposal.add(T_aqua_mating_offer, S_aqua_valor_test)
         S_aqua_valor_test.add(T_aqua_test_pass, S_aqua_mate)
-        S_aqua_mate.add(T_aqua_mated, S_aqua_end)
+        S_aqua_mate.add(T_aqua_mated, S_aqua_seasucc_intro,
+                        actions = ["set", "seasucc available"]
+                        )
+        S_aqua_seasucc_intro.add(T_aqua_seasucc, S_aqua_seasucc_mushroom)
+        S_aqua_seasucc_mushroom.add(T_aqua_seasucc_fuck, S_aqua_end)
 
         M_aqua = Machine("aqua", location = "Lair", force_location = False,
-                vars = {'sex speed': .175, 'tomb search': False, 'bell search': False, 'altar search': False, 'altar pass': False, 'treasure search': False, 'treasure pass': False,
-                        'squid pass': False, 'maze pass': False},
-                )
+                         vars = {"sex speed": .175,
+                                 "tomb search": False,
+                                 "bell search": False,
+                                 "altar search": False,
+                                 "altar pass": False,
+                                 "treasure search": False,
+                                 "treasure pass": False,
+                                 "squid pass": False,
+                                 "maze pass": False,
+                                 "seasucc available": False,
+                                },
+        )
         M_aqua.add(S_aqua_start, S_aqua_boatsmith_search, S_aqua_graveyard_search,
                    S_aqua_bell_search, S_aqua_altar_search, S_aqua_treasure_search,
                    S_aqua_treasure_unlock, S_aqua_trade, S_aqua_fishing, S_aqua_chase,
                    S_aqua_squid_gaurd, S_aqua_maze, S_aqua_lair, S_aqua_found,
-                   S_aqua_mating_proposal, S_aqua_valor_test, S_aqua_mate, S_aqua_end)
+                   S_aqua_mating_proposal, S_aqua_valor_test, S_aqua_mate,
+                   S_aqua_seasucc_intro, S_aqua_seasucc_mushroom, S_aqua_end)
 
 
-        M_perv = Machine("Somrak",location='Gym',force_location=True)
+
+        S_dex_start = State("start")
+        S_dex_flirting = State("flirting", "Dexter is busy flirting on the basket court")
+        S_dex_end = State("end")
+
+
+        S_dex_start.add(T_dex_territory, S_dex_flirting)
+        S_dex_flirting.add(T_dex_challenge, S_dex_end)
+
+        M_dex = Machine("Dexter", location = "Basket Ball Court", force_location = False)
+        M_dex.add(S_dex_start, S_dex_flirting, S_dex_end)
+
 
 
         S_helen_start = State("start", "The default state for Helen to start in")
@@ -684,8 +781,10 @@ label INIT_FSM:
         M_mia = Machine("mia",
                         vars = {
                             'progress count': 0,
-                            'progress mark': 2, 
+                            'progress mark': 2,
+                            'progress max': 16,
                             'front door locked': True,
+                            'telescope teddy seen': False,
                             'study': False,
                             'buy donuts': False,
                             'story delay': False,
@@ -741,6 +840,303 @@ label INIT_FSM:
 
 
 
+        S_mom_start = State("start")
+        S_mom_relaxing = State("relaxing", "Description")
+        S_mom_overheard = State("overheard", "Description")
+        S_mom_debt_call = State("debt call", "Description")
+        S_mom_lawn_delay = State("lawn delay", "Description")
+        S_mom_lawn_help = State("lawn help", "Description")
+        S_mom_fill_mower = State("fill mower", "Description")
+        S_mom_mow_lawn = State("mow lawn", "Description")
+        S_mom_clothes_dirty = State("clothes dirty", "Description")
+        S_mom_wash_clothes = State("wash clothes", "Description")
+        S_mom_sleeping = State("sleeping", "Description")
+        S_mom_doorbell = State("doorbell", "Description")
+        S_mom_debt_collectors = State("debt collectors", "Description")
+        S_mom_mrsj_visit_delay = State("mrsj visit delay", "Description")
+        S_mom_mrsj_visit = State("mrsj visit", "Description")
+        S_mom_pipe_delay = State("pipe delay", "Description")
+        S_mom_pipe_help = State("pipe help", "Description")
+        S_mom_sis_check = State("sis check", "Description")
+        S_mom_close_valve = State("close valve", "Description")
+        S_mom_pipe_check = State("pipe check", "Description")
+        S_mom_fix_pipe = State("fix pipe", "Description")
+        S_mom_sis_boobs_afterthoughts = State("sis boobs afterthoughts", "Description")
+        S_mom_shower_delay = State("shower delay", "Description")
+        S_mom_shower_peek = State("shower peek", "Description")
+        S_mom_shower_peek_after = State("shower peek after", "Description")
+        S_mom_bad_guys_driveby = State("bad guys driveby", "Description")
+        S_mom_chores_delay = State("chores delay", "Description")
+        S_mom_vacuum_help = State("vacuum help", "Description")
+        S_mom_dishes_help = State("dishes help", "Description")
+        S_mom_laundry_help = State("laundry help", "Description")
+        S_mom_lotion_adventure = State("lotion adventure", "Description")
+        S_mom_search_panties = State("search panties", "Description")
+        S_mom_panties_masturbation = State("panties masturbation", "Description")
+        S_mom_movie_night = State("movie night", "Description")
+        S_mom_romance_movie = State("romance movie", "Description")
+        S_mom_movie_afterthoughts = State("romance movie", "Description")
+        S_mom_hang_out = State("hang out", "Description")
+        S_mom_hang_out_return = State("hang out return", "Description")
+        S_mom_mall_outing = State("mall outing", "Description")
+        S_mom_cupid_store = State("cupid store", "Description")
+        S_mom_choose_gift = State("choose gift", "Description")
+        S_mom_show_necklace = State("show necklace", "Description")
+        S_mom_dressing_room = State("dressing room", "Description")
+        S_mom_smith_dream = State("smith dream", "Description")
+        S_mom_spy = State("spy", "Description")
+        S_mom_solo_dream = State("solo dream", "Description")
+        S_mom_kissing_practice = State("kissing practice", "Description")
+        S_mom_shower_walk_in = State("shower walk in", "Description")
+        S_mom_car_broken = State("car broken", "Description")
+        S_mom_check_car = State("check car", "Description")
+        S_mom_car_condition = State("car condition", "Description")
+        S_mom_fix_car = State("fix car", "Description")
+        S_mom_car_fixed = State("car fixed", "Description")
+        S_mom_panties_masturbation_again = State("panties masturbation again", "Description")
+        S_mom_night_visit = State("night visit", "Description")
+        S_mom_bad_guys_revisit = State("bad guys revisit", "Description")
+        S_mom_story_delay = State("story delay", "Description")
+        S_mom_sleepover_offer = State("sleepover offer", "Description")
+        S_mom_sleepover = State("sleepover", "Description")
+        S_mom_sleepover_wakeup = State("sleepover wakeup", "Description")
+        S_mom_diane_visit = State("diane visit", "Description")
+        S_mom_dinner = State("dinner", "Description")
+        S_mom_dinner_outfit = State("dinner outfit", "Description")
+        S_mom_dinner_fish = State("dinner fish", "Description")
+        S_mom_diane_dinner = State("diane dinner", "Description")
+        S_mom_movie_night_two = State("movie night two", "Description")
+        S_mom_romance_movie_two = State("romance movie two", "Description")
+        S_mom_movie_afterthoughts_two = State("movie afterthoughts two", "Description")
+        S_mom_night_visit_two = State("night visit two", "Description")
+        S_mom_midnight_noises = State("midnight noises", "Description")
+        S_mom_midnight_search = State("midnight search", "Description")
+        S_mom_fetch_towel = State("fetch towel", "Description")
+        S_mom_midnight_swim_after = State("midnight swim after", "Description")
+        S_mom_night_visit_three = State("night visit three", "Description")
+        S_mom_note_delay = State("note delay", "Description")
+        S_mom_note = State("note", "Description")
+        S_mom_fetch_laundry = State("fetch laundry", "Description")
+        S_mom_give_laundry = State("give laundry", "Description")
+        S_mom_end = State("end")
+
+
+        S_mom_start.add(T_mom_breakfast, S_mom_relaxing)
+        S_mom_relaxing.add(T_all_school_entrance, S_mom_overheard,
+                           actions = ["set", "dad question"],
+                           )
+        S_mom_overheard.add(T_mom_check, S_mom_debt_call)
+        S_mom_debt_call.add(T_mom_debt_help, S_mom_lawn_delay,
+                            actions = ["set", "money question"],
+                            )
+        S_mom_lawn_delay.add(T_all_sleep, S_mom_lawn_help)
+        S_mom_lawn_help.add(T_mom_help_mow, S_mom_fill_mower)
+        S_mom_fill_mower.add(T_mom_filled_mower, S_mom_mow_lawn)
+        S_mom_mow_lawn.add(T_mom_mowed_lawn, S_mom_clothes_dirty)
+        S_mom_clothes_dirty.add(T_mom_sis_bitch, S_mom_wash_clothes)
+        S_mom_wash_clothes.add(T_mom_clean_clothes, S_mom_sleeping)
+        S_mom_sleeping.add(T_all_sleep, S_mom_doorbell)
+        S_mom_doorbell.add(T_mom_check_door, S_mom_debt_collectors)
+        S_mom_debt_collectors.add(T_mom_bad_guys, S_mom_mrsj_visit_delay,
+                                  actions = ["set", "bad guys question"],
+                                  )
+        S_mom_mrsj_visit_delay.add(T_all_sleep, S_mom_mrsj_visit)
+        S_mom_mrsj_visit.add(T_mom_mrsj_condolences, S_mom_pipe_delay)
+        S_mom_pipe_delay.add(T_all_sleep, S_mom_pipe_help)
+        S_mom_pipe_help.add(T_mom_broken_pipe, S_mom_sis_check)
+        S_mom_sis_check.add(T_mom_sis_order, S_mom_close_valve)
+        S_mom_close_valve.add(T_mom_closed_valve, S_mom_pipe_check)
+        S_mom_pipe_check.add(T_mom_get_wrench, S_mom_fix_pipe)
+        S_mom_fix_pipe.add(T_mom_fixed_broken_pipe, S_mom_sis_boobs_afterthoughts)
+        S_mom_sis_boobs_afterthoughts.add(T_mom_sis_nice_boobs, S_mom_shower_delay)
+        S_mom_shower_delay.add(T_all_sleep, S_mom_shower_peek)
+        S_mom_shower_peek.add(T_mom_shower_admire, S_mom_shower_peek_after)
+        S_mom_shower_peek_after.add(T_all_sleep, S_mom_bad_guys_driveby)
+        S_mom_bad_guys_driveby.add(T_mom_bad_guys_watching, S_mom_chores_delay)
+        S_mom_chores_delay.add(T_all_sleep, S_mom_vacuum_help,
+                                   actions = ["set", "chores"],
+                                   )
+        S_mom_vacuum_help.add(T_all_sleep, S_mom_vacuum_help,
+                              actions = ["set", "chores"],
+                              )
+        S_mom_vacuum_help.add(T_mom_vacuumed, S_mom_dishes_help)
+        S_mom_dishes_help.add(T_all_sleep, S_mom_dishes_help,
+                              actions = ["set", "chores"],
+                              )
+        S_mom_dishes_help.add(T_mom_washed_dishes, S_mom_laundry_help)
+        S_mom_laundry_help.add(T_all_sleep, S_mom_laundry_help,
+                               actions = ["set", "chores"],
+                               )
+        S_mom_laundry_help.add(T_mom_cleaned_laundry, S_mom_lotion_adventure,
+                               actions = ["clear", "bedroom locked",
+                                          "set", "fetch lotion"],
+                               )
+        S_mom_lotion_adventure.add(T_mom_lotion_applied, S_mom_search_panties,
+                               actions = ["clear", "fetch lotion",
+                                          "clear", "retrieved lotion",
+                                          "set", "panties available"],
+                               )
+        S_mom_search_panties.add(T_mom_steal_panties, S_mom_panties_masturbation,
+                                 actions = ["clear", "bed locked"],
+                                 )
+        S_mom_panties_masturbation.add(T_mom_caught_masturbating, S_mom_movie_night,
+                                       actions = ["clear", "panties available"],
+                                       )
+        S_mom_movie_night.add(T_mom_movie_invite, S_mom_romance_movie)
+        S_mom_romance_movie.add(T_mom_watch_movie, S_mom_movie_afterthoughts)
+        S_mom_movie_afterthoughts.add(T_mom_movie_night_finish, S_mom_hang_out)
+        S_mom_hang_out.add(T_mom_hang_out_accept, S_mom_mall_outing)
+        S_mom_hang_out.add(T_mom_hang_out_refuse, S_mom_hang_out_return)
+        S_mom_hang_out_return.add(T_mom_hang_out_accept, S_mom_mall_outing)
+        S_mom_mall_outing.add(T_mom_mall_arrival, S_mom_cupid_store)
+        S_mom_cupid_store.add(T_mom_cupid_arrival, S_mom_choose_gift)
+        S_mom_choose_gift.add(T_mom_pick_necklace, S_mom_show_necklace)
+        S_mom_show_necklace.add(T_mom_give_necklace, S_mom_dressing_room)
+        S_mom_dressing_room.add(T_mom_dressing_room_check, S_mom_smith_dream,
+                                actions = ["set", "jerk available"],
+                                )
+        S_mom_smith_dream.add(T_mom_dream, S_mom_spy)
+        S_mom_spy.add(T_mom_caught_spying, S_mom_solo_dream,
+                      actions = ["set", "caught spying"],
+                      )
+        S_mom_solo_dream.add(T_mom_dream, S_mom_kissing_practice)
+        S_mom_kissing_practice.add(T_mom_kiss, S_mom_shower_walk_in,
+                                   actions = ["set", "practice kissing"],
+                                   )
+        S_mom_shower_walk_in.add(T_mom_shower_admire, S_mom_car_broken)
+        S_mom_car_broken.add(T_mom_car_help, S_mom_check_car)
+        S_mom_check_car.add(T_mom_check_engine, S_mom_car_condition)
+        S_mom_car_condition.add(T_mom_deliver_car_news, S_mom_fix_car)
+        S_mom_fix_car.add(T_mom_renew_insurance, S_mom_car_fixed)
+        S_mom_car_fixed.add(T_mom_car_fun, S_mom_panties_masturbation_again,
+                            actions = ["set", "panties available"],
+                            )
+        S_mom_panties_masturbation_again.add(T_mom_caught_masturbating, S_mom_night_visit,
+                                             actions = ["clear", "panties available"],
+                                             )
+        S_mom_night_visit.add(T_mom_midnight_fun, S_mom_bad_guys_revisit)
+        S_mom_bad_guys_revisit.add(T_mom_bad_guys_beatup, S_mom_story_delay,
+                                   actions = ["set", "shower random"],
+                                   )
+        S_mom_story_delay.add(T_all_sleep, S_mom_sleepover_offer)
+        S_mom_sleepover_offer.add(T_mom_sleepover_accept, S_mom_sleepover,
+                                  actions = ["set", "sleep together"],
+                                  )
+        S_mom_sleepover.add(T_all_sleep, S_mom_sleepover_wakeup)
+        S_mom_sleepover_wakeup.add(T_mom_sleepover_morning, S_mom_diane_visit)
+        S_mom_diane_visit.add(T_mom_diane_chat, S_mom_dinner)
+        S_mom_dinner.add(T_mom_dinner_help, S_mom_dinner_outfit)
+        S_mom_dinner_outfit.add(T_mom_dinner_outfit_check, S_mom_dinner_fish)
+        S_mom_dinner_fish.add(T_mom_dinner_fish_caught, S_mom_diane_dinner)
+        S_mom_diane_dinner.add(T_mom_diane_dinner_chat, S_mom_movie_night_two)
+        S_mom_movie_night_two.add(T_mom_movie_invite, S_mom_romance_movie_two)
+        S_mom_romance_movie_two.add(T_mom_watch_movie, S_mom_movie_afterthoughts_two)
+        S_mom_movie_afterthoughts_two.add(T_mom_movie_night_finish, S_mom_night_visit_two)
+        S_mom_night_visit_two.add(T_mom_midnight_fun, S_mom_midnight_noises)
+        S_mom_midnight_noises.add(T_mom_midnight_wakeup, S_mom_midnight_search)
+        S_mom_midnight_search.add(T_mom_midnight_swim, S_mom_fetch_towel)
+        S_mom_fetch_towel.add(T_mom_gave_towel, S_mom_night_visit_three)
+        S_mom_midnight_swim_after.add(T_all_sleep, S_mom_night_visit_three)
+        S_mom_night_visit_three.add(T_mom_midnight_fun, S_mom_note_delay,
+                                    actions = ["assign", ("delay", 2),
+                                               "set", "sex available"],
+                                    )
+        S_mom_note_delay.add(T_all_sleep, S_mom_note_delay,
+                             actions = ["triggerOnZero", ("delay", T_mom_delay)]
+                             )
+        S_mom_note_delay.add(T_mom_delay, S_mom_note)
+        S_mom_note.add(T_mom_read_note, S_mom_fetch_laundry)
+        S_mom_fetch_laundry.add(T_mom_got_laundry, S_mom_give_laundry)
+        S_mom_give_laundry.add(T_mom_basement_fun, S_mom_end,
+                               actions = ["set", "basement sex"],
+                               )
+
+        M_mom = Machine("mom", location = "Kitchen", force_location = False,
+                        vars = {"sex speed": .4,
+                                "mom concerned": 100,
+                                "dad question": False,
+                                "money question": False,
+                                "bad guys question": False,
+                                "bedroom locked": True,
+                                "shower random": False,
+                                "chores": False,
+                                "lotion fun": False,
+                                "fetch lotion": False,
+                                "retrieved lotion": False,
+                                "bed locked": True,
+                                "panties available": False,
+                                "panties taken": False,
+                                "no panties": False,
+                                "jerk available": False,
+                                "caught spying": False,
+                                "practice kissing": False,
+                                "jerk count": 0,
+                                "sleep together": False,
+                                "revealing": False,
+                                "shower fingered": False,
+                                "sex flip": True,
+                                "robe on": False,
+                                "sex available": False,
+                                "change angle": False,
+                                "location random": "",
+                                "time random": gTimer.is_dark,
+                                "room sneak": False,
+                                "movie night": False, 
+                                "car jerk": False,
+                                "car sex": False,
+                                "basement sex": False,
+                               },
+        )
+
+        M_mom.add(S_mom_start, S_mom_relaxing, S_mom_overheard, S_mom_debt_call, S_mom_lawn_delay,
+                  S_mom_lawn_help, S_mom_fill_mower, S_mom_mow_lawn, S_mom_clothes_dirty,
+                  S_mom_wash_clothes, S_mom_sleeping, S_mom_doorbell, S_mom_debt_collectors, 
+                  S_mom_mrsj_visit, S_mom_mrsj_visit_delay, S_mom_pipe_delay, S_mom_pipe_help,
+                  S_mom_sis_check, S_mom_close_valve, S_mom_pipe_check, S_mom_fix_pipe,
+                  S_mom_sis_boobs_afterthoughts, S_mom_shower_delay, S_mom_shower_peek,
+                  S_mom_shower_peek_after, S_mom_bad_guys_driveby, S_mom_chores_delay, S_mom_vacuum_help,
+                  S_mom_dishes_help, S_mom_laundry_help, S_mom_lotion_adventure, S_mom_search_panties,
+                  S_mom_panties_masturbation, S_mom_movie_night, S_mom_romance_movie,
+                  S_mom_movie_afterthoughts, S_mom_hang_out, S_mom_hang_out_return,
+                  S_mom_mall_outing, S_mom_cupid_store, S_mom_choose_gift,
+                  S_mom_show_necklace, S_mom_dressing_room, S_mom_smith_dream,
+                  S_mom_spy, S_mom_solo_dream, S_mom_kissing_practice,
+                  S_mom_shower_walk_in, S_mom_car_broken, S_mom_check_car,
+                  S_mom_car_condition, S_mom_fix_car, S_mom_car_fixed,
+                  S_mom_panties_masturbation_again, S_mom_night_visit,
+                  S_mom_bad_guys_revisit, S_mom_story_delay, S_mom_sleepover_offer,
+                  S_mom_sleepover, S_mom_sleepover_wakeup, S_mom_diane_visit,
+                  S_mom_dinner, S_mom_dinner_outfit, S_mom_dinner_fish,
+                  S_mom_diane_dinner, S_mom_movie_night_two, S_mom_romance_movie_two,
+                  S_mom_movie_afterthoughts_two, S_mom_night_visit_two, S_mom_midnight_noises,
+                  S_mom_midnight_search, S_mom_fetch_towel, S_mom_midnight_swim_after,
+                  S_mom_night_visit_three, S_mom_note_delay, S_mom_note, S_mom_fetch_laundry,
+                  S_mom_give_laundry, S_mom_end
+        )
+
+
+
+        S_player_start = State("start")
+        S_player_end = State("end")
+
+
+        S_player_start.add(T_all_school_entrance, S_player_end)
+
+        M_player = Machine("player", location = "Bedroom", force_location = False,
+                           vars = {"just wokeup": True,
+                                   "sex speed": .4,
+                                   "jerk mom": False,
+                                   "jerk mia": False,
+                                   "telescope active": True,
+                                   "telescope selection": None,
+                                   "found cat": False,
+                                   "pet cat": False
+                                  },
+        )
+        M_player.add(S_player_start, S_player_end)
+
+
+
         S_roz_start = State("start")
         S_roz_sexy_time = State("sexy time", "Lets get funky with ol' Rozzy")
         S_roz_end = State("end", "The end of the end but not for Roz")
@@ -751,7 +1147,7 @@ label INIT_FSM:
 
         M_roz = Machine("roz", location = "Hospital", force_location = False,
                         vars = {'fun time': False, 'sex speed': .4},
-                        )
+        )
         M_roz.add(S_roz_start, S_roz_sexy_time, S_roz_end)
 
 
@@ -763,13 +1159,13 @@ label INIT_FSM:
 
         S_sis_start.add(T_sis_hallway, S_sis_bored)
         S_sis_bored.add(T_sis_panty_raid, S_sis_bedroom1,
-                        actions=['clear','door locked',
-                                 'assign',['default location','bedroom'],
+                        actions = ['clear', 'door locked',
+                                   'assign', ['default location', 'bedroom'],
                         ])
 
         M_sis = Machine("sister",location="Sis' Bedroom", force_location=False,
                         vars={'door locked':True, 'default location':'bedroom', 'sex speed': .175},
-                        )
+        )
         M_sis.add(S_sis_start, S_sis_bored, S_sis_bedroom1)
 
 
@@ -822,31 +1218,17 @@ label INIT_FSM:
 
         M_terry = Machine("terry", location = "Pier", force_location = False,
                           vars = {'default location': 'Pier'},
-                          )
+        )
         M_terry.add(S_terry_start, S_terry_secret, S_terry_lure, S_terry_nemesis, S_terry_drunk, S_terry_trade, S_terry_bored, S_terry_retire, S_terry_tigger_sign, S_terry_end)
 
-
-
-        T_mom_kitchen = Trigger("kitchen visit", "Visit mom in the kitchen")
-
-
-        S_mom_start = State("start")
-
-
-        S_mom_start.add(T_mom_kitchen, S_mom_start) 
-
-        M_mom = Machine("mom", location = "Mom's Bedroom", force_location = False,
-                vars = {'sex speed': .4},
-                )
-        M_mom.add(S_mom_start)
 
 
         S_june_start = State("start")
 
 
         M_june = Machine("june",location="Computer Lab", force_location=False,
-                vars={'sex speed': .3},
-                )
+                         vars={'sex speed': .3},
+        )
         M_june.add(S_june_start)
 
 
@@ -854,8 +1236,8 @@ label INIT_FSM:
 
 
         M_erimom = Machine("erimom",location="Yoga", force_location=False,
-                vars={'sex speed': .3},
-                )
+                           vars={'sex speed': .3},
+        )
         M_erimom.add(S_erimom_start)
 
 
@@ -863,7 +1245,7 @@ label INIT_FSM:
 
 
         M_aunt = Machine("aunt",location="Garden", force_location=False,
-                vars={'sex speed': .4},
-                )
+                         vars={'sex speed': .4},
+        )
         M_aunt.add(S_aunt_start)
     return

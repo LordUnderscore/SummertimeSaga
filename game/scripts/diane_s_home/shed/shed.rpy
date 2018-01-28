@@ -144,7 +144,7 @@ label shed:
                     dia "And can you please-"
                     show aunt 64 at right
                     show player 21 at left
-                    player_name "I won't tell {b}Mom{/b}. Don't worry."
+                    player_name "I won't tell {b}[mom_name]{/b}. Don't worry."
                     show aunt 63 at right
                     show player 13 at left
                     dia "Thanks."
@@ -926,7 +926,7 @@ label aunt_dialogue_button_night:
                 show player 10 at left
                 player_name "I'd love to stay here and milk with you..."
                 show aunt 91
-                player_name "But It's getting late and {b}Mom's{/b} gonna be worried."
+                player_name "But It's getting late and {b}[mom_name]'s{/b} gonna be worried."
                 show aunt 92
                 show player 5
                 dia "That's too bad."

@@ -1,4 +1,24 @@
 
+image school = ConditionSwitch(
+    "datetime.date.today().month == 12 and (datetime.date.today().day >= 15 and datetime.date.today().day <= 30)", "backgrounds/location_school_christmas_blur.jpg",
+    "(datetime.date.today().month == 10 and datetime.date.today().day > 25) and (datetime.date.today().month == 11 and datetime.date.today().day < 2)", "backgrounds/location_school_halloween_blur.jpg",
+    "True", "backgrounds/location_school_blur.jpg",
+    )
+image school_night = ConditionSwitch(
+    "datetime.date.today().month == 12 and (datetime.date.today().day >= 15 and datetime.date.today().day <= 30)", "backgrounds/location_school_christmas_night_blur.jpg",
+    "(datetime.date.today().month == 10 and datetime.date.today().day > 25) and (datetime.date.today().month == 11 and datetime.date.today().day < 2)", "backgrounds/location_school_halloween_night_blur.jpg",
+    "True", "backgrounds/location_school_night_blur.jpg",
+    )
+image graveyard = ConditionSwitch(
+    "(datetime.date.today().month == 10 and datetime.date.today().day > 25) and (datetime.date.today().month == 11 and datetime.date.today().day < 2)", "backgrounds/location_church_graveyard_halloween_blur.jpg",
+    "True", "backgrounds/location_church_graveyard_blur.jpg",
+    )
+image graveyard_night = ConditionSwitch(
+    "(datetime.date.today().month == 10 and datetime.date.today().day > 25) and (datetime.date.today().month == 11 and datetime.date.today().day < 2)", "backgrounds/location_church_graveyard_halloween_night_blur.jpg",
+    "True", "backgrounds/location_church_graveyard_night_blur.jpg",
+    )
+
+
 image card_2 = ConditionSwitch(
     "not erik.known(erik_crown_card) or erik.completed(erik_crown_card)", "objects/item_card2.png",
     "erik.started(erik_crown_card)", "objects/item_card2_quest.png",
@@ -170,15 +190,15 @@ image player_computer_egay_purchased = LiveComposite(
     (270,150), "buttons/computer_window_15.png",
     )
 
+image player_computer_bg = ConditionSwitch(
+    "not gTimer.is_dark()", "player_computer_bg_day",
+    "gTimer.is_dark()", "player_computer_bg_night",
+    "True", Null(),
+    )
 
 
 
 
-
-if gTimer.is_dark():
-    image player_computer_bg = "player_computer_bg_night"
-else:
-    image player_computer_bg = "player_computer_bg_day"
 
 image player_computer_webscreen = ConditionSwitch(
     "connected == True", "player_computer_webscreen_connected",
@@ -302,21 +322,21 @@ image moms_106c = LiveComposite(
     (0,0), "characters/mom/char_mom_sex_106.png",
     (374,307), "characters/player/char_player_sex_69.png", 
     )
-image moms_126x = LiveComposite(
-    (628,664),
-    (0,0), "characters/mom/char_mom_sex_126.png",
-    (182,360), "characters/player/char_player_sex_76.png", 
-    )
-image moms_127x = LiveComposite(
-    (628,690),
-    (0,0), "characters/mom/char_mom_sex_127.png",
-    (189,354), "characters/player/char_player_sex_77.png", 
-    )
-image moms_128x = LiveComposite(
-    (628,721),
-    (0,0), "characters/mom/char_mom_sex_128.png",
-    (151,327), "characters/player/char_player_sex_78.png", 
-    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 image moms_129x = LiveComposite(
     (536,626),
     (0,0), "characters/mom/char_mom_sex_129.png",
@@ -406,21 +426,21 @@ image moms 106 = ConditionSwitch(
     "cum == False", "characters/mom/char_mom_sex_106.png",
     "True", Null(),
     )
-image moms 126 = ConditionSwitch(
-    "xray == True", "moms_126x",
-    "xray == False", "characters/mom/char_mom_sex_126.png",
-    "True", Null(),
-    )
-image moms 127 = ConditionSwitch(
-    "xray == True", "moms_127x",
-    "xray == False", "characters/mom/char_mom_sex_127.png",
-    "True", Null(),
-    )
-image moms 128 = ConditionSwitch(
-    "xray == True", "moms_128x",
-    "xray == False", "characters/mom/char_mom_sex_128.png",
-    "True", Null(),
-    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 image moms 129 = ConditionSwitch(
     "xray == True", "moms_129x",
     "xray == False", "characters/mom/char_mom_sex_129.png",

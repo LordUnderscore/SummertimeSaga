@@ -86,7 +86,7 @@ label weightlifting_done:
     show kevin 10 at right with dissolve
     kev "Right on! Dude!"
     show kevin 8 at right
-    player_name "Wow... My arms and shoulders are burning..."
+    player_name "Wow. My arms and shoulders are burning..."
     show kevin 7 at right
     show player 11 at left
     kev "You keep pumping that lead bro, and you gonna get mad guns like these!!"

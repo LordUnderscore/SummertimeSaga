@@ -108,7 +108,7 @@ label kitchen_drink:
             show player 134
             player_name "( That'll do... )"
             $ in_garden = True
-            $ ui_lock_count = 1
+            $ lock_ui()
             jump garden_dialogue
         "Yes.":
 
@@ -118,5 +118,5 @@ label kitchen_drink:
             player_name "( That'll do... )"
             $ aunt_extra_shot = True
             $ in_garden = True
-            $ ui_lock_count = 1
+            $ lock_ui()
             jump garden_dialogue

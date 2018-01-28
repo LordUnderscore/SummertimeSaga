@@ -433,7 +433,22 @@ label mrsj_button_dialogue:
             hide erikmom
             with dissolve
 
-        "Where's Erik?" if not gTimer.is_dark():
+        "What did you need me to do?" if mrsj.started(mrsj_yoga_help):
+            show player 10
+            player_name "What did you need me to help with?"
+            show player 5
+            show erikmom 19
+            erimom "I need someone to go and {b}teach my yoga class for me tonight{/b}."
+            show erikmom 49
+            erimom "Do you think you could help your... favorite neighbor??"
+            show erikmom 50
+            show player 14
+            player_name "Of course!"
+            show player 13
+            show erikmom 17
+            erimom "Remember to {b}study those yoga moves from that list{/b} I gave!"
+
+        "Where's {b}Erik{/b}?" if not gTimer.is_dark():
             show player 14
             if gTimer.is_morning() and not gTimer.is_weekend():
                 player_name "Do you know where I could find {b}Erik{/b}?"
@@ -487,7 +502,14 @@ label mrsj_button_dialogue:
 
         "Invite to poker." if mrsj.known(mrsj_poker_night) and not gTimer.is_night():
             show player 14 at left
-            show erikmom 14 at right
+
+            if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                show erikmom 39 at right
+            elif gTimer.is_dark() and erik.over(erik_gf):
+                show erikmom 53
+            else:
+                show erikmom 14 at right
+
             if gTimer.is_morning() and not gTimer.is_weekend():
                 player_name "I was wondering if you could teach us how to play poker?"
                 show player 11
@@ -502,42 +524,107 @@ label mrsj_button_dialogue:
             elif pStats.chr() >= 5 and poker_bot02 == "" and not gTimer.is_morning():
                 if mrsj.completed(mrsj_poker_night_2):
                     show player 14 at left
-                    show erikmom 14 at right
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 39
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 53
+                    else:
+                        show erikmom 14 at right
                     player_name "Would you like to play some poker with us again?"
                     show player 1
-                    show erikmom 17
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 17
                     erimom "Still looking for friends to play with?."
                     show player 14
-                    show erikmom 14
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 39
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 53
+                    else:
+                        show erikmom 14
                     player_name "Well, It's just that-"
                     show player 1
-                    show erikmom 18
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 18
                     erimom "It's fine!!"
                     show player 1
-                    show erikmom 17
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 17
                     erimom "I'll play with you boys..."
                     show player 14
-                    show erikmom 14
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 39
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 53
+                    else:
+                        show erikmom 14
                     player_name "Really?"
                     show player 1
-                    show erikmom 20
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40b
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 20
                     erimom "Well... last time was a bit much..."
                     show player 13
-                    show erikmom 18
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 18
                     erimom "But, why not?"
                     show player 14
-                    show erikmom 14
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 39
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 53
+                    else:
+                        show erikmom 14
                     player_name "Okay."
-                    show erikmom 17
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 17
                     erimom "When are we playing?"
                     show player 14
-                    show erikmom 14
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 39
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 53
+                    else:
+                        show erikmom 14
                     player_name "After dinner tonight."
                     player_name "{b}Erik{/b} and I will set up the game."
                     show player 1
-                    show erikmom 18
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40b
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 18
                     erimom "Haha, alright."
-                    show erikmom 17
+                    if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                        show erikmom 40
+                    elif gTimer.is_dark() and erik.over(erik_gf):
+                        show erikmom 54
+                    else:
+                        show erikmom 17
                     erimom "See you then!"
                 else:
 
@@ -588,21 +675,41 @@ label mrsj_button_dialogue:
                 show erikmom 14
                 show player 14
                 player_name "[stat_warn]That's alright, maybe some other time."
-            hide player
-            hide erikmom
-            with dissolve
         "I have to go!":
 
-            show erikmom 14 at right
-            show player 14 at left
-            player_name "I should go find {b}Erik{/b}!"
-            show erikmom 18 at right
-            show player 1 at left
-            erimom "Alright, then!"
-            show erikmom 14 at right
+            if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                show erikmom 39
+                show player 14 at left
+                player_name "I have to go, but I'll be back though!"
+            else:
+                if gTimer.is_dark() and erik.over(erik_gf):
+                    show erikmom 53
+                else:
+                    show erikmom 14 at right
+                show player 14 at left
+                player_name "I should go find {b}Erik{/b}!"
+            if gTimer.is_dark() and (mrsj.over(mrsj_sex_ed) or erik.over(erik_gf)):
+                if mrsj.over(mrsj_sex_ed):
+                    show erikmom 40
+                elif erik.over(erik_gf):
+                    show erikmom 54
+                show player 1 at left
+                erimom "Really?"
+                erimom "Well be sure to come back soon!"
+            else:
+                show erikmom 18 at right
+                show player 1 at left
+                erimom "Alright, then!"
+            if gTimer.is_dark() and mrsj.over(mrsj_sex_ed):
+                show erikmom 39
+            elif gTimer.is_dark() and erik.over(erik_gf):
+                show erikmom 53
+            else:
+                show erikmom 14 at right
             show player 17 at left
             player_name "Bye, {b}Mrs. Johnson{/b}!"
-            hide player
-            hide erikmom
-            with dissolve
+    hide player
+    hide erik
+    hide erikmom
+    with dissolve
     $ callScreen(location_count)

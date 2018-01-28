@@ -18,8 +18,8 @@ label trailer_interior_dialogue:
         $ trailer_interior_first_visit = False
         scene expression gTimer.image("trailer_interior{}")
         show player 10 with dissolve
-        player_name "Is this where {b}Roxxy{/b} lives?"
-        player_name "There's trash all over the place..."
+        player_name "( Is this where {b}Roxxy{/b} lives? )"
+        player_name "( There's trash all over the place... )"
         hide player with dissolve
     $ callScreen(location_count)
 
@@ -56,7 +56,7 @@ label roxmom_dialogue:
         show roxmom 2
         crys "She usually doesn't have guy friends."
         show player 11
-        crys "She likes men for something a little...more. Just like her mother!"
+        crys "She likes men for something a little... more. Just like her mother!"
         show roxmom 1
         show player 22
         player_name "..."
@@ -98,7 +98,7 @@ label roxmom_dialogue:
             crys "...But, usually she's at {b}school{/b} or at {b}the mall{/b}."
             show roxmom 1
             show player 14
-            player_name "Oh, I see. Thanks!"
+            player_name "Oh. I see. Thanks!"
             show player 13
             show roxmom 2
             crys "Anything else?"
@@ -107,7 +107,7 @@ label roxmom_dialogue:
         "Roxxy's dad.":
 
             show player 10
-            player_name "Where's {b}Roxxy's...father{/b}?"
+            player_name "Where's {b}Roxxy's... father{/b}?"
             show player 11
             show roxmom 2
             crys "Hah! She don't have no father!"

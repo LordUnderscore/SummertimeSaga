@@ -1,12 +1,22 @@
 default MC_computer_broken = True
-default player_room_lock = False
-default m6_note = False
 default cookies_taken = False
-default m6_note_seen = False
 default first_mom_visit = False
 
 label bedroom_dialogue:
     $ location_count = "Bedroom"
+    if not M_player.is_set("just wokeup"):
+        if M_mom.get_state() == S_mom_mrsj_visit and not gTimer.is_dark():
+            jump home_front
+
+        elif M_mom.get_state() == S_mom_car_fixed:
+            jump home_front
+
+        elif M_mom.get_state() == S_mom_bad_guys_revisit and not gTimer.is_dark():
+            jump home_front
+
+        elif M_mom.get_state() == S_mom_diane_visit and gTimer.is_evening():
+            jump home_entrance
+
     if erik.completed(erik_bullying_2) and not erik.known(erik_bullying_3):
         jump erik_bullying_3
 
@@ -14,30 +24,50 @@ label bedroom_dialogue:
         $ tmp_image = "bedroom_broken{}"
     else:
         $ tmp_image = "bedroom{}"
-    scene expression gTimer.image(tmp_image)
-    if not gTimer.is_dark():
-        if player_room_count == 0:
-            show player 7 with dissolve
-            player_name "{b}*Yawn*{/b}"
-            show player 8
-            player_name "Ugh... I hate getting up early."
-            show player 9
-            player_name "( No text messages from {b}Erik{/b}. Maybe he's still sleeping. )"
-            player_name "( I'll stop by his house on the way to school. )"
-            hide player 9 with dissolve
-            $ player_room_count = 2
+
+    if M_player.get_state() == S_player_start and M_player.is_set("just wokeup"):
+        scene expression gTimer.image(tmp_image)
+        show player 7 with dissolve
+        player_name "{b}*Yawn*{/b}"
+        show player 8
+        player_name "Ugh... I hate getting up early."
+        show player 9
+        player_name "( No text messages from {b}Erik{/b}. Maybe he's still sleeping. )"
+        player_name "( I'll stop by his house on the way to school. )"
+        hide player 9 with dissolve
+
+    elif gTimer.is_morning() and not gTimer.is_weekend() and M_player.is_set("just wokeup"):
+        scene expression gTimer.image(tmp_image)
+        show player 7 with dissolve
+        player_name "{b}*Yawn*{/b}"
+        show player 8
+        window hide
+        pause
+        show player 9
+        player_name "( I should get ready for school... )"
+        hide player with dissolve
+
+    elif gTimer.is_morning() and gTimer.is_weekend() and M_player.is_set("just wokeup"):
+        scene expression gTimer.image(tmp_image)
+        show player 7 with dissolve
+        player_name "{b}*Yawn*{/b}"
+        show player 8
+        window hide
+        pause
+        show player 9
+        player_name "( What should I do this weekend... )"
+        hide player with dissolve
 
     if gTimer.gameDay() >= event_wait_till and not erik.known(erik_bullying):
-        $ just_woke_up = False
         scene black with fade
         mom "Sweetie?"
         pause
         mom "Wake up, Sweetie."
-        scene bedroom with fade
+        scene expression gTimer.image(tmp_image) with fade
         show mom 14f at left
         show player 101bf at right
         with dissolve
-        player_name "Huh? {b}Mom{/b}? What time is it?"
+        player_name "Huh? {b}[mom_name]{/b}? What time is it?"
         show player 100bf
         show mom 13f
         mom "{b}Mrs. Johnson{/b} is at the door asking to see you."
@@ -60,7 +90,7 @@ label bedroom_dialogue:
         show mom 14f
         player_name "..."
         show player 101bf
-        player_name "I have no idea why she's here either, {b}Mom{/b}."
+        player_name "I have no idea why she's here either, {b}[mom_name]{/b}."
         show player 100bf
         mom "..."
         show mom 13f
@@ -68,18 +98,19 @@ label bedroom_dialogue:
         hide mom
         hide player
         with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
         $ erik.add_event(erik_bullying)
 
     elif M_mia.get_state() == S_mia_tattoo_help and M_mia.is_set('story delay'):
+        scene expression gTimer.image(tmp_image)
         show player 35 with dissolve
-        player_name "I have to make something nice for her tattoo idea."
+        player_name "( I have to make something nice for her tattoo idea. )"
         show player 34
         player_name "Hmm..."
         show player 35
-        player_name "Perhaps, I can use one of the {b}easels in art class{/b}!"
+        player_name "( Perhaps, I can use one of the {b}easels in art class{/b}! )"
         show player 33
-        player_name "I can use it to come up with a nice design for her."
+        player_name "( I can use it to come up with a nice design for her. )"
         show player 8 with dissolve
         pause
         show player 7 with dissolve
@@ -93,42 +124,156 @@ label bedroom_dialogue:
         $ M_mia.trigger(T_mia_tattoo_start)
 
     elif M_mia.get_state() == S_mia_strip_aftermath and M_mia.is_set('story delay'):
+        scene expression gTimer.image(tmp_image)
         show player 24 with dissolve
-        player_name "I can't believe I won't be able to see {b}Mia{/b} anymore."
+        player_name "( I can't believe I won't be able to see {b}Mia{/b} anymore. )"
         show player 25
-        player_name "Her parents don't trust me."
+        player_name "( Her parents don't trust me. )"
         show player 35
-        player_name "Perhaps I can make it up to them somehow..."
+        player_name "( Perhaps I can make it up to them somehow... )"
         hide player with dissolve
         $ M_mia.trigger(T_mia_grounded)
 
     elif M_mia.get_state() == S_mia_strip_aftermath:
-        scene bedroom
+        scene expression gTimer.image(tmp_image)
         show player 4 with dissolve
         pause
         show player 30 at Position (xoffset=-6) with dissolve
-        player_name "I wonder how {b}Mia{/b} is doing."
+        player_name "( I wonder how {b}Mia{/b} is doing. )"
         show player 12 at Position (xoffset=-6)
-        player_name "It's been a few days, and I haven't heard anything from her..."
-        player_name "...Perhaps I should visit her and see how she's doing."
+        player_name "( It's been a few days, and I haven't heard anything from her... )"
+        player_name "( ...Perhaps I should visit her and see how she's doing... )"
         hide player with dissolve
 
     elif M_mia.get_state() == S_mia_urgent_message:
-        scene bedroom
+        scene expression gTimer.image(tmp_image)
         show player 12 with dissolve
         player_name "Huh?"
         show player 9 at Position (xoffset=40) with dissolve
         pause
         show player 14 with dissolve
-        player_name "Looks like I got a text message..."
+        player_name "( Looks like I got a text message... )"
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
         if m_mia02 not in message_list:
             $ message_list.append(m_mia02)
             $ new_message = True
 
     elif M_mia.get_state() == S_mia_angelicas_impatience:
-        scene bedroom
+        scene expression gTimer.image(tmp_image)
+        show player 55f at Position (xoffset=-12) with dissolve
+        player_name "*Yawn*"
+        show player 56f with dissolve
+        player_name "( I should get ready for- )"
+        show player 11f
+        "*Knock knock*"
+        show mom 2f at left
+        show player 13f
+        with dissolve
+        mom "Hun?"
+        mom "There's someone downstairs who's here for you."
+        show mom 1f
+        show player 30f
+        player_name "{b}Erik{/b}?"
+        show player 11f
+        show mom 2f
+        mom "No, Sweetie. It's a lady!"
+        mom "She says you two have spoken before..."
+        show mom 1f
+        show player 10f
+        player_name "What?"
+        player_name "But who-"
+        show player 5f
+        show mom 2f
+        mom "She's waiting downstairs. Why don't you {b}get dressed and come down{/b}."
+        hide mom with dissolve
+        show player 12f player_name "A lady?!"
+        show player 4f at Position (xoffset=-6) with dissolve
+        player_name "Huh..."
+        hide player with dissolve
+        $ lock_ui()
+
+    elif M_mia.get_state() == S_mia_angelicas_home_visit:
+        scene expression gTimer.image(tmp_image)
+        show player 13f at right
+        show mom 2f at left
+        mom "Sweetie?"
+        show mom 1f
+        show player 17f
+        player_name "Good morning, {b}[mom_name]{/b}."
+        show player 13f
+        show mom 2f
+        mom "Morning."
+        mom "That nice lady from the other day is downstairs again."
+        show mom 1f
+        show player 11f
+        player_name "..."
+        show player 12f
+        player_name "Who?"
+        show player 5f
+        show mom 3f
+        mom "Come on now, sleepyhead. The nun is here again."
+        show mom 1f
+        show player 22f
+        player_name "!!!"
+        mom "Hurry up so you can meet her downstairs."
+        hide mom with dissolve
+        show player 10f
+        player_name "What is she going to want now?"
+        hide player with dissolve
+        $ lock_ui()
+
+    elif M_mia.get_state() == S_mia_angelicas_final_home_visit:
+        scene expression gTimer.image(tmp_image) with fade
+        show player 55f at Position (xoffset=-12) with dissolve
+        player_name "*Yawn*"
+        show player 56f with dissolve
+        player_name "I should get ready for-"
+        show player 11f
+        "*Knock knock*"
+        show mom 2f at left
+        show player 13f
+        with dissolve
+        mom "Hun?"
+        mom "That nun is here again..."
+        show mom 1f
+        show player 30f
+        player_name "Again?"
+        show player 24f
+        pause
+        show mom 13f
+        mom "I've been meaning to ask..."
+        mom "What exactly are you doing for the church?"
+        show mom 14f
+        show player 11f
+        player_name "..."
+        show mom 13f
+        mom "I mean, I'm surprised to see a nun visiting so much..."
+        show mom 14bf
+        show player 29f at Position (xoffset=-35) with dissolve
+        player_name "Yeah, um... everything is... fine."
+        player_name "She's just... got me running errands."
+        player_name "( Yeah, heh... heh... )"
+        show player 3f at Position (xoffset=-35)
+        show mom 14f
+        mom "..."
+        show mom 13f
+        mom "Well, at least you're doing something good for the community..."
+        show player 5f with dissolve
+        show mom 2f
+        mom "I suppose I shouldn't be worried."
+        show mom 3f
+        mom "What harm could come from you spending time at church?"
+        hide mom with dissolve
+        show player 11f
+        player_name "..."
+        show player 37f at Position (xoffset=-41) with dissolve
+        player_name "( You have no idea... )"
+        hide player with dissolve
+        $ lock_ui()
+
+    elif M_mia.get_state() == S_mia_angelicas_impatience:
+        scene expression gTimer.image(tmp_image)
         show player 55f at Position (xoffset=-12) with dissolve
         player_name "*Yawn*"
         show player 56f with dissolve
@@ -159,16 +304,16 @@ label bedroom_dialogue:
         show player 4f at Position (xoffset=-6) with dissolve
         player_name "Huh..."
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
 
     elif M_mia.get_state() == S_mia_angelicas_home_visit:
-        scene bedroom with fade
+        scene expression gTimer.image(tmp_image) with fade
         show player 13f at right
         show mom 2f at left
         mom "Sweetie?"
         show mom 1f
         show player 17f
-        player_name "Good morning, {b}Mom{/b}."
+        player_name "Good morning, {b}[mom_name]{/b}."
         show player 13f
         show mom 2f
         mom "Morning."
@@ -189,10 +334,10 @@ label bedroom_dialogue:
         show player 10f
         player_name "What is she going to want now?"
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
 
     elif M_mia.get_state() == S_mia_angelicas_final_home_visit:
-        scene bedroom with fade
+        scene expression gTimer.image(tmp_image) with fade
         show player 55f at Position (xoffset=-12) with dissolve
         player_name "*Yawn*"
         show player 56f with dissolve
@@ -238,170 +383,162 @@ label bedroom_dialogue:
         show player 37f at Position (xoffset=-41) with dissolve
         player_name "You have no idea..."
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
 
-    elif mom_count == 12 and mom_dialogue_advance == False and m6_note_seen == False:
+    if M_mom.get_state() == S_mom_overheard and gTimer.is_dark():
+        scene expression gTimer.image(tmp_image)
+        show player 34 with dissolve
+        player_name "...{b}*distant voice*{/b}..."
+        show player 35
+        player_name "( Is that {b}[mom_name]{/b} on the phone? )"
+        show player 12
+        player_name "( ...She sounds like she's mad... Is she yelling? )"
+        show player 10
+        player_name "( I should go see if she's okay. )"
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_check)
+        $ lock_ui()
+
+    elif M_mom.get_state() == S_mom_doorbell:
+        scene expression gTimer.image(tmp_image)
+        show player 12 with dissolve
+        player_name "( Doorbell's ringing, someone's at the door. )"
+        player_name "( Must be {b}Erik{/b} or something... )"
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_check_door)
+        $ lock_ui()
+
+    elif M_mom.get_state() == S_mom_movie_afterthoughts:
+        scene expression gTimer.image(tmp_image)
+        show player 5
+        player_name "Well that was super awkward!"
+        player_name "There is no way she didn't notice..."
+        player_name "I mean, she didn't say anything."
+        player_name "... but it definintely got uncomfortable."
+        show player 11
+        player_name "I hope {b}[mom_name]{/b} isn't upset with me..."
+        player_name "..."
+        show player 24
+        player_name "Ugh, I'll worry about it tomorrow. Right now, I need some sleep."
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_movie_night_finish)
+
+    elif M_mom.get_state() == S_mom_movie_afterthoughts_two:
+        scene location_bedroom_blur_night
+        show player 13
+        player_name "That was hot!"
+        player_name "[mom_name]'s wet pussy was rubbing up against me."
+        player_name "... And her nipples tasted so good!"
+        show player 5
+        player_name "..."
+        player_name "She kinda freaked out there at the end though."
+        player_name "Maybe I should have apologized more?"
+        player_name "..."
+        show player 13
+        player_name "No sense worrying about it now. I should get some sleep."
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_movie_night_finish)
+
+    elif M_mom.get_state() == S_mom_note and gTimer.is_dark():
+        scene expression gTimer.image(tmp_image)
         show player 7 with dissolve
         player_name "{b}*Yawn*{/b}"
-        show player 8
-        player_name "( What a strange dream... )"
-        show player 4
-        player_name "( )It almost felt like someone else was in the room with me."
+        show player 101 with dissolve
+        player_name "I should sleep."
+        hide player with dissolve
+
+    elif M_mom.get_state() == S_mom_note and M_player.is_set("just wokeup"):
+        scene expression gTimer.image(tmp_image)
+        show player 7 with dissolve
+        player_name "{b}*Yawn*{/b}"
         show player 11
         player_name "!!!"
         show player 10
         player_name "Someone left a {b}note{/b} on my computer screen?"
         hide player with dissolve
-        $ just_woke_up = False
-        $ m6_note = True
-        $ player_room_lock = True
-        $ ui_lock_count = 1
-        hide player with dissolve
+        $ M_player.set("just wokeup", False)
+        $ lock_ui()
 
-    elif mom_count == 6 and just_woke_up == True:
-        scene dreammom 1 at Position(ypos=1475) with fade
-        mom "Hey Sweetie."
-        mom "It's {b}Mommy{/b}..."
-        player_name "{b}Mom{/b}?"
-        player_name "Where are we?"
-        mom "It's okay. Everything will be alright..."
-        mom "{b}Mommy{/b} will take care of you..."
-        scene dreammom 1_2:
-            linear 5.0 ypos -707
-        player_name "{b}Mom{/b}..."
-        player_name "What are you doing..."
-        mom "It's okay... {b}Mommy{/b} wants you to feel good..."
-        player_name "{b}Mom{/b}... You're going too fast..."
-        scene dreammom 3
-        player_name "!!!" with hpunch
-        smi "{b}[firstname]{/b}!!!"
-        scene dreammom 3:
-            ypos -707
-            linear 1.0 ypos 0
-        smi "What are you doing here???"
-        smi "Are you... SLEEPING?!"
+    if not gTimer.is_dark():
+        if M_player.is_set("just wokeup"):
+            if gTimer.is_morning() and not shower.occupied("sis", False) and (
+                    sister.started(sis_webcam01) or
+                    sister.started(sis_webcam02) or
+                    sister.started(sis_webcam03) or
+                    (sister.over(sis_webcam04) and not sis_lastwebcam_show_seen)
+                    ):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "Hmm..."
+                player_name "( I wonder what my {b}Sister{/b} is doing right now. )"
+                show player 1
+                player_name "( Maybe I could connect to her {b}webcam{/b} from my computer... )"
+                hide player with dissolve
 
-        smi "Get to class NOW or I'm sending your ass to {b}DETENTION{/b}!"
-        scene black with fade
-        pause .2
-        $ just_woke_up = False
-        if MC_computer_broken:
-            scene bedroom_broken
-        else:
-            scene bedroom
-        show player 264
-        with dissolve
-        player_name "{b}*Yawn*{/b}"
-        show player 265 with dissolve
-        player_name "!!!"
-        show player 266
-        player_name "I had such a strange dream about {b}Mom{/b}!"
-        player_name "We were doing things, and she was naked!"
-        player_name "With me!"
-        show player 267 with hpunch
-        player_name "!!!"
-        show player 268
-        player_name "Is that normal?!"
-        player_name "I've never had those kinds of dreams with {b}Mom{/b} before..."
-        hide player with dissolve
+            elif sister.started(sis_telescope01) and (not shower.occupied("sis", False) and gTimer.is_morning()):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "( I wonder what {b}Erik{/b} is doing right now. )"
+                player_name "( I should use my {b}telescope{/b} and see what he's up to... )"
+                hide player with dissolve
 
-    elif gTimer.is_morning() and not gTimer.is_weekend() and just_woke_up == True:
-        $ just_woke_up = False
-        show player 7 with dissolve
-        player_name "{b}*Yawn*{/b}"
-        show player 8
-        window hide
-        pause
-        show player 9
-        player_name "( I should get ready for school... )"
-        hide player 9 with dissolve
+            elif sister.started(sis_telescope02) and (not shower.occupied("sis", False) and gTimer.is_morning()):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "( I wonder what {b}Mia{/b} is doing right now. )"
+                player_name "( I should use my {b}telescope{/b} and see what she's up to... )"
+                hide player with dissolve
 
-    elif just_woke_up == True and gTimer.is_morning() and gTimer.is_weekend():
-        $ just_woke_up = False
-        show player 7 with dissolve
-        player_name "{b}*Yawn*{/b}"
-        show player 8
-        window hide
-        pause
-        show player 9
-        player_name "( What should I do this weekend... )"
-        hide player 9 with dissolve
+            elif sister.started(sis_telescope03) and (not shower.occupied("sis", False) and gTimer.is_morning()):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "( I wonder what {b}Mrs. Johnson{/b} is doing right now. )"
+                player_name "( I should use my {b}telescope{/b} and see what she's up to... )"
+                hide player with dissolve
 
-    if player_room_count == 1 and mom_phone_event01 == False:
-        show player 34 with dissolve
-        player_name "...{b}*distant voice*{/b}..."
-        show player 35
-        player_name "( Is that {b}Mom{/b} on the phone? )"
-        show player 12
-        player_name "( ...She sounds like she's mad... Is she yelling? )"
-        show player 10
-        player_name "( I should go see if she's alright. )"
-        hide player 5 with dissolve
-        $ ui_lock_count = 1
-        $ mom_phone_event01 = True
+            elif training_count == 1 and training_tier == 2 and sister.over(sis_shower_cuddle01) or training_count == 2 and training_tier == 3 and sister.over(sis_couch02) or training_count == 3 and training_tier == 4 and sister.over(sis_couch03):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "( I wonder if {b}Master Somrak{/b} is ready to train me again. )"
+                hide player with dissolve
 
-    elif mom_count == 3 and mom_dialogue_advance == False and not gTimer.is_dark() and henchmen_count == 0:
-        if MC_computer_broken:
-            scene bedroom_broken
-        else:
-            scene bedroom
-        show player 1 with dissolve
-        player_name "( Doorbell's ringing, someone's at the door. )"
-        player_name "( Must be {b}Erik{/b} or something... )"
-        $ doorbell_rang = True
-        $ ui_lock_count = 1
+            if M_mom.is_set("chores"):
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                if randomizer() < 50:
+                    player_name "I wonder if {b}[mom_name]{/b} needs help around the house."
+                    player_name "I should go ask her..."
+                else:
+                    player_name "Wonder if {b}[mom_name]{/b} needs my help with anything else..."
+                hide player with dissolve
 
-    elif mom_count == 6 and not mom_dialogue_advance and gTimer.is_dark() and mom_revealing:
-        show player 34 with dissolve
-        player_name "...{b}*distant voice*{/b}..."
-        show player 35
-        player_name "( There are weird voices coming from the kitchen... )"
-        show player 12
-        player_name "( ...I don't remember {b}Mom{/b} or {b}[sis]{/b} inviting anyone over... )"
-        show player 10
-        player_name "( I should go see if everything is okay. )"
-        hide player 5 with dissolve
+            elif M_mom.get_state() == S_mom_search_panties:
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "( I can't stop thinking about putting that lotion on [mom_name] )"
+                player_name "( Her legs are so long and soft.. )"
+                player_name "( And she smells so good.. )"
+                show player 11
+                player_name "( Come to think of it. The lotion was in her panty drawer. )"
+                player_name "( I'm dying to go check those panties out... )"
+                show player 13
+                player_name "( Maybe now is a good time. )"
+                hide player with dissolve
 
-    elif not gTimer.is_dark():
-        if gTimer.is_morning() and shower != "sister" and (
-                sister.started(sis_webcam01) or
-                sister.started(sis_webcam02) or
-                sister.started(sis_webcam03) or
-                (sister.over(sis_webcam04) and not sis_lastwebcam_show_seen)
-                ):
-            show player 4
-            with dissolve
-            player_name "Hmm..."
-            player_name "( I wonder what my {b}Sister{/b} is doing right now. )"
-            show player 1
-            player_name "( Maybe I could connect to her {b}webcam{/b} from my computer... )"
-            hide player with dissolve
-
-        elif sister.started(sis_telescope01) and (shower != "sister" and gTimer.is_morning()):
-            show player 4 with dissolve
-            player_name "( I wonder what {b}Erik{/b} is doing right now. )"
-            player_name "( I should use my {b}telescope{/b} and see what he's up to... )"
-            hide player with dissolve
-
-        elif sister.started(sis_telescope02) and (shower != "sister" and gTimer.is_morning()):
-            show player 4 with dissolve
-            player_name "( I wonder what {b}Mia{/b} is doing right now. )"
-            player_name "( I should use my {b}telescope{/b} and see what she's up to... )"
-            hide player with dissolve
-
-        elif sister.started(sis_telescope03) and (shower != "sister" and gTimer.is_morning()):
-            show player 4 with dissolve
-            player_name "( I wonder what {b}Mrs. Johnson{/b} is doing right now. )"
-            player_name "( I should use my {b}telescope{/b} and see what she's up to... )"
-            hide player with dissolve
-
-        elif training_count == 1 and training_tier == 2 and sister.over(sis_shower_cuddle01) or training_count == 2 and training_tier == 3 and sister.over(sis_couch02) or training_count == 3 and training_tier == 4 and sister.over(sis_couch03):
-            show player 4 with dissolve
-            player_name "( I wonder if {b}Master Somrak{/b} is ready to train me again. )"
-            hide player with dissolve
+            elif M_mom.get_state() == S_mom_kissing_practice:
+                scene expression gTimer.image(tmp_image)
+                show player 4 with dissolve
+                player_name "I keep having naughty dreams involving [mom_name]."
+                player_name "They are driving me nuts!"
+                show player 5
+                player_name "..."
+                player_name "I should probably {b}talk to her{/b} about it..."
+                hide player with dissolve
+            $ M_player.set("just wokeup", False)
 
     elif gTimer.is_evening():
         if sister.started(sis_couch01):
+            scene expression gTimer.image(tmp_image)
             show player 10 with dissolve
             player_name "( I hear someone in the hallway... My {b}Sister{/b}'s door? )"
             show player 4
@@ -409,6 +546,7 @@ label bedroom_dialogue:
             hide player with dissolve
 
         elif sister.started(sis_couch03):
+            scene expression gTimer.image(tmp_image)
             show player 4 with dissolve
             player_name "( I wonder if there's a {b}new porn video{/b} on TV tonight. )"
             show player 26
@@ -1086,7 +1224,7 @@ label mia_midnight_text:
     show player 442
     player_name "Maybe I should {b}go see her now{/b}... Just to make sure she's alright."
     hide player with dissolve
-    $ ui_lock_count = 0
+    $ unlock_ui()
     $ M_mia.trigger(T_mia_message)
     $ callScreen(location_count)
 
@@ -1100,7 +1238,7 @@ label mia_urgent_text:
     player_name "She can't find her dad?"
     player_name "I better go see what's going on..."
     hide player with dissolve
-    $ ui_lock_count = 0
+    $ unlock_ui()
     $ M_mia.trigger(T_mia_message)
     $ callScreen(location_count)
 
@@ -1116,21 +1254,171 @@ label textbook_missing_dialogue:
     hide player with dissolve
     $ callScreen(location_count)
 
+label bed_locked:
+    if MC_computer_broken:
+        scene expression gTimer.image("bedroom_broken{}")
+    else:
+        scene expression gTimer.image("bedroom{}")
+    show player 10 with dissolve
+    player_name "( I still have something I need to do before I can sleep... )"
+    hide player 10 with dissolve
+    $ callScreen(location_count)
+
 label bedroom_check_on_mom:
     if MC_computer_broken:
         scene expression gTimer.image("bedroom_broken{}")
     else:
         scene expression gTimer.image("bedroom{}")
     show player 10 with dissolve
-    player_name "( I should really go check on {b}Mom{/b}... )"
+    player_name "( I should really go check on {b}[mom_name]{/b}... )"
     hide player 10 with dissolve
     $ callScreen(location_count)
 
 label sleeping:
+    if not gTimer.is_night() and (M_player.is_set("jerk mom") or M_player.is_set("jerk mia")):
+        if MC_computer_broken:
+            scene expression gTimer.image("backgrounds/location_bedroom_broken{}.jpg")
+        else:
+            scene expression gTimer.image("backgrounds/location_bedroom{}.jpg")
+        menu:
+            "Jerk off.":
+                menu:
+                    "Mom." if M_player.is_set("jerk mom"):
+                        $ M_player.set("sex speed", .4)
+                        scene expression gTimer.image("backgrounds/location_bedroom_jerk{}.jpg")
+                        show player 496 zorder 0 at Position(xpos=0.3375, ypos=0.875)
+                        pause
+                        show player 496b
+                        player_name "... Mom is so beautiful."
+                        player_name "I just can't stop thinking about it."
+                        player_name "... about her."
+                        player_name "Mmm, God, I want her so bad!"
+                        show player 496c
+                        show jerkbubble zorder 1 at Position(xpos=0.6, ypos=1.0) with dissolve
+                        pause
+                        show momd 1 zorder 2 at Position(xpos=0.735, ypos=0.85) with dissolve
+                        pause
+                        show momd 2
+                        mom "Well Hello there..."
+                        show momd 1
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        show momd 2
+                        mom "Oh gosh... Is that for me?"
+                        mom "... It's so big!"
+                        show momd 1
+                        pause
+                        show momd 2
+                        mom "... and thick."
+                        show momd 3 with dissolve
+                        mom "Mmm, are you gonna give it to me?"
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        mom "Give it to me, [firstname]!"
+                        $ M_mom.set("sex speed", M_mom.get("sex speed") / 1)
+                        show momd 4_5
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        pause
+                        show player 496f
+                        player_name "OH!"
+                        show player 496g with flash
+                        player_name "HHHNNNGGGG, HHuuuUUHH!!"
+                        show player 496h
+                        hide jerkbubble
+                        hide momd
+                        player_name "Haaaah... Haaaah..."
+                        player_name "Uuuhh man, I'm covered..."
+
+                    "Mia." if M_player.is_set("jerk mia"):
+                        $ M_player.set("sex speed", .4)
+                        scene expression gTimer.image("backgrounds/location_bedroom_jerk{}.jpg")
+                        show player 496 zorder 0 at Position(xpos=0.3375, ypos=0.875)
+                        pause
+                        show player 496b
+                        player_name "Mia is so cute!"
+                        player_name "I can't wait to see her again..."
+                        pause
+                        player_name "... That cute body of hers."
+                        player_name "Mmm..."
+                        show player 496c
+                        show jerkbubble zorder 1 at Position(xpos=0.6, ypos=1.0) with dissolve
+                        pause
+                        show miad 1 zorder 2 at Position(xpos=0.735, ypos=0.8) with dissolve
+                        pause
+                        show miad 2
+                        mom "Hey, [firstname]!"
+                        show miad 1
+                        pause
+                        show miad 2
+                        mia "Wow, I've never seen one of those before!"
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        mia "Are they all that big?!"
+                        show miad 1
+                        pause
+                        show miad 2
+                        mia "I was really hoping you would be my first, [firstname]."
+                        show miad 1
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        pause
+                        show miad 2
+                        mia "Do you think it will fit?"
+                        mia "... In my..."
+                        show miad 1
+                        $ M_player.set("sex speed", M_player.get("sex speed") / 2)
+                        show player 496c_496d_496e_496d_496c
+                        pause
+                        show miad 2
+                        mia "...In my pussy?"
+                        show player 496f
+                        player_name "OH!"
+                        show player 496g with flash
+                        player_name "HHHNNNGGGG, HHuuuUUHH!!"
+                        show player 496h
+                        hide jerkbubble
+                        hide miad
+                        player_name "Haaaah... Haaaah..."
+                        player_name "Uuuhh man, I'm covered..."
+
+                scene black with fade
+                $ gTimer.tick()
+                $ callScreen(location_count)
+            "Sleep.":
+
+                $ pass
+
+    if M_mom.get_state() in [S_mom_movie_night, S_mom_movie_night_two]:
+        if MC_computer_broken:
+            scene expression gTimer.image("bedroom_broken{}")
+        else:
+            scene expression gTimer.image("bedroom{}")
+        show player 101b with dissolve
+        player_name "I think I heard {b}[mom_name]{/b} doing something downstairs."
+        hide player with dissolve
+        $ gTimer.tick(3)
+        $ lock_ui()
+        $ callScreen(location_count)
+
+    elif M_mom.get_state() == S_mom_sleepover:
+        if MC_computer_broken:
+            scene expression gTimer.image("bedroom_broken{}")
+        else:
+            scene expression gTimer.image("bedroom{}")
+        show player 101b with dissolve
+        player_name "Maybe I should could sleep next to {b}[mom_name]{/b} tonight."
+        player_name "She did say I could go visit her at night if I wanted to..."
+        hide player with dissolve
+        $ callScreen(location_count)
+
+    elif M_mom.is_set("room sneak"):
+        jump mom_sleepover
+
     if erik.over(erik_breastfeeding_2) and not erik.over(erik_thief) and randomizer() > 66:
         if erik.in_progress(erik_thief):
             $ erik_thief.unfinish()
-            $ ui_lock_count = 0
+            $ unlock_ui()
         else:
 
             if not erik.known(erik_thief):
@@ -1182,7 +1470,7 @@ label sleeping:
                     hide player with dissolve
                     $ gTimer.tick(4)
                     $ erik_thief.finish()
-                    $ ui_lock_count = 1
+                    $ lock_ui()
                     scene black with fade
                     jump erik_house_dialogue
 
@@ -1223,66 +1511,72 @@ label sleeping:
         player_name "Someone's texting me?"
         player_name "I should see who it is..."
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
         $ gTimer.tick(4)
         if m_mia01 not in message_list:
             $ message_list.append(m_mia01)
             $ new_message = True
         $ callScreen(location_count)
 
-    elif mom_revealing_tommorow and not first_mom_visit:
-        $ first_mom_visit = True
-        scene location_bedroom_sex01
-        show moms 1
-        with dissolve
-        mom "( My beautiful boy. )"
-        mom "( Always there for me. )"
-        mom "( ... Always in my thoughts... )"
-        show moms 2
-        mom "..."
-        mom "( I can't even stop thinking about his... )"
-        mom "( Body... and the way he looks at me... )"
-        show moms 3
-        mom "( I just want to see him... )"
-        show moms 4
-        mom "Hmm..."
-        show moms 5
-        mom "( There. He must be hot under that blanket. )"
-        show moms 6
-        mom "( And that bulge! I feel like touching it... )"
-        show moms 7_8
-        pause 4
-        show moms 6
-        mom "( It feels like it's getting bigger... )"
-        show moms 7_8
-        pause 4
-        mom "( And harder! )"
-        mom "..."
-        show moms 119
-        mom "( What am I doing?! )"
-        mom "( What if he wakes up and finds me like this? )"
-        show moms 120
-        mom "( No. I should leave! )"
-        show moms 121 at Position(xpos = 544, ypos = 768)
-        player_name "Huh...?"
-        show moms 122
-        player_name "Hmm..."
-        player_name "( Was that? )"
-        show moms 123 at Position(xpos = 512, ypos = 768)
-        player_name "( Nevermind )"
+    elif M_mom.get_state() == S_mom_solo_dream:
+        scene dream_mom_04 with fade:
+            ypos -707
+            linear 4.0 ypos 0
+        mom "Mmm..."
+        mom "Oh, that feels wonderful Sweetie."
+        player_name "..."
+        player_name "Oh, {b}[mom_name]{/b}..."
+        mom "I want you {b}[firstname]{/b}!"
+        mom "I want you inside me so bad!"
+        player_name "*gulp*"
+        player_name "Really?"
+        mom "Yesss, please Sweetie. Put it inside Mommy..."
+        mom "I need that big cock inside me!"
+        player_name "..."
+        mom "Kiss me, Baby. I can't wait any longer!!"
+        scene dream_mom_05 with dissolve:
+            ypos 0
+        pause
+        player_name "Hnnggg!!" with flash
+        pause
+        scene dream_mom_05 with flash:
+            ypos 0
+            linear 4.0 ypos -475
+        player_name "... Oooooh..."
+        pause
 
-    elif mom_count == 11 and mom_dialogue_advance:
-        $ gTimer.tick(3)
-        scene location_bedroom_cutscene01
-        with dissolve
+        scene location_bedroom_cutscene06 with fade
+        pause
+        scene location_bedroom_cutscene07
+        player_name "..."
+        scene location_bedroom_cutscene08
+        player_name "Oh man..."
+        pause
+        scene location_bedroom_cutscene09
+        pause
+        player_name "I made a mess..."
+        player_name ".. But holy crap, that was intense..."
+        player_name "It all felt so real!"
+        player_name "Arrgghh, I'm really losing it!"
+        player_name "I just can't stop thinking about her!"
+        player_name "I want to hold her and kiss her so bad..."
+        player_name "Maybe I should try {b}talking to [mom_name] about kissing{/b}?"
+        player_name "She seemed kind of into it at first, when I kissed her in the Mall..."
+        player_name "Hmm, it's risky but I think it's worth a shot!"
+        player_name "I might go nuts if I don't do something..."
+        player_name "... But first I should clean up and get some more sleep."
+        $ M_mom.trigger(T_mom_dream)
+
+    elif M_mom.get_state() == S_mom_night_visit:
+        scene location_bedroom_cutscene01 with dissolve
         player_name "Zzz..."
-        scene location_bedroom_cutscene02
-        with dissolve
+        scene location_bedroom_cutscene02 with dissolve
         mom "..."
         mom "( I can’t fall asleep. )"
-        mom "( Ever since he’s been visiting me in bed... )"
-        mom "( I can’t stop thinking about him. )"
-        mom "( I just... Feel like being close to him... )"
+        mom "( Ever since I watched him masturbate... )"
+        mom "( I can’t stop thinking about his- )"
+        mom "( I just... )"
+        mom "( I feel like being close to him... )"
         define fadehold = Fade(0.5, 1.0, 0.5)
 
         scene location_bedroom_sex01
@@ -1319,33 +1613,40 @@ label sleeping:
         mom "!!!"
         show moms 12
         mom "..."
-        mom "( It's so... Pretty... )"
+        mom "( That bulge... It's pretty... )"
         mom "( And so big! )"
+        mom "( I can't believe how much he's grown. )"
+        mom "( ... )"
+        mom "( It seems so long since I've felt one... )"
+        mom "( And I miss it so much... )"
+        mom "( It's got to be alright if I just touched it... )"
+        mom "( As his mother, I should check and see if anything is...abnormal... )"
         show moms 13
-        mom "( ... I can't believe how much he's grown... )"
-        mom "( And I love feeling it in my hands... )"
+        pause
+        show moms 14
+        pause
+        mom "( It's so warm. )"
+        mom "( And soft... )"
+        show moms 13
+        mom "..."
         show moms 13_14
-        mom "( It's so warm... )"
-        mom "( And soft. )"
+        pause
+        mom "( What...am I doing...)"
         mom "..."
-        show moms 15
-        mom "( It feels so nice on my lips. )"
-        mom "( I want... )"
-        mom "( To taste it. )"
-        show moms 16_17
-        mom "( I love feeling it in my mouth... )"
-        mom "( It's getting harder... )"
-        show moms 18
-        player_name "{b}*Moan*{/b}"
-        show moms 19
-        mom "!!!" with hpunch
-        mom "( He's waking up? )"
+        mom "( I know a mother shouldn't be stroking her son's bare cock... )"
+        mom "( But... )"
+        mom "( I also let him jerk off to my naked body... )"
+        pause
+        mom "( He was so innoncent when I caught him masturbating and...the way he orgasmed...)"
         mom "..."
+        mom "( Would it even fit- )"
+        show moms 12
+        mom "( Control yourself... )"
         show moms 20
-        mom "( What am I doing? )"
-        mom "( What if he wakes up and finds me like this? )"
+        mom "( But I feel like I want it...)"
         show moms 21
-        mom "( No. I should leave! )"
+        mom "( No. )"
+        mom "( ...I need to leave... )"
         show moms 22 at Position(xpos = 544, ypos = 768)
         player_name "Huh...?"
         show moms 23
@@ -1353,13 +1654,411 @@ label sleeping:
         player_name "( Was that? )"
         show moms 24 at Position(xpos = 512, ypos = 768)
         player_name "( Nevermind )"
-    if MC_computer_broken:
-        show expression gTimer.image("bedroom_broken{}")
+        $ M_mom.trigger(T_mom_midnight_fun)
+
+    elif M_mom.get_state() == S_mom_night_visit_two:
+        scene location_bedroom_cutscene01 with dissolve
+        player_name "Zzz..."
+        scene location_bedroom_cutscene02 with dissolve
+        pause
+        scene location_bedroom_sex01
+        show moms 1
+        with dissolve
+        mom "( I shouldn't be here... )"
+        mom "( ... But I just can't stop thinking about his cock! )"
+        mom "( My sweet Baby boy... )"
+        show moms 2
+        mom "..."
+        mom "( Maybe Diane is right; Perhaps I should just relax and let myself go. )"
+        mom "( The way that he looks at me, with those hungry eyes... )"
+        mom "( Mmm, I'm getting wet just thinking about it... )"
+        show moms 3
+        mom "( I have to see it! )"
+        show moms 4
+        mom "Hmm..."
+        show moms 5
+        mom "( Ooh, this is so wrong... What are you doing, [mom]? )"
+        show moms 6
+        mom "( It's even bigger than I remember... )"
+        show moms 7_8
+        pause 4
+        show moms 6
+        mom "( Mmm and it's getting hard... )"
+        show moms 7_8
+        mom "( Sooo {b}hard{/b}! )"
+        mom "..."
+        mom "( ... Maybe I could just take a peak... )"
+        show moms 9
+        $ renpy.pause()
+        show moms 10
+        mom "( ... I mean it has to be uncomfortable for him. )"
+        mom "( I'm just helping him relax... That's all. )"
+        show moms 11
+        mom "!!!"
+        show moms 12
+        mom "..."
+        mom "( Oh my God! )"
+        mom "( Oooh! )"
+        show moms 13
+        mom "( It's so soft and warm... )"
+        mom "( And it feels so good in my hands... )"
+        show moms 13_14
+        mom "( It's so thick... )"
+        mom "( ... and Juicy. )"
+        mom "..."
+        mom "( It's been so long... )"
+        mom "( I want... )"
+        mom "( I want to taste it. )"
+        show moms 15
+        mom "( I {b}NEED{/b} to taste it! )"
+        mom "( Just for a second! That couldn't hurt, right? )"
+        show moms 16_17
+        mom "( Oh yes!! )"
+        mom "( Oh God, I've missed this so much! )"
+        mom "( Mmm, I'm sooo wet... )"
+        show moms 18
+        player_name "{b}*Moan*{/b}"
+        show moms 19
+        mom "!!!" with hpunch
+        mom "( Oh crap! He's waking up... )"
+        mom "..."
+        show moms 20
+        mom "( What have I done! )"
+        mom "( I can't let him see me like this! )"
+        show moms 21
+        mom "( I have to get out of here! )"
+        show moms 22 at Position(xpos = 544, ypos = 768)
+        player_name "Huh...?"
+        show moms 23
+        player_name "Hmm..."
+        player_name "( Was that? )"
+        show moms 24 at Position(xpos = 512, ypos = 768)
+        player_name "( ... )"
+        player_name "( I guess it was nothing... )"
+        $ M_mom.trigger(T_mom_midnight_fun)
+
+    elif M_mom.get_state() == S_mom_midnight_noises:
+        scene bedroom_cs01 with fade
+        "Ha ha ha..."
+        "{b}*SPLASH*{/b}"
+        scene bedroom_cs03 with dissolve
+        player_name "..."
+        scene bedroom_cs04
+        player_name "Who is making all that noise outside?"
+        scene bedroom_cs03
+        player_name "..."
+        player_name "......"
+        scene bedroom_cs01 with dissolve
+        pause
+        "{b}*SPLASH*{/b}"
+        scene bedroom_cs04 with dissolve
+        player_name "What is going on?"
+
+        scene bedroom_night
+        show player 101b
+        with dissolve
+        player_name "Maybe, I should go check to see what's going on."
+        player_name "Sounds like whoever is outside isn't going to stop any time soon."
+        show player 8 with dissolve
+        $ M_mom.trigger(T_mom_midnight_wakeup)
+        $ gTimer.tick(4)
+        $ lock_ui()
+        $ callScreen(location_count)
+
+    elif M_mom.get_state() == S_mom_night_visit_three:
+        $ M_mom.set('sex speed', .175 / .75)
+        scene location_bedroom_cutscene01 with dissolve
+        player_name "Zzz..."
+        scene location_bedroom_cutscene02 with dissolve
+        pause
+        scene location_bedroom_sex01
+        show moms 1
+        with dissolve
+        mom "( Oh... )"
+        mom "( I'm here... )"
+        show moms 3
+        mom "( What am I doing! )"
+        show moms 4
+        mom "( WHAT AM I DOING!!! )"
+        show moms 5
+        mom "( Mmm! )"
+        mom "( There it is! )"
+        show moms 6
+        mom "( Ooh, I want it so bad... )"
+        show moms 7_8
+        mom "( Get hard for me Sweetie... )"
+        mom "( Get hard for {b}Mommy{/b}. )"
+        show moms 6
+        pause
+        show moms 9
+        pause
+        show moms 10
+        mom "( ... )"
+        show moms 11
+        mom "!!!"
+        show moms 12
+        mom "..."
+        mom "( Oh, I'm burning up... I need it!!! )"
+        show moms 15
+        mom "( Mmm. )"
+        $ M_mom.set('sex speed', M_mom.get('sex speed') / .75)
+        show moms 16_17
+        mom "( Oh! )"
+        mom "( He tastes so good! )"
+        player_name "( Mmm )"
+        mom "*slurp*"
+        show moms 19
+        player_name "Hmm?"
+        show moms 20b
+        player_name "What the- ?"
+        show moms 20c at Position(xpos=0.53, ypos=1.0) with dissolve
+        player_name "... {b}[mom_name]{/b}?"
+        show moms 20d
+        mom "It's alright, {b}[firstname]{/b}, it's me."
+        show moms 20c
+        player_name "... Okay."
+        player_name "But what's going-"
+        show moms 20d
+        mom "Shhh..."
+        show moms 20c
+        player_name "{b}[mom_name]{/b}? What are you-"
+        show moms 20e with dissolve
+        mom "Hush Sweetie, just relax and let yourself go..."
+        player_name "..."
+
+
+        mom "Oh, I need it, {b}[firstname]{/b}!"
+        mom "I need that cock inside of me!!!"
+        show moms 20f at Position(xpos=0.5, ypos=1.0) with dissolve
+        player_name "*gulp*"
+        mom "I tried..."
+        mom "I tried so hard to resist."
+        mom "... But I just can't!"
+        show moms 20g with dissolve
+        mom "Please, don't think less of me..."
+        pause
+        show moms 20h with hpunch
+
+        player_name "... Ooohh!!"
+        mom "Haaaaaaaah!"
+        $ M_mom.set('sex speed', M_mom.get('sex speed') / 1.75)
+        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+        mom "Oh God!!"
+        pause
+        mom "Oh, it's even better than I imagined!"
+        player_name "Oh, {b}[mom_name]{/b} this feels so good!"
+        $ M_mom.set('sex speed', M_mom.get('sex speed') / 2)
+        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+        mom "Haah! [firstname]! Oh, [firstname]!"
+        mom "I'm gonna cum!"
+        show moms 20h with flash
+        mom "AAHHH!!"
+
+        player_name "Are you alright, {b}[mom_name]{/b}?"
+        mom "Haaah... Haaaah..."
+        mom "... Don't worry, Sweetie."
+        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+        mom "Keep going! Fuck, this is so good!"
+        player_name "..."
+        mom "Give it to me!!"
+        $ M_mom.set('sex speed', M_mom.get('sex speed') / 1.5)
+        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+        mom "OOOHH!!!"
+        mom "That's it, Baby!!"
+        mom "Let Mommy ride that fat cock!!"
+        $ keep_going = 0
+        $ M_mom.set("change angle", False)
+        label night_visit_loop:
+            menu:
+                "Keep going." if keep_going < 2:
+                    $ keep_going += 1
+                    if M_mom.get("change angle"):
+                        show moms 170_171_172_173_174_175_176_177
+                    else:
+
+                        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+                    pause
+                    jump night_visit_loop
+
+                "Change Angle." if keep_going < 2:
+                    $ keep_going += 1
+                    if not M_mom.get("change angle"):
+                        $ M_mom.set('sex speed', .15)
+                        $ M_mom.set("change angle", True)
+                        hide moms
+                        scene bedroom_sex_05
+                        show moms 170_171_172_173_174_175_176_177
+                        with fade
+                    else:
+
+                        $ M_mom.set('sex speed', ((.175 / .75) / 3) / 1.5)
+                        $ M_mom.set("change angle", False)
+                        hide moms
+                        scene location_bedroom_sex01
+                        show moms 20h_20i_20j_20k_20l_20m_20n_20o
+                        with fade
+                    pause
+                    jump night_visit_loop
+                "Cum.":
+
+                    player_name "Oh, {b}[mom_name]{/b}... I'm gonna..."
+                    player_name "... I'm gonna!!"
+                    mom "Don't stop!! Don't-"
+                    $ M_mom.set('sex speed', M_mom.get('sex speed') / .075)
+                    scene location_bedroom_sex01
+                    show moms 20p_20q
+                    with flash
+                    player_name "HHNNGGG!!!!!"
+
+                    mom "AAAAAAAAHHHH!!!"
+                    pause
+                    show moms 20h
+
+                    player_name "*panting*"
+
+                    mom "Mmm..."
+                    show moms 20r with dissolve
+                    mom "..."
+                    show moms 20s with dissolve
+                    mom "Oh gosh..."
+                    show moms 20t
+                    player_name "That was incredible!"
+                    show moms 20s
+                    mom "Hehe, it really was..."
+                    mom "..."
+                    mom "I'm so sorry, Sweetheart!"
+                    mom "I shouldn't have done this..."
+                    show moms 20t
+                    player_name "What!? No, don't say that!"
+                    mom "..."
+                    player_name "I wanted this too!"
+                    show moms 20s
+                    mom "... You did?"
+                    show moms 20t
+                    player_name "You have no idea! It's practically all I can think about anymore!"
+                    show moms 20s
+                    mom "... Really?"
+                    show moms 20t
+                    player_name "Yeah!"
+                    player_name "I love you, {b}[mom_name]{/b}!"
+                    show moms 20s
+                    mom "... I love you too, Sweetie!"
+                    mom "..."
+                    mom "I've never orgasmed that hard before!!!"
+                    show moms 20t
+                    player_name "For real?!"
+                    show moms 20s
+                    mom "Hehe, I think so..."
+                    show moms 20t
+                    player_name "Sorry I didn't last very long..."
+                    show moms 20s
+                    mom "No, you did great, Sweetheart! Especially for our first time!"
+                    show moms 20t
+                    player_name "... First time?"
+                    mom "..."
+                    player_name "Can we do this again, {b}[mom_name]{/b}?"
+                    show moms 20s
+                    mom "Oh Sweetie, are you sure that's what you want?"
+                    show moms 20t
+                    player_name "Of course!!!"
+                    player_name "[mom_name], I've never wanted anything more!"
+                    show moms 20s
+                    mom "Oh gosh..."
+                    mom "I hate to admit it but I feel the same way!"
+                    mom "..."
+                    mom "Alright, Sweetie..."
+                    mom "... But we can only be naughty when no one else is around!"
+                    mom "And you can't tell {b}ANYBODY{/b}! Especially not your {b}Sister{/b}!"
+                    mom "Do you understand?!"
+                    show moms 20t
+                    player_name "Yes."
+                    show moms 20s
+                    mom "[firstname], I'm serious! You cannot tell a soul about this!"
+                    show moms 20t
+                    player_name "I won't, {b}[mom_name]{/b}. I promise."
+                    show moms 20s
+                    mom "Good boy."
+                    mom "*yawn*"
+                    mom "Oh, I'm exhausted now."
+                    show moms 20t
+                    player_name "Yeah, me too."
+                    show moms 20s
+                    mom "Mmm, I could fall asleep right here."
+                    show moms 20t
+                    player_name "You should, [mom_name]."
+                    show moms 20s
+                    mom "I guess it would be alright. So long as I get out of here before [sis] wakes up."
+
+
+
+                    scene location_bedroom_cutscene_sleep
+                    with fade
+                    show text "[mom_name] and I had finally slept together." at Position (xpos= 512, ypos= 700) with dissolve
+                    pause
+                    show text "It had been spectacular! All of our pent up anxieties evaporated in an instant!" at Position (xpos= 512, ypos= 700) with dissolve
+                    pause
+                    show text "She fell asleep in my arms that night..." at Position (xpos= 512, ypos= 700) with dissolve
+                    pause
+                    show text "... And I awoke the next morning feeling better than I could ever remember." at Position (xpos= 512, ypos= 700) with dissolve
+                    pause
+                    hide text
+                    with dissolve
+
+
+                    if M_player.is_set("pet cat"):
+                        scene location_sleeping4 with fade
+                    else:
+                        scene location_sleeping2 with fade
+                    show unlock11 at truecenter with dissolve
+                    $ renpy.pause()
+                    hide unlock11
+
+
+                    scene location_bedroom_sex04
+                    show moms 20u
+                    pause
+                    show moms 20v
+                    player_name "[mom_name]?"
+                    show moms 20u
+                    player_name "..."
+                    show moms 20v
+                    player_name "[mom_name], wake up."
+                    show moms 20u
+                    mom "Hmm?"
+                    show moms 20x
+                    mom "*yawn* Morning already?"
+                    show moms 20w
+                    player_name "Unfortunately."
+                    show moms 20x
+                    mom "Oh, I slept like a log..."
+                    show moms 20w
+                    player_name "Heh, yeah, me too."
+                    show moms 20x
+                    mom "Hmm, alright. I suppose I'd better get out of here before your {b}Sister{/b} wakes up."
+                    show moms 20w
+                    player_name "You sure you don't want to fool around a bit more?"
+                    show moms 20x
+                    mom "Hehe, don't tempt me, Sweetie. That cock of yours is hard to say no to."
+                    show moms 20w
+                    player_name "I'll never get tired of hearing that!"
+                    show moms 20x
+                    mom "Come and find me later, okay?"
+                    $ M_mom.trigger(T_mom_midnight_fun)
+                    $ Sleep()
+                    $ callScreen(location_count)
     else:
-        show expression gTimer.image("bedroom{}")
-    show sleeping with fade
-    show unlock11 at truecenter
+        if MC_computer_broken:
+            show expression gTimer.image("bedroom_broken{}")
+        else:
+            show expression gTimer.image("bedroom{}")
+
+    if M_player.is_set("pet cat"):
+        scene location_sleeping3 with fade
+    else:
+        scene location_sleeping with fade
+    show unlock11 at truecenter with dissolve
     $ renpy.pause()
+    $ Sleep()
     hide unlock11
     hide bedroom
     hide bedroom_broken
@@ -1368,99 +2067,251 @@ label sleeping:
     scene black with fade
     hide sleeping with fade
 
-    if aunt_dialogue_advance == True:
-        $ aunt_dialogue_advance = False
-        $ aunt_count += 1
 
-    if mom_dialogue_advance == True:
-        $ mom_dialogue_advance = False
-        $ mom_count += 1
+    if M_mom.get_state() == S_mom_smith_dream:
+        scene dreammom 1 at Position(ypos=1475) with fade
+        mom "Hey Sweetie."
+        mom "It's {b}Mommy{/b}..."
+        player_name "{b}[mom_name]{/b}?"
+        player_name "Where are we?"
+        mom "It's okay. Everything will be alright..."
+        mom "{b}Mommy{/b} will take care of you..."
+        scene dreammom 1_2:
+            linear 5.0 ypos -707
+        player_name "{b}[mom_name]{/b}..."
+        player_name "What are you doing..."
+        mom "It's okay... {b}Mommy{/b} wants you to feel good..."
+        player_name "{b}[mom_name]{/b}... You're going too fast..."
+        scene dreammom 3
+        player_name "!!!" with hpunch
+        smi "{b}[firstname]{/b}!!!"
+        scene dreammom 3:
+            ypos -707
+            linear 1.0 ypos 0
+        smi "What are you doing here???"
+        smi "Are you... SLEEPING?!"
 
-    if mom_dialogue_daily == True:
-        $ mom_time_passing += 1
-        if mom_time_passing > 2:
-            $ mom_time_passing = 0
-
-    $ mom_dialogue_daily = False
-
-    if mom_door_count == 0:
-        $ mom_door_count = 1
-
-    if sis_dialogue_advance and sis_bedroom_count < 2:
-        $ sis_dialogue_advance = False
-        $ sis_bedroom_count += 1
-
-    $ diary_scene = False
-
-    if left_hall_dialogue_advancement:
-        $ left_hall_dialogue_advancement = False
-        $ left_hall_dialogue_count += 1
-
-    if pizza_dialogue_advance:
-        $ pizza_dialogue_advance = False
-        $ pizza_count += 1
-
-    if renpy.random.randint(0,4) != 0:
-        $ player_mail = [renpy.random.choice(player_mailbox_items)]
-
-    if renpy.random.randint(0,4) != 0:
-        $ erik_mail = [renpy.random.choice(erik_mailbox_items)]
-
-    if renpy.random.randint(0,4) != 0:
-        $ mia_mail = [renpy.random.choice(mia_mailbox_items)]
-
-    $ gTimer.sleep()
-    $ erik_drunk = False
-    $ just_woke_up = True
-    $ judith_daylock = False
-    $ mom_door_lock = False
-    $ training_done = False
-    $ masturbated_tv = False
-    $ moms_panties_taken = False
-    $ roxxy_shower_lock = False
-    $ mrsj_filled = False
-    $ erik_funky = False
-
-    if gTimer.dayOfWeek() == "Tue" and erik.completed(erik_orcette):
-        $ orcette_mail_lock = True
-
-    $ random_message = renpy.random.randint(0,9)
-
-    if judith_sex_sequence_unlocked and m_judith01 not in message_list:
-        if random_message == 9:
-            $ message_list.append(m_judith01)
-            $ new_message = True
-
-    $ erik_telescope_random = renpy.random.randint(0,1)
-    $ erikmom_telescope_random = renpy.random.randint(0,2)
-    $ mia_telescope_random = renpy.random.randint(0,1)
-
-    $ tick_skip_active = True
-
-    if not gTimer.is_weekend():
-        $ rump_n_cunt = randomizer()
-    else:
-        $ rump_n_cunt = 0
-
-    if mom_revealing_tommorow:
-        $ mom_revealing = True
-
-    if mom_count == 4:
-        if renpy.random.randint(1,2) == 1:
-            $ mom_vacuuming = True
+        smi "Get to class NOW or I'm sending your ass to {b}DETENTION{/b}!"
+        scene black with fade
+        pause .2
+        if MC_computer_broken:
+            scene bedroom_broken
         else:
-            $ mom_vacuuming = False
-
-    python:
-
-
-
-        for event in store.my_events:
-            event.complete_events()
-        Machine.trigger(T_all_sleep)
-
-    $ shower = renpy.random.choice([If(mom_vacuuming or mom_count == 12 and not mom_dialogue_advance, "", "mom"), "sister", ""])
+            scene bedroom
+        show player 264
+        with dissolve
+        player_name "{b}*Yawn*{/b}"
+        show player 265 with dissolve
+        player_name "!!!"
+        show player 266
+        player_name "( I had such a strange dream about {b}[mom_name]{/b}! )"
+        player_name "( We were doing things, and she was naked! )"
+        player_name "( With me! )"
+        show player 267 with hpunch
+        player_name "!!!"
+        show player 268
+        player_name "Is this normal?!"
+        player_name "( I've never had those kinds of dreams with {b}[mom_name]{/b} before... )"
+        hide player with dissolve
+        $ M_mom.trigger(T_mom_dream)
     jump bedroom_dialogue
+
+label mom_sleepover:
+    $ M_mom.set('sex speed', .175)
+    scene location_bedroom_sex01 with fade
+    show moms 1
+    player_name "( ... )"
+    mom "Sweetie?"
+    mom "Aww, did you fall asleep waiting on me?"
+    player_name "( ... )"
+    show moms 3
+    pause
+    show moms 4
+    pause
+    show moms 5
+    pause
+    show moms 6
+    mom "... Wake up, Sweetie."
+    $ M_mom.set('sex speed', M_mom.get('sex speed') / .75)
+    show moms 7_8
+    mom "Mmm..."
+    show moms 6
+    pause
+    show moms 9
+    pause
+    show moms 10
+    mom "( ... )"
+    show moms 11
+    mom "!!!"
+    show moms 12
+    pause
+    show moms 20b
+    mom "[firstname]?"
+    player_name "... Hmm?"
+    show moms 20c at Position(xpos=0.53, ypos=1.0) with dissolve
+    player_name "... [mom_name]?"
+    player_name "Crap, I fell asleep didn't I?"
+    show moms 20d
+    mom "Hehe, that's okay, Sweetie."
+    show moms 20c
+    player_name "Did you still wanna- ?"
+    show moms 20e with dissolve
+    mom "Not so loud! We don't want to wake {b}[sis]{/b}!"
+    player_name "Oh! ... Yeah, sorry."
+    show moms 20f at Position(xpos=0.5, ypos=1.0) with dissolve
+    mom "Hehe..."
+    mom "It's alright, your just excited. Mommy is excited too!"
+    mom "I could hardly wait for {b}[sis]{/b} to get in bed."
+    show moms 20g with dissolve
+    player_name "Oh wow, {b}[mom_name]{/b}, your sopping wet!"
+    mom "I told you I was excited."
+    show moms 20h with dissolve
+    mom "Mmm..."
+    mom "Now, let's not waste time... Give it to Mommy!"
+    $ M_mom.set('sex speed', M_mom.get('sex speed') / 3)
+    show moms 20h_20i_20j_20k_20l_20m_20n_20o
+    if randomizer() < 33:
+        mom "Ahh!!!"
+        mom "Oh {b}[firstname]{/b}, it's so deep!"
+        mom "You like it when Mommy squeezes you with her pussy?"
+        player_name "Oh God, yes!"
+        mom "Yes, Baby!"
+    elif randomizer() < 66:
+        mom "Oh yes!!!"
+        mom "That's it, Baby! Fuck Mommy's pussy!"
+        mom "Mmm, you like that?"
+        player_name "Oh yeah, {b}[mom_name]{/b}!"
+        mom "Faster, Baby!"
+    elif randomizer() < 100:
+        mom "Oh God, that's good!"
+        mom "Who's Mommy's naughty boy?"
+        player_name "Mmm, I am..."
+        mom "That's right, Baby! Fuck Mommy harder!"
+        player_name "Uuhh!! You like this hard cock, {b}[mom_name]{/b}?"
+        mom "Aaahh!! Yes! Yesss! YESSSSSS!!"
+        mom "Give it to meeeeee!"
+    $ M_mom.set('sex speed', M_mom.get('sex speed') / 1.5)
+    show moms 20h_20i_20j_20k_20l_20m_20n_20o
+    pause
+    $ M_mom.set("change angle", False)
+    label mom_sleepover_options:
+        menu:
+            "Keep going.":
+                if M_mom.get("change angle"):
+                    show moms 170_171_172_173_174_175_176_177
+                else:
+
+                    show moms 20h_20i_20j_20k_20l_20m_20n_20o
+                pause
+                jump mom_sleepover_options
+            "Change Angle.":
+
+                if not M_mom.get("change angle"):
+                    $ M_mom.set('sex speed', .15)
+                    $ M_mom.set("change angle", True)
+                    hide moms
+                    scene bedroom_sex_05
+                    show moms 170_171_172_173_174_175_176_177
+                    with fade
+                else:
+
+                    $ M_mom.set('sex speed', ((.175 / .75) / 3) / 1.5)
+                    $ M_mom.set("change angle", False)
+                    hide moms
+                    scene location_bedroom_sex01
+                    show moms 20h_20i_20j_20k_20l_20m_20n_20o
+                    with fade
+                pause
+                jump mom_sleepover_options
+            "Cum.":
+
+                player_name "... Oh!"
+                player_name "[mom_name], I'm gonna..."
+                mom "Do it, Baby! Come inside me!"
+                $ M_mom.set('sex speed', M_mom.get('sex speed') / .075)
+                scene location_bedroom_sex01
+                show moms 20p_20q
+                with flash
+                player_name "Uhhhuh!!!"
+                mom "Hnnngg!!"
+                mom "AAAAHHhh!!!"
+                player_name "Shh! Your gonna wake {b}[sis_name]{/b}!"
+                player_name "..."
+                show moms 20h with dissolve
+                mom "Huhhh, huhhh, huhhh..."
+                show moms 20r with dissolve
+                pause
+                show moms 20s with dissolve
+                mom "Oh {b}[firstname]{/b}... That was..."
+                show moms 20t
+                player_name "Mindblowing?"
+                show moms 20s
+                mom "Phew... Yes!"
+                mom "Mmm, I can't feel my legs."
+                pause
+                mom "Mmm... I love you, {b}[firstname].{/b}"
+                show moms 20t
+                player_name "I love you too, [mom_name]. You're the best!"
+                show moms 20s
+                mom "Hah, thanks, Sweetie."
+
+    if M_player.is_set("pet cat"):
+        scene location_sleeping4 with fade
+    else:
+        scene location_sleeping2 with fade
+    show unlock11 at truecenter with dissolve
+    $ renpy.pause()
+    $ Sleep()
+    hide unlock11
+    $ M_player.set("just wokeup", False)
+
+    if randomizer() < 70 and M_mom.get_state() != S_mom_note:
+        scene location_bedroom_sex04
+        show moms 20u
+        pause
+        show moms 20v
+        player_name "Wake up, [mom_name]."
+        show moms 20u
+        mom "Mmm..."
+        show moms 20w
+        player_name "The sun is up."
+        show moms 20x
+        mom "Good morning, Sweetie."
+        show moms 20w
+        player_name "You sleep alright?"
+        show moms 20x
+        mom "... You kidding? After getting fucked like that, I slept great!"
+        show moms 20w
+        player_name "Heh, me too..."
+        mom "..."
+        show moms 20x
+        mom "I should probably get out of here before {b}[sis]{/b} gets up."
+        show moms 20w
+        player_name "Yeah..."
+        show moms 20x
+        mom "Thanks for a great night, {b}[firstname]{/b}! I love you!"
+        show moms 20w
+        player_name "I love you too, {b}[mom_name]{/b}!"
+        hide moms with dissolve
+    else:
+
+        scene location_bedroom_blur
+        show player 7
+        pause
+        show player 8
+        pause
+        show player 1
+        player_name "..."
+        show player 2
+        player_name "Hmm, {b}[mom_name]{/b} must have woken before me and snuck out..."
+        player_name "Phew, what a night! I slept like a baby..."
+        if not M_mom.is_set("basement sex"):
+            show player 10
+            player_name "Hmm, what is that note on my computer monitor?"
+            player_name "... Did [mom_name] leave that?"
+            $ M_mom.trigger(T_mom_delay)
+        hide player with dissolve
+    $ callScreen(location_count)
 
 label sleeping_locked:
     if MC_computer_broken:
@@ -1468,7 +2319,7 @@ label sleeping_locked:
     else:
         scene bedroom
     show player 35 at left
-    if player_room_count == 2:
+    if not erik.over(erik_intro):
         player_name "( Can't sleep right now. I should go to school before I'm late. )"
     $ callScreen(location_count)
 
@@ -1480,7 +2331,7 @@ label tired_bedroom_dialogue:
     show player 55 with dissolve
     player_name "{b}*yawn*{/b}"
     show player 56
-    player_name "I'm too tired for that..."
+    player_name "( I'm too tired for that... )"
     hide player 56
     $ callScreen(location_count)
 
@@ -1493,12 +2344,10 @@ label M6_note:
     pause
     hide momnote with dissolve
     show player 11 with dissolve
-    player_name "( {b}Mom{/b} needs help with the laundry? )"
+    player_name "( {b}[mom_name]{/b} needs help with the laundry? )"
     player_name "( I should go see what it's about. )"
     hide player with dissolve
-    $ m6_note = False
-    $ m6_note_seen = True
-    $ player_room_lock = False
+    $ M_mom.trigger(T_mom_read_note)
     $ callScreen(location_count)
 
 label player_room_lock:
@@ -1521,6 +2370,44 @@ label player_message_lock:
     else:
         show player 101 with dissolve
     player_name "I should check my text messages."
+    $ callScreen(location_count)
+
+label pet_cat:
+    if MC_computer_broken:
+        scene expression gTimer.image("bedroom_broken{}")
+    else:
+        scene expression gTimer.image("bedroom{}")
+    show cat 14 with dissolve
+    player_name "Hey there, [cat]!"
+    show cat 12
+    if randomizer() < 33:
+        cat "Meow"
+    elif randomizer() < 66:
+        cat "Prrrr"
+    else:
+        cat "Brrrep"
+    show cat 15 at Position(xoffset = -7)
+    pause
+    show cat 14
+    if randomizer() < 15:
+        player_name "Who's a good Kitty?!"
+    elif randomizer() < 30:
+        player_name "You just gonna sleep all day?"
+    elif randomizer() < 45:
+        player_name "What did you do today, huh?"
+    elif randomizer() < 60:
+        player_name "You cute little fuzz ball."
+    elif randomizer() < 75:
+        player_name "Aww, snuggles for Kitty!"
+    elif randomizer() < 85:
+        player_name "Hey, watch it with those claws!"
+    elif randomizer() < 93:
+        player_name "I should get you a toy, huh?"
+    else:
+        player_name "I just love petting my pussy..."
+    show cat 16
+    pause
+    hide cat with dissolve
     $ callScreen(location_count)
 
 label cookies:

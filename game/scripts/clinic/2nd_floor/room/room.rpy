@@ -40,7 +40,7 @@ label erik_bullying_2:
     show micoe 2
     micoe "And I'm {b}Nurse Micoe{/b}."
     show micoe 5
-    micoe "You had a small concussion, but you'll be fine."
+    micoe "You had a minor concussion, but you'll be fine."
     micoe "You can go home when you feel ready."
     micoe "Just make sure to drink plenty of water and get some rest."
     show micoe 4

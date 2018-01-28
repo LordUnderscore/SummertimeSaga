@@ -46,9 +46,14 @@ label old_book(item):
     scene backpack_closeup
     show expression item.closeup at Position(xalign = 0.5, yalign = 1.0)
     with None
-    player_name "This is a really old book."
-    player_name "It looks like it can {b}decipher symbols into numbers{/b}..."
-    player_name "I think I'll hang onto it. Could make for an interesting read."
+    player_name "This book looks like it would be useful decoding something."
+    player_name "..."
+    if weird_coin not in inventory.items:
+        player_name "Heh. Maybe some {b}hidden pirate treasure{/b} someone tossed aside carelessly."
+        player_name "But that's just {b}wishful thinking{/b}."
+    else:
+        player_name "I think that {b}pirate coin{/b} had a four digit number on it."
+        player_name "I should look at it again."
     return
 
 label golden_compass(item):

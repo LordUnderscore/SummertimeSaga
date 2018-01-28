@@ -5,21 +5,22 @@ label hospital_second_floor_dialogue:
         if Roz.started(roz_storage) and hospital_access_card in inventory.items:
             show player 410
             with dissolve
-            player_name "This must be it!"
-            player_name "Let's see if it works..."
+            player_name "( This must be it! )"
+            player_name "( Let's see if it works... )"
 
         elif Roz.started(roz_storage):
             show player 12
             with dissolve
-            player_name "The receptionist probably has duplicates of all the keys..."
-            player_name "Perhaps I could find some at her desk?"
+            player_name "( The receptionist probably has duplicates of all the keys... )"
+            player_name "( Perhaps I could find some at her desk? )"
         else:
 
             show player 35
             with dissolve
-            player_name "Hmm... I wonder where they store all their medicine."
+            player_name "Hmm..."
+            player_name "( I wonder where they store all their medicine... )"
             show player 30
-            player_name "I should find the {b}storage room{/b}."
+            player_name "( I should find the {b}storage room{/b}. )"
         hide player
         with dissolve
     $ callScreen(location_count)
@@ -33,7 +34,7 @@ label hospital_second_floor_phone_dialogue:
         show player 406 with dissolve
         player_name "Hi!"
         pause
-        player_name "I... Emm... There's an emergency on the second floor!!"
+        player_name "I... Umm... There's an emergency on the second floor!!"
         show player 407
         pause
         show player 408
@@ -58,12 +59,11 @@ label hospital_second_floor_phone_dialogue:
         show player 407
         pause
         show player 405 with dissolve
-        player_name "Well...that should work!"
-        player_name "Let's see if she left her reception desk..."
+        player_name "( Well... that should work... )"
+        player_name "( Let's see if she left her desk... )"
         hide player
         with dissolve
         $ Roz.add_event(roz_trick)
     else:
-
         player_name "( I have no reason to call anyone. )"
     $ callScreen(location_count)

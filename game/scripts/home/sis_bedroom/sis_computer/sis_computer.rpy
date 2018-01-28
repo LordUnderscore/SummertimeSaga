@@ -14,7 +14,7 @@ label sispc_desktop_response:
     if sispc_desktop_seen == False:
         scene sis_computer_bg with None
         player_name "It worked!"
-        player_name "I wonder what {b}[sis]{/b} has on her computer..."
+        player_name "I wonder what {b}[sis_name]{/b} has on her computer..."
         $ sispc_desktop_seen = True
     call screen sis_computer
 
@@ -103,7 +103,7 @@ label sispc_livecrush_response:
         scene sis_computer_bg
         show sis_computer_livecrush
         with None
-        player_name "( {b}[sis]{/b} has a profile on LiveCrush?! )"
+        player_name "( {b}[sis_name]{/b} has a profile on LiveCrush?! )"
         player_name "Woah..."
         player_name "( Does she do these {b}live shows{/b} in her room? )"
         player_name "( She must be pretty careful keeping this a secret; I had no idea... )"

@@ -6,10 +6,10 @@ label dealership_dialogue:
     $ callScreen(location_count)
 
 label josephine_button_dialogue:
-    scene location_dealership_indoor_closeup with None
+    scene location_dealership_indoor_closeup
     show joe 1 at Position(xpos=0.5474,ypos=0.7630)
     show xtra3 at right
-    show player 108f at left
+    show player 24 at left
     with dissolve
     if dealership_first_time_visit == True:
         player_name "Good morning."
@@ -20,13 +20,13 @@ label josephine_button_dialogue:
         player_name "Hello?"
         show player 109f
         pause
-        Josephine "Sigh..."
+        Josephine "{b}*Sigh*{/b}"
         pause
         show sato 2 behind xtra3 at Position(xpos=.7630,ypos=0.7299) with dissolve
         show player 11
         Mr. Sato "{b}Josephine{/b}!"
         show sato 1
-        show joe 3 at Position(xpos=0.4976,ypos=1.0000)
+        show joe 3 at Position(xpos=0.4976,ypos=1.0000) with fastdissolve
         Josephine "What?!"
         show joe 2
         show sato 2
@@ -66,7 +66,7 @@ label josephine_button_dialogue:
             hide popup_unfinished with dissolve
             jump dealership_options
 
-        "Make an insurance claim" if quest16 in quest_list and quest16_1 == False:
+        "Make an insurance claim" if M_mom.get_state() == S_mom_fix_car:
             show player 14
             player_name "Um... I was hoping to talk to someone about an insurance claim."
             show player 11
@@ -75,10 +75,10 @@ label josephine_button_dialogue:
             show joe 4
             show player 4
             label platemenu:
-                player_name "What was {b}Mom's{/b} vanity plate again?"
-                $ selected_plates = []
+                player_name "What was {b}[mom_name]'s{/b} vanity plate again?"
+                $ selected_plates = ["dtfmom"]
                 $ counter = 0
-                while (counter < 4):
+                while (counter < 3):
                     $ random_plate = renpy.random.choice(plates)
                     while (random_plate in selected_plates):
                         $ random_plate = renpy.random.choice(plates)
@@ -91,7 +91,7 @@ label josephine_button_dialogue:
                     "DTFM0M" if "dtfmom" in selected_plates:
                         show player 11
                         show joe 6
-                        Josephine "That one is in the system."
+                        Josephine "That's in the system."
                         show joe 5
                         Josephine "Still live at 240 Cookie Street?"
                         show joe 4
@@ -164,15 +164,18 @@ label josephine_button_dialogue:
 
                         jump platemenu
         "Nothing":
+            hide joe
+            hide player
+            hide xtra
+            with dissolve
             $ callScreen(location_count)
 
 label wrong_plate:
     show player 11
-    $ plate_rand = renpy.random.randint(0,1)
     show joe 6
     pause
     show joe 5
-    if plate_rand == 0:
+    if randomizer() < 50:
         Josephine "I'm not seeing an account that matches that license plate."
     else:
         Josephine "That would be a neat plate, but unfortunately it's not in the system."
@@ -184,11 +187,73 @@ label wrong_plate:
 label fix_car:
     player_name "What should I do now?"
     menu:
-        "Pay the bill":
-            show popup_unfinished at truecenter with dissolve
-            $ renpy.pause()
-            hide popup_unfinished with dissolve
-            jump fix_car
+        "Pay the bill.":
+            if inventory.money < 9000:
+                show player 24
+                player_name "[chr_warn]I... Uhm... Could you?"
+                show joe 5
+                Josephine "Could I... What?"
+            else:
+
+                show player 14
+                player_name "I should have enough to cover the cost."
+                show player 12
+                player_name "Do you accept cash?"
+                show player 5
+                show joe 5
+                Josephine "Yes."
+                show joe 4
+                show player 14
+                player_name "Here."
+                show player 41 at Position (xoffset=38) with dissolve
+                show joe 5
+                Josephine "Thanks."
+                show player 5
+                show joe 6
+                Josephine "Did you bring the car in today?"
+                show joe 4
+                show player 12
+                player_name "No... It's broken."
+                player_name "It's still at our house."
+                show player 5
+                show joe 6
+                Josephine "Oh... Well we can send a mechanic out."
+                show joe 5
+                Josephine "When would you like us to fix it?"
+                show joe 4
+                show player 14
+                player_name "Today would be ideal."
+                show player 12
+                player_name "It's our only car and it took me forever to get here."
+                show player 5
+                show joe 5
+                Josephine "Umm... Usually, we are booked for a week..."
+                show joe 6
+                Josephine "Let me look."
+                Josephine "You're in luck."
+                show joe 5
+                Josephine "I should be able to send a mechanic out this afternoon."
+                show joe 4
+                show player 14
+                player_name "Great!"
+                player_name "Thank you very much."
+                show player 13
+                show joe 5
+                Josephine "You're welcome."
+                show joe 4
+                show player 10
+                player_name "Anything else?"
+                show player 5
+                show joe 5
+                Josephine "No, you should be all set."
+                show joe 4
+                show player 14
+                player_name "Thanks again!"
+                show player 106
+                show joe 1 at Position(xpos=0.5474,ypos=0.7630) with dissolve
+                Josephine "Uh huh."
+                $ M_mom.trigger(T_mom_renew_insurance)
+                $ gTimer.tick()
         "Convince her.":
 
             if pStats.chr() >= 7:
@@ -233,8 +298,8 @@ label fix_car:
                 show joe 4
                 show player 17
                 player_name "Of course! Anything!"
-                show player 18
-                $ quest16_1 = True
+                $ M_mom.trigger(T_mom_renew_insurance)
+                $ gTimer.tick()
             else:
 
                 show player 24
@@ -257,6 +322,7 @@ label fix_car:
                 player_name "{b}*Sigh*{/b}"
                 player_name "( I'm way too nervous... )"
         "Give up":
+
             show player 10
             player_name "I should probably talk to my mom about this."
             show player 2
@@ -264,4 +330,8 @@ label fix_car:
             show player 1
             show joe 5
             Josephine "Sure, whatever."
+    hide joe
+    hide player
+    hide xtra
+    with dissolve
     $ callScreen(location_count)

@@ -12,14 +12,22 @@ screen hill:
     imagebutton:
         focus_mask True
         pos (18,497)
-        idle gTimer.image("objects/object_treehole_01{}.png")
-        hover gTimer.image("objects/object_treehole_01b{}.png")
+        if not gTimer.is_dark():
+            idle "private/objects/object_treehole_01.png"
+            hover "private/objects/object_treehole_01b.png"
+        else:
+            idle "private/objects/object_treehole_01_night.png"
+            hover "private/objects/object_treehole_01b_night.png"
         action Hide("hill"), Jump("hill_tree")
 
 screen hill_tree:
     imagebutton:
         focus_mask True
         align (0.45,0.65)
-        idle gTimer.image("objects/object_scroll_01{}.png")
-        hover gTimer.image("objects/object_scroll_01b{}.png")
+        if not gTimer.is_dark():
+            idle "private/objects/object_scroll_01.png"
+            hover "private/objects/object_scroll_01b.png"
+        else:
+            idle "private/objects/object_scroll_01_night.png"
+            hover "private/objects/object_scroll_01b_night.png"
         action Return()

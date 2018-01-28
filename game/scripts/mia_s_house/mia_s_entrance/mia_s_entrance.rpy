@@ -8,7 +8,7 @@ label mias_entrance:
         show helen 2 zorder 1 at right
         show player 1 at left
         with dissolve
-        helen "And you are?"
+        helen "...And you are?"
         show helen 1
         show player 14
         player_name "I'm {b}[firstname]{/b}!"
@@ -89,7 +89,7 @@ label mias_entrance:
         show player 11
         player_name "!!!"
         show mia 46f
-        mia "Will you...help me?"
+        mia "Will you... help me?"
         show mia 45f
         show player 10
         player_name "Well, I'm not sure how I could-"
@@ -170,7 +170,7 @@ label mias_entrance:
         hide mia
         with dissolve
         $ M_mia.trigger(T_mia_church_mention)
-        $ ui_lock_count = 0
+        $ unlock_ui()
 
     elif M_mia.get_state() == S_mia_urgent_help:
         scene mia_house_c
@@ -265,13 +265,13 @@ label mias_entrance:
         helen "So, how did he look?"
         show helen 23
         show player 10
-        player_name "He looked a bit...rough."
+        player_name "He looked a bit... rough."
         show player 5
         show helen 24
         helen "I... I want you to be honest with me. What did {b}Harold{/b} say to you?"
         show helen 23
         show player 10
-        player_name "I'm not sure he will be back...but he said he would call."
+        player_name "I'm not sure he will be back... but he said he would call."
         show player 5
         show helen 24
         helen "Hmm... Did he say anything about me?"
@@ -390,7 +390,7 @@ label mias_entrance:
         show mia 9
         mia "I know! Things couldn't have worked out any better!"
         show mia 10
-        mia "Thank you ,{b}[firstname]{/b}...for everything."
+        mia "Thank you ,{b}[firstname]{/b}... for everything."
         show mia 7
         show player 14
         player_name "You're wel-"
@@ -405,7 +405,7 @@ label mias_entrance:
         with dissolve
         mia "Sooo listen, now that things are back to normal."
         show mia 10
-        mia "I was thinking we could...study again?"
+        mia "I was thinking we could... study again?"
         show mia 7
         show player 21
         player_name "That sounds like a great idea!"
@@ -413,7 +413,7 @@ label mias_entrance:
         show mia 10
         mia "Stop over any night."
         mia "I got a new magazine that mentioned a great new study trick."
-        mia "I was hoping we...could try it out."
+        mia "I was hoping we... could try it out."
         show mia 7
         show player 21
         player_name "Awesome! Count me in!"
@@ -456,7 +456,7 @@ label mias_entrance:
         player_name "..."
         show player 10 with dissolve
         player_name "No, {b}Mia{/b}. It's really not your fault..."
-        player_name "Sometimes...people don't always stay together."
+        player_name "Sometimes... people don't always stay together."
         show player 11
         show mia 47f with dissolve
         mia "Well then relationships suck! Love doesn't even exist."
@@ -498,21 +498,21 @@ label mias_entrance:
         helen "We've got an extra bed in my room..."
         show helen 23
         show player 21
-        player_name "Heh heh... I...I thought those rituals were over."
+        player_name "Heh heh... I... I thought those rituals were over."
         show player 5
         show xtra 21 at left
         show helen 24
-        helen "But, {b}[firstname]{/b}, I am your holy servant now."
+        helen "But, {b}[firstname]{/b}, I'm your holy servant now."
         show helen 28
         helen "You know how I struggle with my desires."
-        helen "In fact, I feel so...unclean right now."
-        helen "I need a stiff...deep...purging..."
+        helen "In fact, I feel so... unclean right now."
+        helen "I need a stiff... deep... purging..."
         show helen 23
         show player 10
         player_name "Are you suggesting, I-"
         show player 11
         show helen 24
-        helen "Of course, won't you...{b}Master{/b}?"
+        helen "Of course! Won't you... {b}Master{/b}?"
         show helen 23
         show player 22
         player_name "!!!"
@@ -521,12 +521,12 @@ label mias_entrance:
         helen "...Or at night you can penetrate my sinful flesh in the nun's chamber."
         show helen 27
         show player 10
-        player_name "You really need me to?"
+        player_name "Do you really need me to?"
         show player 5
         show helen 24
         helen "Of course!"
         helen "I desperately need to be kept in line..."
-        helen "Otherwise, my sinful hands can't stop themselves from...getting dirty."
+        helen "Otherwise, my sinful hands can't stop themselves from... getting dirty."
         helen "Please visit me soon, {b}Master{/b}."
         show helen 23
         show player 11
@@ -542,16 +542,16 @@ label mias_entrance:
         show player 10 with dissolve
         player_name "Hello?"
         show player 12
-        player_name "Hmm... No one's home?"
-        player_name "Maybe she's upstairs..."
+        player_name "( Hmm... No one's home? )"
+        player_name "( Maybe she's upstairs... )"
         hide player with dissolve
-        $ ui_lock_count = 1
+        $ lock_ui()
     $ callScreen(location_count)
 
 label helen_masturbating_block:
     scene mia_indoors
     show player 12 with dissolve
-    player_name "I should find {b}Mia{/b} before I leave..."
+    player_name "( I should find {b}Mia{/b} before I leave... )"
     hide player with dissolve
     $ callScreen(location_count)
 
@@ -579,4 +579,7 @@ label mias_house_sneak:
     scene black
     with dissolve
     with Pause(0.5)
-    $ callScreen(location_count)
+    if M_mia.get_state() == S_mia_urgent_help:
+        jump mias_entrance
+    else:
+        $ callScreen(location_count)

@@ -35,7 +35,7 @@ label treehouse_closeup_dialogue:
 label treehouse_interior_dialogue:
     $ location_count = "Treehouse Interior"
     if not gTimer.is_dark():
-        $ playSound("<loop 1 to 114>audio/ambience_treehouse.ogg", 0)
+        $ playSound("<loop 7 to 114>audio/ambience_house_entrance.ogg")
     if treehouse_interior_first_visit:
         $ treehouse_interior_first_visit = False
         scene expression gTimer.image("treehouse_inside{}_b")

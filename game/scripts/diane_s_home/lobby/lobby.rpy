@@ -14,7 +14,10 @@ label dianelobby_dialogue:
     $ callScreen(location_count)
 
 label dianelobby_locked:
-    scene dianekitchen with None
+    if location_count == "Diane's Kitchen":
+        scene dianekitchen
+    elif location_count == "Diane's Front Yard":
+        scene location_diane_front_blur
     show aunt 3 at right
     show player 11 at left
     with dissolve
