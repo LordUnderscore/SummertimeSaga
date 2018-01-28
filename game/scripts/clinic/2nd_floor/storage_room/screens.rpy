@@ -74,3 +74,38 @@ screen hospital_storage_cabinet:
         idle "boxes/auto_option_generic_01.png"
         hover "boxes/auto_option_generic_01b.png"
         action Hide("hospital_storage_room"), Jump("hospital_storage_room_dialogue")
+
+screen roz_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("roz_sex_loop")
+        xpos 250
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("roz_sex_cum")
+        xpos 450
+        ypos 700
+
+    if M_roz.get('sex speed') < .175:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("roz_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_roz.get('sex speed') > .076:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("roz_faster_sex")
+            xpos 450
+            ypos 735

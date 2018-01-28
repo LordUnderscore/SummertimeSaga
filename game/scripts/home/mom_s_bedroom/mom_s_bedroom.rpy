@@ -1282,6 +1282,7 @@ label mom_dialogue_button_room:
     $ callScreen(location_count)
 
 label mom_sex:
+    $ M_mom.set('sex speed', .4)
     $ mom_sex_position = "missionary"
     $ cum = False
     $ anim_toggle = False
@@ -1293,50 +1294,50 @@ label mom_sex:
     pause
     show moms 104 with dissolve
     mom "Aahh..."
+    show moms 104 at left
+
     label missionary_loop:
         hide screen mom_sex_options
-        show moms 104 at left
         show screen xray_scr
         pause
+        hide screen xray_scr
         if anim_toggle:
-            hide moms 104
-            hide screen xray_scr
-            hide screen mom_sex_options
-            if xray:
-                show moms_xray 65_66_67_66 at Position(ypos = 1034)
-            else:
-                show moms 103_104_105_104 at Position(xpos = 450)
-            pause 5
-            hide moms_xray 65_66_67_66
-            hide moms 103_104_105_104
-            show moms 104 at left
+            $ animcounter = 0
+            while animcounter < 4:
+                hide moms
+                hide moms_xray
+                if xray:
+                    show moms_xray 65_66_67_66 at Position(ypos = 1034)
+                else:
+                    show moms 103_104_105_104 at Position(xpos = 450)
+                pause 5
+                if animcounter == 1:
+                    mom "Ahhhh!!!{p=1}{nw}"
+                if animcounter == 3:
+                    mom "Oh, Sweetie!!!{p=1}{nw}"
+                    player_name "Uhhh...{p=1}{nw}"
+                pause 3
+                $ animcounter += 1
         else:
 
-            hide screen xray_scr
-            hide screen mom_sex_options
-            show moms 103 at left
-            pause
-            show moms 104
-            pause
-            show moms 105
-            pause
-            show moms 104
-            pause
-            show moms 103
-            pause
-            show moms 104
-            pause
-            show moms 105
-            pause
-            show moms 104
-            pause
-            show moms 103
-            pause
-            show moms 104
-            pause
-            show moms 105
-            pause
-            show moms 104
+            $ animcounter = 0
+            while animcounter < 4:
+                show moms 103 at left
+                pause
+                show moms 104
+                pause
+                show moms 105
+                pause
+                show moms 104
+                pause
+                $ animcounter += 1
+                if animcounter == 2:
+                    mom "Ahhhh!!!"
+
+                if animcounter == 3:
+                    mom "Oh, Sweetie!!!"
+                    player_name "Uhhh..."
+
         show screen mom_sex_options
         pause
         jump missionary_loop
@@ -1426,48 +1427,44 @@ label mom_sex:
 
     label cowgirl_loop:
         hide screen mom_sex_options
-        show moms 65 at left
         show screen xray_scr
         pause
+        hide screen xray_scr
         if anim_toggle:
-            hide moms 65
-            hide screen xray_scr
-            hide screen mom_sex_options
-            if xray:
-                show moms_xray 58_59_57 at Position(ypos = 849)
-            else:
-                show moms 65_66_64 at Position(xpos = 476)
-            pause 5
-            hide moms_xray 58_59_57
-            hide moms 65_66_64
-            show moms 65 at left
+            $ animcounter = 0
+            while animcounter < 4:
+                hide moms
+                hide moms_xray
+                if xray:
+                    show moms_xray 58_59_57 at Position(ypos = 849)
+                else:
+                    show moms 65_66_64 at Position(xpos = 476)
+                pause 5
+                if animcounter == 1:
+                    mom "Ahhhh!!!{p=1}{nw}"
+                if animcounter == 3:
+                    mom "Oh, Sweetie!!!{p=1}{nw}"
+                    player_name "Uhhh...{p=1}{nw}"
+                pause 3
+                $ animcounter += 1
         else:
 
-            hide screen xray_scr
-            hide screen mom_sex_options
-            show moms 65 at left
-            pause
-            show moms 66
-            pause
-            show moms 64
-            pause
-            show moms 65
-            pause
-            show moms 66
-            pause
-            show moms 64
-            pause
-            show moms 65
-            pause
-            show moms 66
-            pause
-            show moms 64
-            pause
-            show moms 65
-            pause
-            show moms 66
-            pause
-            show moms 64
+            $ animcounter = 0
+            while animcounter < 4:
+                show moms 65 at left
+                pause
+                show moms 66
+                pause
+                show moms 64
+                pause
+                $ animcounter += 1
+                if animcounter == 2:
+                    mom "Ahhhh!!!"
+
+                if animcounter == 3:
+                    mom "Oh, Sweetie!!!"
+                    player_name "Uhhh..."
+
         show screen mom_sex_options
         pause
         jump cowgirl_loop
@@ -1549,3 +1546,19 @@ label mom_sex:
         $ gTimer.tick()
         $ mom_dialogue_advance = True
     $ callScreen(location_count)
+
+label missionary_mom_faster_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') - 0.1)
+    jump missionary_loop
+
+label missionary_mom_slower_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') + 0.1)
+    jump missionary_loop
+
+label cowgirl_mom_faster_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') - 0.1)
+    jump cowgirl_loop
+
+label cowgirl_mom_slower_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') + 0.1)
+    jump cowgirl_loop

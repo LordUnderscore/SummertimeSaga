@@ -182,7 +182,7 @@ label hallway_dialogue:
             show player 11
             sis "Meeting with {b}Mom{/b} in her room, perhaps?"
             show sis 6
-            show player 29 at Position(xpos=8)
+            show player 29
             player_name "What?"
             show sis 9
             show player 11 at left

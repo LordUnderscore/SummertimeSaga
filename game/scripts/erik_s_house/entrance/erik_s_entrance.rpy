@@ -335,7 +335,7 @@ label erik_indoors:
         show erikmom 50
         show player 38 with dissolve
         player_name "Uhh... I... guess I could try?"
-        show player 29 at Position (xpos=8) with dissolve
+        show player 29 with dissolve
         player_name "But I don't know much about yoga..."
         show player 11 at left with dissolve
         show erikmom 17
@@ -717,7 +717,7 @@ label mrsj_sex_ed_2:
     show erik 4f
     eri "We found some things that may help you...with our lessons."
     show erik 1f
-    show player 239_240 at Position(xoffset=5) with dissolve
+    show player 239_240 with dissolve
     pause
     show player 425 with dissolve
     player_name "Here's what I found, {b}Mrs. Johnson{/b}!"

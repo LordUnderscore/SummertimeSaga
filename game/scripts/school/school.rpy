@@ -50,7 +50,76 @@ label school_dialogue:
             $ ui_lock_count = 1
             $ player.add_event(intense_gymercise)
 
-        elif erik.started(erik_bullying_2):
+        elif M_mia.get_state() == S_mia_glasses_favor:
+            scene school
+            show player 13 at left
+            show mia 10 at right
+            with dissolve
+            mia "Hey, {b}[firstname]{/b}."
+            show mia 7
+            show player 14
+            player_name "Hey, {b}Mia{/b}."
+            show player 12
+            player_name "How's your dad doing?"
+            show player 5
+            show mia 10
+            mia "He's alright, I think."
+            show mia 51 with dissolve
+            mia "My mom was cleaning up his office last night and found his old pair of glasses..."
+            show mia 7
+            show player 446
+            with dissolve
+            pause
+            show player 448
+            player_name "Sweet aviators!"
+            player_name "Does he still wear them?"
+            show player 13
+            show mia 50
+            with dissolve
+            mia "He used to...but that was a long time ago."
+            mia "I was thinking maybe he would like to use them again."
+            show mia 50b
+            show player 14
+            player_name "That's nice."
+            show player 13
+            show mia 50
+            mia "Actually, I was wondering if you could drop them off at his work?"
+            mia "I have to be somewhere later, and I won't have time to visit him at work..."
+            show mia 50b
+            show player 10
+            player_name "Huh? You want {b}me{/b} to go?"
+            show player 5
+            show mia 50
+            mia "Why not?"
+            mia "You two seem to be getting along..."
+            mia "...And he would be happy to have them, I'm sure!"
+            mia "Ever since you spoke to him, he's been doing much better."
+            show mia 50b
+            show player 12
+            player_name "Ehh... Okay, I can drop them off at his work."
+            show player 447
+            show mia 10
+            with dissolve
+            mia "Thanks, that's really sweet of you to do this for me."
+            show mia 7
+            show player 448
+            player_name "It's okay, I don't mind visiting him."
+            show player 447
+            show mia 10
+            mia "See you later, then!"
+            show mia 7
+            show player 448
+            player_name "Bye."
+            show unlock54 at truecenter with dissolve
+            pause
+            $ inventory.items.append(aviators)
+            hide unlock54 with dissolve
+            hide player
+            hide mia
+            with dissolve
+            $ M_mia.trigger(T_mia_gives_glasses)
+
+        elif erik.started(erik_bullying_2) and ui_lock_count == 0:
             scene school
             show dexter 9 at right with dissolve
             eri "Ugh!!"
@@ -270,17 +339,43 @@ label school_dialogue:
             show duo 8 at left
             show mia 1 at right
             player_name "Uhh... sure? I guess?"
+            player_name "Where do you want to meet? The library?"
+            show duo 1
+            show mia 6
+            mia "Umm...I'd have to ask my parents, first."
+            mia "They probably won't let me, though."
+            mia "I'm not really allowed to stay late after school, or see friends outside of home."
+            show mia 2
+            show duo 9
+            player_name "Really?! That's awful..."
+            show duo 7
+            show mia 3
+            mia "Yeah... heh, heh."
+            show duo 7
+            show mia 6
+            mia "Anyway, It'd be easier if you just came over to my house at some point..."
             show mia 3 at right
             mia "You know where I live, so just drop by whenever you want!"
             show duo 7 at left
-            show mia 5 at right
-            mia "Alright! Talk to you later, guys!"
-            hide mia 5 with dissolve
+            show mia 4 at right
+            mia "I better get going. {b}Science class{/b} is starting soon!"
+            show duo 1
+            mia "{b}Professor Okita{/b} said today's {b}labratory experiment{/b} will be challenging."
+            mia "That means it's going to take the entire hour to complete."
+            show mia 1
+            show duo 10
+            eri "Ugh. Don't remind me..."
+            show duo 1
+            show mia 4
+            mia "Talk to you later guys!"
+            hide mia with dissolve
 
-            show unlock1 at truecenter
+            show unlock1 at truecenter with dissolve
             $ renpy.pause()
-            hide unlock1 with dissolve
+            $ M_mia.trigger(T_all_school_entrance)
             $ loc_mia_unlocked = True
+            hide unlock1 with dissolve
+
             show duo 1 at left
             show dexrox 1 at right with dissolve
             rox "What're you two losers looking at?!"
@@ -320,10 +415,15 @@ label school_dialogue:
             rox "I'll deal with you later."
             hide roxxy with dissolve
 
-            show unlock39 at truecenter
+            show unlock39 at truecenter with dissolve
             $ renpy.pause()
             $ loc_trailer_unlocked = True
             hide unlock39 with dissolve
+
+            show popup_basketball at truecenter with dissolve
+            $ renpy.pause()
+            $ loc_court_unlocked = True
+            hide popup_basketball with dissolve
 
             $ renpy.pause()
             hide player
@@ -382,8 +482,27 @@ label school_dialogue:
             show player 36 at left
             show erik 6 at right
             player_name "Thanks..."
-            hide player 36 at left with dissolve
-            hide erik 6 at right with dissolve
+            show player 13 with dissolve
+            show erik 7
+            eri "Oh!"
+            show erik 5 with dissolve
+            eri "And one other thing too!"
+            show erik 4
+            eri "I left you a little something in your {b}locker{/b}..."
+            eri "...It's just a little something to welcome you back to school!"
+            show erik 5
+            eri "...Instead of what {b}some asshole wrote on your locker{/b}."
+            show erik 1
+            show player 14
+            player_name "That's nice of you."
+            player_name "Thanks {b}Erik{/b}."
+            show player 13
+            show erik 4
+            eri "Friends always watch out for one another!"
+            eri "Bros before orcettes!"
+            hide player
+            hide erik
+            with dissolve
 
             $ erik_intro.finish()
             $ school_count = 1
@@ -879,3 +998,6 @@ label denied_access_mainhall:
     hide player 113
     hide erik 1f
     $ callScreen(location_count)
+
+label school_locker:
+    $ callScreen("School Locker", False)

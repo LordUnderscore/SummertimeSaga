@@ -322,14 +322,14 @@ label mrsj_yoga_help:
         show anna 1
         show player 83
         player_name "I was just trying to help {b}Mrs. Johnson{/b}."
-        show player 79 at Position (xpos=8) with dissolve
+        show player 79 with dissolve
         player_name "It was kinda fun."
         show player 82 at left with dissolve
         show anna 2
         anna "Hopefully, you can come by again soon to teach the class... with my help?"
         anna "That is... if you'd like to..."
         show anna 1
-        show player 79 at Position (xpos=8) with dissolve
+        show player 79 with dissolve
         player_name "That might be fun!"
         show player 82 at left with dissolve
         show anna 2
@@ -350,7 +350,7 @@ label mrsj_yoga_help:
         scene yoga_room_night
         if boner_fail:
             show player 82 at left
-            show player 79 at Position (xpos=8)
+            show player 79
         else:
             show player 14 at left
         show anna 1 at right
@@ -366,7 +366,7 @@ label mrsj_yoga_help:
         anna "You sure did good this time. I'm impressed!"
         show anna 1
         if boner_fail:
-            show player 79 at Position (xpos=8) with dissolve
+            show player 79 with dissolve
         else:
             show player 14
         player_name "Thanks!"
@@ -380,7 +380,7 @@ label mrsj_yoga_help:
         anna "...If you'd like."
         show anna 1
         if boner_fail:
-            show player 79 at Position (xpos=8) with dissolve
+            show player 79 with dissolve
         else:
             show player 14
         player_name "Of course!"

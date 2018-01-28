@@ -2013,7 +2013,7 @@ label aunt_button_dialogue:
                     dia "Hahaha!"
                     pause
                     show aunt 88
-                    show player 29 at Position(xoffset=8)
+                    show player 29
                     player_name "Maybe I can help with that, too!"
                     show aunt 89
                     show player 13 at left
@@ -2137,7 +2137,7 @@ label aunt_button_dialogue:
                     player_name "You're welcome, {b}Aunt Diane{/b}!"
                     show player 13
                     pause
-                    show player 29 at Position(xoffset=8)
+                    show player 29
                     player_name "Well, I guess I'll get back to gardening then."
                     show player 1
                     show aunt 157
@@ -2498,17 +2498,16 @@ label aunt_button_dialogue:
                                             dia "Deeper..."
                                             show auntsex 31 at Position(xpos = 608, ypos = 769)
                                             dia "Yes! Just like that..."
+                                            $ M_aunt.set('sex speed', .4)
+                                            $ xray = 0
                                             label aunt_sex_loop:
-                                                show screen aunt_sex_xray
                                                 show screen aunt_sex_xray_buttons
-                                                $ xray = 0
-                                                show auntsex 30 at Position(xpos = 592, ypos = 769)
                                                 pause
                                                 if anim_toggle:
-                                                    hide auntsex 30
                                                     hide screen aunt_sex_xray
                                                     hide screen aunt_sex_xray_buttons
                                                     if xray_toggle:
+                                                        hide auntsex
                                                         if condom_on:
                                                             show auntsex_xray 6_9 at Position(xpos = 686, ypos = 769)
                                                         else:
@@ -2516,15 +2515,13 @@ label aunt_button_dialogue:
                                                             show auntsex_xray 6_7 at Position(xpos = 686, ypos = 769)
                                                     else:
 
+                                                        hide auntsex_xray
                                                         show auntsex 30_31 at Position(xpos = 592, ypos = 769)
                                                     pause 8
-                                                    hide auntsex_xray 6_9
-                                                    hide auntsex_xray 6_7
-                                                    hide auntsex 30_31
-                                                    show auntsex 30 at Position(xpos = 592, ypos = 769)
                                                 else:
 
                                                     show screen aunt_sex_xray
+                                                    hide auntsex_xray
                                                     hide screen aunt_sex_xray_buttons
                                                     $ xray = 1
                                                     show auntsex 31 at Position(xpos = 608, ypos = 769)
@@ -2546,11 +2543,10 @@ label aunt_button_dialogue:
                                                     pause
                                                     $ xray = 1
                                                     show auntsex 31 at Position(xpos = 608, ypos = 769)
-                                                show screen aunt_sex_xray
                                                 call screen aunt_sex_options
 
                                             label aunt_sex_cum_in:
-                                                hide screen aunt_sex_xray
+                                                hide auntsex_xray
                                                 show auntsex 28 at Position(xpos = 612, ypos = 769)
                                                 if xray_toggle:
                                                     if condom_on:
@@ -2585,7 +2581,7 @@ label aunt_button_dialogue:
                                                 jump aunt_sex_end
 
                                             label aunt_sex_cum_out:
-                                                hide screen aunt_sex_xray
+                                                hide auntsex_xray
                                                 show auntsex 24 at Position(xpos = 707, ypos = 769)
                                                 show playersex 11 at Position(xpos = 275, ypos = 768)
                                                 show expression "characters/player/char_player_sex_14.png" at Position(xpos = 525, ypos = 584)
@@ -2658,6 +2654,7 @@ label aunt_button_dialogue:
                         dia "So, what would you like to do, now?"
                         $ anim_toggle = False
                         $ xray_toggle = False
+                        $ M_aunt.set('sex speed', .4)
                         label dia_sex_options_2:
                             menu:
                                 "Play with clit.":
@@ -2725,28 +2722,25 @@ label aunt_button_dialogue:
                                     dia "Deeper..."
                                     show auntsex 27 at Position(xpos = 608, ypos = 769)
                                     dia "Yes! Just like that..."
+                                    $ xray = 0
                                     label aunt_sex_loop_2:
-                                        show screen aunt_sex_xray
                                         show screen aunt_sex_xray_buttons
-                                        $ xray = 0
-                                        show auntsex 26 at Position(xpos = 592, ypos = 769)
                                         pause
                                         if anim_toggle:
-                                            hide auntsex 26
                                             hide screen aunt_sex_xray
                                             hide screen aunt_sex_xray_buttons
                                             if xray_toggle:
+                                                hide auntsex
                                                 show auntsex_xray 6_7 at Position(xpos = 686, ypos = 769)
                                             else:
 
+                                                hide auntsex_xray
                                                 show auntsex 26_27 at Position(xpos = 592, ypos = 769)
                                             pause 8
-                                            hide auntsex_xray 6_7
-                                            hide auntsex 26_27
-                                            show auntsex 26 at Position(xpos = 592, ypos = 769)
                                         else:
 
                                             show screen aunt_sex_xray
+                                            hide auntsex_xray
                                             hide screen aunt_sex_xray_buttons
                                             $ xray = 1
                                             show auntsex 27 at Position(xpos = 608, ypos = 769)
@@ -2768,7 +2762,6 @@ label aunt_button_dialogue:
                                             pause
                                             $ xray = 1
                                             show auntsex 27 at Position(xpos = 608, ypos = 769)
-                                        show screen aunt_sex_xray
                                         call screen aunt_sex_options
                                 "Fuck with condom.":
 
@@ -2801,28 +2794,25 @@ label aunt_button_dialogue:
                                     dia "Yes! Just like that..."
                                     $ anim_toggle = False
                                     $ xray_toggle = False
+                                    $ xray = 0
                                     label aunt_sex_loop_3:
-                                        show screen aunt_sex_xray
                                         show screen aunt_sex_xray_buttons
-                                        $ xray = 0
-                                        show auntsex 30 at Position(xpos = 592, ypos = 769)
                                         pause
                                         if anim_toggle:
-                                            hide auntsex 30
                                             hide screen aunt_sex_xray
                                             hide screen aunt_sex_xray_buttons
                                             if xray_toggle == True:
+                                                hide auntsex
                                                 show auntsex_xray 6_9 at Position(xpos = 686, ypos = 769)
                                             else:
 
+                                                hide auntsex_xray
                                                 show auntsex 30_31 at Position(xpos = 592, ypos = 769)
                                             pause 8
-                                            hide auntsex_xray 6_9
-                                            hide auntsex 30_31
-                                            show auntsex 30 at Position(xpos = 592, ypos = 769)
                                         else:
 
                                             show screen aunt_sex_xray
+                                            hide auntsex_xray
                                             hide screen aunt_sex_xray_buttons
                                             $ xray = 1
                                             show auntsex 31 at Position(xpos = 608, ypos = 769)
@@ -2844,7 +2834,6 @@ label aunt_button_dialogue:
                                             pause
                                             $ xray = 1
                                             show auntsex 31 at Position(xpos = 608, ypos = 769)
-                                        show screen aunt_sex_xray
                                         call screen aunt_sex_options
 
                     label aunt_sex_end:
@@ -3138,6 +3127,7 @@ screen garden_minigame:
                         SetVariable("earnings", earnings - Good.price)
                     )]
                  ),
+                        Play("audio", "audio/sfx_splat.ogg"),
                         Function(Good.change_passive),
                         If(
                             Good in bad_list or Good in rotten_t_list,
@@ -3148,8 +3138,7 @@ screen garden_minigame:
                             bad_garden_count == bad_garden_number,
                             Jump("job_done_dialogue"),
                             NullAction()
-                        ),
-                        Play("audio", "audio/sfx_splat.ogg")
+                        )
                 ]
         else:
             add Good.passive_pic pos valid_pos[pos_index]
@@ -3246,3 +3235,21 @@ label after_masturbation:
     show player 12
     player_name "Maybe not right now."
     $ callScreen(location_count)
+
+label aunt_kitchen_faster_sex:
+    $ M_aunt.set('sex speed', M_aunt.get('sex speed') - 0.1)
+    if not aunt_had_sex:
+        jump aunt_sex_loop
+    elif aunt_had_sex and not condom_on:
+        jump aunt_sex_loop_2
+    elif aunt_had_sex and condom_on:
+        jump aunt_sex_loop_3
+
+label aunt_kitchen_slower_sex:
+    $ M_aunt.set('sex speed', M_aunt.get('sex speed') + 0.1)
+    if not aunt_had_sex:
+        jump aunt_sex_loop
+    elif aunt_had_sex and not condom_on:
+        jump aunt_sex_loop_2
+    elif aunt_had_sex and condom_on:
+        jump aunt_sex_loop_3

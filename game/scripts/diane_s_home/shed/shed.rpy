@@ -431,23 +431,60 @@ label aunt_dialogue_button_night:
                 $ shed_xray_toggle = False
                 $ shed_cow_outfit = True
                 $ shed_sex_angle = 0
+                $ M_aunt.set('sex speed', .4)
+
                 label shed_sex_loop:
                     scene shed_closeup 1
-                    $ xray = 0
-                    $ cow_outfit = 0
-                    if shed_sex_angle == 0:
-                        show auntsex 38 at Position(xpos = 544, ypos = 729)
+
+                    if anim_toggle == True:
+                        hide auntsex_cowoutfit
+                        hide auntsex_xray
+                        hide auntsex_cowoutfit_xray
+                        hide auntsex
+                        hide screen shed_sex_visuals
+
+                        if shed_sex_angle == 0:
+                            if shed_cow_outfit == True and shed_xray_toggle == False:
+                                show auntsex_cowoutfit 39_41 at Position(xpos = 544, ypos = 729)
+                            elif shed_cow_outfit == False and shed_xray_toggle == True:
+                                show auntsex_xray 42_43 at Position(xpos = 544, ypos = 729)
+                            elif shed_cow_outfit == True and shed_xray_toggle == True:
+                                show auntsex_cowoutfit_xray 39_41_42_43 at Position(xpos = 544, ypos = 729)
+                            else:
+                                show auntsex 38_40 at Position(xpos = 544, ypos = 729)
+                        else:
+
+                            scene shed_closeup 2
+                            if shed_cow_outfit == True and shed_xray_toggle == False:
+                                show auntsex_cowoutfit 51_53 at Position(xpos = 590, ypos = 768)
+                            elif shed_cow_outfit == False and shed_xray_toggle == True:
+                                show auntsex_xray 46_47 at Position(xpos = 590, ypos = 768)
+                            elif shed_cow_outfit == True and shed_xray_toggle == True:
+                                show auntsex_cowoutfit_xray 51_53_46_47 at Position(xpos = 590, ypos = 768)
+                            else:
+                                show auntsex 50_52 at Position(xpos = 590, ypos = 768)
                     else:
 
-                        show auntsex 50 at Position(xpos = 590, ypos = 768)
-                    show screen shed_sex_visuals
+                        $ xray = 0
+                        $ cow_outfit = 0
+                        if shed_sex_angle == 0:
+                            show auntsex 38 at Position(xpos = 544, ypos = 729)
+                        else:
+
+                            scene shed_closeup 2
+                            show auntsex 50 at Position(xpos = 590, ypos = 768)
+                        show screen shed_sex_visuals
+
                     show screen shed_sex_buttons
                     hide screen shed_sex_options
                     pause
                     if shed_sex_angle == 0:
                         scene shed_closeup 1
                         if anim_toggle == True:
-                            hide auntsex 38
+                            hide auntsex_cowoutfit
+                            hide auntsex_xray
+                            hide auntsex_cowoutfit_xray
+                            hide auntsex
                             hide screen shed_sex_visuals
                             hide screen shed_sex_buttons
                             if shed_cow_outfit == True and shed_xray_toggle == False:
@@ -462,11 +499,6 @@ label aunt_dialogue_button_night:
 
                                 show auntsex 38_40 at Position(xpos = 544, ypos = 729)
                             pause 8
-                            hide auntsex_cowoutfit 39_41
-                            hide auntsex_xray 42_43
-                            hide auntsex_cowoutfit_xray 39_41_42_43
-                            hide auntsex 38_40
-                            show auntsex 38 at Position(xpos = 544, ypos = 729)
                         else:
 
                             show screen shed_sex_visuals
@@ -502,7 +534,10 @@ label aunt_dialogue_button_night:
 
                         scene shed_closeup 2
                         if anim_toggle == True:
-                            hide auntsex 50
+                            hide auntsex_cowoutfit
+                            hide auntsex_xray
+                            hide auntsex_cowoutfit_xray
+                            hide auntsex
                             hide screen shed_sex_visuals
                             hide screen shed_sex_buttons
                             if shed_cow_outfit == True and shed_xray_toggle == False:
@@ -517,11 +552,6 @@ label aunt_dialogue_button_night:
                             else:
                                 show auntsex 50_52 at Position(xpos = 590, ypos = 768)
                             pause 8
-                            hide auntsex_cowoutfit 51_53
-                            hide auntsex_xray 46_47
-                            hide auntsex_cowoutfit_xray 51_53_46_47
-                            hide auntsex 50_52
-                            show auntsex 50 at Position(xpos = 590, ypos = 768)
                         else:
 
                             show screen shed_sex_visuals
@@ -553,7 +583,6 @@ label aunt_dialogue_button_night:
                             $ xray = 1
                             $ cow_outfit = 1
                             show auntsex 52 at Position(xpos = 595, ypos = 768)
-                    show screen shed_sex_visuals
                     call screen shed_sex_options
 
                 label shed_ride:
@@ -564,23 +593,17 @@ label aunt_dialogue_button_night:
                     player_name "You're so wet, Aunt Diane."
                     dia "I just love the feeling of my clit against your hard cock, Sweetie."
                     dia "Stay still..."
+
                     label shed_ride_loop:
-                        show auntsex 55
                         show screen shed_sex_buttons
                         hide screen shed_sex_options
                         pause
+                        hide screen shed_sex_buttons
                         if anim_toggle == True:
-                            hide auntsex 55
-                            hide screen shed_sex_buttons
                             show auntsex 54_55
                             pause 8.4
-                            hide auntsex 54_55
-                            show auntsex 55
                         else:
 
-                            hide screen shed_sex_buttons
-                            show auntsex 54
-                            pause
                             show auntsex 55
                             pause
                             show auntsex 54
@@ -594,26 +617,24 @@ label aunt_dialogue_button_night:
                             show auntsex 54
                             pause
                             show auntsex 55
+                            pause
                         call screen shed_sex_options
 
                 label shed_fuck:
                     show auntsex 56
                     dia "I want it inside me now..."
                     label shed_fuck_loop:
-                        show auntsex 57
                         show screen shed_sex_buttons
                         hide screen shed_sex_options
                         pause
+                        hide screen shed_sex_buttons
                         if anim_toggle == True:
-                            hide auntsex 57
-                            hide screen shed_sex_buttons
                             show auntsex 58_59_58_57
                             pause 8.5
-                            hide auntsex 58_59_58_57
-                            show auntsex 57
                         else:
 
-                            hide screen shed_sex_buttons
+                            show auntsex 57
+                            pause
                             show auntsex 58 at Position(xoffset = -2)
                             pause
                             show auntsex 59 at Position(xoffset = 1)
@@ -638,20 +659,20 @@ label aunt_dialogue_button_night:
                         call screen shed_sex_options
 
                 label shed_milk:
-                    show auntsex 60 at Position(xoffset = -45)
+
+                    if anim_toggle == True:
+                        show auntsex 61_60
+                    else:
+                        show auntsex 60 at Position(xoffset = -45)
                     show screen shed_sex_buttons
                     hide screen shed_sex_options
                     pause
+                    hide screen shed_sex_buttons
                     if anim_toggle == True:
-                        hide auntsex 60
-                        hide screen shed_sex_buttons
                         show auntsex 61_60
                         pause 8
-                        hide auntsex 61_60
-                        show auntsex 61
                     else:
 
-                        hide screen shed_sex_buttons
                         show auntsex 61 at Position(xoffset = -45)
                         pause
                         show auntsex 60 at Position(xoffset = -45)
@@ -675,6 +696,9 @@ label aunt_dialogue_button_night:
 
                 label shed_sex_cum_in:
                     dia "Don't hold back..."
+                    hide auntsex_cowoutfit
+                    hide auntsex_xray
+                    hide auntsex_cowoutfit_xray
                     hide screen shed_sex_options
                     label shed_sex_loop_2:
                         $ xray = 0
@@ -919,3 +943,25 @@ label aunt_dialogue_button_night:
                 hide aunt 88 at right with dissolve
                 hide player 21 at left with dissolve
     $ callScreen(location_count)
+
+label aunt_shed_faster_sex:
+    $ M_aunt.set('sex speed', M_aunt.get('sex speed') - 0.1)
+    if shed_sex_action == 0:
+        jump shed_sex_loop
+    if shed_sex_action == 1:
+        jump shed_ride_loop
+    if shed_sex_action == 2:
+        jump shed_fuck_loop
+    if shed_sex_action == 3:
+        jump shed_milk
+
+label aunt_shed_slower_sex:
+    $ M_aunt.set('sex speed', M_aunt.get('sex speed') + 0.1)
+    if shed_sex_action == 0:
+        jump shed_sex_loop
+    if shed_sex_action == 1:
+        jump shed_ride_loop
+    if shed_sex_action == 2:
+        jump shed_fuck_loop
+    if shed_sex_action == 3:
+        jump shed_milk

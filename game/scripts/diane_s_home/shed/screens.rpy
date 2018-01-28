@@ -102,6 +102,24 @@ screen shed_sex_options:
                 hover "buttons/diane_stage01_09b.png"
                 action SetVariable("shed_sex_action", 0), SetVariable("shed_sex_angle", 0), Jump("shed_sex_loop")
 
+    if M_aunt.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("aunt_shed_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_aunt.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("aunt_shed_faster_sex")
+            xpos 450
+            ypos 735
+
 screen shed_sex_visuals:
     if shed_cow_outfit == True:
         if shed_sex_angle == 0:

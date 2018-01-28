@@ -180,3 +180,77 @@ screen bedside01:
         action Hide("bedside01"), Jump ("sis_bedroom_dialogue")
         xpos 382
         ypos 302
+
+screen sis_cheerleader_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        if sis_cheerleader_sex2_menu:
+            action Jump("sis_cheerleader_fuck_looprep2")
+        else:
+            action Jump("sis_cheerleader_fuck_looprep")
+        if not sis_cheerleader_sex2_menu:
+            xpos 150
+            ypos 700
+        else:
+            xpos 250
+            ypos 700
+
+
+    if not sis_cheerleader_sex2_menu:
+        imagebutton:
+            focus_mask True
+            idle "buttons/diane_stage01_03.png"
+            hover "buttons/diane_stage01_03b.png"
+            action Jump("sis_cheerleader_fuck_cum_outside")
+            xpos 350
+            ypos 700
+
+    if sis_cheerleader_sex2_menu:
+        imagebutton:
+            focus_mask True
+            idle "buttons/diane_stage01_02.png"
+            hover "buttons/diane_stage01_02b.png"
+            if sis_final_cum == "Outside":
+                action Jump("sis_cheerleader_fuck_cum_inside_unhappy")
+            elif sis_final_cum == "Inside" and sister.completed(sis_final2):
+                action Jump("sis_cheerleader_fuck_cum_inside_happy")
+            xpos 450
+            ypos 700
+
+    if pStats.str() < 7 and not sis_cheerleader_sex2_menu:
+        imagebutton:
+            focus_mask True
+            idle "buttons/sis_break_01.png"
+            hover "buttons/sis_break_01b.png"
+            action Jump("sis_cheerleader_break_free_fail")
+            xpos 550
+            ypos 700
+
+    if pStats.str() >= 7 and not sis_cheerleader_sex2_menu:
+        imagebutton:
+            focus_mask True
+            idle "buttons/sis_break_01.png"
+            hover "buttons/sis_break_01b.png"
+            action Jump("sis_cheerleader_break_free_pass")
+            xpos 550
+            ypos 700
+
+    if M_sis.get('sex speed') < .3:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("sis_cheerleader_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_sis.get('sex speed') > .11:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("sis_cheerleader_faster_sex")
+            xpos 450
+            ypos 735

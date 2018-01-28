@@ -3,7 +3,7 @@ label pass_check:
         scene sis_comp
         $ comp_locked = False
         jump sispc_desktop_response
-    elif sis_pass != "BAD MONSTER" or sis_pass != "bad monster" or sis_pass != "Bad Monster" or sis_pass != "Bad monster":
+    elif sis_pass.lower().strip() != "bad monster":
         scene sis_comp
         show sis_wrong_pass at Position(xpos=570, ypos= 448) with dissolve
         $ renpy.pause()

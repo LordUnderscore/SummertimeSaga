@@ -22,6 +22,18 @@ label splashscreen:
 
     $ callScreen("Adult Warning", False, False)
 
+
+
+
+
+
+
+
+
+
+
+
+
     scene black with dissolve
     $ renpy.pause(1, hard=True)
 
@@ -78,14 +90,14 @@ init python:
         item_list.append(earwig01)
         bad_list.append(earwig01)
         earwig01.price += 15
-        earwig01.passive_pic = "objects/minigame01_number07.png"
-        rat.passive_pic = "objects/minigame01_number07.png"
-        pumpkin.passive_pic = "objects/minigame01_number02.png"
-        tomato.passive_pic = "objects/minigame01_number02.png"
-        bug.passive_pic = "objects/minigame01_number02.png"
-        weed.passive_pic = "objects/minigame01_number03.png"
-        spider.passive_pic = "objects/minigame01_number03.png"
-        grapes.passive_pic = "objects/minigame01_number02.png"
+        earwig01.passive_pic = "objects/minigame01_number08.png"
+        rat.passive_pic = "objects/minigame01_number08.png"
+        pumpkin.passive_pic = "objects/minigame01_number03.png"
+        tomato.passive_pic = "objects/minigame01_number03.png"
+        bug.passive_pic = "objects/minigame01_number03.png"
+        weed.passive_pic = "objects/minigame01_number07.png"
+        spider.passive_pic = "objects/minigame01_number07.png"
+        grapes.passive_pic = "objects/minigame01_number03.png"
 
     class DayTimer:
         _tod = 1
@@ -214,7 +226,7 @@ init python:
                                 "mrsj.started(mrsj_sex_ed)",
                                 ],
                 "Computer Lab", "erik.completed(erik_gf_2) and gTimer.is_morning()",
-                "Cafteria", "gTimer.is_morning()",
+                "Cafeteria", "gTimer.is_morning()",
                 ],
             "mrsj": [
                 None, "mrsj.started(mrsj_yoga_help)",
@@ -248,7 +260,63 @@ init python:
             "grace": [
                 "Tattoo Parlor Interior", "not gTimer.is_dark()",
                 ],
+            "angelica": [
+                "Angelica's Room", "gTimer.is_dark()",
+                "Church", "not (gTimer.is_weekend() and gTimer.is_morning())",
+                ],
+            "mia": [
+                None, "M_mia.get_state() in [S_mia_unexpected_visit, S_mia_helen_outfit_request] and not gTimer.is_morning()",
+                "Tattoo Parlor Interior", "M_mia.get_state() in [S_mia_get_tattoo, S_mia_buy_tattoo] and gTimer.dayOfWeek() == 'Sat'",
+                "Church", "gTimer.is_morning() and gTimer.is_weekend()",
+                "Science Classroom", "gTimer.is_morning()",
+                "Helen's Locked Room", "M_mia.get_state() in [S_mia_midnight_help, S_mia_locked_room] and gTimer.is_dark()",
+                "Mia's Bedroom", "gTimer.is_dark()",
+                "Mia's House", "M_mia.get_state() == S_mia_do_homework",
+                "Mia's House Entrance", "gTimer.is_afternoon()",
+                ],
+            "helen": [
+                "Angelica's Room", ["gTimer.is_dark() and M_mia.get_state() in [S_mia_angelicas_order, S_mia_angelicas_whip]",
+                                    "gTimer.is_dark() and M_mia.is_set('helen angelica training 2')",
+                                    ],
+                "Church Confessional Left", "M_mia.get_state() == S_mia_priest_act",
+                "Church", "gTimer.is_morning() and gTimer.is_weekend()",
+                "Mia's House Entrance", "gTimer.is_morning()",
+                "Helen's Bedroom", ["gTimer.is_afternoon()",
+                                    "gTimer.is_dark() and M_mia.is_set('harold left')",
+                                    "M_mia.get_state() in [S_mia_unexpected_visit, S_mia_helen_outfit_request]"],
+                "Mia's Living Room", "gTimer.is_dark()",
+                ],
+            "harold": [
+                None, "M_mia.get_state() == S_mia_harold_yumi_out",
+                "Hill", "M_mia.get_state() in [S_mia_urgent_help, S_mia_clues, S_mia_search_desk, S_mia_find_harold, S_mia_harold_found_news, S_mia_angelicas_patience]",
+                "Church", "gTimer.is_morning() and gTimer.is_weekend() and not M_mia.is_set('harold left')",
+                "Police Office", "not gTimer.is_dark()",
+                "Mia's Living Room", "gTimer.is_dark() and not M_mia.is_set('harold left')",
+                ],
+            "yumi": [
+                None, "M_mia.get_state() == S_mia_harold_yumi_out",
+                "Police Basement Cell", "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]", 
+                "Police Basement", "gTimer.is_morning() or gTimer.is_afternoon()",
+                ],
+            "earl": [
+                None, "M_mia.get_state() in [S_mia_inmate_status, S_mia_harold_backup, S_mia_harold_to_the_rescue]", 
+                "Police Office", "True",
+                ],
+            "terry": [
+                None, "M_terry.get_state() == S_terry_drunk",
+                "Pier", "True",
+                ],
+            "aqua": [
+                "Lair", "M_aqua.is_set('altar pass') and M_aqua.is_set('treasure pass') and M_aqua.is_set('squid pass') and M_aqua.is_set('maze pass')",
+                None, "True",
+                ],
             }
+        default = None
+        for m in machines:
+            if m._name == name:
+                default = m.where()
+                if m.forced():
+                    return default
         logic_list = loc_logic[name]
         for idx in xrange(0,len(logic_list),2):
             loc = logic_list[idx]
@@ -260,12 +328,12 @@ init python:
             for logic in logic_tests:
                 if eval(logic):
                     return loc
-        return None
+        return default
 
     def is_here(name):
         return where_is(name) == location_count
 
-    def callScreen(name, ui = True, clear = True):
+    def callScreen(name, ui = True, clear = True, newContext = False):
         if clear:
             clearImages()
         
@@ -274,7 +342,10 @@ init python:
         name = name.lower()
         name = name.replace("'", "")
         name = name.replace(" ", "_")
-        if ui:
+        
+        if newContext:
+            renpy.call("newScreen", screen = name, user = ui, images = clear)
+        elif ui:
             renpy.show_screen(name)
             renpy.call_screen("ui")
         else:
@@ -424,6 +495,9 @@ define ross = Character('Ms. Ross', color="#c8ffc8")
 define dewitt = Character('Ms. Dewitt', color="#c8ffc8")
 define okita = Character('Ms. Okita', color="#c8ffc8")
 define june = Character('June', color="#a771b6")
+define beth = Character("Beth", color="#ce6b6a")
+define sara = Character("Sara")
+define aqua = Character("Aqua")
 define ced = Character("Cedric")
 define chi = Character("Chico")
 define helen = Character("Helen")
@@ -460,6 +534,8 @@ define roz = Character("Roz")
 define guard = Character("Guard")
 
 define player_name = Character('[firstname]', color="#6f96f1")
+
+define flash = Fade(.25, 0.0, .75, color="#fff")
 
 init python:
     firstname = ""
@@ -596,6 +672,7 @@ init python:
     erik_basement_seen = False
 
     mom_dialogue_daily = False
+    sexspeed = .15   
 
     sis_panties_trade = False
     in_erik_house = False
@@ -656,6 +733,8 @@ init python:
 
     rap_opponent = ""
 
+    sis_cheerleader_sex2_menu = False
+
     mom_revealing = False
     shower = ""
     xray = False 
@@ -670,9 +749,19 @@ init python:
     roxxy_shower_lock = False
     orcette_mail_lock = False
     yoga_fail_retry = False
+    drawn_tattoo = ""
 
 label start:
     $ gTimer = DayTimer()
+    call INIT_FSM
+    python:
+        machines = []
+        for m in Machine.get_instances():
+            machines.append(m)
+        events = []
+        for e in Event_Queue.get_instances():
+            events.append(e)
+        store.my_events = events
 
     if firstname == "":
         $ firstname = "Anon"
@@ -716,32 +805,35 @@ label start:
         loc_trailer_unlocked = False
         loc_tattoo_unlocked = False
         loc_treehouse_unlocked = False
+        loc_donuts_unlocked = False
+        loc_court_unlocked = False
+        loc_lair_unlocked = False
         savegame_version = config.version
 
     python:
         earnings = 0
         valid_pos = [(116,111), (280,111), (442,111), (603,111), (767,111), (116,272), (280,272), (442,272), (603,272), (767,272), (116,439), (280,439), (442,439), (603,439), (767,439)]
-        rat = Good(15, False, False, image="objects/minigame01_bad04.png", passive_pic = "objects/minigame01_number03.png")
+        rat = Good(20, False, False, image="objects/minigame01_bad04.png", passive_pic = "objects/minigame01_number07.png")
         carrot = Good(5, True, False, image="objects/minigame01_good03.png", passive_pic = "objects/minigame01_number04.png")
-        carrot_rotten = Good(5, False, False, image="objects/minigame01_good03b.png", passive_pic = "objects/minigame01_number01.png")
+        carrot_rotten = Good(10, False, False, image="objects/minigame01_good03b.png", passive_pic = "objects/minigame01_number02.png")
         eggplant = Good(10, True, False, image="objects/minigame01_good01.png", passive_pic = "objects/minigame01_number05.png")
-        eggplant_rotten = Good(5, False, False, image="objects/minigame01_good01b.png", passive_pic = "objects/minigame01_number01.png")
+        eggplant_rotten = Good(10, False, False, image="objects/minigame01_good01b.png", passive_pic = "objects/minigame01_number02.png")
         pickle = Good(15, True, False, image="objects/minigame01_good02.png", passive_pic = "objects/minigame01_number06.png")
-        pickle_rotten = Good(5, False, False, image="objects/minigame01_good02b.png", passive_pic = "objects/minigame01_number01.png")
-        pumpkin = Good(5, False, False, image="objects/minigame01_bad05.png", passive_pic = "objects/minigame01_number01.png")
-        pumpkin_rotten = Good(5, False, False, image="objects/minigame01_bad05b.png", passive_pic = "objects/minigame01_number01.png")
-        tomato = Good(5, False, False, image = "objects/minigame01_bad03.png", passive_pic = "objects/minigame01_number01.png")
-        tomato_rotten = Good(5, False, False, image = "objects/minigame01_bad03b.png", passive_pic = "objects/minigame01_number01.png")
-        bug = Good(5, False, False, image = "objects/minigame01_bad02.png", passive_pic = "objects/minigame01_number01.png")
-        weed = Good(10, False, False, image = "objects/minigame01_bad01.png", passive_pic = "objects/minigame01_number02.png")
-        spider = Good(10, False, False, image = "objects/minigame01_bad07.png", passive_pic = "objects/minigame01_number02.png")
+        pickle_rotten = Good(10, False, False, image="objects/minigame01_good02b.png", passive_pic = "objects/minigame01_number02.png")
+        pumpkin = Good(10, False, False, image="objects/minigame01_bad05.png", passive_pic = "objects/minigame01_number02.png")
+        pumpkin_rotten = Good(10, False, False, image="objects/minigame01_bad05b.png", passive_pic = "objects/minigame01_number02.png")
+        tomato = Good(10, False, False, image = "objects/minigame01_bad03.png", passive_pic = "objects/minigame01_number02.png")
+        tomato_rotten = Good(10, False, False, image = "objects/minigame01_bad03b.png", passive_pic = "objects/minigame01_number02.png")
+        bug = Good(10, False, False, image = "objects/minigame01_bad02.png", passive_pic = "objects/minigame01_number02.png")
+        weed = Good(15, False, False, image = "objects/minigame01_bad01.png", passive_pic = "objects/minigame01_number03.png")
+        spider = Good(15, False, False, image = "objects/minigame01_bad07.png", passive_pic = "objects/minigame01_number03.png")
         corn = Good(5, True, False, image = "objects/minigame01_good04.png", passive_pic = "objects/minigame01_number04.png")
-        corn_rotten = Good(5, False, False, image = "objects/minigame01_good04b.png", passive_pic = "objects/minigame01_number01.png")
-        grapes = Good(5, False, False, image = "objects/minigame01_bad06.png", passive_pic = "objects/minigame01_number01.png")
-        grapes_rotten = Good(5, False, False, image = "objects/minigame01_bad06b.png", passive_pic = "objects/minigame01_number01.png")
-        earwig01 = Good(5, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number01.png")
-        earwig02 = Good(5, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number01.png")
-        earwig03 = Good(5, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number01.png")
+        corn_rotten = Good(10, False, False, image = "objects/minigame01_good04b.png", passive_pic = "objects/minigame01_number02.png")
+        grapes = Good(10, False, False, image = "objects/minigame01_bad06.png", passive_pic = "objects/minigame01_number02.png")
+        grapes_rotten = Good(10, False, False, image = "objects/minigame01_bad06b.png", passive_pic = "objects/minigame01_number02.png")
+        earwig01 = Good(10, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number02.png")
+        earwig02 = Good(10, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number02.png")
+        earwig03 = Good(10, False, False, image = "objects/minigame01_bad08.png", passive_pic = "objects/minigame01_number02.png")
         item_list = [rat, carrot, eggplant, pickle, pumpkin, tomato, bug, weed, spider, grapes, corn]
         t_list = []
         bad_list = [rat, pumpkin, tomato, bug, weed, spider, grapes]
@@ -761,6 +853,11 @@ label start:
         keyboard_list = [K_a, K_s, K_d, K_f]
         task_list = []
         arrow_index = 0
+        movedpiece = 0
+        piecelist = [[0,0],[-60,580],[830,580],[830,580],[830,580],[-60,580],
+                     [830,580],[-60,580],[830,580],[-60,580],[830,580],[-60,580],
+                     [830,580],[-60,580],[-60,580],[-60,580],[830,580],[830,580],
+                     [-60,580],[-60,580],[830,580],[830,580],[-60,580]]
 
     python:
         pStats = PlayerStats()
@@ -816,15 +913,64 @@ label start:
         sexdoll = Item("{b}Sex Doll:{/b}", 800, image = "objects/item_sex12.png", description = "A stange sex doll of a man, with a moustache.", h_image = "objects/item_sex12b.png")
         lingerie = Item("{b}Pink Lingerie:{/b}", 400, image = "objects/item_sex13.png", description = "A sexy women's undergarment.", h_image = "objects/item_sex13b.png")
         handcuffs = Item("{b}Handcuffs:{/b}", 50, image = "objects/item_sex14.png", description = "Sturdy metal handcuffs.", h_image = "objects/item_sex14b.png")
+        strapon = Item("{b}Strapon:{/b}", 500, image = "objects/item_sex15.png", description = "A rubber dick fit to be wielded by a warrior.", h_image = "objects/item_sex15b.png")
+        strapon_drawing = Item("{b}Drawing:{/b}", 0, image = "objects/item_note1.png", description = "A drawing from Angelica of the final item she requires.", h_image = "objects/item_note1b.png")
+        whip = Item("{b}Whip:{/b}", 500, image = "objects/item_sex16.png", description = "A whip to punish sinners.", h_image = "objects/item_sex16b.png")
+        aviators = Item("{b}Aviators:{/b}", 0, image = "objects/item_glasses1.png", description = "A sweet pair of badass aviators.", h_image = "objects/item_glasses1b.png", closeup = "objects/closeup_note01.png")
         lure01 = Item("{b}Lure:{/b}", 0, image = "objects/item_bait2.png", description = "This lure looks very familiar.", h_image = "objects/item_bait2b.png")
         card03 = Item("{b}Trading Card - Orcette - The Whoremonger:{/b}", 50, image = "objects/item_card3.png", description = "The Fappening card for Orcette - The Whoremonger.", h_image = "objects/item_card3b.png", closeup = "objects/closeup_card03.png")
         eriks_cards = Item("{b}Erik's Fappening Trading Cards:{/b}", 0, image = "objects/item_box1.png", description = "This box contains the Fappening cards that Erik lost.", h_image = "objects/item_box1b.png")
         orcette = Item("{b}Orcette:{/b}", 0, image = "objects/item_orcette1.png", description = "ZUG! ZUG! It's an Orcette.", h_image = "objects/item_orcette1b.png")
         instructions1 = Item("{b}Yoga Instructions:{/b}", 0, image = "objects/item_instructions1.png", description = "Is this really how Yoga works ?", h_image = "objects/item_instructions1b.png", closeup = "objects/closeup_instructions_01.png")
-        treasure_key = Item("{b}Mystery key:{/b}", 0, image = "objects/item_key2.png", description = "A mysterious key.", h_image = "objects/item_key2b.png")
         kamasutra = Item("{b}Kama Sutra:{/b}", 0, image = "objects/item_book2.png", description = "A book about the art of sex.", h_image = "objects/item_book2b.png")
         birth_control_pills = Item("{b}Birth Control Pills:{/b}", 0, image = "objects/item_pills1.png", description = "We don't want you knocking up the entire town now do we.", h_image = "objects/item_pills1b.png")
         hospital_access_card = Item("{b}Hospital Storage card:{/b}", 0, image = "objects/item_card4.png", description = "The access card for the Hospital Storage room.", h_image = "objects/item_card4b.png")
+        stolen_goods = Item("{b}Stolen Goods:{/b}", 0, image = "objects/item_goods1.png", description = "The goods that were stolen by a recent serial thief.", h_image = "objects/item_goods1b.png")
+        donuts_fail = Item("{b}DOH-nuts:{/b}", 50, image = "objects/item_donut1.png", description = "Some delicious tasting holes of the finest caliber.", h_image = "objects/item_donut1b.png")
+        donuts_correct = Item("{b}DOH-nuts:{/b}", 50, image = "objects/item_donut1.png", description = "Some delicious tasting holes of the finest caliber.", h_image = "objects/item_donut1b.png")
+        tattoo_butterfly = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing1.png", description = "Your drawing of a butterlfy tattoo.", h_image = "objects/item_tattoo_drawing1b.png")
+        tattoo_dolphin = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing2.png", description = "Your drawing of a dolphin tattoo.", h_image = "objects/item_tattoo_drawing2b.png")
+        tattoo_stars = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing3.png", description = "Your drawing of a tattoo of stars.", h_image = "objects/item_tattoo_drawing3b.png")
+        tattoo_flowers = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing4.png", description = "Your drawing of a tattoo of flowers.", h_image = "objects/item_tattoo_drawing4b.png")
+        tattoo_skull = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing5.png", description = "Your drawing of a skull tattoo.", h_image = "objects/item_tattoo_drawing5b.png")
+        tattoo_cookie = Item("{b}Tattoo Drawing:{/b}", 0, image = "objects/item_tattoo_drawing6.png", description = "Your drawing of a cookie tattoo.", h_image = "objects/item_tattoo_drawing6b.png")
+        tattoo_choices = {"tattoo_butterfly": tattoo_butterfly, "tattoo_dolphin": tattoo_dolphin, "tattoo_stars": tattoo_stars, "tattoo_flowers": tattoo_flowers, "tattoo_skull": tattoo_skull, "tattoo_cookie": tattoo_cookie}
+
+        key03 = Item("{b}Helen's Secret Key{/b}", 0, image = "objects/item_key3.png", description = "The key secretely hidden by the statue of Mary", h_image = "objects/item_key3b.png")
+
+        obituary_records = Item("{b}Obituary Records{/b}", 0, image = "objects/item_records1.png", description = "The obituary records that contains the name of the boatsmith.", h_image = "objects/item_records1b.png", closeup = "objects/closeup_records_01.png", dialogue = "obituary_records")
+        scroll = Item("{b}Scroll{/b}", 0, image = "objects/item_scroll1.png", description = "A mysterious scroll you found hidden in a tree on Raven Hill.", h_image = "objects/item_scroll1b.png", closeup = "objects/closeup_scroll_01.png", dialogue = "scroll")
+        treasure_key = Item("{b}Mystery key:{/b}", 0, image = "objects/item_key2.png", description = "A mysterious key.", h_image = "objects/item_key2b.png")
+        weird_coin = Item("{b}Weird Coin{/b}", 0, image = "objects/item_coin1.png", description = "A coin with weird engravings that you found in the park fountain.", h_image = "objects/item_coin1b.png", closeup = "objects/closeup_coin_01.png", dialogue = "weird_coin")
+        old_book = Item("{b}Old Book{/b}", 0, image = "objects/item_book3.png", description = "An old book that looks like it can decipher something from the library.", h_image = "objects/item_book3b.png", closeup = "objects/closeup_book_03.png", dialogue = "old_book")
+        treasure_map = Item("{b}Treasure Map{/b}", 0, image = "objects/item_map1.png", description = "A treasure map that you acquired after solving difficult puzzle.", h_image = "objects/item_map1b.png", closeup = "objects/closeup_map_01.png", dialogue = "treasure_map")
+        golden_compass = Item("{b}Golden Compass{/b}", 0, image = "objects/item_compass1.png", description = "The golden compass that is said to lead you to your greatest desire.", h_image = "objects/item_compass1b.png", closeup = "objects/closeup_compass_01.png", dialogue = "golden_compass")
+        special_lure = Item("{b}Special Lure{/b}", 0, image = "objects/item_bait4.png", description = "A lure said to be able to catch anything and everything.", h_image = "objects/item_bait4b.png")
+        tigger = Item("{b}Demon Spawn Tigger{/b}", 0, image = "objects/item_tigger1.png", description = "Once a man's swarn enemy, but no longer will anymore piggy's go to the market.", h_image = "objects/item_tigger1b.png", closeup = "objects/closeup_tigger_01.png", dialogue = "tigger")
+
+        game = Item("{b}Sea Dogs SAGA{/b}", 100, image = Transform("game_1"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_1b"))
+        game02 = Item("{b}World of Orcette{/b}", 100, image = Transform("game_2"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_2b"))
+        card01 = Item("{b}Trading Card - The Flying Cock Goblin:{/b}", 50, image = "objects/item_card1.png", description = "The Fappening card for The Flying Cock Goblin.", h_image = "objects/item_card1b.png", closeup = "objects/closeup_card01.png")
+        card02 = Item("{b}Trading Card - Cock Crown of Thorns:{/b}", 50, image = Transform("card_2"), description = "The Fappening card for Cock Crown of Thorns.", h_image = Transform("card_2b"), closeup = "objects/closeup_card02.png")
+        orcette_cosplay = Item("{b}Orcette Queen Garments:{/b}", 300, image = Transform("cosplay_1"), description = "The outfit befit for an Orcette Queen made from the battle scarred skin of her enemies.", h_image = Transform("cosplay_1b"))
+
+        sea_dogs_saga = ComicItem(game, "PC Game - Sea Dogs Saga", "", "boxes/popup_item_game.png", Transform("game_1"), Transform("game_1b"), 100, "Video Games", False)
+        world_of_orcette = ComicItem(game02, "PC Game - World of Orcette", "", "boxes/popup_item_game2.png", Transform("game_2"), Transform("game_2b"), 100, "Video Games", False)
+        orcette_outfit = ComicItem(orcette_cosplay, "Cosplay Outfit - Orcette Queen", "", "boxes/popup_cosplay.png", Transform("cosplay_1"), Transform("cosplay_1b"), 300, "Cosplay", False)
+        cock_goblin = ComicItem(card01, "Trading Card - The Flying Cock Goblin", "objects/closeup_card01.png", "boxes/popup_item_card1.png", "objects/item_card1.png", "objects/item_card1b.png", 50, "Collectible", False)
+        cock_crown = ComicItem(card02, "Trading Card - Cock Crown of Thorns", "objects/closeup_card02.png", "boxes/popup_item_card2.png", Transform("card_2"), Transform("card_2b"), 50, "Collectible", False)
+
+        comicstore = ComicStore()
+        comicstore.items = [cock_goblin, sea_dogs_saga, world_of_orcette, cock_crown, orcette_outfit]
+
+        red_corset = Item("{b}Lingerie - Red Corset:{/b}", 300, image = Transform("sex_17"), description = "A nice sexy lingerie set in a dashing blood red colour.", h_image = Transform("sex_17b"))
+        cow_outfit = Item("{b}Lingerie - Cow Outfit:{/b}", 300, image = Transform("sex_6"), description = "A black and white spotted bikini accompanied with bell, tail plug and ear headband.", h_image = Transform("sex_6b"))
+
+        red_corset_lingerie = PinkItem(red_corset, "Red Corset", "", "boxes/pink_item_15.png", Transform("sex_17"), Transform("sex_17b"), 300, "Lingerie", False)
+        cow_outfit_lingerie = PinkItem(cow_outfit, "Cow Outfit", "", "boxes/pink_item_16.png", Transform("sex_6"), Transform("sex_6b"), 300, "Lingerie", False)
+
+        pinkstore = PinkStore()
+        pinkstore.items = [cow_outfit_lingerie]
 
         m_magazine = Item("Mrs. Johnson's magazine", 0, image = "objects/object_mailbox_item01.png", description = "", h_image = "objects/object_mailbox_item01b.png")
         m_erik_package = Item("Erik's package", 0, image = "objects/object_mailbox_item04.png", description="", h_image = "objects/object_mailbox_item04b.png")
@@ -853,6 +999,10 @@ label start:
 
     $ day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     $ time_count = 5
+    $ harold_toppings = ['chocolate chips', 'sprinkles', 'vanilla drizzle', 'maple drizzle']
+    $ harold_glazes = ['chocolate glazed', 'strawberry glazed', 'blueberry glazed', 'vanilla glazed']
+    $ harold_glaze = renpy.random.choice(harold_glazes)
+    $ harold_topping = renpy.random.choice(harold_toppings)
 
     python:
         quest01 = Quest("Homework", image = "buttons/cellphone_goals_side01.png", status = False)
@@ -888,6 +1038,8 @@ label start:
         quest08_status = quest08.status
 
         m_judith01 = Message("Judith01", sender = "Judith", content_prev = "I'm in the washroom...", content = "I'm in the washroom...\nIf you want to meet me...", image = "buttons/cellphone_text_judith01.png", status = False)
+        m_mia01 = Message("Mia01", sender = "Mia", content_prev = "HELP!", content = "HELP!", image = "buttons/cellphone_text_mia01.png", status = False)
+        m_mia02 = Message("Mia02", sender = "Mia", content_prev = "We can't find {b}my dad{/b}...", content = "We can't find {b}my dad{/b}...\nCan you come help us please?", image = "buttons/cellphone_text_mia01.png", status = False)
         message_list = []
 
     screen cheat_option:
@@ -976,3 +1128,6 @@ label start:
         scene black with dissolve
         with Pause(0.5)
         jump bedroom_dialogue
+
+label newScreen(screen, user, images):
+    $ callScreen(screen, user, images)

@@ -58,6 +58,7 @@ label mrsj_button_dialogue:
     show erikmom 14
     menu mrsj_button_dialogue_repeat:
         "About {b}Erik{/b}." if erik.started(erik_path_split):
+            $ callScreen("Route Warning", False, False)
             show player 14 at left
             show erikmom 14 at right
             player_name "I wanted to talk about {b}Erik{/b}..."
@@ -91,14 +92,8 @@ label mrsj_button_dialogue:
             show erikmom 19
             erimom "What do you think I should do?"
             show erikmom 19c
-            $ config.skipping = None
-            show popup_warning at truecenter with dissolve
-            $ renpy.pause(3, hard=True)
-            pause
-            hide popup_warning with dissolve
             menu mrsj_route_split:
                 "Sex education.":
-                    hide screen save
                     show player 14 at left
                     show erikmom 19c at right
                     player_name "I think it's best if you give him the attention he needs..."
@@ -138,7 +133,7 @@ label mrsj_button_dialogue:
                     show erikmom 49
                     erimom "It's only for educational purposes of course..."
                     show erikmom 50
-                    show player 29 at Position(xoffset=8)
+                    show player 29
                     player_name "Oh, I emm... I wouldn't mind at all!"
                     show erikmom 49
                     show player 13
@@ -153,7 +148,6 @@ label mrsj_button_dialogue:
                     jump mrsj_button_dialogue_repeat
                 "Get him a girlfriend.":
 
-                    hide screen save
                     show player 14 at left
                     show erikmom 19c
                     player_name "I think we should try and find him a girlfriend."
@@ -218,7 +212,7 @@ label mrsj_button_dialogue:
                     erimom "I'm sure he would be okay with that..."
                     show player 13
                     erimom "... especially if he's too busy playing with another girl! Ha ha."
-                    show player 29 at Position(xoffset=8)
+                    show player 29
                     show erikmom 50
                     player_name "I suppose so, ha ha."
                     show player 14
@@ -234,12 +228,6 @@ label mrsj_button_dialogue:
                     $ erik_path_split.finish()
                     $ June.add_event(june_intro)
                     jump mrsj_button_dialogue_repeat
-                "Save Menu.":
-
-                    show screen save
-                    pause
-                    hide screen save
-                    jump mrsj_route_split
 
         "Sex education." if mrsj.started(mrsj_sex_ed):
             show erikmom 14 at right
@@ -506,7 +494,7 @@ label mrsj_button_dialogue:
                 show erikmom 19
                 erimom "Shouldn't you be at school right now??"
                 erimom "Erik already left!"
-                show player 29 at Position(xoffset=8)
+                show player 29
                 show erikmom 14
                 player_name "Oh, crap! You're right..."
                 player_name "Maybe later then!"

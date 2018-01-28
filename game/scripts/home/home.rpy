@@ -1,5 +1,6 @@
 default player_mail = []
 default seen_garage_locked = False
+default attic_first_visit = True
 default attic_key_taken = False
 default shovel_taken = False
 default stool_taken = False
@@ -569,6 +570,251 @@ label home_entrance:
         $ lawn_mowed.finish()
         hide player with dissolve
 
+    elif M_mia.get_state() == S_mia_angelicas_impatience:
+        scene home_entrance
+        show mom 1f at Position (xpos=500)
+        show ang 1 at right
+        with dissolve
+        pause.5
+        show player 5 at left
+        show mom 3
+        with dissolve
+        mom "There he is!"
+        show mom 1
+        show player 22
+        player_name "!!!" with hpunch
+        show mom 2
+        mom "I'm so happy to hear my son visited our local church lately..."
+        mom "...And offered volunteer work with the clergy!"
+        show mom 1
+        show player 24
+        player_name "Uhh..."
+        show mom 2
+        mom "Well! I will leave you two to it, I have things cooking in the kitchen!"
+        show mom 2f with dissolve
+        mom "It was great meeting you {b}Sister Angelica{/b}!"
+        hide mom with dissolve
+        show player 12
+        player_name "Volunteer work?"
+        player_name "And why are you here?!"
+        show player 11
+        show ang 2
+        ang "I thought we had an agreement?"
+        show ang 1
+        show player 24
+        player_name "..."
+        show ang 2
+        ang "Did you think I would just let you slip away from me?!"
+        show ang 1
+        show player 10
+        player_name "No, I just... What do you want from me?"
+        show player 11
+        show ang 2
+        ang "The door of the church will be left unlocked at night."
+        ang "Come visit me in my chamber and I will explain what I need from you..."
+        ang "...And don't try to hide from me again, or else-"
+        show ang 1
+        show player 12
+        player_name "Okay, okay!"
+        player_name "Just don't say anything to my mom..."
+        show player 11
+        show ang 2
+        ang "That will be up to you..."
+        hide ang with dissolve
+        show player 12
+        player_name "Now I have to go see her at church? In the middle of the night?!"
+        show player 10
+        player_name "This is strange..."
+        hide player with dissolve
+        $ ui_lock_count = 0
+        $ M_mia.trigger(T_angelica_house_visit)
+
+    elif M_mia.get_state() == S_mia_angelicas_home_visit:
+        scene home_entrance with fade
+        show mom 2f at Position (xpos=500)
+        show ang 1 at right
+        with dissolve
+        pause.5
+        show player 5 at left
+        show mom 3f
+        with dissolve
+        mom "It's always a pleasure to hear that my son is actively involved with the church."
+        mom "You two must be getting to know each other quite well."
+        show mom 1f
+        show ang 2
+        ang "Yes, {b}[firstname]{/b} has been very helpful bringing in remorsefully wretched sinners."
+        ang "{b}God{/b} will surely remember his fruits of love to his neighbors."
+        show ang 1
+        show mom 3f
+        mom "That's great!"
+        mom "I know we all can be naughty at times..."
+        show mom 2f
+        mom "Well then I better get going. The laundry isn't going to fold itself."
+        hide mom with dissolve
+        show ang 3
+        player_name "..."
+        show player 30
+        player_name "What now?"
+        player_name "I brought you {b}Helen{/b}. Isn't that enough?"
+        show player 5
+        show ang 4
+        ang "Oh no my dear child. {b}God{/b} has many things in store for you."
+        ang "{b}Helen{/b} is far from being purified. Her stubbornness is most annoying."
+        show ang 3
+        show player 26
+        player_name "Tell me about it."
+        show player 5
+        show ang 2
+        ang "The most penitent christians require extra care."
+        ang "They need to be broken down from their pedestal so that we may build them back up."
+        ang "I believe it will take two more rituals for her..."
+        ang "That is why I have come to see you."
+        ang "I am in need of an essential tool used throughout bibical times."
+        show ang 1
+        show player 11
+        player_name "..."
+        show player 12
+        player_name "What do you need?"
+        show player 5
+        show ang 2
+        ang "I intend to subvert {b}Helen{/b} through the means of flagellation."
+        show ang 1
+        show player 12
+        player_name "What?"
+        show player 5
+        show ang 4
+        ang "Get me {b}a whip{/b}."
+        show ang 3
+        show player 23
+        player_name "{b}A whip{/b}!?"
+        show player 11
+        show ang 4
+        ang "I'd prefer a cat o' nine tails of which our {b}Savior{/b} was subjected to."
+        ang "But I fear that might be more difficult to come by."
+        ang "{b}A standard leather whip{/b} will do."
+        show ang 2
+        ang "Bring it to me in my chambers."
+        show ang 1
+        show player 10
+        player_name "This doesn't seem right at-"
+        show player 11
+        show ang 2
+        ang "Do you forget your place? Don't make me remind you and everyone else of your depraved sins!"
+        show ang 1
+        show player 15
+        player_name "But you want to whip {b}Helen{/b}!"
+        show player 16
+        show ang 2
+        ang "You made a deal with me. Don't question my...the church's methods."
+        show ang 1
+        show player 12
+        player_name "It's just not right."
+        show player 5
+        show ang 4
+        ang "And who are you to judge right from wrong?"
+        show ang 3
+        show player 24
+        player_name "..."
+        show player 12
+        player_name "Fine. Where am I even supposed to get {b}a whip{/b} though?"
+        show player 17
+        player_name "Is there a listing of distributors in the back of the bible?"
+        show player 5
+        show ang 1
+        ang "..."
+        show ang 2
+        ang "I'm sure someone of your age knows of dirty lustful places that sell such things."
+        ang "Don't keep me waiting."
+        hide ang with dissolve
+        show player 37 with dissolve
+        player_name "I should never have gone to church."
+        pause
+        show player 38 with dissolve
+        player_name "Where am I going to get {b}a whip{/b}?"
+        player_name "Maybe the {b}Pink store at the mall{/b} carries something like that."
+        show player 37 with dissolve
+        player_name "..."
+        hide player with dissolve
+        $ ui_lock_count = 0
+        $ M_mia.trigger(T_angelica_requires_whip)
+
+    elif M_mia.get_state() == S_mia_angelicas_final_home_visit:
+        scene home_entrance with fade
+        show player 11 at left
+        show ang 2 at right
+        with dissolve
+        ang "It's about time you came downstairs."
+        ang "I have need of you again."
+        show ang 1
+        show player 5
+        player_name "..."
+        show player 12
+        player_name "I'm not sure I want to continue helping after what you did to {b}Helen{/b}, I-"
+        show player 5
+        show ang 4
+        ang "Oh, don't be so naive!"
+        ang "Despite her reluctance, we both know she enjoyed it."
+        show ang 3
+        show player 11
+        player_name "..."
+        show ang 2
+        ang "I didn't come here to argue with a sinner."
+        show ang 39 with dissolve
+        ang "If you truly intend to help {b}Helen{/b} you will help me obtain this..."
+        show ang 38
+        pause
+        show ang 3
+        show player 459 at Position (xoffset=1)
+        with dissolve
+        player_name "..."
+        hide player
+        hide ang
+        show note_01_c
+        with dissolve
+        pause
+        hide note_01_c
+        show player 1 at left
+        show ang 3 at right
+        show player 460 at Position (xoffset=1)
+        with dissolve
+        player_name "What...is it?"
+        show player 461 at Position (xoffset=1)
+        show ang 4
+        ang "It is a crucial element to the final ritual of {b}Helen's{/b} purification..."
+        ang "...And your last task."
+        show ang 3
+        show player 460 at Position (xoffset=1)
+        player_name "But how is this going to be used to purify {b}Helen{/b}?"
+        show player 11 with dissolve
+        show ang 2
+        ang "Don't question me!"
+        ang "Sinners should just accept the words spoken by {b}God's{/b} chosen."
+        ang "Now get me the item in the photograph and meet me in my chambers."
+        show ang 1
+        show player 5
+        player_name "..."
+        show player 12
+        player_name "Alright..."
+        show player 5
+        show ang 2
+        ang "Good. And be quick about it."
+        hide ang with dissolve
+        show player 5
+        player_name "..."
+        show player 10
+        player_name "{b}Helen{/b} doesn't even seem to realize {b}Sister Angelica{/b} is transforming her into..."
+        player_name "...A sex freak!"
+        show player 12
+        player_name "I should talk with {b}Harold{/b} before I help out {b}Sister Angelica{/b}."
+        player_name "Maybe he can help me figure out what to do."
+        show unlock55 at truecenter with dissolve
+        $ inventory.items.append(strapon_drawing)
+        pause
+        hide unlock55 with dissolve
+        hide player with dissolve
+        $ ui_lock_count = 0
+        $ M_mia.trigger(T_angelica_strapon_request)
+
     elif player_room_count == 1 and not mom_phone_event01:
         scene expression gTimer.image("home_entrance{}")
         show player 34 with dissolve
@@ -870,6 +1116,14 @@ label engine_broken_dialogue:
 
 label attic_dialogue:
     $ location_count = "Attic"
+    if attic_first_visit:
+        $ attic_first_visit = False
+        scene home_attic_cs with fade
+        show text "Using the key and stool, I was able to get into our attic.\nI had never been up there before.\nI was filled with excitement wondering what treasures mom and dad had stashed away." at Position (xpos= 512, ypos = 700) with dissolve
+        with dissolve
+        pause
+        hide text
+        with dissolve
     $ callScreen(location_count)
 
 label ring:

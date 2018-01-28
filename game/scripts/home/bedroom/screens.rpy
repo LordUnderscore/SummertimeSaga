@@ -9,7 +9,7 @@ screen bedroom:
         pos (44,352)
         idle gTimer.image("objects/object_telescope_01{}.png")
         hover gTimer.image("objects/object_telescope_01b{}.png")
-        action Show("telescope_options")
+        action If((M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message) and gTimer.is_dark(), [Hide("bedroom"), Jump("player_message_lock")], Show("telescope_options"))
 
     imagebutton:
         focus_mask True
@@ -17,8 +17,11 @@ screen bedroom:
         idle gTimer.image("objects/object_door_01{}.png")
         hover gTimer.image("objects/object_door_01b{}.png")
         action If(player_room_lock,
-                  [Hide("bedroom"), Play("audio", sfxDoor(True)), Jump("player_room_lock")],
-                  [Hide("bedroom"), Play("audio", sfxDoor()), Jump("hallway_dialogue")]
+                  [Hide("bedroom"), Jump("player_room_lock")],
+                  If(M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message,
+                     [Hide("bedroom"), Jump("player_message_lock")],
+                     [Hide("bedroom"), Play("audio", sfxDoor()), Jump("hallway_dialogue")]
+            )
         )
 
     if not m6_note:
@@ -66,7 +69,7 @@ screen bedroom:
             pos (639,439)
             idle gTimer.image("objects/object_bed_01{}.png")
             hover gTimer.image("objects/object_bed_01b{}.png")
-            action Show("bed01_options")
+            action If(M_mia.get_state() == S_mia_midnight_help, [Hide("bedroom"), Jump("mia_midnight_text")], Show("bed01_options"))
 
     if not cookies_taken:
         imagebutton:
@@ -171,3 +174,89 @@ screen bed01_options:
             )
             xpos 350
             ypos 600
+
+screen june_mcbedroom_normal_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("june_mcbedroom_normal_sex_loop")
+        xpos 150
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_03.png"
+        hover "buttons/diane_stage01_03b.png"
+        action Jump("june_mcbedroom_normal_sex_cum_outside")
+        xpos 350
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("june_mcbedroom_normal_sex_cum_inside")
+        xpos 550
+        ypos 700
+
+    if M_june.get('sex speed') < .3:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("june_mcbedroom_normal_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_june.get('sex speed') > .11:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("june_mcbedroom_normal_faster_sex")
+            xpos 450
+            ypos 735
+
+screen june_mcbedroom_cosplay_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("june_mcbedroom_cosplay_sex_loop")
+        xpos 150
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_03.png"
+        hover "buttons/diane_stage01_03b.png"
+        action Jump("june_mcbedroom_cosplay_sex_cum_outside")
+        xpos 350
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("june_mcbedroom_cosplay_sex_cum_inside")
+        xpos 550
+        ypos 700
+
+    if M_june.get('sex speed') < .3:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("june_mcbedroom_cosplay_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_june.get('sex speed') > .11:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("june_mcbedroom_cosplay_faster_sex")
+            xpos 450
+            ypos 735

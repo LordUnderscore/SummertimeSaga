@@ -125,3 +125,51 @@ screen school_hall:
                 idle "objects/character_roxxy_01.png"
                 hover "objects/character_roxxy_01b.png"
                 action Hide("school_hall"), Jump("roxxy_button_dialogue")
+
+    imagebutton:
+        focus_mask True
+        pos (36,235)
+        idle gTimer.image("objects/object_locker_01{}.png")
+        hover gTimer.image("objects/object_locker_01b{}.png")
+        action Hide("school_hall"), Jump("school_locker")
+
+screen school_locker:
+    add "backgrounds/location_school_locker_mc.jpg"
+
+    imagebutton:
+        focus_mask True
+        pos (562,57)
+        idle "objects/object_paper_01.png"
+        hover "objects/object_paper_01b.png"
+        action Show("school_locker_list")
+
+    imagebutton:
+        focus_mask True
+        align (0.5,0.97)
+        idle "boxes/auto_option_generic_02.png"
+        hover "boxes/auto_option_generic_02b.png"
+        action Hide("school_locker"), Jump("school_dialogue")
+
+screen school_locker_list:
+    default mark_list = []
+    imagebutton:
+        focus_mask True
+        pos (0,0)
+        idle "backgrounds/location_school_locker_list.jpg"
+        action Hide("school_locker_list")
+
+    python:
+        import math
+
+        i = 0
+        while i < (math.floor(M_mia.get("progress count") / M_mia.get("progress mark"))):
+            mark_list.append(i)
+            i += 1
+
+    $ i = 0
+    for i in mark_list:
+        add "buttons/locker_list_02.png" pos (453 + (35 * i)),247
+        $ i += 1
+
+    if M_mia.get("progress count") == (M_mia.get("progress mark") * 8) or M_helen.get_state() != S_helen_start:
+        add "buttons/locker_list_01.png" pos 750,210

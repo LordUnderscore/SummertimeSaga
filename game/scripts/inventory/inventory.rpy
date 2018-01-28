@@ -1,13 +1,14 @@
 init -200 python:
     import math
     class Item:
-        def __init__(self, name, cost, image = "", description = "", h_image = "", closeup = ""):
+        def __init__(self, name, cost, image = "", description = "", h_image = "", closeup = "", dialogue = ""):
             self.name = name
             self.cost = cost
             self.image = image
             self.description = description
             self.h_image = h_image
             self.closeup = closeup
+            self.dialogue = dialogue
 
     class Inventory (object) :                                      
         def __init__(self, money = 20, savings = 0):                                
@@ -58,10 +59,10 @@ screen item_name(Item):
 
 screen inventory_item_preview(Item):
     imagebutton:
-        idle "backgrounds/menu_ground.png"
+        idle "backgrounds/backpack_closeup.jpg"
         action Hide("inventory_item_preview")
 
-    imagebutton idle Item.closeup action NullAction() focus_mask True at truecenter
+    imagebutton idle Item.closeup action NullAction() focus_mask True at Position(xalign = 0.5, yalign = 1.0)
 
 screen backpack:
     imagebutton:
@@ -92,6 +93,6 @@ screen backpack:
                         $ a = 7
                         $ b = 3 - (c3 * 125) - (c2 * 495)
                         $ a += c3 * 130
-                        imagebutton idle Item.image hover Item.h_image xpos a ypos b action [If(Item.closeup == "", NullAction(), Show("inventory_item_preview", Item = Item)), Hide("item_desc"), Hide("item_name"), Play("audio", "audio/sfx_backpack_select2.ogg")] hovered [Show(("item_name"), Item = Item), Show(("item_desc"), Item = Item)] unhovered [Hide("item_desc"), Hide("item_name")]
+                        imagebutton idle Item.image hover Item.h_image xpos a ypos b action [If(Item.closeup == "", NullAction(), Show("inventory_item_preview", Item = Item)), If(Item.dialogue == "", NullAction(), [Function(renpy.call_in_new_context, Item.dialogue, item = Item)]), Hide("item_desc"), Hide("item_name"), Play("audio", "audio/sfx_backpack_select2.ogg")] hovered [Show(("item_name"), Item = Item), Show(("item_desc"), Item = Item)] unhovered [Hide("item_desc"), Hide("item_name")]
                         $ c += 1
                         $ c3 += 1

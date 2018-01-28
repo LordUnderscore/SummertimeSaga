@@ -6,7 +6,7 @@ label pizza_minigame:
         hide player with dissolve
         jump pizza_interior_dialogue
 
-    $ vehicle_movement = 1
+    $ vehicle_movement = 3
     $ time_count = 100
 
     $ pizza_bg_sky_xpos = 0
@@ -66,11 +66,11 @@ label pizza_minigame:
 label pizza_delivered:
     $ pizza_earnings = 0
     if pizza01_delivered == 1:
-        $ pizza_earnings += 50
+        $ pizza_earnings += 80
     if pizza02_delivered == 1:
-        $ pizza_earnings += 50
+        $ pizza_earnings += 80
     if pizza03_delivered == 1:
-        $ pizza_earnings += 50
+        $ pizza_earnings += 80
 
     if pizza01_delivered == 1 and pizza02_delivered == 1 and pizza03_delivered == 1:
         scene pizza_behind_c with None

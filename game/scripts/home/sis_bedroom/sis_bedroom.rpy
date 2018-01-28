@@ -116,7 +116,7 @@ label sis_bedroom_dialogue:
             show player 11
             sis "{b}$100{/b} should cover it."
             show sis 18b
-            show player 29 at Position (xpos=8)
+            show player 29
             player_name "That's a lot of money..."
             show sis 9c at Position(xpos=937)
             show player 11 at left
@@ -2285,6 +2285,7 @@ label sis_button_dialogue:
                         sis "Oh, YESS!!"
                         show sissex 117b at Position(xpos=910,ypos=674) with fastdissolve
                         sis "It's so... {b}deep{/b}!!"
+                        $ M_sis.set('sex speed', .3)
                         show sissex 117_118_119_120_121 at Position(xpos = 910,ypos = 674)
                         pause 8
                         show sissex 117b at Position(xpos=910,ypos=674)
@@ -2297,19 +2298,29 @@ label sis_button_dialogue:
                         pause
                         show sissex 121 at Position(xpos=924,ypos=674)
                         pause
+
                         label sis_cheerleader_fuck_looprep:
-                            show screen sex_xray_anim_buttons
+                            $ sis_cheerleader_sex2_menu = False
+                            hide screen sis_cheerleader_sex_options
+                            show screen xray_scr
                             pause
+                            hide screen xray_scr
                             if anim_toggle:
-                                hide screen sex_xray_anim_buttons
-                                show sissex 117_118_119_120_121 zorder 2 at Position(xpos = 910, ypos = 674)
-                                pause 8
-                                show sissex 121 zorder 2 at Position(xpos = 924, ypos = 674)
+                                $ animcounter = 0
+                                while animcounter < 4:
+                                    show sissex 117_118_119_120_121 zorder 2 at Position(xpos = 910, ypos = 674)
+                                    pause 5
+                                    if animcounter == 1:
+                                        sis "Ahhhh!!!{p=1}{nw}"
+                                    if animcounter == 3:
+                                        sis "Oh!!!{p=1}{nw}"
+                                        player_name "Uhhh...{p=1}{nw}"
+                                    pause 3
+                                    $ animcounter += 1
                             else:
 
-                                hide screen sex_xray_anim_buttons
                                 $ animcounter = 0
-                                while animcounter < 2:
+                                while animcounter < 4:
                                     show sissex 117 at Position(xpos=910, ypos=674)
                                     pause
                                     show sissex 118 at Position(xpos=912, ypos=674)
@@ -2320,257 +2331,298 @@ label sis_button_dialogue:
                                     pause
                                     show sissex 121 at Position(xpos=924, ypos=674)
                                     pause
+                                    if animcounter == 1:
+                                        sis "Ahhhh!!!"
+                                    if animcounter == 3:
+                                        sis "Oh!!!"
+                                        player_name "Uhhh..."
                                     $ animcounter += 1
-                                show sissex 117 at Position(xpos=910, ypos=674)
-                                pause
-                                show sissex 118 at Position(xpos=912, ypos=674)
-                                pause
-                                show sissex 119 at Position(xpos=933, ypos=674)
-                                pause
-                                show sissex 120 at Position(xpos=939, ypos=674)
-                                pause
-                                show sissex 121 at Position(xpos=924, ypos=674)
-                            label sis_cheerleader_fuck_menurep:
-                                menu:
-                                    "Keep going":
-                                        jump sis_cheerleader_fuck_looprep
-                                    "Cum outside.":
 
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        sis "( I can feel his dick... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        sis "( ... it's throbbing like crazy... )"
-                                        show sissex 119 at Position(xpos=933,ypos=674)
-                                        sis "( ... is he about to cum?! )"
-                                        show sissex 120 at Position(xpos=939,ypos=674)
-                                        pause
-                                        show sissex 130b
-                                        $ xray = False
-                                        with vpunch
-                                        sis "Ahh!!"
-                                        show sissex 130
+                            show screen sis_cheerleader_sex_options
+                            pause
+                            jump sis_cheerleader_fuck_looprep
+
+                            label sis_cheerleader_fuck_cum_outside:
+                                hide screen sis_cheerleader_sex_options
+                                if anim_toggle:
+                                    sis "( I can feel his dick... )"
+                                    sis "( ... it's throbbing like crazy... )"
+                                    sis "( ... is he about to cum?! )"
+                                else:
+                                    show sissex 117 at Position(xpos=910,ypos=674)
+                                    sis "( I can feel his dick... )"
+                                    show sissex 118 at Position(xpos=912,ypos=674)
+                                    sis "( ... it's throbbing like crazy... )"
+                                    show sissex 119 at Position(xpos=933,ypos=674)
+                                    sis "( ... is he about to cum?! )"
+                                    show sissex 120 at Position(xpos=939,ypos=674)
+                                pause
+                                show sissex 130b
+                                $ xray = False
+                                with vpunch
+                                sis "Ahh!!"
+                                show sissex 130
+                                show white zorder 5
+                                show playersexc 129 zorder 4 at Position(xpos=560,ypos=377)
+                                hide white with dissolve
+                                pause
+                                show playersexc 130 at Position(xpos=609,ypos=423) with fastdissolve
+                                pause
+                                show sissex 130b
+                                sis "Wow..."
+                                sis "Can you guys see my gaping pussy?"
+                                sis "And all that hot cum running down my back..."
+                                sis "I hope you guys liked it!"
+                                if sister.completed(sis_final2):
+                                    jump sis_cheerleader_fuck_afterrep
+                                else:
+                                    jump sis_cheerleader_fuck_after_initial
+
+                            label sis_cheerleader_break_free_fail:
+                                hide screen sis_cheerleader_sex_options
+                                if anim_toggle:
+                                    player_name "[str_warn]( Hey, these cuffs don't feel that sturdy... )"
+                                    player_name "[str_warn]( Come on... )"
+                                    player_name "[str_warn]( Damn it, I can't break free. )"
+                                    player_name "[str_warn]( I'm not strong enough... )"
+                                else:
+                                    show sissex 117 at Position(xpos=910,ypos=674)
+                                    player_name "[str_warn]( Hey, these cuffs don't feel that sturdy... )"
+                                    show sissex 118 at Position(xpos=912,ypos=674)
+                                    player_name "[str_warn]( Come on... )"
+                                    show sissex 119 at Position(xpos=933,ypos=674)
+                                    player_name "[str_warn]( Damn it, I can't break free. )"
+                                    show sissex 120 at Position(xpos=939,ypos=674)
+                                    player_name "[str_warn]( I'm not strong enough... )"
+                                    show sissex 121 at Position(xpos=924,ypos=674)
+                                show screen sis_cheerleader_sex_options
+                                pause
+                                jump sis_cheerleader_fuck_looprep
+
+                            label sis_cheerleader_break_free_pass:
+                                $ sis_cheerleader_sex2_menu = True
+                                hide screen sis_cheerleader_sex_options
+                                if anim_toggle:
+                                    player_name "( Hey, these cuffs don't feel that sturdy... )"
+                                    player_name "( Okay, here goes... )"
+                                else:
+                                    show sissex 117 at Position(xpos=910,ypos=674)
+                                    player_name "( Hey, these cuffs don't feel that sturdy... )"
+                                    show sissex 118 at Position(xpos=912,ypos=674)
+                                    player_name "( Okay, here goes... )"
+                                show sissex 119b at Position(xpos=933,ypos=674)
+                                sis "Hey, what are you-"
+                                show sissex 122 at Position(xpos=1022,ypos=768)
+                                hide playersex
+                                sis "!!!" with hpunch
+                                show sissex 123 at Position(xpos=985,ypos=768)
+                                sis "Ahh!!" with vpunch
+                                show sissex 124
+                                sis "What are you... DOING?!"
+                                show sissex 125
+                                pause
+                                show sissex 126
+                                pause
+                                show sissex 127
+                                pause
+                                show sissex 123
+                                sis "You're... going too... fast!"
+                                show sissex 124
+                                pause
+                                show sissex 125
+                                pause
+                                show sissex 126
+                                sis "This feels... AMAZING!!"
+                                show sissex 127
+                                pause
+
+                                label sis_cheerleader_fuck_looprep2:
+                                    hide screen sis_cheerleader_sex_options
+                                    show screen xray_scr
+                                    pause
+                                    hide screen xray_scr
+                                    if anim_toggle:
+                                        $ animcounter = 0
+                                        while animcounter < 4:
+                                            show sissex 123_124_125_126_127 at Position(xpos = 985, ypos = 768)
+                                            pause 5
+                                            if animcounter == 1:
+                                                sis "Ahhhh!!!{p=1}{nw}"
+                                            if animcounter == 3:
+                                                sis "Oh!!!{p=1}{nw}"
+                                                player_name "Uhhh...{p=1}{nw}"
+                                            pause 3
+                                            $ animcounter += 1
+                                    else:
+
+                                        $ animcounter = 0
+                                        while animcounter < 4:
+                                            show sissex 123
+                                            pause
+                                            show sissex 124
+                                            pause
+                                            show sissex 125
+                                            pause
+                                            show sissex 126
+                                            pause
+                                            show sissex 127
+                                            pause
+                                            if animcounter == 1:
+                                                sis "Ahhhh!!!{p=1}{nw}"
+                                            if animcounter == 3:
+                                                sis "Oh!!!{p=1}{nw}"
+                                                player_name "Uhhh...{p=1}{nw}"
+                                            $ animcounter += 1
+
+                                    show screen sis_cheerleader_sex_options
+                                    pause
+                                    jump sis_cheerleader_fuck_looprep2
+
+
+                                    label sis_cheerleader_fuck_cum_inside_unhappy:
+                                        hide screen sis_cheerleader_sex_options
+                                        if anim_toggle:
+                                            sis "( Oh my god, I can feel him tensing up... )"
+                                            sis "( ... Is he about to cum {b}inside me{/b}?! )"
+                                            pause
+                                            sis "( Shit, I can't get him off me!!! )"
+                                        else:
+                                            show sissex 123
+                                            sis "( Oh my god, I can feel him tensing up... )"
+                                            show sissex 124
+                                            sis "( ... Is he about to cum {b}inside me{/b}?! )"
+                                            show sissex 125
+                                            pause
+                                            show sissex 126
+                                            sis "( Shit, I can't get him off me!!! )"
+                                            show sissex 127
+                                            pause
+                                        show sissex 129
+                                        sis "AAHHHH!!!!" with vpunch
                                         show white zorder 5
-                                        show playersexc 129 zorder 4 at Position(xpos=560,ypos=377)
+                                        show sissex 129c
                                         hide white with dissolve
                                         pause
-                                        show playersexc 130 at Position(xpos=609,ypos=423) with fastdissolve
-                                        pause
-                                        show sissex 130b
-                                        sis "Wow..."
-                                        sis "Can you guys see my gaping pussy?"
-                                        sis "And all that hot cum running down my back..."
-                                        sis "I hope you guys liked it!"
-                                        jump sis_cheerleader_fuck_afterrep
+                                        show sissex 128 with fastdissolve
+                                        sis "Oh god..."
+                                        show sissex 129b_128
+                                        pause 2.9
+                                        show playersex 128 zorder 1 at Position(xpos=540,ypos=768)
+                                        show sissex 131 zorder 2 at Position(xpos=985,ypos=674)
+                                        with dissolve
+                                        $ xray = False
+                                        sis "What the... {b}FUCK{/b}?!"
+                                        sis "I told you {b}NOT{/b} to cum inside me, you {b}IDIOT{/b}!!!" with hpunch
+                                        jump sis_cheerleader_fuck_after
 
-                                    "Break free." if pStats.str() < 7:
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        player_name "[str_warn]( Hey, these cuffs don't feel that sturdy... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        player_name "[str_warn]( Come on... )"
-                                        show sissex 119 at Position(xpos=933,ypos=674)
-                                        player_name "[str_warn]( Damn it, I can't break free. )"
-                                        show sissex 120 at Position(xpos=939,ypos=674)
-                                        player_name "[str_warn]( I'm not strong enough... )"
-                                        show sissex 121 at Position(xpos=924,ypos=674)
-                                        jump sis_cheerleader_fuck_menurep
-
-                                    "Break free." if pStats.str() >= 7:
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        player_name "( Hey, these cuffs don't feel that sturdy... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        player_name "( Okay, here goes... )"
-                                        show sissex 119b at Position(xpos=933,ypos=674)
-                                        sis "Hey, what are you-"
-                                        show sissex 122 at Position(xpos=1022,ypos=768)
-                                        hide playersex
-                                        sis "!!!" with hpunch
-                                        show sissex 123 at Position(xpos=985,ypos=768)
-                                        sis "Ahh!!" with vpunch
-                                        show sissex 124
-                                        sis "What are you... DOING?!"
-                                        show sissex 125
-                                        pause
-                                        show sissex 126
-                                        pause
-                                        show sissex 127
-                                        pause
-                                        show sissex 123
-                                        sis "You're... going too... fast!"
-                                        show sissex 124
-                                        pause
-                                        show sissex 125
-                                        pause
-                                        show sissex 126
-                                        sis "This feels... AMAZING!!"
-                                        show sissex 127
-                                        pause
-                                        label sis_cheerleader_fuck_looprep2:
-                                            show screen sex_xray_anim_buttons
+                                    label sis_cheerleader_fuck_cum_inside_happy:
+                                        hide screen sis_cheerleader_sex_options
+                                        if anim_toggle:
+                                            sis "( Oh my god, I can feel him tensing up... )"
+                                            sis "( ... Is he about to cum {b}inside me{/b}?! )"
                                             pause
-                                            if anim_toggle:
-                                                hide screen sex_xray_anim_buttons
-                                                show sissex 123_124_125_126_127 at Position(xpos = 985, ypos = 768)
-                                                pause 8
-                                                show sissex 127 at Position(xpos = 985, ypos = 768)
-                                            else:
-
-                                                hide screen sex_xray_anim_buttons
-                                                $ animcounter = 0
-                                                while animcounter < 2:
-                                                    show sissex 123
-                                                    pause
-                                                    show sissex 124
-                                                    pause
-                                                    show sissex 125
-                                                    pause
-                                                    show sissex 126
-                                                    pause
-                                                    show sissex 127
-                                                    pause
-                                                    $ animcounter += 1
-                                                show sissex 123
-                                                pause
-                                                show sissex 124
-                                                pause
-                                                show sissex 125
-                                                pause
-                                                show sissex 126
-                                                pause
-                                                show sissex 127
-                                            menu:
-                                                "Keep going.":
-                                                    jump sis_cheerleader_fuck_looprep2
-
-                                                "Cum inside." if sis_final_cum == "Outside":
-                                                    show sissex 123
-                                                    sis "( Oh my god, I can feel him tensing up... )"
-                                                    show sissex 124
-                                                    sis "( ... Is he about to cum {b}inside me{/b}?! )"
-                                                    show sissex 125
-                                                    pause
-                                                    show sissex 126
-                                                    sis "( Shit, I can't get him off me!!! )"
-                                                    show sissex 127
-                                                    pause
-                                                    show sissex 129
-                                                    sis "AAHHHH!!!!" with vpunch
-                                                    show white zorder 5
-                                                    show sissex 129c
-                                                    hide white with dissolve
-                                                    pause
-                                                    show sissex 128 with fastdissolve
-                                                    sis "Oh god..."
-                                                    show sissex 129b_128
-                                                    pause 2.9
-                                                    show playersex 128 zorder 1 at Position(xpos=540,ypos=768)
-                                                    show sissex 131 zorder 2 at Position(xpos=985,ypos=674)
-                                                    with dissolve
-                                                    $ xray = False
-                                                    sis "What the... {b}FUCK{/b}?!"
-                                                    sis "I told you {b}NOT{/b} to cum inside me, you {b}IDIOT{/b}!!!" with hpunch
-                                                    jump sis_cheerleader_fuck_after
-
-                                                "Cum inside." if sis_final_cum == "Inside":
-                                                    show sissex 123
-                                                    sis "( Oh my god, I can feel him tensing up... )"
-                                                    show sissex 124
-                                                    sis "( ... Is he about to cum {b}inside me{/b}?! )"
-                                                    show sissex 125
-                                                    pause
-                                                    show sissex 126
-                                                    sis "( I can't get him off me! )"
-                                                    show sissex 127
-                                                    pause
-                                                    show sissex 129
-                                                    sis "AAHHHH!!!!" with vpunch
-                                                    show white zorder 5
-                                                    show sissex 129c
-                                                    hide white with dissolve
-                                                    sis "YESS, DEEPER!!"
-                                                    show sissex 128 with fastdissolve
-                                                    pause
-                                                    show white zorder 5
-                                                    show sissex 129b
-                                                    hide white with fastdissolve
-                                                    pause
-                                                    show sissex 128 with fastdissolve
-                                                    sis "Keep cumming!"
-                                                    show white zorder 5
-                                                    show sissex 129b
-                                                    hide white with fastdissolve
-                                                    pause
-                                                    show sissex 128 with fastdissolve
-                                                    sis "I want more..."
-                                                    show white zorder 5
-                                                    show sissex 129b
-                                                    hide white with fastdissolve
-                                                    pause
-                                                    show sissex 128 with fastdissolve
-                                                    pause
-                                                    show playersex 128 zorder 1 at Position(xpos=540,ypos=768)
-                                                    show sissex 132 zorder 2 at Position(xpos=985,ypos=674)
-                                                    with dissolve
-                                                    $ xray = False
-                                                    sis "Look at all that cum dripping out of my pussy..."
-                                                    sis "...I might get {b}knocked up{/b}, at this rate..."
-                                                    label sis_cheerleader_fuck_afterrep:
-                                                        scene sisbedroom
-                                                        show sis 109 at right
-                                                        show player 13 at left
-                                                        show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
-                                                        with fade
-                                                        sis "Well done!"
-                                                        show sis 108
-                                                        show player 21
-                                                        player_name "We did okay?"
-                                                        show player 13
-                                                        show sis 109
-                                                        sis "Yeah, they're loving our {b}little act{/b}."
-                                                        sis "I... have to give you credit."
-                                                        sis "I didn't expect you to be able to keep up so well."
-                                                        sis "You're pretty good."
-                                                        show sis 108
-                                                        show player 14
-                                                        player_name "Really?"
-                                                        show sis 109
-                                                        show player 13
-                                                        sis "I'm still gonna need you for more cam shows."
-                                                        show player 21
-                                                        show sis 167
-                                                        player_name "Thanks, I really enjo-"
-                                                        show sis 164
-                                                        show player 11
-                                                        sis "STOP it!!" with hpunch
-                                                        show sis 165
-                                                        sis "..."
-                                                        show sis 166
-                                                        sis "{b}*Sigh*{/b}"
-                                                        show sis 109
-                                                        sis "Yeah, me too, I guess..."
-                                                        show player 13
-                                                        show sis 108
-                                                        sis "..."
-                                                        show sis 166
-                                                        show player 11
-                                                        sis "But, don't start getting ideas! I'm doing this because it's getting me loads of money..."
-                                                        sis "Oh, and do me a favor: try not to spend TOO much time with {b}Mom{/b}..."
-                                                        sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
-                                                        sis "My subscribers now expect this kind of stream {b}regularly{/b}."
-                                                        show sis 164
-                                                        sis "So NO jerking off, and NO sex!!"
-                                                        show sis 165
-                                                        show player 12
-                                                        player_name "Okay! Okay! I get it..."
-                                                        show sis 109
-                                                        show player 13
-                                                        sis "Good."
-                                                        show sis 164
-                                                        show player 11
-                                                        sis "Good, now {b}GET OUT OF MY ROOM{/b}!!" with hpunch
-                                                        hide player
-                                                        hide sis
-                                                        hide sis_cheer2
-                                                        jump hallway_dialogue
+                                            sis "( Shit, I can't get him off me!!! )"
+                                        else:
+                                            show sissex 123
+                                            sis "( Oh my god, I can feel him tensing up... )"
+                                            show sissex 124
+                                            sis "( ... Is he about to cum {b}inside me{/b}?! )"
+                                            show sissex 125
+                                            pause
+                                            show sissex 126
+                                            sis "( Shit, I can't get him off me!!! )"
+                                            show sissex 127
+                                            pause
+                                        show sissex 129
+                                        sis "AAHHHH!!!!" with vpunch
+                                        show white zorder 5
+                                        show sissex 129c
+                                        hide white with dissolve
+                                        sis "YESS, DEEPER!!"
+                                        show sissex 128 with fastdissolve
+                                        pause
+                                        show white zorder 5
+                                        show sissex 129b
+                                        hide white with fastdissolve
+                                        pause
+                                        show sissex 128 with fastdissolve
+                                        sis "Keep cumming!"
+                                        show white zorder 5
+                                        show sissex 129b
+                                        hide white with fastdissolve
+                                        pause
+                                        show sissex 128 with fastdissolve
+                                        sis "I want more..."
+                                        show white zorder 5
+                                        show sissex 129b
+                                        hide white with fastdissolve
+                                        pause
+                                        show sissex 128 with fastdissolve
+                                        pause
+                                        show playersex 128 zorder 1 at Position(xpos=540,ypos=768)
+                                        show sissex 132 zorder 2 at Position(xpos=985,ypos=674)
+                                        with dissolve
+                                        $ xray = False
+                                        sis "Look at all that cum dripping out of my pussy..."
+                                        sis "...I might get {b}knocked up{/b}, at this rate..."
+                                        label sis_cheerleader_fuck_afterrep:
+                                            scene sisbedroom
+                                            show sis 109 at right
+                                            show player 13 at left
+                                            show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
+                                            with fade
+                                            sis "Well done!"
+                                            show sis 108
+                                            show player 21
+                                            player_name "We did okay?"
+                                            show player 13
+                                            show sis 109
+                                            sis "Yeah, they're loving our {b}little act{/b}."
+                                            sis "I... have to give you credit."
+                                            sis "I didn't expect you to be able to keep up so well."
+                                            sis "You're pretty good."
+                                            show sis 108
+                                            show player 14
+                                            player_name "Really?"
+                                            show sis 109
+                                            show player 13
+                                            sis "I'm still gonna need you for more cam shows."
+                                            show player 21
+                                            show sis 167
+                                            player_name "Thanks, I really enjo-"
+                                            show sis 164
+                                            show player 11
+                                            sis "STOP it!!" with hpunch
+                                            show sis 165
+                                            sis "..."
+                                            show sis 166
+                                            sis "{b}*Sigh*{/b}"
+                                            show sis 109
+                                            sis "Yeah, me too, I guess..."
+                                            show player 13
+                                            show sis 108
+                                            sis "..."
+                                            show sis 166
+                                            show player 11
+                                            sis "But, don't start getting ideas! I'm doing this because it's getting me loads of money..."
+                                            sis "Oh, and do me a favor: try not to spend TOO much time with {b}Mom{/b}..."
+                                            sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
+                                            sis "My subscribers now expect this kind of stream {b}regularly{/b}."
+                                            show sis 164
+                                            sis "So NO jerking off, and NO sex!!"
+                                            show sis 165
+                                            show player 12
+                                            player_name "Okay! Okay! I get it..."
+                                            show sis 109
+                                            show player 13
+                                            sis "Good."
+                                            show sis 164
+                                            show player 11
+                                            sis "Good, now {b}GET OUT OF MY ROOM{/b}!!" with hpunch
+                                            hide player
+                                            hide sis
+                                            hide sis_cheer2
+                                            jump hallway_dialogue
 
                     elif handcuffs not in inventory.items or cheerleader_outfit not in inventory.items:
                         show player 1
@@ -2782,6 +2834,7 @@ label sis_button_dialogue:
                         sis "Oh, YESS!!"
                         show sissex 117b at Position(xpos=910,ypos=674) with fastdissolve
                         sis "It's so... {b}deep{/b}!!"
+                        $ M_sis.set('sex speed', .3)
                         show sissex 117_118_119_120_121 at Position(xpos = 910,ypos = 674)
                         pause 8
                         show sissex 117b at Position(xpos=910,ypos=674)
@@ -2796,300 +2849,135 @@ label sis_button_dialogue:
                         pause
                         $ anim_toggle = False
                         $ xray = False
-                        label sis_cheerleader_fuck_loop:
-                            show screen sex_xray_anim_buttons
-                            pause
-                            if anim_toggle:
-                                hide screen sex_xray_anim_buttons
-                                show sissex 117_118_119_120_121 zorder 2 at Position(xpos = 910, ypos = 674)
-                                pause 8
-                                show sissex 121 zorder 2 at Position(xpos = 924, ypos = 674)
-                            else:
+                        jump sis_cheerleader_fuck_looprep
 
-                                hide screen sex_xray_anim_buttons
-                                $ animcounter = 0
-                                while animcounter < 2:
-                                    show sissex 117 at Position(xpos=910, ypos=674)
-                                    pause
-                                    show sissex 118 at Position(xpos=912, ypos=674)
-                                    pause
-                                    show sissex 119 at Position(xpos=933, ypos=674)
-                                    pause
-                                    show sissex 120 at Position(xpos=939, ypos=674)
-                                    pause
-                                    show sissex 121 at Position(xpos=924, ypos=674)
-                                    pause
-                                    $ animcounter += 1
-                                show sissex 117 at Position(xpos=910, ypos=674)
-                                pause
-                                show sissex 118 at Position(xpos=912, ypos=674)
-                                pause
-                                show sissex 119 at Position(xpos=933, ypos=674)
-                                pause
-                                show sissex 120 at Position(xpos=939, ypos=674)
-                                pause
-                                show sissex 121 at Position(xpos=924, ypos=674)
-                            label sis_cheerleader_fuck_menu:
-                                menu:
-                                    "Keep going":
-                                        jump sis_cheerleader_fuck_loop
-                                    "Cum outside.":
+                        label sis_cheerleader_fuck_after_initial:
+                        scene sisbedroom
+                        show sis 109 at right
+                        show player 13 at left
+                        show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
+                        with fade
+                        sis "Well done!"
+                        show sis 108
+                        show player 21
+                        player_name "We did okay?"
+                        show player 13
+                        show sis 109
+                        sis "I think so: my subscribers seem to love the new content."
+                        sis "I have to say though..."
+                        sis "I didn't expect my {b}little brother{/b} to be able to perform like that."
+                        sis "You did pretty well, I guess."
+                        show sis 108
+                        show player 14
+                        player_name "Really?"
+                        show sis 109
+                        show player 13
+                        sis "Maybe I can use you again for more cam shows..."
+                        show player 21
+                        show sis 167
+                        player_name "Thanks, I enjoyed-"
+                        show sis 164
+                        show player 11
+                        sis "No, STOP that!!" with hpunch
+                        show sis 166
+                        sis "This was {b}strictly business{/b}, nothing else!"
+                        sis "Don't start getting ideas. I'm doing this to earn good money..."
+                        sis "Oh, and do me a favor, try not to spend TOO much time with {b}Mom{/b}..."
+                        sis "I know what you two are up to, but I need you {b}fresh{/b} and {b}rested{/b}."
+                        sis "My subscribers are expecting more cam shows this week."
+                        show sis 164
+                        sis "So NO jerking off, and NO sex!!"
+                        show sis 165
+                        show player 12
+                        player_name "Okay! Okay! I got it..."
+                        show sis 109
+                        show player 13
+                        sis "Good!"
+                        show sis 164
+                        show player 11
+                        sis "Now, {b}GET OUT OF MY ROOM{/b}!!" with hpunch
+                        $ sis_final_cum = "Outside"
+                        hide player
+                        hide sis
+                        hide sis_cheer2
+                        jump hallway_dialogue
 
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        sis "( I can feel his dick... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        sis "( ...it's throbbing like crazy... )"
-                                        show sissex 119 at Position(xpos=933,ypos=674)
-                                        sis "( ...is he about to cum?! )"
-                                        show sissex 120 at Position(xpos=939,ypos=674)
-                                        pause
-                                        show sissex 130b
-                                        $ xray = False
-                                        with vpunch
-                                        sis "Ahh!!"
-                                        show sissex 130
-                                        show white zorder 5
-                                        show playersexc 129 zorder 4 at Position(xpos=560,ypos=377)
-                                        hide white with dissolve
-                                        pause
-                                        show playersexc 130 at Position(xpos=609,ypos=423) with fastdissolve
-                                        pause
-                                        show sissex 130b
-                                        sis "Wow..."
-                                        sis "Can you guys see my gaping pussy?"
-                                        sis "And all that hot cum running down my back..."
-                                        sis "I hope you guys liked it!"
-                                        scene sisbedroom
-                                        show sis 109 at right
-                                        show player 13 at left
-                                        show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
-                                        with fade
-                                        sis "Well done!"
-                                        show sis 108
-                                        show player 21
-                                        player_name "We did okay?"
-                                        show player 13
-                                        show sis 109
-                                        sis "I think so: my subscribers seem to love the new content."
-                                        sis "I have to say though..."
-                                        sis "I didn't expect my {b}little brother{/b} to be able to perform like that."
-                                        sis "You did pretty well, I guess."
-                                        show sis 108
-                                        show player 14
-                                        player_name "Really?"
-                                        show sis 109
-                                        show player 13
-                                        sis "Maybe I can use you again for more cam shows..."
-                                        show player 21
-                                        show sis 167
-                                        player_name "Thanks, I enjoyed-"
-                                        show sis 164
-                                        show player 11
-                                        sis "No, STOP that!!" with hpunch
-                                        show sis 166
-                                        sis "This was {b}strictly business{/b}, nothing else!"
-                                        sis "Don't start getting ideas. I'm doing this to earn good money..."
-                                        sis "Oh, and do me a favor, try not to spend TOO much time with {b}Mom{/b}..."
-                                        sis "I know what you two are up to, but I need you {b}fresh{/b} and {b}rested{/b}."
-                                        sis "My subscribers are expecting more cam shows this week."
-                                        show sis 164
-                                        sis "So NO jerking off, and NO sex!!"
-                                        show sis 165
-                                        show player 12
-                                        player_name "Okay! Okay! I got it..."
-                                        show sis 109
-                                        show player 13
-                                        sis "Good!"
-                                        show sis 164
-                                        show player 11
-                                        sis "Now, {b}GET OUT OF MY ROOM{/b}!!" with hpunch
-                                        $ sis_final_cum = "Outside"
-                                        hide player
-                                        hide sis
-                                        hide sis_cheer2
-                                        jump hallway_dialogue
-
-                                    "Break free." if pStats.str() < 7:
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        player_name "[str_warn]( Hey, these cuffs don't feel that sturdy... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        player_name "[str_warn]( Come on... )"
-                                        show sissex 119 at Position(xpos=933,ypos=674)
-                                        player_name "[str_warn]( Damn it, I can't break free. )"
-                                        show sissex 120 at Position(xpos=939,ypos=674)
-                                        player_name "[str_warn]( I'm not strong enough... )"
-                                        show sissex 121 at Position(xpos=924,ypos=674)
-                                        jump sis_cheerleader_fuck_menu
-
-                                    "Break free." if pStats.str() >= 7:
-                                        show sissex 117 at Position(xpos=910,ypos=674)
-                                        player_name "( Hey, these cuffs don't feel that sturdy... )"
-                                        show sissex 118 at Position(xpos=912,ypos=674)
-                                        player_name "( Okay, here goes... )"
-                                        show sissex 119b at Position(xpos=933,ypos=674)
-                                        sis "Hey, what are you-"
-                                        show sissex 122 at Position(xpos=1022,ypos=768)
-                                        hide playersex
-                                        sis "!!!" with hpunch
-                                        show sissex 123 at Position(xpos=985,ypos=768)
-                                        sis "Ahh!!" with vpunch
-                                        show sissex 124
-                                        sis "What are you... DOING?!"
-                                        show sissex 125
-                                        pause
-                                        show sissex 126
-                                        pause
-                                        show sissex 127
-                                        pause
-                                        show sissex 123
-                                        sis "You're... going too... fast!"
-                                        show sissex 124
-                                        pause
-                                        show sissex 125
-                                        pause
-                                        show sissex 126
-                                        sis "This feels... SO GOOD!!"
-                                        show sissex 127
-                                        label sis_cheerleader_fuck_loop2:
-                                            show screen sex_xray_anim_buttons
-                                            pause
-                                            if anim_toggle:
-                                                hide screen sex_xray_anim_buttons
-                                                show sissex 123_124_125_126_127 at Position(xpos = 985, ypos = 768)
-                                                pause 8
-                                                show sissex 127 at Position(xpos = 985, ypos = 768)
-                                            else:
-
-                                                hide screen sex_xray_anim_buttons
-                                                $ animcounter = 0
-                                                while animcounter < 2:
-                                                    show sissex 123
-                                                    pause
-                                                    show sissex 124
-                                                    pause
-                                                    show sissex 125
-                                                    pause
-                                                    show sissex 126
-                                                    pause
-                                                    show sissex 127
-                                                    pause
-                                                    $ animcounter += 1
-                                                show sissex 123
-                                                pause
-                                                show sissex 124
-                                                pause
-                                                show sissex 125
-                                                pause
-                                                show sissex 126
-                                                pause
-                                                show sissex 127
-                                            menu:
-                                                "Keep going.":
-                                                    jump sis_cheerleader_fuck_loop2
-                                                "Cum inside.":
-
-                                                    show sissex 123
-                                                    sis "( Oh my god, I can feel him tensing up... )"
-                                                    show sissex 124
-                                                    sis "( ...Is he about to cum {b}inside me{/b}?! )"
-                                                    show sissex 125
-                                                    pause
-                                                    show sissex 126
-                                                    sis "( Shit! I can't get him off me! )"
-                                                    show sissex 127
-                                                    pause
-                                                    show sissex 129
-                                                    sis "AAHHHH!!!!" with vpunch
-                                                    show white zorder 5
-                                                    show sissex 129c
-                                                    hide white with dissolve
-                                                    pause
-                                                    show sissex 128 with fastdissolve
-                                                    sis "Oh god..."
-                                                    show sissex 129b_128
-                                                    pause 2.9
-                                                    show playersex 128 zorder 1 at Position(xpos=540,ypos=768)
-                                                    show sissex 131 zorder 2 at Position(xpos=985,ypos=674)
-                                                    with dissolve
-                                                    $ xray = False
-                                                    sis "What the... {b}FUCK{/b}?!"
-                                                    sis "I told you {b}NOT{/b} to cum inside me, you {b}IDIOT{/b}!!!" with hpunch
-                                                    label sis_cheerleader_fuck_after:
-                                                        scene sisbedroom
-                                                        show sis 164 at right
-                                                        show player 5 at left
-                                                        show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
-                                                        with fade
-                                                        sis "What the fuck was that?!"
-                                                        show sis 165
-                                                        show player 10
-                                                        player_name "I didn't mean to!!"
-                                                        show sis 164
-                                                        show player 5
-                                                        sis "I told you {b}NOT{/b} to cum inside, didn't I?!" with hpunch
-                                                        show player 10
-                                                        show sis 165
-                                                        player_name "I'm sorry, {b}[sis]{/b}... I just couldn't stop myself! It felt {b}SO GOOD{/b}!"
-                                                        show sis 166
-                                                        show player 11
-                                                        sis "Do you have any idea how much {b}trouble{/b} we can get into if I get {b}pregnant{/b}?!"
-                                                        show sis 167
-                                                        show player 5
-                                                        player_name "..."
-                                                        show player 10
-                                                        player_name "I told you we should've used condoms..."
-                                                        show sis 164
-                                                        show player 11
-                                                        sis "We CAN'T!! My subscribers want the REAL thing, okay?!"
-                                                        show sis 166
-                                                        sis "Just stick to my directions next time, you idiot!"
-                                                        sis "*Sigh*"
-                                                        show sis 109
-                                                        show player 13
-                                                        sis "That \"accident\" aside: you weren't too bad."
-                                                        show sis 108
-                                                        show player 21
-                                                        player_name "We did okay?"
-                                                        show player 13
-                                                        show sis 109
-                                                        sis "I think so, my subscribers seem to love the new content."
-                                                        sis "I have to say though..."
-                                                        sis "I didn't expect my {b}little brother{/b} to be able to perform like that."
-                                                        sis "Yeah, you did pretty well, I guess."
-                                                        show sis 108
-                                                        show player 14
-                                                        player_name "Really?"
-                                                        show sis 109
-                                                        show player 13
-                                                        sis "Maybe I can use you again for more cam shows..."
-                                                        show player 21
-                                                        show sis 167
-                                                        player_name "Thanks, I enjoyed-"
-                                                        show sis 164
-                                                        show player 11
-                                                        sis "No! STOP that!" with hpunch
-                                                        show sis 166
-                                                        sis "This was {b}strictly business{/b}, nothing else!"
-                                                        sis "Don't start getting ideas. I'm doing this to earn good money..."
-                                                        sis "Oh, and do me a favor, and try not to spend TOO much time with {b}Mom{/b}..."
-                                                        sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
-                                                        sis "My subscribers are expecting more cam shows this week."
-                                                        show sis 164
-                                                        sis "So NO jerking off, and NO sex!!"
-                                                        show sis 165
-                                                        show player 12
-                                                        player_name "Okay! Okay! I got it..."
-                                                        show sis 109
-                                                        show player 13
-                                                        sis "Good."
-                                                        show sis 164
-                                                        show player 11
-                                                        sis "Now, {b}GET OUT OF MY ROOM{/b}!!" with hpunch
-                                                        $ sis_final_cum = "Inside"
-                                                        hide player
-                                                        hide sis
-                                                        hide sis_cheer2
-                                                        jump hallway_dialogue
+                        label sis_cheerleader_fuck_after:
+                            scene sisbedroom
+                            show sis 164 at right
+                            show player 5 at left
+                            show sis_cheer2 zorder 2 at Position(xpos=797,ypos=757)
+                            with fade
+                            sis "What the fuck was that?!"
+                            show sis 165
+                            show player 10
+                            player_name "I didn't mean to!!"
+                            show sis 164
+                            show player 5
+                            sis "I told you {b}NOT{/b} to cum inside, didn't I?!" with hpunch
+                            show player 10
+                            show sis 165
+                            player_name "I'm sorry, {b}[sis]{/b}... I just couldn't stop myself! It felt {b}SO GOOD{/b}!"
+                            show sis 166
+                            show player 11
+                            sis "Do you have any idea how much {b}trouble{/b} we can get into if I get {b}pregnant{/b}?!"
+                            show sis 167
+                            show player 5
+                            player_name "..."
+                            show player 10
+                            player_name "I told you we should've used condoms..."
+                            show sis 164
+                            show player 11
+                            sis "We CAN'T!! My subscribers want the REAL thing, okay?!"
+                            show sis 166
+                            sis "Just stick to my directions next time, you idiot!"
+                            sis "*Sigh*"
+                            show sis 109
+                            show player 13
+                            sis "That \"accident\" aside: you weren't too bad."
+                            show sis 108
+                            show player 21
+                            player_name "We did okay?"
+                            show player 13
+                            show sis 109
+                            sis "I think so, my subscribers seem to love the new content."
+                            sis "I have to say though..."
+                            sis "I didn't expect my {b}little brother{/b} to be able to perform like that."
+                            sis "Yeah, you did pretty well, I guess."
+                            show sis 108
+                            show player 14
+                            player_name "Really?"
+                            show sis 109
+                            show player 13
+                            sis "Maybe I can use you again for more cam shows..."
+                            show player 21
+                            show sis 167
+                            player_name "Thanks, I enjoyed-"
+                            show sis 164
+                            show player 11
+                            sis "No! STOP that!" with hpunch
+                            show sis 166
+                            sis "This was {b}strictly business{/b}, nothing else!"
+                            sis "Don't start getting ideas. I'm doing this to earn good money..."
+                            sis "Oh, and do me a favor, and try not to spend TOO much time with {b}Mom{/b}..."
+                            sis "I know what you two are up to, I need you {b}fresh{/b} and {b}rested{/b}."
+                            sis "My subscribers are expecting more cam shows this week."
+                            show sis 164
+                            sis "So NO jerking off, and NO sex!!"
+                            show sis 165
+                            show player 12
+                            player_name "Okay! Okay! I got it..."
+                            show sis 109
+                            show player 13
+                            sis "Good."
+                            show sis 164
+                            show player 11
+                            sis "Now, {b}GET OUT OF MY ROOM{/b}!!" with hpunch
+                            $ sis_final_cum = "Inside"
+                            hide player
+                            hide sis
+                            hide sis_cheer2
+                            jump hallway_dialogue
 
                 "Need toys?" if sister.over(sis_shower_cuddle05) and not sister.completed(sis_webcam04):
                     if not sister.known(sis_webcam04):
@@ -3589,3 +3477,17 @@ label condom:
     $ renpy.pause()
     hide expression "boxes/popup_condom.png" with dissolve
     $ callScreen(location_count)
+
+label sis_cheerleader_faster_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') - 0.1)
+    if sis_cheerleader_sex2_menu:
+        jump sis_cheerleader_fuck_looprep2
+    else:
+        jump sis_cheerleader_fuck_looprep
+
+label sis_cheerleader_slower_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') + 0.1)
+    if sis_cheerleader_sex2_menu:
+        jump sis_cheerleader_fuck_looprep2
+    else:
+        jump sis_cheerleader_fuck_looprep

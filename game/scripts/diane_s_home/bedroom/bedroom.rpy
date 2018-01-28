@@ -91,7 +91,7 @@ label diane_bedroom_dialogue:
         show aunt 149
         dia "I have to say... It was very sweet of you to come rescue me."
         show aunt 150
-        show player 29 at Position(xoffset=34)
+        show player 29 at Position(xoffset=26)
         player_name "Oh, I uhhh... It's just a normal reaction..."
         show player 13
         show aunt 149

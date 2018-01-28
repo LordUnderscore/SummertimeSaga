@@ -450,6 +450,16 @@ label kamasutra:
     $ inventory.items.append(kamasutra)
     jump library_dialogue
 
+label library_old_book:
+    scene libraryshelf with None
+    show closeup_book_03 at truecenter with dissolve
+    player_name "This is a really old book."
+    player_name "It looks like it can {b}decipher symbols into numbers{/b}..."
+    player_name "I think I'll hang onto it. Could make for an interesting read."
+    hide closeup_book_03 with dissolve
+    $ inventory.items.append(old_book)
+    jump library_dialogue
+
 label breeding_guide:
     scene libraryshelf with None
     player_name "( The book should be here somewhere... )"

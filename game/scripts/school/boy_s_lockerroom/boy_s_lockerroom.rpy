@@ -362,76 +362,76 @@ label airvent_webcam_quest:
 
 label roxxy_shower_dialogue:
     scene locker_empty_b with None
-    show jersey 11f at right
-    show becca 2 at Position(xpos=315)
-    show missy 1 at left
+    show jersey 11 at left
+    show becca 2f at Position(xpos=715)
+    show missy 1f at right
     with dissolve
     becca "Uhmm... What are you doing?"
-    show becca 3
-    show missy 2
+    show becca 3f
+    show missy 2f
     missy "No one is allowed in the shower."
-    show missy 1
-    show becca 1
-    show jersey 10f
+    show missy 1f
+    show becca 1f
+    show jersey 10
     player_name "I just finished gym class! I NEED to take a shower."
-    show becca 2
-    show jersey 11f
+    show becca 2f
+    show jersey 11
     becca "Uhmm... No. You don't."
-    show becca 1
-    show jersey 12f
+    show becca 1f
+    show jersey 12
     player_name "Yes, I do! I have class soon, and I'm all sweaty!"
     player_name "This is the guys locker room!"
-    show missy 2
-    show becca 3
-    show jersey 11f
+    show missy 2f
+    show becca 3f
+    show jersey 11
     missy "Like, it's occupied."
-    show missy 1
-    show becca 2
+    show missy 1f
+    show becca 2f
     becca "Can't you see?"
-    show missy 3
-    show becca 1
-    show jersey 12f
+    show missy 3f
+    show becca 1f
+    show jersey 12
     player_name "I'm surprised you even know the meaning of \"occupied.\""
-    show becca 4
-    show missy 1
-    show jersey 13f
+    show becca 4f
+    show missy 1f
+    show jersey 13
     becca "Haha!"
-    show jersey 11f
-    show missy 4
-    show becca 3
+    show jersey 11
+    show missy 4f
+    show becca 3f
     missy "Don't laugh at me, you dumb slut!"
-    show missy 1
+    show missy 1f
     player_name "..."
-    show becca 2
+    show becca 2f
     becca "You're still here?"
-    show missy 2
-    show becca 1
+    show missy 2f
+    show becca 1f
     missy "What do you want?"
-    show missy 1
+    show missy 1f
     $ ui_lock_count = 0
     menu:
         "Nevermind.":
-            show becca 1 at Position(xpos=315)
-            show missy 1 at left
-            show jersey 12f at right
+            show becca 1f
+            show missy 1f
+            show jersey 12
             player_name "Fine!!"
             player_name "I'll go shower at home..."
-            show becca 2
-            show missy 3
-            show jersey 11f
+            show becca 2f
+            show missy 3f
+            show jersey 11
             becca "Go cry in the hall, you wuss!"
             becca "None of the other nerds will mind if you smell, anyway!"
             becca "You'll fit right with in them!"
-            show becca 1
+            show becca 1f
             player_name "..."
-            show jersey 12f
+            show jersey 12
             player_name "You really shouldn't talk about people like that."
-            show becca 3
-            show missy 2
-            show jersey 11f
+            show becca 3f
+            show missy 2f
+            show jersey 11
             missy "Whatever, loser."
-            show becca 2
-            show missy 1
+            show becca 2f
+            show missy 1f
             becca "Just go away."
             hide missy
             hide becca
@@ -439,48 +439,48 @@ label roxxy_shower_dialogue:
             with dissolve
 
         "Please?" if pStats.chr() < 5:
-            show becca 1 at Position(xpos=315)
-            show missy 1 at left
-            show jersey 10f at right
+            show becca 1f
+            show missy 1f
+            show jersey 10
             player_name "[chr_warn]... Pretty please?"
-            show jersey 13f
+            show jersey 13
             pause
-            show missy 2
-            show becca 3
-            show jersey 11f
+            show missy 2f
+            show becca 3f
+            show jersey 11
             missy "[chr_warn]Like, that was pathetic!"
-            show missy 3
-            show becca 2
+            show missy 3f
+            show becca 2f
             becca "[chr_warn]Yeah, you aren't getting through."
-            show missy 1
-            show becca 1
-            show jersey 10f
+            show missy 1f
+            show becca 1f
+            show jersey 10
             player_name "[chr_warn]But I really need a shower!"
-            show missy 3
-            show becca 2
-            show jersey 12f
+            show missy 3f
+            show becca 2f
+            show jersey 12
             becca "[chr_warn]Go wash off in the water fountain!"
-            show missy 1
-            show becca 1
-            show jersey 12f
+            show missy 1f
+            show becca 1f
+            show jersey 12
             player_name "[chr_warn]It's not a water fountain, it's a bubbler!"
-            show missy 3
-            show becca 2
-            show jersey 11f
+            show missy 3f
+            show becca 2f
+            show jersey 11
             becca "[chr_warn]Whatever! You stink!!"
-            show missy 2
-            show becca 3
+            show missy 2f
+            show becca 3f
             missy "[chr_warn]Get out of our face! Like, now!"
-            show missy 1
-            show becca 1
-            show jersey 10f
+            show missy 1f
+            show becca 1f
+            show jersey 10
             player_name "[chr_warn]Oh come on! Please, I smell really bad!"
-            show missy 3
-            show becca 2
-            show jersey 11f
+            show missy 3f
+            show becca 2f
+            show jersey 11
             becca "[chr_warn]Haha! Of course you do! You always will!"
-            show missy 2
-            show becca 1
+            show missy 2f
+            show becca 1f
             missy "[chr_warn]Move along..."
             hide missy
             hide becca
@@ -488,43 +488,43 @@ label roxxy_shower_dialogue:
             with dissolve
 
         "Please?" if pStats.chr() >= 5:
-            show becca 1 at Position(xpos=315)
-            show missy 1 at left
-            show jersey 10f at Position (xpos=800) with fastdissolve
+            show becca 1f
+            show missy 1f
+            show jersey 10 at Position (xpos=200) with fastdissolve
             player_name "Please! I smell so bad..."
-            show becca 2
-            show jersey 11f
+            show becca 2f
+            show jersey 11
             becca "Eew! don't come any closer!"
-            show becca 1
-            show missy 2
+            show becca 1f
+            show missy 2f
             missy "Like, stay away!"
-            show becca 2
-            show missy 3
+            show becca 2f
+            show missy 3f
             becca "We don't want your stink rubbing off on us!"
-            show becca 1
-            show missy 1
-            show jersey 12f
+            show becca 1f
+            show missy 1f
+            show jersey 12
             player_name "Then I suggest you let me shower!"
-            show becca 2
-            show missy 3
-            show jersey 11f
+            show becca 2f
+            show missy 3f
+            show jersey 11
             becca "We can't! {b}Roxxy{/b}'s in there!"
-            show missy 1
-            show becca 1
-            show jersey 12f
+            show missy 1f
+            show becca 1f
+            show jersey 12
             player_name "If you don't let me in, I'll get {b}Annie{/b} and you can deal with {b}Mrs. Smith{/b} instead..."
-            show missy 2
-            show becca 3
-            show jersey 13f
+            show missy 2f
+            show becca 3f
+            show jersey 13
             missy "No! Don't!"
-            show becca 2
-            show missy 3
+            show becca 2f
+            show missy 3f
             becca "I... I can't stand the smell any longer!"
             becca "Let's, like, get outta here!"
             hide becca
             hide missy
             with dissolve
-            show jersey 17f
+            show jersey 17
             player_name "There..."
             player_name "Time for a nice warm shower!"
             hide jersey with dissolve

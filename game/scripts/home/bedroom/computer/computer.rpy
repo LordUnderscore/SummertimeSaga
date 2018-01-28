@@ -11,7 +11,7 @@ label MC_computer:
         call screen MC_computer
 
 label MC_pass_check:
-    if MC_pass.lower() == "cookies":
+    if MC_pass.lower().strip() == "cookies":
         scene expression gTimer.image("backgrounds/computer_player_01{}.jpg")
         $ MC_comp_locked = False
         call screen MC_computer

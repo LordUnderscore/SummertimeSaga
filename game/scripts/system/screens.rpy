@@ -173,18 +173,39 @@ screen popup(Image):
 
     timer 2.0 action Hide("popup")
 
+screen route_warning():
+    add "backgrounds/blank.jpg"
+
+    add "boxes/popup_warning.png" at truecenter
+
+    imagebutton:
+        focus_mask True
+        pos (298,378)
+        idle "buttons/menu_goback.png"
+        hover "buttons/menu_goback2.png"
+        action Hide("route_warning"), Function(callScreen, location_count, newContext = True)
+
+    imagebutton:
+        focus_mask True
+        pos (612,377)
+        idle "buttons/menu_continue.png"
+        hover "buttons/menu_continue2.png"
+        action Return()
+
 screen adult_warning:
 
     imagebutton:
         focus_mask True
         pos (435,635)
         idle "buttons/menu_yes.png"
+        hover "buttons/menu_yes2.png"
         action Return()
 
     imagebutton:
         focus_mask True
         pos (565,635)
         idle "buttons/menu_no.png"
+        hover "buttons/menu_no2.png"
         action Quit(confirm=False)
 
 screen credits:
@@ -200,7 +221,10 @@ screen credits:
             python:
                 import codecs
 
-                file = codecs.open(sys.path[0] + "/game/pledge_list.txt", encoding = "utf-8")
+                if renpy.variant("mobile"):
+                    file = renpy.file("pledge_list.txt")
+                else:
+                    file = codecs.open(sys.path[0] + "/game/pledge_list.txt", encoding = "utf-8")
 
 
                 for line in file:
@@ -223,7 +247,7 @@ screen credits:
         pos (50,675)
         idle "buttons/menu_name_back01.png"
         hover "buttons/menu_name_back02.png"
-        action Return()
+        action If(_return == main_menu, Function(playMusic, "audio/music_title01.ogg"), Function(playMusic)), Return()
 
 screen creditsquick() tag menu:
     add "backgrounds/menu_credits.jpg"
@@ -251,7 +275,7 @@ screen main_menu() tag menu:
         hotspot ( 730, 232, 175, 48) action [ShowMenu("name_input"), Hide("main_menu")] hovered Show("gui_tooltip", my_picture = "buttons/tooltip_01.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
         hotspot ( 730, 301, 175, 48) action [ShowMenu("load"), Hide ("gui_tooltip")] hovered Show("gui_tooltip", my_picture = "buttons/tooltip_02.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
         hotspot ( 730, 369, 175, 48) action [ShowMenu("preferences")] hovered Show("gui_tooltip", my_picture = "buttons/tooltip_03.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
-        hotspot ( 730, 438, 175, 48) action [ShowMenu("credits"), Hide("main_menu")] hovered Show("gui_tooltip", my_picture = "buttons/tooltip_04.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
+        hotspot ( 730, 438, 175, 48) action [ShowMenu("credits"), Hide("main_menu"), SetVariable("_return", main_menu), Function(playSound), Function(playMusic, "<loop 241.5>audio/music_credits.ogg")] hovered Show("gui_tooltip", my_picture = "buttons/tooltip_04.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
         hotspot ( 730, 507, 175, 48) action Quit(confirm=True) hovered Show("gui_tooltip", my_picture = "buttons/tooltip_05.png", my_tt_xpos=0, my_tt_ypos=0) unhovered Hide("gui_tooltip")
 
 init -2:
@@ -268,7 +292,7 @@ screen navigation() tag menu:
         hotspot ( 430, 317, 167, 40) action ShowMenu("save")
         hotspot ( 430, 379, 167, 40) action ShowMenu("load")
         hotspot ( 430, 440, 167, 40) action ShowMenu("preferences")
-        hotspot ( 430, 503, 167, 40) action ShowMenu("credits")
+        hotspot ( 430, 503, 167, 40) action ShowMenu("credits"), Function(playSound), Function(playMusic, "<loop 241.5>audio/music_credits.ogg")
         hotspot ( 430, 564, 167, 40) action Quit()
 
     key "K_ESCAPE" action Return()

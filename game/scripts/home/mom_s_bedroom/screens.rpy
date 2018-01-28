@@ -126,6 +126,24 @@ screen mom_sex_options:
             hover "buttons/mom_stage01_07b.png"
             action SetVariable("mom_sex_position", "cowgirl"), Jump("cowgirl_loop")
 
+        if M_mom.get('sex speed') < .4:
+            imagebutton:
+                focus_mask True
+                idle "buttons/speed_02.png"
+                hover "buttons/speed_02b.png"
+                action Jump("missionary_mom_slower_sex")
+                xpos 250
+                ypos 735
+
+        if M_mom.get('sex speed') > .21:
+            imagebutton:
+                focus_mask True
+                idle "buttons/speed_01.png"
+                hover "buttons/speed_01b.png"
+                action Jump("missionary_mom_faster_sex")
+                xpos 450
+                ypos 735
+
     elif mom_sex_position == "cowgirl":
         imagebutton:
             pos (-30,700)
@@ -156,6 +174,24 @@ screen mom_sex_options:
             idle "buttons/mom_stage01_08.png"
             hover "buttons/mom_stage01_08b.png"
             action SetVariable("mom_sex_position", "missionary"), Jump("missionary_loop")
+
+        if M_mom.get('sex speed') < .4:
+            imagebutton:
+                focus_mask True
+                idle "buttons/speed_02.png"
+                hover "buttons/speed_02b.png"
+                action Jump("cowgirl_mom_slower_sex")
+                xpos 250
+                ypos 735
+
+        if M_mom.get('sex speed') > .21:
+            imagebutton:
+                focus_mask True
+                idle "buttons/speed_01.png"
+                hover "buttons/speed_01b.png"
+                action Jump("cowgirl_mom_faster_sex")
+                xpos 450
+                ypos 735
 
 screen xray_scr:
     imagebutton:

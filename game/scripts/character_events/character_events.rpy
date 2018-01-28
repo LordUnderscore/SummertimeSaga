@@ -88,9 +88,9 @@ label define_events:
 
         sis_panty01 = Event("Panties", hint = "This is a hint to test out the new hint system ingame!")
         sis_shower_cuddle01 = Event("Shower/Cuddle 01", hint = "This is a hint to test out the new hint system ingame!")
+        sis_panty02 = Event("Used Panties", hint = "This is a hint to test out the new hint system ingame!")
         sis_webcam01 = Event("Cam Show 01", hint = "This is a hint to test out the new hint system ingame!")
         sis_telescope01 = Event("Telescope Spy 01", hint = "This is a hint to test out the new hint system ingame!")
-        sis_panty02 = Event("Used Panties", hint = "This is a hint to test out the new hint system ingame!")
         sis_breakfast = Event("Breakfast With Sis", hint = "This is a hint to test out the new hint system ingame!")
         sis_shower_cuddle02 = Event("Shower/Cuddle 02", hint = "This is a hint to test out the new hint system ingame!")
         sis_hallway01 = Event("Hallway Encounter 01", hint = "This is a hint to test out the new hint system ingame!")

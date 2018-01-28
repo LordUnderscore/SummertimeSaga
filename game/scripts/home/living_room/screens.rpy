@@ -129,3 +129,38 @@ screen home_livingroom_tv:
         idle "buttons/tv_buttons_03.png"
         hover "buttons/tv_buttons_03b.png"
         action SetVariable("tv_channel", tv_channel + 1), Jump("tv_channel_responses")
+
+screen sis_couch_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("sis_couch_sex_loop")
+        xpos 250
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("sis_couch_sex_cum")
+        xpos 450
+        ypos 700
+
+    if M_sis.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("sis_couch_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_sis.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("sis_couch_faster_sex")
+            xpos 450
+            ypos 735

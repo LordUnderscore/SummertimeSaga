@@ -43,14 +43,19 @@ screen ui:
             hotspot (867, 5, 60, 71) action If(renpy.get_screen("backpack"), [Hide("backpack"), Play("audio", "audio/sfx_phone_notification.ogg")], [Show("backpack"), Play("audio", "audio/sfx_backpack_open.ogg")])
             hotspot (946, 5, 68, 70) action ShowMenu("navigation")
             hotspot (503, 44, 31, 25) action If(
-                tick_skip_active,
-                If(
-                    not gTimer.is_dark(),
-                    Function(gTimer.tick),
-                    NullAction()
-                ),
+                location_count in ["Town Map", "Bedroom", "Erik's House", "Mia's House"],
+                Function(gTimer.tick),
                 NullAction()
             )
+
+
+
+
+
+
+
+
+
 
     else:
         imagemap:

@@ -43,7 +43,7 @@ screen attic:
         pos (807,398)
         idle gTimer.image("objects/object_globe_01{}.png")
         hover gTimer.image("objects/object_globe_01b{}.png")
-        action Show("popup_unfinished")
+        action Hide("attic"), With(fade), Jump("globe")
 
     imagebutton:
         focus_mask True
@@ -57,7 +57,7 @@ screen attic:
         pos (888,289)
         idle gTimer.image("objects/object_painting_01{}.png")
         hover gTimer.image("objects/object_painting_01b{}.png")
-        action Hide("attic"), Jump("painting")
+        action Hide("attic"), With(fade), Jump("painting")
 
     imagebutton:
         focus_mask True

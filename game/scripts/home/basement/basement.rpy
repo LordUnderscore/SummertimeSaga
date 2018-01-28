@@ -203,6 +203,7 @@ label home_basement_dialogue:
         player_name "Well... okay."
 
         label basement_mom_sex:
+            $ M_mom.set('sex speed', .4)
             $ location_count = "Basement"
             $ cum = False
             $ anim_toggle = False
@@ -246,41 +247,44 @@ label home_basement_dialogue:
             mom "Ahh..."
             player_name "!!!"
             player_name "It's so warm..."
+            show moms 127 at Position(xpos=655)
+            pause
 
             label basement_mom_sex_loop:
                 hide screen basement_mom_sex_options
-                show moms 127 at Position(xpos=655)
                 show screen xray_scr
                 pause
                 if anim_toggle == True:
-                    hide moms 127
-                    hide screen xray_scr
-                    hide screen basement_mom_sex_options
-                    show moms 126_127_128 at Position(xpos=655)
-                    pause 5
-                    hide moms 126_127_128
-                    show moms 127 at Position(xpos=655)
+                    $ animcounter = 0
+                    while animcounter < 4:
+                        hide screen xray_scr
+                        show moms 126_127_128 at Position(xpos=655)
+                        pause 4
+                        if animcounter == 1:
+                            mom "Ahhhh!!!{p=1}{nw}"
+                        if animcounter == 3:
+                            mom "Oh, Sweetie!!!{p=1}{nw}"
+                            player_name "Uhhh...{p=1}{nw}"
+                        pause 3
+                        $ animcounter += 1
                 else:
+                    $ animcounter = 0
+                    while animcounter < 4:
+                        hide screen xray_scr
+                        show moms 126
+                        pause
+                        show moms 127
+                        pause
+                        show moms 128
+                        pause
+                        $ animcounter += 1
+                        if animcounter == 2:
+                            mom "Ahhhh!!!"
 
-                    hide screen xray_scr
-                    hide screen basement_mom_sex_options
-                    show moms 126
-                    pause
-                    show moms 127
-                    pause
-                    show moms 128
-                    pause
-                    show moms 126
-                    pause
-                    show moms 127
-                    pause
-                    show moms 128
-                    pause
-                    show moms 126
-                    pause
-                    show moms 127
-                    pause
-                    show moms 128
+                        if animcounter == 3:
+                            mom "Oh, Sweetie!!!"
+                            player_name "Uhhh..."
+
                 show screen basement_mom_sex_options
                 pause
                 jump basement_mom_sex_loop
@@ -427,3 +431,11 @@ label laundry_dialogue:
         $ mom_dialogue_advance = True
     $ mom_vacuuming = False
     $ callScreen(location_count)
+
+label basement_mom_faster_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') - 0.1)
+    jump basement_mom_sex_loop
+
+label basement_mom_slower_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') + 0.1)
+    jump basement_mom_sex_loop

@@ -71,6 +71,175 @@ label bedroom_dialogue:
         $ ui_lock_count = 1
         $ erik.add_event(erik_bullying)
 
+    elif M_mia.get_state() == S_mia_tattoo_help and M_mia.is_set('story delay'):
+        show player 35 with dissolve
+        player_name "I have to make something nice for her tattoo idea."
+        show player 34
+        player_name "Hmm..."
+        show player 35
+        player_name "Perhaps, I can use one of the {b}easels in art class{/b}!"
+        show player 33
+        player_name "I can use it to come up with a nice design for her."
+        show player 8 with dissolve
+        pause
+        show player 7 with dissolve
+        player_name "{b}*Yawn*{/b}"
+        show player 101 with dissolve
+        player_name "I should sleep."
+        hide player with dissolve
+        show unlock53 at truecenter with dissolve
+        pause
+        hide unlock53 with dissolve
+        $ M_mia.trigger(T_mia_tattoo_start)
+
+    elif M_mia.get_state() == S_mia_strip_aftermath and M_mia.is_set('story delay'):
+        show player 24 with dissolve
+        player_name "I can't believe I won't be able to see {b}Mia{/b} anymore."
+        show player 25
+        player_name "Her parents don't trust me."
+        show player 35
+        player_name "Perhaps I can make it up to them somehow..."
+        hide player with dissolve
+        $ M_mia.trigger(T_mia_grounded)
+
+    elif M_mia.get_state() == S_mia_strip_aftermath:
+        scene bedroom
+        show player 4 with dissolve
+        pause
+        show player 30 at Position (xoffset=-6) with dissolve
+        player_name "I wonder how {b}Mia{/b} is doing."
+        show player 12 at Position (xoffset=-6)
+        player_name "It's been a few days, and I haven't heard anything from her..."
+        player_name "...Perhaps I should visit her and see how she's doing."
+        hide player with dissolve
+
+    elif M_mia.get_state() == S_mia_urgent_message:
+        scene bedroom
+        show player 12 with dissolve
+        player_name "Huh?"
+        show player 9 at Position (xoffset=40) with dissolve
+        pause
+        show player 14 with dissolve
+        player_name "Looks like I got a text message..."
+        hide player with dissolve
+        $ ui_lock_count = 1
+        if m_mia02 not in message_list:
+            $ message_list.append(m_mia02)
+            $ new_message = True
+
+    elif M_mia.get_state() == S_mia_angelicas_impatience:
+        scene bedroom
+        show player 55f at Position (xoffset=-12) with dissolve
+        player_name "*Yawn*"
+        show player 56f with dissolve
+        player_name "I should get ready for-"
+        show player 11f
+        "*Knock knock*"
+        show mom 2f at left
+        show player 13f
+        with dissolve
+        mom "Hun?"
+        mom "There's someone downstairs who's here for you."
+        show mom 1f
+        show player 30f
+        player_name "{b}Erik{/b}?"
+        show player 11f
+        show mom 2f
+        mom "No, Sweetie. It's a lady!"
+        mom "She says you two have spoken before..."
+        show mom 1f
+        show player 10f
+        player_name "What?"
+        player_name "But who-"
+        show player 5f
+        show mom 2f
+        mom "She's waiting downstairs. Why don't you {b}get dressed and come down{/b}."
+        hide mom with dissolve
+        show player 12f player_name "A lady?!"
+        show player 4f at Position (xoffset=-6) with dissolve
+        player_name "Huh..."
+        hide player with dissolve
+        $ ui_lock_count = 1
+
+    elif M_mia.get_state() == S_mia_angelicas_home_visit:
+        scene bedroom with fade
+        show player 13f at right
+        show mom 2f at left
+        mom "Sweetie?"
+        show mom 1f
+        show player 17f
+        player_name "Good morning, {b}Mom{/b}."
+        show player 13f
+        show mom 2f
+        mom "Morning."
+        mom "That nice lady from the other day is downstairs again."
+        show mom 1f
+        show player 11f
+        player_name "..."
+        show player 12f
+        player_name "Who?"
+        show player 5f
+        show mom 3f
+        mom "Come on now, sleepyhead. The nun is here again."
+        show mom 1f
+        show player 22f
+        player_name "!!!"
+        mom "Hurry up so you can meet her downstairs."
+        hide mom with dissolve
+        show player 10f
+        player_name "What is she going to want now?"
+        hide player with dissolve
+        $ ui_lock_count = 1
+
+    elif M_mia.get_state() == S_mia_angelicas_final_home_visit:
+        scene bedroom with fade
+        show player 55f at Position (xoffset=-12) with dissolve
+        player_name "*Yawn*"
+        show player 56f with dissolve
+        player_name "I should get ready for-"
+        show player 11f
+        "*Knock knock*"
+        show mom 2f at left
+        show player 13f
+        with dissolve
+        mom "Hun?"
+        mom "That nun is here again..."
+        show mom 1f
+        show player 30f
+        player_name "Again?"
+        show player 24f
+        pause
+        show mom 13f
+        mom "I've been meaning to ask..."
+        mom "What exactly are you doing for the church?"
+        show mom 14f
+        show player 11f
+        player_name "..."
+        show mom 13f
+        mom "I mean, I'm surprised to see a nun visiting so much..."
+        show mom 14bf
+        show player 29f at Position (xoffset=-27) with dissolve
+        player_name "Yeah, um... everything is...fine."
+        player_name "She's just...got me running errands."
+        player_name "Yeah, heh...heh..."
+        show player 3f at Position (xoffset=-35)
+        show mom 14f
+        mom "..."
+        show mom 13f
+        mom "Well, at least you're doing something good for the community..."
+        show player 5f with dissolve
+        show mom 2f
+        mom "I suppose I shouldn't be worried."
+        show mom 3f
+        mom "What harm could come from you spending time at church."
+        hide mom with dissolve
+        show player 11f
+        player_name "..."
+        show player 37f at Position (xoffset=-41) with dissolve
+        player_name "You have no idea..."
+        hide player with dissolve
+        $ ui_lock_count = 1
+
     elif mom_count == 12 and mom_dialogue_advance == False and m6_note_seen == False:
         show player 7 with dissolve
         player_name "{b}*Yawn*{/b}"
@@ -392,11 +561,13 @@ label june_bedroom_dialogue:
             june "Bork me, {b}[firstname]{/b}!!"
             $ anim_toggle = False
             $ xray = False
-            label june_cosplay_sex_repeat:
-                show junesex 8b
-                show screen sex_anim_buttons
+            $ M_june.set('sex speed', .3)
+
+            label june_mcbedroom_cosplay_sex_loop:
+                hide screen june_mcbedroom_cosplay_sex_options
+                show screen xray_scr
                 pause
-                hide screen sex_anim_buttons
+                hide screen xray_scr
                 if anim_toggle:
                     show junesex 4b_5b_6b_7b_8b
                     pause 8
@@ -415,47 +586,52 @@ label june_bedroom_dialogue:
                         show junesex 8b
                         pause
                         $ animcounter += 1
-                show junesex 8b
-            menu:
-                "Keep going.":
-                    jump june_cosplay_sex_repeat
-                "Cum inside.":
 
-                    show junesex 4b_5b_6b_7b_8b
-                    pause
-                    show junesex 9b with hpunch
-                    june "Ahh!!!"
-                    show white
-                    pause 0.3
-                    hide white with dissolve
-                    pause
-                    show junesex 14b with fastdissolve
-                    june "I... that feels so good..."
-                    june "... your orc seed deep inside me..."
-                    june "... my chieftain..."
-                    if June.over(june_cosplay):
-                        jump june_aftercum_inside
-                "Cum outside.":
+            show screen june_mcbedroom_cosplay_sex_options
+            pause
+            jump june_mcbedroom_cosplay_sex_loop
 
-                    show junesex 4b_5b_6b_7b_8b
-                    pause
-                    show junesex 9b with hpunch
-                    player_name "Ahh!!!"
-                    show white
-                    pause 0.3
-                    show junesex 10b
-                    hide white with dissolve
-                    pause
-                    show junesex 11b with fastdissolve
-                    june "..."
-                    show junesex 12b
-                    june "So much... cum!"
-                    june "I was hoping you would hold me down and cum inside..."
-                    june "... with all that strong orc cum..."
-                    june "Maybe next time?"
-                    if June.over(june_cosplay):
-                        jump june_aftercum_outside
+            label june_mcbedroom_cosplay_sex_cum_inside:
+                hide screen june_mcbedroom_cosplay_sex_options
+                show junesex 4b_5b_6b_7b_8b
+                pause
+                show junesex 9b with hpunch
+                june "Ahh!!!"
+                show white
+                pause 0.3
+                hide white with dissolve
+                pause
+                show junesex 14b with fastdissolve
+                june "I... that feels so good..."
+                june "... your orc seed deep inside me..."
+                june "... my chieftain..."
+                if June.over(june_cosplay):
+                    jump june_aftercum_inside
+                else:
+                    jump june_aftercum_initial
 
+            label june_mcbedroom_cosplay_sex_cum_outside:
+                hide screen june_mcbedroom_cosplay_sex_options
+                show junesex 4b_5b_6b_7b_8b
+                pause
+                show junesex 9b with hpunch
+                player_name "Ahh!!!"
+                show white
+                pause 0.3
+                show junesex 10b
+                hide white with dissolve
+                pause
+                show junesex 11b with fastdissolve
+                june "..."
+                show junesex 12b
+                june "So much... cum!"
+                june "I was hoping you would hold me down and cum inside..."
+                june "... with all that strong orc cum..."
+                june "Maybe next time?"
+                if June.over(june_cosplay):
+                    jump june_aftercum_outside
+
+        label june_aftercum_initial:
         hide junesex
         scene black
         with fade
@@ -645,7 +821,7 @@ label june_bedroom_dialogue:
                     show player_sitting 5
                     june "... But there's this final boss I've been trying to beat for the longest time!!"
                     show player_sitting 1
-                    june "Here, home closer so you can see the screen better..."
+                    june "Here, come closer so you can see the screen better..."
                     show june_sitting 8 at center
                     hide player_sitting
                     with fastdissolve
@@ -705,11 +881,13 @@ label june_normal_sex:
     june "Fuck me, {b}[firstname]{/b}!!"
     $ anim_toggle = False
     $ xray = False
-    label june_normal_sex_repeat:
-        show junesex 8
-        show screen sex_anim_buttons
+    $ M_june.set('sex speed', .3)
+
+    label june_mcbedroom_normal_sex_loop:
+        hide screen june_mcbedroom_normal_sex_options
+        show screen xray_scr
         pause
-        hide screen sex_anim_buttons
+        hide screen xray_scr
         if anim_toggle:
             show junesex 4_5_6_7_8
             pause 8
@@ -728,43 +906,45 @@ label june_normal_sex:
                 show junesex 8
                 pause
                 $ animcounter += 1
-        show junesex 8
-    menu:
-        "Keep going.":
-            jump june_normal_sex_repeat
-        "Cum inside.":
 
-            show junesex 4_5_6_7_8
-            pause
-            show junesex 9 with hpunch
-            june "Ahh!!!"
-            show white
-            pause 0.3
-            hide white with dissolve
-            pause
-            show junesex 14 with fastdissolve
-            june "I... that feels so good..."
-            june "... your cum deep inside me..."
-            jump june_aftercum_inside
-        "Cum outside.":
+    show screen june_mcbedroom_normal_sex_options
+    pause
+    jump june_mcbedroom_normal_sex_loop
 
-            show junesex 4_5_6_7_8
-            pause
-            show junesex 9 with hpunch
-            player_name "Ahh!!!"
-            show white
-            pause 0.3
-            show junesex 10
-            hide white with dissolve
-            pause
-            show junesex 11 with fastdissolve
-            june "..."
-            show junesex 12
-            june "So much..."
-            june "I was hoping you would hold me down and cum inside..."
-            june "... with all that strong cum..."
-            june "Maybe next time?"
-            jump june_aftercum_outside
+    label june_mcbedroom_normal_sex_cum_inside:
+        hide screen june_mcbedroom_normal_sex_options
+        show junesex 4_5_6_7_8
+        pause
+        show junesex 9 with hpunch
+        june "Ahh!!!"
+        show white
+        pause 0.3
+        hide white with dissolve
+        pause
+        show junesex 14 with fastdissolve
+        june "I... that feels so good..."
+        june "... your cum deep inside me..."
+        jump june_aftercum_inside
+
+    label june_mcbedroom_normal_sex_cum_outside:
+        hide screen june_mcbedroom_normal_sex_options
+        show junesex 4_5_6_7_8
+        pause
+        show junesex 9 with hpunch
+        player_name "Ahh!!!"
+        show white
+        pause 0.3
+        show junesex 10
+        hide white with dissolve
+        pause
+        show junesex 11 with fastdissolve
+        june "..."
+        show junesex 12
+        june "So much..."
+        june "I was hoping you would hold me down and cum inside..."
+        june "... with all that strong cum..."
+        june "Maybe next time?"
+        jump june_aftercum_outside
 
 label june_aftercum_outside:
     hide junesex
@@ -891,6 +1071,39 @@ label bedroom_study01:
         $ gTimer.tick()
         $ callScreen(location_count)
 
+label mia_midnight_text:
+    if MC_computer_broken:
+        $ tmp_image = "bedroom_broken{}"
+    else:
+        $ tmp_image = "bedroom"
+    scene expression gTimer.image(tmp_image)
+    show player 442 with dissolve
+    player_name "{b}Mia{/b}!? Asking...for help?"
+    player_name "What is this all about?"
+    player_name "Is she in trouble?"
+    show player 443
+    player_name "..."
+    show player 442
+    player_name "Maybe I should {b}go see her now{/b}... Just to make sure she's alright."
+    hide player with dissolve
+    $ ui_lock_count = 0
+    $ M_mia.trigger(T_mia_message)
+    $ callScreen(location_count)
+
+label mia_urgent_text:
+    if MC_computer_broken:
+        $ tmp_image = "bedroom_broken{}"
+    else:
+        $ tmp_image = "bedroom"
+    scene expression gTimer.image(tmp_image)
+    show player 10 with dissolve
+    player_name "She can't find her dad?"
+    player_name "I better go see what's going on..."
+    hide player with dissolve
+    $ ui_lock_count = 0
+    $ M_mia.trigger(T_mia_message)
+    $ callScreen(location_count)
+
 label textbook_missing_dialogue:
     if MC_computer_broken:
         $ tmp_image = "bedroom_broken{}"
@@ -991,6 +1204,31 @@ label sleeping:
         player_name "( I better get some sleep. )"
         hide player with dissolve
         $ erik_bullying_3.finish()
+
+    elif M_mia.get_state() == S_mia_midnight_call:
+        scene location_bedroom_cutscene01 with dissolve
+        player_name "Zzz..."
+        "{b}Bzzt{/b}!"
+        player_name "..."
+        "{b}Bzzzzzzt{/b}!"
+        scene bedroom_cs04 with dissolve
+        player_name "Huh?"
+        player_name "Is that my phone?"
+        scene black with fade
+        pause
+        scene bedroom_night
+        show player 7 with dissolve
+        pause
+        show player 101
+        player_name "Someone's texting me?"
+        player_name "I should see who it is..."
+        hide player with dissolve
+        $ ui_lock_count = 1
+        $ gTimer.tick(4)
+        if m_mia01 not in message_list:
+            $ message_list.append(m_mia01)
+            $ new_message = True
+        $ callScreen(location_count)
 
     elif mom_revealing_tommorow and not first_mom_visit:
         $ first_mom_visit = True
@@ -1188,7 +1426,7 @@ label sleeping:
 
     $ random_message = renpy.random.randint(0,9)
 
-    if judith_sex_sequence_unlocked:
+    if judith_sex_sequence_unlocked and m_judith01 not in message_list:
         if random_message == 9:
             $ message_list.append(m_judith01)
             $ new_message = True
@@ -1219,6 +1457,7 @@ label sleeping:
 
         for event in store.my_events:
             event.complete_events()
+        Machine.trigger(T_all_sleep)
 
     $ shower = renpy.random.choice([If(mom_vacuuming or mom_count == 12 and not mom_dialogue_advance, "", "mom"), "sister", ""])
     jump bedroom_dialogue
@@ -1272,6 +1511,18 @@ label player_room_lock:
     hide player 10 with dissolve
     $ callScreen(location_count)
 
+label player_message_lock:
+    if MC_computer_broken:
+        scene expression gTimer.image("bedroom_broken{}")
+    else:
+        scene expression gTimer.image("bedroom{}")
+    if not gTimer.is_dark():
+        show player 12 with dissolve
+    else:
+        show player 101 with dissolve
+    player_name "I should check my text messages."
+    $ callScreen(location_count)
+
 label cookies:
     if MC_computer_broken:
         scene expression gTimer.image("bedroom_broken{}")
@@ -1285,3 +1536,19 @@ label cookies:
     $ renpy.pause()
     hide expression "boxes/popup_cookies.png" with dissolve
     $ callScreen(location_count)
+
+label june_mcbedroom_normal_faster_sex:
+    $ M_june.set('sex speed', M_june.get('sex speed') - 0.1)
+    jump june_mcbedroom_normal_sex_loop
+
+label june_mcbedroom_normal_slower_sex:
+    $ M_june.set('sex speed', M_june.get('sex speed') + 0.1)
+    jump june_mcbedroom_normal_sex_loop
+
+label june_mcbedroom_cosplay_faster_sex:
+    $ M_june.set('sex speed', M_june.get('sex speed') - 0.1)
+    jump june_mcbedroom_cosplay_sex_loop
+
+label june_mcbedroom_cosplay_slower_sex:
+    $ M_june.set('sex speed', M_june.get('sex speed') + 0.1)
+    jump june_mcbedroom_cosplay_sex_loop

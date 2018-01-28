@@ -386,6 +386,7 @@ label tv_channel_responses:
                             sis "You pervert!!! Ahh!!!"
                             show playersex 137
                             pause
+                            $ M_sis.set('sex speed', .4)
                             show playersex 134_135_136_137
                             pause 8
                             sis "Stop moving your hips like that... It's... Too deep!!"
@@ -396,20 +397,60 @@ label tv_channel_responses:
                             show playersex 136
                             sis "... It's so good!!"
                             show playersex 137
-                            menu sis_couch_sex_loop:
-                                "Keep going.":
-                                    show playersex 134_135_136_137
-                                    pause 8
-                                    show playersex 137
-                                    jump sis_couch_sex_loop
-                                "Cum inside.":
 
-                                    show playersex 134
-                                    sis "...Are you?!"
-                                    show playersex 135
-                                    player_name "I'm cumming!!"
-                                    show playersex 136
-                                    sis "Don't-"
+                            label sis_couch_sex_loop:
+                                hide screen sis_couch_sex_options
+                                show screen xray_scr
+                                pause
+                                hide screen xray_scr
+                                if anim_toggle:
+                                    $ animcounter = 0
+                                    while animcounter < 4:
+                                        show playersex 134_135_136_137
+                                        pause 5
+                                        if animcounter == 1:
+                                            sis "Ahhhh!!!{p=1}{nw}"
+                                        if animcounter == 3:
+                                            sis "Oh!!!{p=1}{nw}"
+                                            player_name "Uhhh...{p=1}{nw}"
+                                        pause 3
+                                        $ animcounter += 1
+                                else:
+
+                                    $ animcounter = 0
+                                    while animcounter < 4:
+                                        show playersex 134
+                                        pause
+                                        show playersex 135
+                                        pause
+                                        show playersex 136
+                                        pause
+                                        show playersex 137
+                                        pause
+                                        if animcounter == 1:
+                                            sis "Ahhhh!!!"
+                                        if animcounter == 3:
+                                            sis "Oh!!!"
+                                            player_name "Uhhh..."
+                                        $ animcounter += 1
+
+                                show screen sis_couch_sex_options
+                                pause
+                                jump sis_couch_sex_loop
+
+                                label sis_couch_sex_cum:
+                                    hide screen sis_couch_sex_options
+                                    if anim_toggle:
+                                        sis "...Are you?!"
+                                        player_name "I'm cumming!!"
+                                        sis "Don't-"
+                                    else:
+                                        show playersex 134
+                                        sis "...Are you?!"
+                                        show playersex 135
+                                        player_name "I'm cumming!!"
+                                        show playersex 136
+                                        sis "Don't-"
                                     show playersex 138
                                     sis "{b}AHHH{/b}!!!" with hpunch
                                     show white
@@ -611,11 +652,11 @@ label tv_channel_responses:
     call screen home_livingroom_tv
 
 label tv_pink_channel_pass_check:
-    if pink_user == "L6bv12R" and pink_pass == "12345":
+    if pink_user.lower().strip() == "l6bv12r" and pink_pass.strip() == "12345":
         $ tv_channel_pink = False
         jump tv_channel_responses
+    else:
 
-    elif pink_user != "L6bv12R" or pink_pass != "12345":
         show home_tv_channel_08 at Position(xpos=522, ypos=522)
         show sis_wrong_pass at Position(xpos=520, ypos= 510) with dissolve
         pause 1
@@ -656,7 +697,7 @@ label door44_options:
         mom "Well, thank you for your honesty. It makes me happy to know my butt can still make a man stumble for words."
         mom "Haha."
         show mom 149
-        show player 29f at Position(xoffset=-8)
+        show player 29f
         player_name "Heh..."
         hide mom
         hide player
@@ -812,3 +853,11 @@ label door44_locked_night:
     player_name "( Now's not a good time to snoop around {b}Mom's{/b} bedroom. )"
     hide player 17 at left
     $ callScreen(location_count)
+
+label sis_couch_faster_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') - 0.1)
+    jump sis_couch_sex_loop
+
+label sis_couch_slower_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') + 0.1)
+    jump sis_couch_sex_loop

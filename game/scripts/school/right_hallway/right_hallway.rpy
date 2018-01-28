@@ -15,7 +15,7 @@ label stairs_dialogue:
     $ callScreen(location_count)
 
 label annie_button_dialogue:
-    scene location_stairs_closeup
+    scene location_school_second_closeup
     show player 14 at left with dissolve
     show annie 1 at right
     player_name "Hey Annie!"

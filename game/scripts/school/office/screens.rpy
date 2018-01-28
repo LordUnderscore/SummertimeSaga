@@ -17,7 +17,7 @@ screen mrs_smiths_office:
             pos (350,700)
             idle "boxes/auto_option_01.png"
             hover "boxes/auto_option_01b.png"
-            action Hide("mrs_smiths_office"), Jump("stairs_dialogue")
+            action Hide("mrs_smiths_office"), Jump("third_floor_dialogue")
 
     imagebutton:
         focus_mask True

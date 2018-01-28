@@ -41,3 +41,21 @@ screen basement_mom_sex_options:
         action Jump("basement_mom_sex_cum")
         xpos 450
         ypos 700
+
+    if M_mom.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("basement_mom_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_mom.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("basement_mom_faster_sex")
+            xpos 450
+            ypos 735

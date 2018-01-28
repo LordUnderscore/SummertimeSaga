@@ -17,7 +17,7 @@ screen park:
             hover "objects/object_bench_03b_night.png"
             action Show("bench03_options")
 
-    if erik.known(erik_father_treasure):
+    if erik.known(erik_father_treasure) or M_mia.get_state() == S_mia_stolen_goods:
         imagebutton:
             focus_mask True
             pos (261,291)
@@ -54,3 +54,16 @@ screen bench03_options:
             [Hide("park"), Hide("bench03_options"), Jump("park_night_closed")],
             [Hide("park"), Hide("bench03_options"), Jump("park_dialogue01")]
         )
+
+screen park_fountain:
+    imagebutton:
+        idle "backgrounds/menu_ground.png"
+        action Hide("park_fountain"), Jump("park_dialogue")
+
+    if weird_coin not in inventory.items:
+        imagebutton:
+            focus_mask True
+            align (0.44,0.81)
+            idle gTimer.image("objects/object_coin_01{}.png")
+            hover gTimer.image("objects/object_coin_01b{}.png")
+            action Hide("park_fountain"), Jump("coin_dialogue")

@@ -1,3 +1,21 @@
+init python:
+    class PinkItem:
+        def __init__(self, item, name = "", image = "", popup = "", idle = "", hover = "", price = 0, category = "", purchased = False):
+            self.name = name
+            self.image = image
+            self.popup = popup
+            self.idle = idle
+            self.hover = hover
+            self.price = price
+            self.category = category
+            self.item = item
+            self.purchased = purchased
+
+
+    class PinkStore (object) :
+        def __init__(self):
+            self.items = []
+
 label pink_dialogue:
     $ location_count = "Pink"
     default ivy_dialogue_count = 0
@@ -19,6 +37,19 @@ label pink_dialogue:
         hide player 29 with dissolve
         hide pink
         $ pink_count = 1
+
+    if M_mia.get_state() == S_mia_helen_outfit_request and red_corset not in inventory.items:
+        scene pink
+        show player 12 with dissolve
+        player_name "I should look through that clothing rack..."
+        player_name "...They must have a selection of lingerie."
+        hide player with dissolve
+
+    elif M_mia.get_state() in [S_mia_angelicas_order, S_mia_angelicas_whip] and whip not in inventory.items:
+        scene pink with fade
+        show player 12 with dissolve
+        player_name "There has to be something in here that looks like {b}a whip{/b}..."
+        hide player with dissolve
     $ callScreen(location_count)
 
 label ivy_button_dialogue:
@@ -813,23 +844,34 @@ label ivy_reverse_cowgirl:
         elif ivy_rcowgirl_stage == 3:
             show screen ivy_sex_xray
             $ xray = 1
-            hide ivysex 18_19
-            hide ivysex_xray 39_40
-            show playersex 22 zorder 1
-            show expression "characters/player/char_player_sex_29.png" zorder 2 at Position (xpos=522,ypos=572)
-            show ivysex 19 zorder 2 at Position (xpos=538,ypos=707)
+            if not anim_toggle:
+                hide ivysex 18_19
+                hide ivysex_xray 39_40
+                show playersex 22 zorder 1
+                show expression "characters/player/char_player_sex_29.png" zorder 2 at Position (xpos=522,ypos=572)
+                show ivysex 19 zorder 2 at Position (xpos=538,ypos=707)
             player_name "( Crap, I'm at my limit! )"
             player_name "( She's way too good at this! )"
             player_name "I'm gonna cum!"
-            menu:
-                "Cum inside":
-                    ivy "Haah- go ahead!"
-                    hide screen ivy_sex_xray
-                    $ ivy_cum_inside = True
-                "Cum outside":
-                    ivy "Haah- go ahead!"
-                    hide screen ivy_sex_xray
-                    $ ivy_cum_inside = False
+
+            label ivy_rcowgirl_cum_options_menu:
+            show screen ivy_rcowgirl_cum_options
+            pause
+            jump ivy_rcowgirl_cum_options_menu
+            label ivy_rcowgirl_cum_inside:
+                hide screen ivy_rcowgirl_cum_options
+                ivy "Haah- go ahead!"
+                hide screen ivy_sex_xray
+                $ ivy_cum_inside = True
+                jump ivy_rcowgirl_cum_end
+            label ivy_rcowgirl_cum_outside:
+                hide screen ivy_rcowgirl_cum_options
+                ivy "Haah- go ahead!"
+                hide screen ivy_sex_xray
+                $ ivy_cum_inside = False
+                jump ivy_rcowgirl_cum_end
+            label ivy_rcowgirl_cum_end:
+
             if ivy_cum_inside == True:
                 show playersex 22
                 show ivysex 19 zorder 2 at Position (xpos=538,ypos=708)
@@ -1123,23 +1165,34 @@ label ivy_cowgirl:
         elif ivy_cowgirl_stage == 3:
             show screen ivy_sex_xray
             $ xray = 1
-            hide ivysex 10_11
-            hide ivysex_xray 36_37
-            show playersex 21 zorder 1
-            show expression "characters/player/char_player_sex_29.png" zorder 2 at Position (xpos=522,ypos=572)
-            show ivysex 11 zorder 2 at Position (xpos=533,ypos=766)
+            if not anim_toggle:
+                hide ivysex 10_11
+                hide ivysex_xray 36_37
+                show playersex 21 zorder 1
+                show expression "characters/player/char_player_sex_29.png" zorder 2 at Position (xpos=522,ypos=572)
+                show ivysex 11 zorder 2 at Position (xpos=533,ypos=766)
             player_name "( Crap, I'm at my limit! )"
             player_name "( She's way too good at this! )"
             player_name "I'm gonna cum!"
-            menu:
-                "Cum inside":
-                    ivy "Haah- go ahead!"
-                    hide screen ivy_sex_xray
-                    $ ivy_cum_inside = True
-                "Cum outside":
-                    ivy "Haah- go ahead!"
-                    hide screen ivy_sex_xray
-                    $ ivy_cum_inside = False
+
+            label ivy_cowgirl_cum_options_menu:
+            show screen ivy_cowgirl_cum_options
+            pause
+            jump ivy_cowgirl_cum_options_menu
+            label ivy_cowgirl_cum_inside:
+                hide screen ivy_cowgirl_cum_options
+                ivy "Haah- go ahead!"
+                hide screen ivy_sex_xray
+                $ ivy_cum_inside = True
+                jump ivy_cowgirl_cum_end
+            label ivy_cowgirl_cum_outside:
+                hide screen ivy_cowgirl_cum_options
+                ivy "Haah- go ahead!"
+                hide screen ivy_sex_xray
+                $ ivy_cum_inside = False
+                jump ivy_cowgirl_cum_end
+            label ivy_cowgirl_cum_end:
+
             if ivy_cum_inside == True:
                 show playersex 21
                 show ivysex 11 zorder 2 at Position (xpos=533,ypos=766)

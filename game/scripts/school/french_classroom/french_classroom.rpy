@@ -377,6 +377,7 @@ label homework_handed_dialogue:
         $ gTimer.tick(3)
         $ homework_handed = False
         $ homework_count = 1
+        $ M_mia.trigger(T_mc_homework)
         hide desk 12 with dissolve
 
     elif homework_count == 1:

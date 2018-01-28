@@ -83,7 +83,7 @@ init python:
 screen cellphone tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide ("cellphone_screen")]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -98,14 +98,14 @@ screen cellphone tag cellphone_screen:
 
     imagebutton idle "buttons/cellphone_app02.png" hover "buttons/cellphone_app02b.png" action Show("stat_log") pos 455,180
 
-    imagebutton idle "buttons/cellphone_app03.png" hover "buttons/cellphone_app03b.png" action Show("message_submenu") pos 555,180
+    imagebutton idle "buttons/cellphone_app03.png" hover "buttons/cellphone_app03b.png" action Show("message_submenu"), SetVariable("new_message", False) pos 555,180
 
 
 
 screen hint_system tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide("cellphone_screen")]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -122,7 +122,7 @@ screen hint_system tag cellphone_screen:
 screen hint_subsystem(Hint) tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide("cellphone_screen")]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -146,7 +146,7 @@ screen hint_subsystem(Hint) tag cellphone_screen:
 screen quest_log tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide ("cellphone_screen")]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -177,7 +177,7 @@ screen quest_log tag cellphone_screen:
 screen stat_log tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide ("cellphone_screen")]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -208,7 +208,7 @@ screen stat_log tag cellphone_screen:
 screen message_submenu tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide ("cellphone_screen"), Function(message_inactive, list=message_list), SetVariable("new_message", False)]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 
@@ -233,7 +233,7 @@ screen message_submenu tag cellphone_screen:
 screen message(Message) tag cellphone_screen:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide ("cellphone_screen"), SetVariable("new_message", False)]
+        action Hide("cellphone_screen"), If(new_message == False and (M_mia.get_state() == S_mia_midnight_call or M_mia.get_state() == S_mia_urgent_message), [Function(hideScreen, location_count), If(M_mia.get_state() == S_mia_midnight_call, Jump("mia_midnight_text"), Jump("mia_urgent_text"))], NullAction())
 
     imagebutton idle "buttons/cellphone.png" action NullAction() pos 300,80
 

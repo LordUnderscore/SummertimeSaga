@@ -1,7 +1,18 @@
 screen church:
-    add "backgrounds/location_church.jpg"
+    if gTimer.is_weekend() and gTimer.is_morning():
+        if is_here("helen") and is_here("harold"):
+            add "backgrounds/location_church_full01.jpg"
 
-    if angelica_count == 0:
+        elif is_here("helen"):
+            add "backgrounds/location_church_full02.jpg"
+
+        else:
+            add "backgrounds/location_church_full03.jpg"
+
+    else:
+        add gTimer.image("backgrounds/location_church{}.jpg")
+
+    if is_here("angelica"):
         imagebutton:
             focus_mask True
             pos (810,380)
@@ -12,20 +23,20 @@ screen church:
     imagebutton:
         focus_mask True
         pos (281,367)
-        idle "objects/object_door_47.png"
-        hover "objects/object_door_47b.png"
+        idle gTimer.image("objects/object_door_47{}.png")
+        hover gTimer.image("objects/object_door_47b{}.png")
         action Hide("church"), Jump("confessional_left")
 
     imagebutton:
         focus_mask True
         pos (440,368)
-        idle "objects/object_door_48.png"
-        hover "objects/object_door_48b.png"
+        idle gTimer.image("objects/object_door_48{}.png")
+        hover gTimer.image("objects/object_door_48b{}.png")
         action Hide("church"), Play("audio", sfxDoor()), Jump("confessional_right")
 
     imagebutton:
         focus_mask True
         pos (287,169)
-        idle "objects/object_door_71.png"
-        hover "objects/object_door_71b.png"
-        action Hide("church"), Play("audio", sfxDoor()), Jump("church_stairs_dialogue")
+        idle gTimer.image("objects/object_door_71{}.png")
+        hover gTimer.image("objects/object_door_71b{}.png")
+        action Hide("church"), Function(playSound), Play("audio", sfxDoor()), Jump("church_stairs_dialogue")

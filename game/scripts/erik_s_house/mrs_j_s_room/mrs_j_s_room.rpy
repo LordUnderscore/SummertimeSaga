@@ -19,6 +19,7 @@ label mrsj_private_yoga:
     $ gTimer.tick()
     $ location_count = "Erik's House Entrance"
     $ mrsj_filled = True
+    $ M_erimom.set('sex speed', .4)
     show player 435 at left
     show erikmom 53 at Position(xpos=734,ypos=650)
     player_name "Could I see your private yoga lessons?"
@@ -67,10 +68,12 @@ label mrsj_private_yoga:
     pause
     $ anim_toggle = True
     $ xray = False
+
     label mrsj_private_yoga_pos1_repeat:
-        show screen sex_anim_buttons
+        hide screen erimom_private_pos1_sex_options
+        show screen xray_scr
         pause
-        hide screen sex_anim_buttons
+        hide screen xray_scr
         if anim_toggle:
             show erikmomsex 36_37
             pause 8
@@ -83,12 +86,14 @@ label mrsj_private_yoga:
                 show erikmomsex 37 at Position(yoffset=60)
                 pause
                 $ animcounter += 1
-        show erikmomsex 37 at Position(yoffset=60)
-    menu:
-        "Keep going.":
-            jump mrsj_private_yoga_pos1_repeat
-        "Switch position.":
 
+        show screen erimom_private_pos1_sex_options
+        pause
+        jump mrsj_private_yoga_pos1_repeat
+
+        label erimom_private_pos1_switch:
+            hide screen erimom_private_pos1_sex_options
+            $ M_erimom.set('sex speed', .3)
             show erikmomsex 37 at Position(yoffset=60)
             pause 0.2
             show erikmomsex 38 with fastdissolve
@@ -122,10 +127,12 @@ label mrsj_private_yoga:
             erimom "Yes!! Keep going..."
             pause
             $ anim_toggle = True
+
             label mrsj_private_yoga_pos2_repeat:
-                show screen sex_anim_buttons
+                hide screen erimom_private_pos2_sex_options
+                show screen xray_scr
                 pause
-                hide screen sex_anim_buttons
+                hide screen xray_scr
                 if anim_toggle:
                     show erikmomsex 42_43_44_45_46 at Position(xpos=580,ypos=710)
                     pause 8
@@ -144,12 +151,13 @@ label mrsj_private_yoga:
                         show erikmomsex 46 at Position(xoffset=-19)
                         pause
                         $ animcounter += 1
-                show erikmomsex 46 at Position(xoffset=-19)
-            menu:
-                "Keep going.":
-                    jump mrsj_private_yoga_pos2_repeat
-                "Cum inside.":
 
+                show screen erimom_private_pos2_sex_options
+                pause
+                jump mrsj_private_yoga_pos2_repeat
+
+                label erimom_private_pos2_cum:
+                    hide screen erimom_private_pos2_sex_options
                     show erikmomsex 42_43_44_45_46
                     erimom "Hold me tight, {b}[firstname]{/b}..."
                     erimom "... cum inside me!"
@@ -244,10 +252,13 @@ label mrsj_3some:
     eri "It feels so good... inside you..."
     $ anim_toggle = True
     $ xray = False
+    $ M_erimom.set('sex speed', .4)
+
     label mrsj_3some_pos1_repeat:
-        show screen sex_anim_buttons
+        hide screen mrsj_3some_pos1_sex_options
+        show screen xray_scr
         pause
-        hide screen sex_anim_buttons
+        hide screen xray_scr
         if anim_toggle:
             show erikmomsex 21_22_23_24_25 at topright
             pause 8
@@ -266,12 +277,14 @@ label mrsj_3some:
                 show erikmomsex 25
                 pause
                 $ animcounter += 1
-        show erikmomsex 25
-    menu:
-        "Keep going.":
-            jump mrsj_3some_pos1_repeat
-        "Switch position.":
 
+        show screen mrsj_3some_pos1_sex_options
+        pause
+        jump mrsj_3some_pos1_repeat
+
+        label mrsj_3some_pos1_switch:
+            hide screen mrsj_3some_pos1_sex_options
+            $ M_erimom.set('sex speed', .3)
             show erikmomsex 26
             erimom "How about we try something different..."
             erimom "... I'd like you boys to take me on my back."
@@ -283,10 +296,12 @@ label mrsj_3some:
             show erikmomsex 28_29_30
             erimom "Faster!!"
             $ anim_toggle = True
+
             label mrsj_3some_pos2_repeat:
-                show screen sex_anim_buttons
+                hide screen mrsj_3some_pos2_sex_options
+                show screen xray_scr
                 pause
-                hide screen sex_anim_buttons
+                hide screen xray_scr
                 if anim_toggle:
                     show erikmomsex 28_29_30 at Position(xanchor=0,xpos=200,ypos=100)
                     pause 8
@@ -301,12 +316,13 @@ label mrsj_3some:
                         show erikmomsex 30 at Position(xoffset=-4,yoffset=41)
                         pause
                         $ animcounter += 1
-                show erikmomsex 30 at Position(xoffset=-4,yoffset=41)
-            menu:
-                "Keep going.":
-                    jump mrsj_3some_pos2_repeat
-                "Cum inside.":
 
+                show screen mrsj_3some_pos2_sex_options
+                pause
+                jump mrsj_3some_pos2_repeat
+
+                label mrsj_3some_pos2_cum:
+                    hide screen mrsj_3some_pos2_sex_options
                     show erikmomsex 28_29_30 at Position(xanchor=0,xpos=200,ypos=100)
                     pause
                     show erikmomsex 31 at Position(xoffset=60,yoffset=42) with hpunch
@@ -371,3 +387,35 @@ label mrsj_3some:
                     hide player
                     with dissolve
     $ callScreen(location_count)
+
+label erimom_private_pos1_faster_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') - 0.1)
+    jump mrsj_private_yoga_pos1_repeat
+
+label erimom_private_pos1_slower_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') + 0.1)
+    jump mrsj_private_yoga_pos1_repeat
+
+label erimom_private_pos2_faster_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') - 0.1)
+    jump mrsj_private_yoga_pos2_repeat
+
+label erimom_private_pos2_slower_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') + 0.1)
+    jump mrsj_private_yoga_pos2_repeat
+
+label mrsj_3some_pos1_faster_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') - 0.1)
+    jump mrsj_3some_pos1_repeat
+
+label mrsj_3some_pos1_slower_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') + 0.1)
+    jump mrsj_3some_pos1_repeat
+
+label mrsj_3some_pos2_faster_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') - 0.1)
+    jump mrsj_3some_pos2_repeat
+
+label mrsj_3some_pos2_slower_sex:
+    $ M_erimom.set('sex speed', M_erimom.get('sex speed') + 0.1)
+    jump mrsj_3some_pos2_repeat

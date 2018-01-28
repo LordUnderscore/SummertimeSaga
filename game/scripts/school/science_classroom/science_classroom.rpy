@@ -43,6 +43,84 @@ label science_classroom_dialogue:
         hide player
         with dissolve
         $ science_classroom_first_visit = False
+
+    elif M_mia.get_state() == S_mia_return_favor:
+        scene school_science_c02
+        show player 13 at left
+        show mia 10 at right
+        with dissolve
+        mia "{b}[firstname]{/b}!"
+        show mia 7
+        show player 14
+        player_name "Hi, {b}Mia{/b}."
+        show player 12
+        player_name "How's your...leg?"
+        show player 13
+        show mia 9
+        mia "Oh, it's fine... Just a little sore, ha ha."
+        show mia 10
+        mia "It's much better already, and I removed the bandage!"
+        show mia 7
+        show player 17
+        player_name "Cool! How does it look?"
+        show player 13
+        show mia 10
+        mia "I wanted to show you, actually... And give you something as a thank you for helping me."
+        show mia 7
+        show player 10
+        player_name "Here?"
+        show player 11
+        show mia 9
+        mia "Not here, silly!"
+        show mia 7
+        show player 17
+        player_name "Oh, ha ha."
+        show player 13
+        show mia 10
+        mia "{b}Come to my room tonight{/b} and I'll show you."
+        show mia 7
+        show player 14
+        player_name "Okay, I'll come by!"
+        show player 13
+        show mia 10
+        mia "Great! See you then!"
+        hide player
+        hide mia
+        with dissolve
+        $ M_mia.trigger(T_mia_night_invite)
+
+    elif M_mia.get_state() == S_mia_strip_aftermath:
+        scene school_science_c02
+        show player 5 at left
+        show mia 12 at right
+        with dissolve
+        mia "Hey, {b}[firstname]{/b}..."
+        show mia 8
+        show player 10
+        player_name "{b}Mia{/b}!"
+        player_name "Sorry about the other night."
+        show player 12
+        player_name "Is everything okay at home?"
+        show player 5
+        show mia 12
+        mia "Actually, I wanted to talk about that."
+        show mia 8
+        show player 11
+        player_name "..."
+        show mia 12
+        mia "I'm now forbidden to spend time with friends...and especially you."
+        mia "My mom says I have to be home after school and not speak to you..."
+        show mia 8
+        show player 10
+        player_name "...But {b}Mia{/b} I-"
+        show player 11
+        show mia 12
+        mia "We can't talk, sorry..."
+        hide mia with dissolve
+        show player 24
+        player_name "I didn't mean to get you in trouble..."
+        hide player with dissolve
+        $ M_mia.trigger(T_mia_grounded)
     $ callScreen(location_count)
 
 label okita_button_dialogue:

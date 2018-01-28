@@ -5,9 +5,17 @@ screen church_graveyard:
         imagebutton:
             focus_mask True
             pos (248,507)
-            idle "images/objects/object_tomb_01.png"
-            hover "images/objects/object_tomb_01b.png"
+            idle "objects/object_tomb_01.png"
+            hover "objects/object_tomb_01b.png"
             action Show("popup_unfinished")
+
+        if M_aqua.is_set("tomb search"):
+            imagebutton:
+                focus_mask True
+                pos (82,519)
+                idle "objects/object_tomb_03.png"
+                hover "objects/object_tomb_03b.png"
+                action Hide("church_graveyard"), Jump("right_tombstone")
 
     imagebutton:
         focus_mask True
@@ -15,8 +23,8 @@ screen church_graveyard:
             pos (627,223)
         else:
             pos (626,223)
-        idle gTimer.image("images/objects/object_tomb_02{}.png")
-        hover gTimer.image("images/objects/object_tomb_02b{}.png")
+        idle gTimer.image("objects/object_tomb_02{}.png")
+        hover gTimer.image("objects/object_tomb_02b{}.png")
         action Show("popup_unfinished")
 
     imagebutton:

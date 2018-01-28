@@ -403,7 +403,7 @@ label shower_dialogue:
 
                             "Sex." if pStats.chr() >= 7 and mom_count >= 12 and mom_basement_sex == True and mom_shower_sex_first == True:
                                 label mom_shower_sex:
-                                    $ shower_sex_count = 0
+                                    $ M_mom.set('sex speed', .4)
                                     $ anim_toggle = False
                                     $ xray = False
                                     $ cum = False
@@ -417,66 +417,75 @@ label shower_dialogue:
                                     mom "I've been waiting all day for this..."
                                     show moms 58 with dissolve
                                     mom "Haah!"
-                                    show screen xray_scr
+                                    show moms 59 with dissolve
+                                    pause
+
                                     label mom_shower_sex_loop:
-                                        show moms 59
+                                        hide screen shower_mom_sex_options
                                         show screen xray_scr
                                         pause
-                                        if anim_toggle == True:
-                                            hide moms 59
-                                            hide screen xray_scr
-                                            if xray == True:
-                                                show moms_xray 56_54 at Position(xpos=844,ypos=784)
-                                            else:
-                                                show moms 61_59 at Position(xpos=688,ypos=768)
-                                            pause 8
-                                            hide moms_xray 56_54
-                                            hide moms 61_59
-                                            show moms 59 at Position(xpos=688,ypos=768)
+                                        hide screen xray_scr
+
+                                        if anim_toggle:
+                                            $ animcounter = 0
+                                            while animcounter < 4:
+                                                hide moms
+                                                hide moms_xray
+                                                if xray == True:
+                                                    show moms_xray 56_55_54 at Position(xpos=844,ypos=784)
+                                                else:
+                                                    show moms 59_60_61 at Position(xpos=688,ypos=768)
+                                                pause 5
+
+                                                if animcounter == 1:
+                                                    mom "Ahhhh!!!{p=1}{nw}"
+                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Cum for {b}Mommy{/b}!"
+                                                pause 3
+                                                $ animcounter += 1
                                         else:
 
-                                            hide screen xray_scr
-                                            show moms 61 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 59 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 61 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 59 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 61 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 59 at Position(xpos=688, ypos=768)
-                                            pause
-                                            show moms 61 at Position(xpos=688, ypos=768)
-                                    $ shower_sex_count += 1
-                                    if shower_sex_count == 1:
-                                        hide screen xray_scr
-                                        mom "Give it to me, Sweetie!"
+                                            $ animcounter = 0
+                                            while animcounter < 4:
+                                                show moms 60 at Position(xpos=688, ypos=768)
+                                                pause
+                                                show moms 61
+                                                pause
+                                                show moms 59
+                                                pause
+                                                if animcounter == 1:
+                                                    mom "Ahhhh!!!{p=1}{nw}"
+                                                    mom "Give it to me, Sweetie!{p=2}{nw}"
+                                                if animcounter == 3:
+                                                    mom "Cum for {b}Mommy{/b}!"
+
+                                        show screen shower_mom_sex_options
+                                        pause
                                         jump mom_shower_sex_loop
 
-                                    elif shower_sex_count == 2:
+                                    label mom_shower_sex_cum:
                                         hide screen xray_scr
-                                        mom "Cum for {b}Mommy{/b}!"
-                                        jump mom_shower_sex_loop
-
-                                    elif shower_sex_count == 3:
-                                        hide screen xray_scr
+                                        hide screen mom_sex_options
                                         mom "HAAAAAHH!"
-                                    $ cum = True
-                                    show moms 60
-                                    hide ui
-                                    show white zorder 4 with dissolve
-                                    hide white with dissolve
-                                    pause
-                                    show playersex 53 zorder 3 at Position(xpos=663,ypos=632)
-                                    show moms 57
-                                    with dissolve
-                                    hide ui
-                                    mom "You let out so much..."
-                                    mom "Such a mess."
-                                    mom "Good thing we're in the shower..."
-                                    jump mom_shower_end
+                                        $ cum = True
+                                        hide moms_xray
+                                        if xray:
+                                            show moms 60 at right
+                                        show moms 60
+                                        hide ui
+                                        show white zorder 4 with dissolve
+                                        hide white with dissolve
+                                        pause
+
+                                        show playersex 53 zorder 3 at Position(xpos=663,ypos=632)
+                                        show moms 57
+                                        with dissolve
+                                        hide ui
+                                        mom "You let out so much..."
+                                        mom "Such a mess."
+                                        mom "Good thing we're in the shower..."
+                                        jump mom_shower_end
                 else:
 
                     scene shower_closeup
@@ -508,6 +517,7 @@ label shower_dialogue:
 
 label mom_shower_end:
     hide playersex
+    hide moms
     show moms 34 at Position(xpos=498,ypos=768)
     with dissolve
     mom "That was fun, but we have to finish."
@@ -1020,6 +1030,7 @@ label sis_shower_sex:
                             jump hallway_dialogue
 
                         "Put it inside." if sister.known(sis_shower_cuddle05) and pStats.dex() >= 7:
+                            $ M_sis.set('sex speed', .4)
                             $ sis_shower_cuddle05.finish()
                             $ anim_toggle = False
                             $ xray = False
@@ -1029,19 +1040,32 @@ label sis_shower_sex:
                             sis "What are you DOING?!!"
                             show sissex 101 at Position(xpos=476)
                             player_name "I want you, {b}Sis{/b}!!!"
+
                             label sis_shower_sex_loop:
-                                show sissex 101 at Position(xpos=476)
-                                show screen shower_sex_buttons
+                                hide screen sis_shower_sex_options
+                                show screen xray_scr
                                 pause
-                                if anim_toggle == True:
-                                    hide sissex 101
-                                    hide screen shower_sex_buttons
-                                    show sissex 98_99_100_101 at Position(xpos = 511)
-                                    pause 8
-                                    hide sissex 98_99_100_101
-                                else:
+                                hide screen xray_scr
+                                if anim_toggle:
                                     $ animcounter = 0
-                                    while animcounter < 3:
+                                    while animcounter < 4:
+                                        show sissex 98_99_100_101 at Position(xpos = 511)
+                                        pause 5
+                                        if animcounter == 1:
+                                            sis "Ahhhh!!!{p=1}{nw}"
+                                        if animcounter == 3:
+                                            sis "Oh!!!{p=1}{nw}"
+                                            player_name "Uhhh...{p=1}{nw}"
+                                        pause 3
+                                        $ animcounter += 1
+                                    sis "Don't you dare cum inside me...{p=2}{nw}"
+                                    show sissex 97 at Position(xpos=511)
+                                    sis "... I swear, I'll {b}KILL YOU{/b}!!{p=2}{nw}"
+                                    show sissex 98_99_100_101
+                                else:
+
+                                    $ animcounter = 0
+                                    while animcounter < 4:
                                         hide screen shower_sex_buttons
                                         show sissex 98 at Position(xpos = 511)
                                         pause
@@ -1052,21 +1076,21 @@ label sis_shower_sex:
                                         show sissex 101 at Position(xpos = 476)
                                         pause
                                         $ animcounter += 1
-                                show sissex 98 at Position(xpos=511)
-                                pause
-                                show sissex 99 at Position(xpos=518)
-                                pause
-                                show sissex 100 at Position(xpos=497)
-                                pause                                
-                                show sissex 101 at Position(xpos=476)
-                                sis "Don't you dare cum inside me..."
-                                show sissex 97 at Position(xpos=511)
-                                sis "... I swear, I'll {b}KILL YOU{/b}!!"
-                                menu:
-                                    "Keep going.":
-                                        jump sis_shower_sex_loop
 
-                                    "Cum inside." if pStats.str() < 7:
+                                    sis "Don't you dare cum inside me..."
+                                    show sissex 97 at Position(xpos=511)
+                                    sis "... I swear, I'll {b}KILL YOU{/b}!!"
+
+                                show screen sis_shower_sex_options
+                                pause
+                                jump sis_shower_sex_loop
+
+                                label sis_shower_sex_cum_1:
+                                    hide screen sis_shower_sex_options
+                                    if anim_toggle:
+                                        show sissex 98_99_100_101
+                                        pause 5
+                                    else:
                                         show sissex 101 at Position(xpos=476)
                                         pause
                                         show sissex 98 at Position(xpos=511)
@@ -1077,33 +1101,38 @@ label sis_shower_sex:
                                         pause                                
                                         show sissex 101 at Position(xpos=476)
                                         pause                                       
-                                        hide sissex
-                                        $ xray = False
-                                        show sis 130 zorder 1 at Position(xpos=443)
-                                        show player 351 zorder 2 at Position(xpos=260)
-                                        sis "[str_warn]What the {b}FUCK{/b}??" with hpunch
-                                        sis "[str_warn]Were you about to cum {b}INSIDE{/b} me!?"
-                                        show sis 131
-                                        show player 351b
-                                        player_name "No..."
-                                        show sis 130
-                                        show player 351
-                                        sis "What's wrong with you?!"
-                                        sis "You know I can get {b}PREGNANT{/b}, right??! YOU IDIOT!"
-                                        show sis 131
-                                        show player 351b
-                                        player_name "I..."
-                                        player_name "I'm sorry!!"
-                                        show sis 130
-                                        show player 351
-                                        sis "Yeah right! We're done here! {b}GET OUT{/b}!!" with hpunch
-                                        hide sis
-                                        hide player
-                                        with dissolve
-                                        $ playSound()
-                                        jump hallway_dialogue
+                                    hide sissex
+                                    $ xray = False
+                                    show sis 130 zorder 1 at Position(xpos=443)
+                                    show player 351 zorder 2 at Position(xpos=260)
+                                    sis "[str_warn]What the {b}FUCK{/b}??" with hpunch
+                                    sis "[str_warn]Were you about to cum {b}INSIDE{/b} me!?"
+                                    show sis 131
+                                    show player 351b
+                                    player_name "No..."
+                                    show sis 130
+                                    show player 351
+                                    sis "What's wrong with you?!"
+                                    sis "You know I can get {b}PREGNANT{/b}, right??! YOU IDIOT!"
+                                    show sis 131
+                                    show player 351b
+                                    player_name "I..."
+                                    player_name "I'm sorry!!"
+                                    show sis 130
+                                    show player 351
+                                    sis "Yeah right! We're done here! {b}GET OUT{/b}!!" with hpunch
+                                    hide sis
+                                    hide player
+                                    with dissolve
+                                    $ playSound()
+                                    jump hallway_dialogue
 
-                                    "Cum inside." if pStats.str() >= 7:
+                                label sis_shower_sex_cum_2:
+                                    hide screen sis_shower_sex_options
+                                    if anim_toggle:
+                                        show sissex 98_99_100_101
+                                        pause 5
+                                    else:
                                         show sissex 101 at Position(xpos=476)
                                         pause
                                         show sissex 98 at Position(xpos=511)
@@ -1114,44 +1143,60 @@ label sis_shower_sex:
                                         pause                                
                                         show sissex 101 at Position(xpos=476)
                                         pause                                             
-                                        show white
-                                        show sissex 102 at Position(xpos=516)
-                                        sis "{b}Aahhh!!!!{/b}" with hpunch
-                                        hide white with dissolve
-                                        pause
-                                        show sissex 103 at Position(xpos=511) with fastdissolve
-                                        pause
-                                        show sissex 102_103 at Position(xpos = 516)
-                                        pause 2.5
-                                        show sissex 103 at Position(xpos=511)
-                                        $ xray = False
-                                        sis "{b}*Panting*{/b}"
-                                        sis "Oh god..."
-                                        hide sissex
-                                        show sis 134 zorder 1 at Position(xpos=600)
-                                        show player 353 zorder 2 at Position(xpos=260)
-                                        with dissolve
-                                        sis "What the FUCK?!"
-                                        sis "I felt that!!!"
-                                        show player 352
-                                        sis "You just kept shooting cum deep inside!!"
-                                        show sis 133
-                                        show player 349 at Position(xpos=254)
-                                        player_name "It was a reflex!"
-                                        player_name "I... I couldn't stop..."
-                                        show sis 134
-                                        show player 348
-                                        sis "Don't you get it, you idiot?!"
-                                        sis "If you keep cumming inside me like that every time, I could get {b}PREGNANT{/b}!!"
-                                        show sis 133
-                                        show player 349
-                                        player_name "I..."
-                                        player_name "I'm sorry!!"
-                                        show sis 134
-                                        show player 353 at Position(xpos=260)
-                                        sis "Sh-Shut up and {b}GET OUT{/b}!!" with hpunch
-                                        hide sis
-                                        hide player
-                                        with dissolve
-                                        $ playSound()
-                                        jump hallway_dialogue
+                                    show white
+                                    show sissex 102 at Position(xpos=516)
+                                    sis "{b}Aahhh!!!!{/b}" with hpunch
+                                    hide white with dissolve
+                                    pause
+                                    show sissex 103 at Position(xpos=511) with fastdissolve
+                                    pause
+                                    show sissex 102_103 at Position(xpos = 516)
+                                    pause 2.5
+                                    show sissex 103 at Position(xpos=511)
+                                    $ xray = False
+                                    sis "{b}*Panting*{/b}"
+                                    sis "Oh god..."
+                                    hide sissex
+                                    show sis 134 zorder 1 at Position(xpos=600)
+                                    show player 353 zorder 2 at Position(xpos=260)
+                                    with dissolve
+                                    sis "What the FUCK?!"
+                                    sis "I felt that!!!"
+                                    show player 352
+                                    sis "You just kept shooting cum deep inside!!"
+                                    show sis 133
+                                    show player 349 at Position(xpos=254)
+                                    player_name "It was a reflex!"
+                                    player_name "I... I couldn't stop..."
+                                    show sis 134
+                                    show player 348
+                                    sis "Don't you get it, you idiot?!"
+                                    sis "If you keep cumming inside me like that every time, I could get {b}PREGNANT{/b}!!"
+                                    show sis 133
+                                    show player 349
+                                    player_name "I..."
+                                    player_name "I'm sorry!!"
+                                    show sis 134
+                                    show player 353 at Position(xpos=260)
+                                    sis "Sh-Shut up and {b}GET OUT{/b}!!" with hpunch
+                                    hide sis
+                                    hide player
+                                    with dissolve
+                                    $ playSound()
+                                    jump hallway_dialogue
+
+label mom_shower_faster_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') - 0.1)
+    jump mom_shower_sex_loop
+
+label mom_shower_slower_sex:
+    $ M_mom.set('sex speed', M_mom.get('sex speed') + 0.1)
+    jump mom_shower_sex_loop
+
+label sis_shower_faster_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') - 0.1)
+    jump sis_shower_sex_loop
+
+label sis_shower_slower_sex:
+    $ M_sis.set('sex speed', M_sis.get('sex speed') + 0.1)
+    jump sis_shower_sex_loop

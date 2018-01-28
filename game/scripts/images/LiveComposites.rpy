@@ -39,6 +39,26 @@ image cosplay_1b = ConditionSwitch(
     "June.started(june_cosplay)", "objects/item_cosplay1b_quest.png",
     "True", Null(),
     )
+image sex_6 = ConditionSwitch(
+    "True", "objects/item_sex6.png",
+    "False", "objects/item_sex6_quest.png",
+    "True", Null(),
+    )
+image sex_6b = ConditionSwitch(
+    "True", "objects/item_sex6b.png",
+    "False", "objects/item_sex6b_quest.png",
+    "True", Null(),
+    )
+image sex_17 = ConditionSwitch(
+    "M_mia.get_state != S_mia_helen_outfit_request", "objects/item_sex17.png",
+    "M_mia.get_state == S_mia_helen_outfit_request", "objects/item_sex17_quest.png",
+    "True", Null(),
+    )
+image sex_17b = ConditionSwitch(
+    "M_mia.get_state != S_mia_helen_outfit_request", "objects/item_sex17b.png",
+    "M_mia.get_state == S_mia_helen_outfit_request", "objects/item_sex17b_quest.png",
+    "True", Null(),
+    )
 
 
 image sis_computer_bg = LiveComposite(

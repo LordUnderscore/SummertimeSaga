@@ -16,21 +16,6 @@ init python:
         def __init__(self):
             self.items = []
 
-    game = Item("Sea Dogs SAGA", 100, image = Transform("game_1"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_1b"))
-    game02 = Item("World of Orcette", 100, image = Transform("game_2"), description = "The latest video game sensation from DarkCookie!", h_image = Transform("game_2b"))
-    card01 = Item("{b}Trading Card - The Flying Cock Goblin:{/b}", 50, image = "objects/item_card1.png", description = "The Fappening card for The Flying Cock Goblin.", h_image = "objects/item_card1b.png", closeup = "objects/closeup_card01.png")
-    card02 = Item("{b}Trading Card - Cock Crown of Thorns:{/b}", 50, image = Transform("card_2"), description = "The Fappening card for Cock Crown of Thorns.", h_image = Transform("card_2b"), closeup = "objects/closeup_card02.png")
-    orcette_cosplay = Item("{b}Orcette Queen Garments:{/b}", 300, image = Transform("cosplay_1"), description = "The outfit befit for an Orcette Queen made from the battle scarred skin of her enemies.", h_image = Transform("cosplay_1b"))
-
-    sea_dogs_saga = ComicItem(game, "PC Game - Sea Dogs Saga", "", "boxes/popup_item_game.png", Transform("game_1"), Transform("game_1b"), 100, "Video Games", False)
-    world_of_orcette = ComicItem(game02, "PC Game - World of Orcette", "", "boxes/popup_item_game2.png", Transform("game_2"), Transform("game_2b"), 100, "Video Games", False)
-    orcette_outfit = ComicItem(orcette_cosplay, "Cosplay Outfit - Orcette Queen", "", "boxes/popup_cosplay.png", Transform("cosplay_1"), Transform("cosplay_1b"), 300, "Cosplay", False)
-    cock_goblin = ComicItem(card01, "Trading Card - The Flying Cock Goblin", "objects/closeup_card01.png", "boxes/popup_item_card1.png", "objects/item_card1.png", "objects/item_card1b.png", 50, "Collectible", False)
-    cock_crown = ComicItem(card02, "Trading Card - Cock Crown of Thorns", "objects/closeup_card02.png", "boxes/popup_item_card2.png", Transform("card_2"), Transform("card_2b"), 50, "Collectible", False)
-
-    comicstore = ComicStore()
-    comicstore.items = [cock_goblin, sea_dogs_saga, world_of_orcette, cock_crown, orcette_outfit]
-
 default comic_first_visit = True
 
 label comic_store_dialogue:

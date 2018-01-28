@@ -328,7 +328,7 @@ label erik_button_dialogue:
                     eri "Yeah!"
                     eri "It's pretty awkward for me to ask, you know?"
                     show erik 1
-                    show player 29 at Position(xoffset=8)
+                    show player 29
                     player_name "I'll' try to bring it up and see what she says..."
                     show player 1
                     $ erik.add_event(erik_path_split)

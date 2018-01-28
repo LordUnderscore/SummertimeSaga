@@ -1,12 +1,12 @@
 screen school_right_hallway:
 
-    add "backgrounds/location_stairs.jpg"
+    add gTimer.image("backgrounds/location_school_second{}.jpg")
 
     imagebutton:
         focus_mask True
-        pos (50,81)
-        idle "objects/object_door_11.png"
-        hover "objects/object_door_11b.png"
+        pos (134,327)
+        idle gTimer.image("objects/object_sign_03{}.png")
+        hover gTimer.image("objects/object_sign_03b{}.png")
         action [Hide("school_right_hallway"),
                 If(
                     quest09_1 or quest09_2,
@@ -17,7 +17,14 @@ screen school_right_hallway:
 
     imagebutton:
         focus_mask True
-        pos (610,300)
+        pos (16,420)
+        idle gTimer.image("objects/object_door_11{}.png")
+        hover gTimer.image("objects/object_door_11b{}.png")
+        action Hide("school_right_hallway"), Jump("third_floor_dialogue")
+
+    imagebutton:
+        focus_mask True
+        pos (610,366)
         idle "objects/object_door_12.png"
         hover "objects/object_door_12b.png"
         action Hide("school_right_hallway"), Function(playSound), Jump("cafeteria_dialogue")
@@ -31,10 +38,10 @@ screen school_right_hallway:
 
     imagebutton:
         focus_mask True
-        pos (828,363)
-        idle "objects/object_door_13.png"
-        hover "objects/object_door_13b.png"
-        action Hide("school_right_hallway"), Function(playSound), Play("audio", sfxDoor()), Jump("office_dialogue")
+        pos (864,408)
+        idle gTimer.image("objects/object_door_97{}.png")
+        hover gTimer.image("objects/object_door_97b{}.png")
+        action Hide("school_right_hallway"), Function(playSound), Play("audio", sfxDoor()), Jump("teach_lounge_dialogue")
 
     if quest09 not in quest_list or quest09 in completed_quests:
         imagebutton:

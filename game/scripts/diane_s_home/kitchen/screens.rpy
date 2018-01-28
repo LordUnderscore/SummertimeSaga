@@ -76,19 +76,37 @@ screen aunt_sex_xray_buttons:
 
 screen aunt_sex_options:
     imagebutton:
-        pos (200,700)
+        pos (150,700)
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action If(not aunt_had_sex, Jump ("aunt_sex_loop"), If(condom_on, Jump ("aunt_sex_loop_3"), Jump("aunt_sex_loop_2")))
+
+    imagebutton:
+        pos (350,700)
         idle "buttons/diane_stage01_02.png"
         hover "buttons/diane_stage01_02b.png"
         action Jump("aunt_sex_cum_in")
 
     imagebutton:
-        pos (400,700)
+        pos (550,700)
         idle "buttons/diane_stage01_03.png"
         hover "buttons/diane_stage01_03b.png"
         action Jump("aunt_sex_cum_out")
 
-    imagebutton:
-        pos (600,700)
-        idle "buttons/judith_stage02_01.png"
-        hover "buttons/judith_stage02_01b.png"
-        action If(not aunt_had_sex, Jump ("aunt_sex_loop"), If(condom_on, Jump ("aunt_sex_loop_3"), Jump("aunt_sex_loop_2")))
+    if M_aunt.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("aunt_kitchen_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_aunt.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("aunt_kitchen_faster_sex")
+            xpos 450
+            ypos 735

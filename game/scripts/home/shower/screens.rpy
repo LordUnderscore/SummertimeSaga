@@ -42,3 +42,83 @@ screen shower_sex_buttons:
             ),
             Return
         ]
+
+screen shower_mom_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("mom_shower_sex_loop")
+        xpos 250
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("mom_shower_sex_cum")
+        xpos 450
+        ypos 700
+
+    if M_mom.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("mom_shower_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_mom.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("mom_shower_faster_sex")
+            xpos 450
+            ypos 735
+
+screen sis_shower_sex_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/judith_stage02_01.png"
+        hover "buttons/judith_stage02_01b.png"
+        action Jump("sis_shower_sex_loop")
+        xpos 250
+        ypos 700
+
+    if pStats.str() < 7:
+        imagebutton:
+            focus_mask True
+            idle "buttons/diane_stage01_02.png"
+            hover "buttons/diane_stage01_02b.png"
+            action Jump("sis_shower_sex_cum_1")
+            xpos 450
+            ypos 700
+
+    if pStats.str() >= 7:
+        imagebutton:
+            focus_mask True
+            idle "buttons/diane_stage01_02.png"
+            hover "buttons/diane_stage01_02b.png"
+            action Jump("sis_shower_sex_cum_2")
+            xpos 450
+            ypos 700
+
+    if M_sis.get('sex speed') < .4:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_02.png"
+            hover "buttons/speed_02b.png"
+            action Jump("sis_shower_slower_sex")
+            xpos 250
+            ypos 735
+
+    if M_sis.get('sex speed') > .21:
+        imagebutton:
+            focus_mask True
+            idle "buttons/speed_01.png"
+            hover "buttons/speed_01b.png"
+            action Jump("sis_shower_faster_sex")
+            xpos 450
+            ypos 735

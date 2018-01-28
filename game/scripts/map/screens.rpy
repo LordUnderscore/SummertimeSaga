@@ -63,6 +63,19 @@ screen town_map:
             hovered SetVariable("location_count", "School")
             unhovered SetVariable("location_count", "Town Map")
 
+    if loc_court_unlocked:
+        imagebutton:
+            focus_mask True
+            pos (417,220)
+            idle gTimer.image("map/bball01{}.png")
+            hover gTimer.image("map/bball01b{}.png")
+            if not gTimer.is_night():
+                action Hide("town_map"), Hide("ui"), Function(playMusic), Function(playSound), Jump("basket_court_dialogue")
+            else:
+                action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
+            hovered SetVariable("location_count", "Basket Ball Court")
+            unhovered SetVariable("location_count", "Town Map")
+
     if loc_aunt_unlocked:
         imagebutton:
             focus_mask True
@@ -89,7 +102,7 @@ screen town_map:
             if not gTimer.is_night():
                 action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("mias_house_dialogue")
             else:
-                action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
+                action Hide("town_map"), Hide("ui"), If(M_mia.get_state() in [S_mia_midnight_help, S_mia_locked_room], [Function(playMusic), Jump("mias_house_dialogue")], Jump("night_sleep_map"))
             hovered SetVariable("location_count", "Mia's House")
             unhovered SetVariable("location_count", "Town Map")
 
@@ -237,7 +250,7 @@ screen town_map:
             pos (588,48)
             idle gTimer.image("map/church01{}.png")
             hover gTimer.image("map/church01b{}.png")
-            if not gTimer.is_dark():
+            if not gTimer.is_dark() or (gTimer.is_evening() and not M_mia.is_set('church night locked')):
                 action Hide("town_map"), Hide("ui"), Function(playMusic), Function(playSound), Jump("church_dialogue")
             else:
                 action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
@@ -333,6 +346,32 @@ screen town_map:
             else:
                 action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
             hovered SetVariable("location_count", "Treehouse")
+            unhovered SetVariable("location_count", "Town Map")
+
+    if loc_donuts_unlocked:
+        imagebutton:
+            focus_mask True
+            pos (982,222)
+            idle gTimer.image("map/donut01{}.png")
+            hover gTimer.image("map/donut01b{}.png")
+            if not gTimer.is_night():
+                action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("donut_shop_dialogue")
+            else:
+                action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
+            hovered SetVariable("location_count", "Donut Shop")
+            unhovered SetVariable("location_count", "Town Map")
+
+    if M_aqua.is_set('altar pass') and M_aqua.is_set('treasure pass') and M_aqua.is_set('squid pass') and M_aqua.is_set('maze pass') and loc_lair_unlocked:
+        imagebutton:
+            focus_mask True
+            pos (10,675)
+            idle gTimer.image("map/lair01{}.png")
+            hover gTimer.image("map/lair01b{}.png")
+            if not gTimer.is_night():
+                action Hide("town_map"), Hide("ui"), Function(playMusic), Jump("lair_dialogue")
+            else:
+                action Hide("town_map"), Hide("ui"), Jump("night_sleep_map")
+            hovered SetVariable("location_count", "Lair")
             unhovered SetVariable("location_count", "Town Map")
 
     add gTimer.image("car02{}")

@@ -59,7 +59,7 @@ init -1 python hide:
 
 python early:
     config.name = "SummertimeSaga"
-    config.version = "0.13.00"
+    config.version = "0.14.30"
     config.save_directory = str(config.name) + "-" + str(config.version)
 
 init -1 python hide:
@@ -78,6 +78,7 @@ init python:
     build.archive("audio", "all")
     build.archive("images", "all")
     build.archive("scripts", "all")
+    build.archive("secret", "all")
     build.directory_name = str(config.name) + "-" + str(config.version)
     build.executable_name = config.name
     build.include_update = False
@@ -86,6 +87,7 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    build.classify('game/secret/**.**', 'secret')
     build.classify('game/**.ogg', 'audio')
     build.classify('game/**.rpy', None)
     build.classify('game/**.png', 'images')

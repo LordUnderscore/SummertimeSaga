@@ -122,7 +122,6 @@ label dirt_pile:
 
                 player_name "( On second thought... )"
                 player_name "( Perhaps I should leave them alone... )"
-                hide location_forest_dirt1
                 with dissolve
 
         player_name "( There's something strange about this patch of dirt... )"
@@ -138,3 +137,58 @@ label worm_popup:
     hide expression "boxes/popup_item_worm1.png" with dissolve
     $ dirt_pile_done = True
     $ callScreen(location_count)
+
+label altar:
+    if M_aqua.is_set("altar pass"):
+        scene expression gTimer.image("location_forest_puzzle_day{}")
+        pause
+        $ callScreen(location_count)
+
+    scene expression gTimer.image("forest_altar{}")
+    with fade
+    show text "A strange stone structure stands in the middle of the forest." at Position (xpos= 512, ypos= 700) with dissolve
+    pause
+    show text "It looks old! Completely overgrown in moss..." at Position (xpos= 512, ypos= 700) with dissolve
+    pause
+    if not gTimer.is_dark():
+        show text "...and there's {b}sunlight{/b} shining directly down upon it." at Position (xpos= 512, ypos= 700) with dissolve
+    else:
+        show text "...and there's {b}moonlight{/b} shining directly down upon it." at Position (xpos= 512, ypos= 700) with dissolve
+    pause
+    show text "This must be what I'm looking for." at Position (xpos= 512, ypos= 700) with dissolve
+    pause
+    hide text
+    with dissolve
+
+    if not gTimer.is_dark():
+        scene location_forest_puzzle_day
+        player_name "Hmm..."
+        player_name "This looks like the alter that was on the church bell"
+        player_name "...But something's not right. This just looks like a dead end."
+        player_name "Hmm, what were the clues again?"
+        player_name "A stone alter, with trees around it and the {b}moon{/b} shining down."
+        player_name "I should think it over."
+        $ callScreen(location_count)
+    else:
+
+        scene location_forest_puzzle_night_closed
+        $ gTimer.tick()
+        player_name "Well that's strange."
+        player_name "It looks like the moon is effecting the alter somehow."
+        player_name "These symbols must be important and it looks like I can move them around to make a picture..."
+        player_name "Maybe it's some kind of puzzle?"
+        label altar_puzzle:
+            call screen altar_puzzle
+            if piecelist[9] == [162,143] and piecelist[18] == [382,20] and piecelist[16] == [600,139] and piecelist[14] == [383,263] and piecelist[10] == [163,385] and piecelist[12] == [603,387] and piecelist[20] == [384,516]:
+                call screen altar_puzzle_finish
+            jump altar_puzzle
+        label altar_puzzle_finish:
+            scene expression "location_forest_puzzle_night"
+            show expression "objects/object_map_01.png" at Position(xalign = 0.473, yalign = 0.44)
+            with None
+            show popup_item_map1 at truecenter with dissolve
+            $ inventory.items.append(treasure_map)
+            pause
+            hide popup_item_map1 with dissolve
+            $ M_aqua.trigger(T_aqua_altar_puzzle_solve)
+        $ callScreen(location_count)

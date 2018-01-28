@@ -87,11 +87,6 @@ label map_dialogue:
             $ renpy.pause()
             hide unlock48 with dissolve
 
-            show unlock47 at truecenter with dissolve
-            $ loc_tattoo_unlocked = True
-            $ renpy.pause()
-            hide unlock47 with dissolve
-
             show unlock46 at truecenter with dissolve
             $ loc_treehouse_unlocked = True
             $ renpy.pause()

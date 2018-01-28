@@ -100,7 +100,6 @@ label backroom_dialogue:
         $ library_desk_count = 1
         $ backroom_count = 3
         $ ui_lock_count = 0
-        $ gTimer.tick()
     $ callScreen(location_count)
 
 label backroom_couple_finish01:

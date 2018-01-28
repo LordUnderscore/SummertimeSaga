@@ -13,13 +13,13 @@ screen pink:
         idle "objects/object_toy_02.png"
         hover "objects/object_toy_02b.png"
         action Show("popup_drilldo")
-        pos 55,360
+        pos 209,246
 
     imagebutton:
         idle "objects/object_toy_03.png"
         hover "objects/object_toy_03b.png"
-        action Show("popup_lingerie")
-        pos 170,232
+        action Show("pink_ui")
+        pos 11,422
 
     imagebutton:
         focus_mask True
@@ -27,6 +27,13 @@ screen pink:
         hover "objects/object_toy_04b.png"
         action Show("popup_electroclit")
         pos 162,517
+
+    imagebutton:
+        focus_mask True
+        idle "objects/object_toy_05.png"
+        hover "objects/object_toy_05b.png"
+        action Show("popup_strapon")
+        pos 301,422
 
     imagebutton:
         focus_mask True
@@ -47,14 +54,14 @@ screen pink:
         idle "objects/object_toy_08.png"
         hover "objects/object_toy_08b.png"
         action Show("popup_sybian")
-        pos 335,532
+        pos 334,532
 
     imagebutton:
         focus_mask True
         idle "objects/object_toy_09.png"
         hover "objects/object_toy_09b.png"
         action Show("popup_fleshtube")
-        pos 438,486
+        pos 439,486
 
     imagebutton:
         focus_mask True
@@ -81,15 +88,15 @@ screen pink:
         focus_mask True
         idle "objects/object_toy_13.png"
         hover "objects/object_toy_13b.png"
-        action Show("popup_milkslave")
-        pos 794,310
+        action Show("popup_whip")
+        pos 292,491
 
     imagebutton:
         focus_mask True
         idle "objects/object_toy_14.png"
         hover "objects/object_toy_14b.png"
         action Show("popup_handcuffs")
-        pos 147,467
+        pos 147,468
 
     imagebutton:
         focus_mask True
@@ -222,26 +229,26 @@ screen popup_sybian:
         xpos 410
         ypos 421
 
-screen popup_milkslave:
+screen popup_strapon:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide("popup_milkslave")]
+        action [Hide("popup_strapon")]
     add "boxes/pink_item_06.png" pos 276,281
     imagebutton:
-        idle "buttons/shop_button_1000.png"
-        hover "buttons/shop_button_1000b.png"
+        idle "buttons/shop_button_500.png"
+        hover "buttons/shop_button_500b.png"
         action [
-            Function(inventory.buy_item, milkslave),
+            Function(inventory.buy_item, strapon),
             If(
-                inventory.money < 1000,
+                inventory.money < 500,
                 Show("popup_fail01"),
                 If(
-                    milkslave in inventory.items,
+                    strapon in inventory.items,
                     Show("popup_fail02"),
-                    Show("popup_milkslave")
+                    Show("popup_strapon")
                 )
             ),
-            Hide("popup_milkslave")
+            Hide("popup_strapon")
         ]
         xpos 410
         ypos 421
@@ -365,15 +372,26 @@ screen popup_sexdoll:
         xpos 410
         ypos 421
 
-screen popup_lingerie:
+screen popup_whip:
     imagebutton:
         idle "backgrounds/menu_ground.png"
-        action [Hide("popup_lingerie")]
+        action [Hide("popup_whip")]
     add "boxes/pink_item_13.png" pos 276,281
     imagebutton:
-        idle "buttons/shop_button_400.png"
-        hover "buttons/shop_button_400b.png"
-        action [Function(inventory.buy_item, lingerie), If(inventory.money < 400, Show("popup_fail01"), If(lingerie in inventory.items, Show("popup_fail02"), Show("popup_lingerie"))), Hide("popup_lingerie")]
+        idle "buttons/shop_button_500.png"
+        hover "buttons/shop_button_500b.png"
+        action [
+            Function(inventory.buy_item, whip),
+            If(inventory.money < 500,
+               Show("popup_fail01"),
+               If(
+                    whip in inventory.items,
+                    Show("popup_fail02"),
+                    Show("popup_whip")
+               )
+            ),
+            Hide("popup_whip")
+        ]
         xpos 410
         ypos 421
 
@@ -561,3 +579,64 @@ screen ivy_sex_xray_button:
         action If(anim_toggle == True, SetVariable("anim_toggle", False), SetVariable("anim_toggle", True)), Return
         xpos 10
         ypos 600
+
+screen pink_item_info(Item):
+    text "{color=#8995AD}[Item.category]:{/color}\n\n{color=#5E6C8F}[Item.name]{/color}" pos 130, 93
+    imagebutton idle ["buttons/shop_button_" + str(Item.price) + ".png"] hover ["buttons/shop_button_" + str(Item.price) + "b.png"] action If(inventory.money < Item.price, Show("popup_fail01"), If(Item.item in inventory.items, Show("popup_fail02"), [Function(inventory.buy_item, Item.item), Show("popup", Image = Item.popup)])) pos 685, 93
+
+screen pink_ui:
+    imagebutton:
+        idle "backgrounds/menu_ground.png"
+        action [Hide("pink_item_info"), Hide("pink_ui")]
+
+    imagebutton idle "buttons/pink_ui_01.png" action NullAction() focus_mask True at truecenter
+
+    $ a = 0
+    $ b = 0
+    $ c = 0
+    $ c2 = 0
+    $ c3 = 0
+    for Item in pinkstore.items:
+        $ c2 = math.trunc(c / 6)
+        if c3 == 6:
+            $ c3 = 0
+        $ a = 123
+        $ b = 163 + (c2 * 133)
+        $ a += c3 * 130
+        imagebutton idle Item.idle hover Item.hover xpos a ypos b action Show("pink_item_info", Item = Item)
+        $ c += 1
+        $ c3 += 1
+
+screen ivy_cowgirl_cum_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_03.png"
+        hover "buttons/diane_stage01_03b.png"
+        action Jump("ivy_cowgirl_cum_outside")
+        xpos 250
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("ivy_cowgirl_cum_inside")
+        xpos 450
+        ypos 700
+
+screen ivy_rcowgirl_cum_options:
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_03.png"
+        hover "buttons/diane_stage01_03b.png"
+        action Jump("ivy_rcowgirl_cum_outside")
+        xpos 250
+        ypos 700
+
+    imagebutton:
+        focus_mask True
+        idle "buttons/diane_stage01_02.png"
+        hover "buttons/diane_stage01_02b.png"
+        action Jump("ivy_rcowgirl_cum_inside")
+        xpos 450
+        ypos 700

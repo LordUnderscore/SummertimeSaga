@@ -56,7 +56,7 @@ label training_dialogue:
         show player 11
         mas "You are slow... and weak! A gun would be of no use for you!"
         show master 2
-        mas "We will have to work on your {b}Dexterity{/b} and your {b}Strength{/b}."
+        mas "This is no good, we will have to work on your {b}Dexterity{/b}."
         show master 5
         show player 12
         player_name "Alright, so, when do we start training?"
