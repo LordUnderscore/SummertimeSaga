@@ -1,0 +1,47 @@
+MIT License
+
+Copyright (c) 2026 Alberto Licea
+
+The MIT License below applies ONLY to the original source code, scripts, notes,
+and tooling authored by the copyright holder for this fork (the "Software"). It
+does NOT apply to any pre-existing "Summertime Saga" game content — see the
+IMPORTANT NOTICE section below.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this Software and associated documentation files, to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+
+IMPORTANT NOTICE — Third-Party Content
+
+This repository may contain files, assets, or code originating from the game
+"Summertime Saga", which is the exclusive property of Kompas Productions.
+
+All rights to the original game — including its characters, story, dialogue,
+images, sprites, audio, music, and original Ren'Py scripts — belong to Kompas
+Productions and its respective creators. These elements are NOT covered by the
+MIT License above and are NOT licensed for redistribution, sale, or commercial
+use.
+
+This project is an unofficial educational fork intended solely for learning,
+research, and experimentation. It is not affiliated with or endorsed by Kompas
+Productions or DarkCookie. It must not be distributed as a standalone game or
+used commercially.
+
+If you are a rights holder and believe content here infringes your copyright,
+contact the maintainer and it will be removed promptly.
