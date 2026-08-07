@@ -99,6 +99,7 @@ This keeps your project legal and safe.
 
 - **Summertime Saga** — [Kompas Productions](https://summertimesaga.com/)
 - **DarkCookie** — original creator
+- **[@LordUnderscore](https://github.com/LordUnderscore/)** — source repo this fork was cloned from
 - Community contributors and modders
 
 ---
